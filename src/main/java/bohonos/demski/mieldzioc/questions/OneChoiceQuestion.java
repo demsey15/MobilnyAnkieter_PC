@@ -27,6 +27,8 @@ public class OneChoiceQuestion extends Question {
 		this.isDropDownList = false;
 	}
 
+	
+	
 	/**
 	 * Create OneChoiceQuestion object with isDropDownList as false
 	 * @param question text of question

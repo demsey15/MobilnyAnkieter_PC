@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author Dominik Demski
  * 
  */
-public class DataTimeQuestion extends Question {
+public class DateTimeQuestion extends Question {
 
 
 
@@ -23,7 +23,7 @@ public class DataTimeQuestion extends Question {
 	 * Create DataTimeQuestion object with both onlyTime and onlyDate as false and obligatory as true.
 	 * @param question text of question
 	 */
-	public DataTimeQuestion(String question) {
+	public DateTimeQuestion(String question) {
 		super(question);
 		onlyDate = false;
 		onlyTime = false;
@@ -34,7 +34,7 @@ public class DataTimeQuestion extends Question {
 	 * @param question text of question
 	 * @param obligatory true if answer this question is obligatory
 	 */
-	public DataTimeQuestion(String question, boolean obligatory) {
+	public DateTimeQuestion(String question, boolean obligatory) {
 		super(question, obligatory);
 		onlyDate = false;
 		onlyTime = false;
@@ -47,7 +47,7 @@ public class DataTimeQuestion extends Question {
 	 * @param onlyTime true if only time part of date should be take into account
 	 * @param onlyDate true if only date (without time) part of date should be take into account
 	 */
-	public DataTimeQuestion(String question, boolean obligatory, boolean onlyTime, boolean onlyDate) {
+	public DateTimeQuestion(String question, boolean obligatory, boolean onlyTime, boolean onlyDate) {
 		super(question, obligatory);
 		this.onlyDate = onlyDate;
 		this.onlyTime = onlyTime;
@@ -62,7 +62,7 @@ public class DataTimeQuestion extends Question {
 	 * @param onlyTime true if only time part of date should be take into account
 	 * @param onlyDate true if only date (without time) part of date should be take into account
 	 */
-	public DataTimeQuestion(String question, boolean obligatory, String errorMessage, String hint, boolean onlyTime, boolean onlyDate) {
+	public DateTimeQuestion(String question, boolean obligatory, String errorMessage, String hint, boolean onlyTime, boolean onlyDate) {
 		super(question, obligatory, errorMessage, hint);
 		this.onlyDate = onlyDate;
 		this.onlyTime = onlyTime;
@@ -147,7 +147,7 @@ public class DataTimeQuestion extends Question {
 		if(o == null) return false;
 		if(this.getClass() != o.getClass()) return false;
 		
-		DataTimeQuestion o2 = (DataTimeQuestion) o;
+		DateTimeQuestion o2 = (DateTimeQuestion) o;
 		
 		return super.equals(o2) &&  Objects.equals(userAnswer, o2.userAnswer) && 
 				this.onlyDate == o2.onlyDate && this.onlyTime == o2.onlyTime;

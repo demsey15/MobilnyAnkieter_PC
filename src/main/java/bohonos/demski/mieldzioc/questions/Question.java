@@ -12,6 +12,16 @@ import java.util.Objects;
  */
 public abstract class Question {
 	
+	public static final int ONE_CHOICE_QUESTION = 0;
+	public static final int MULTIPLE_CHOICE_QUESTION = 1;
+	public static final int DROP_DOWN_QUESTION = 2;
+	public static final int GRID_QUESTION = 3;
+	public static final int TEXT_QUESTION = 4;
+	public static final int SCALE_QUESTION = 5;
+	public static final int DATE_QUESTION = 6;
+	public static final int TIME_QUESTION = 7;
+	
+	
 	private boolean obligatory;
 	private String errorMessage;
 	private String hint;
