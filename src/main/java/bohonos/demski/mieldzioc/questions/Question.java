@@ -128,7 +128,7 @@ public abstract class Question {
 	
 	/**
 	 * 
-	 * @return answers as string list in proper order, 
+	 * @return answers (not user's answers!) as string list in proper order, 
 	 * null if there is no answers in this type of question 
 	 */
 	public abstract List<String> getAnswersAsStringList();

@@ -3,6 +3,8 @@
  */
 package bohonos.demski.mieldzioc.survey;
 
+import java.util.List;
+
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.questions.GridQuestion;
 import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
@@ -58,7 +60,55 @@ public class CreatingSurvey {
 			return -1;
 		}
 		//dodaj pytanie i zwróæ indeks tego pytania
-		return -1;
+		throw new UnsupportedOperationException();
+	}
+	
+	public List<String> getAnswersAsList(int questionNumber){
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getAnswerFromQuestion(int questionNumber, int answerNumber){
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean setQuestionText(int questionNumber){
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getQuestionText(int questionNumber){
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getQuestionHint(int questionNumber){
+		throw new UnsupportedOperationException();
+	}
+	
+	public String getQuestionError(int questionNumber){
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean setQuestionHint(int questionNumber, String hint){
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean setQuestionError(int questionNumber, String error){
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean setQuestionObligatory(int questionNumber, boolean obligatory){
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean getQuestionObligatory(int questionNumber){
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean setTextConstraints(){
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean setNumberConstraints(){
+		throw new UnsupportedOperationException();
 	}
 	
 	
