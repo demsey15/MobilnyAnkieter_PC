@@ -111,8 +111,9 @@ public class CreatingSurvey {
 		throw new UnsupportedOperationException();
 	}
 	
-	
-	
+	public int getQuestionsCount(){
+		throw new UnsupportedOperationException();
+	}
 	
 	
 	
