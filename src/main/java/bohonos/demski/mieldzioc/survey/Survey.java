@@ -17,9 +17,10 @@ import bohonos.demski.mieldzioc.questions.Question;
 public class Survey {
     
     public List<Question> questions = new ArrayList<Question>();
-    private GregorianCalendar startTime;
-    private GregorianCalendar finishTime;
-    //public Interviewer interviewer;
+    private GregorianCalendar startTime = null;
+    private GregorianCalendar finishTime = null;
+    //public Interviewer interviewer; //todo
+    private int idOfSurveys;
     private String title;
     private String description;
     private String summary;
@@ -27,12 +28,79 @@ public class Survey {
     
     public boolean startSurvey()
     {
-        return true;
+        if (startTime==null && finishTime==null)
+        {
+            startTime = new GregorianCalendar();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     public boolean finishSurvey()
     {
-        return true;
+        if (startTime!=null && finishTime==null)
+        {
+            finishTime = new GregorianCalendar();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean isStarted() 
+    {
+        if (startTime==null)
+            return false;
+        else
+            return true;
+    }
+    
+    public boolean isFinished()
+    {
+        if (finishTime==null)
+                return false;
+        else
+                return true;
+    }
+    
+    public String getTitle()
+    {
+        return title;
+    }
+    
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+    
+    public String getDescription()
+    {
+        return description;
+    }
+    
+    public void setDescription(String description) 
+    {
+        this.description = description;
+    }
+        
+    public String getSummary()
+    {
+        return summary;
+    }
+    
+    public void setSummary(String summary)
+    {
+        this.summary = summary;
+    }
+    
+    public Survey()
+    {
+        
     }
 
 }
