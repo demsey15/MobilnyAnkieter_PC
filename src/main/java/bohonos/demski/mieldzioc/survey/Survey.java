@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import bohonos.demski.mieldzioc.questions.Question;
+import bohonos.demski.mieldzioc.interviewer.Interviewer;
 
 /**
  * @author Andrzej Bohonos
@@ -19,13 +20,17 @@ public class Survey {
     public List<Question> questions = new ArrayList<Question>();
     private GregorianCalendar startTime = null;
     private GregorianCalendar finishTime = null;
-    //public Interviewer interviewer; //todo
+    private Interviewer interviewer;
     private int idOfSurveys;
     private String title;
     private String description;
     private String summary;
     private int numberOfSurvey;
     
+    /**
+     * start filling new survey
+     * @return true iff action was successful
+     */
     public boolean startSurvey()
     {
         if (startTime==null && finishTime==null)
@@ -39,6 +44,10 @@ public class Survey {
         }
     }
     
+    /**
+     * end filling new survey
+     * @return true iff action was successful
+     */
     public boolean finishSurvey()
     {
         if (startTime!=null && finishTime==null)
@@ -52,6 +61,10 @@ public class Survey {
         }
     }
     
+    /**
+     * status of survey
+     * @return true iff survey is started
+     */
     public boolean isStarted() 
     {
         if (startTime==null)
@@ -60,6 +73,10 @@ public class Survey {
             return true;
     }
     
+    /**
+     * status of survey
+     * @return true iff survey is finished
+     */
     public boolean isFinished()
     {
         if (finishTime==null)
@@ -98,9 +115,47 @@ public class Survey {
         this.summary = summary;
     }
     
-    public Survey()
+    public int getIdOfSurveys()
     {
-        
+        return idOfSurveys;
+    }
+    
+    public void setIdOfSurveys(int idOfSurveys)
+    {
+        this.idOfSurveys = idOfSurveys;
+    }
+    
+    public int getNumberOfSurvey()
+    {
+        return numberOfSurvey;
+    }
+    
+    public void setNumberOfSurvey(int numberOfSurvey)
+    {
+        this.numberOfSurvey = numberOfSurvey;
+    }
+    
+    public Interviewer getInterviewer()
+    {
+        return interviewer;
+    }
+    
+    public void setInterviewer(Interviewer interviewer)
+    {
+        this.interviewer = interviewer;
+    }
+    
+    public Survey(List<Question> questions, GregorianCalendar startTime, GregorianCalendar finishTime, Interviewer interviewer, int idOfSurveys, String title, String description, String summary, int numberOfSurvey)
+    {
+        this.questions = questions;
+        this.startTime = startTime;
+        this.finishTime = finishTime;
+        this.idOfSurveys = idOfSurveys;
+        this.interviewer = interviewer;
+        this.title = title;
+        this.summary = summary;
+        this.description = description;
+        this.numberOfSurvey = numberOfSurvey;
     }
 
 }
