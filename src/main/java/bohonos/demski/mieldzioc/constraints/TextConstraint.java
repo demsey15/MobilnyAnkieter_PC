@@ -19,9 +19,12 @@ public class TextConstraint implements IConstraint {
 	 * @param minLength minimum length of String (if there isn't any, put null)
 	 * @param maxLength maximum Length of String (if there isn't any, put null)
 	 * @param regex regular expression to check (if there isn't any, put null)
+	 * @throws IllegalArgumentException - throws when minLength > maxLength.
 	 */
-	public TextConstraint(Integer minLength, Integer maxLength, Pattern regex) {
-		super();
+	public TextConstraint(Integer minLength, Integer maxLength, Pattern regex) throws IllegalArgumentException {
+		if(minLength != null && maxLength != null){
+			if(minLength > maxLength) throw new IllegalArgumentException("minLength should be lower or equal to maxLength");
+		}
 		this.minLength = minLength;
 		this.maxLength = maxLength;
 		this.regex = regex;

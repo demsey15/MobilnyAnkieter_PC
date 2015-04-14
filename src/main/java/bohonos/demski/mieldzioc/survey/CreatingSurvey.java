@@ -4,7 +4,10 @@
 package bohonos.demski.mieldzioc.survey;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
+import bohonos.demski.mieldzioc.constraints.NumberConstraint;
+import bohonos.demski.mieldzioc.constraints.TextConstraint;
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.questions.GridQuestion;
@@ -150,32 +153,133 @@ public class CreatingSurvey {
 		}
 	}
 	
-	public String getQuestionError(int questionNumber){
-		throw new UnsupportedOperationException();
+	/**
+	 * Zwraca tekst b³êdu pytania.
+	 * @param questionNumber numer pytania
+	 * @return null, jeœli nie ma pytania o zadanym numerze lub pytanie jest nullem, w przeciwnym przypadku zwraca 
+     * tekst b³êdu pytania.
+	 */
+	public String getQuestionErrorMessage(int questionNumber){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return null;
+		else{
+			return question.getErrorMessage();
+		}
 	}
 	
+	/**
+	 * Ustawia wskazówkê do wybranego pytania.
+	 * @param questionNumber numer pytania
+	 * @param hint tekst wskazówki
+	 * @return false, jeœli nie ma pytania o zadanym indeksie, w przeciwnym przypadku
+	 * true (ustawiono wskazówkê).
+	 */
 	public boolean setQuestionHint(int questionNumber, String hint){
-		throw new UnsupportedOperationException();
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return false;
+		else{
+			question.setHint(hint);
+			return true;
+		}
 	}
 	
-	public boolean setQuestionError(int questionNumber, String error){
-		throw new UnsupportedOperationException();
+	/**
+	 * Ustawia tekst b³êdu wybranego pytania.
+	 * @param questionNumber numer pytania
+	 * @param error tekst b³êdu.
+	 * @return false, jeœli nie ma pytania o zadanym indeksie, w przeciwnym przypadku
+	 * true (ustawiono tekst b³êdu).
+	 */
+	public boolean setQuestionErrorMessage(int questionNumber, String error){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return false;
+		else{
+			question.setErrorMessage(error);
+			return true;
+		}
 	}
 	
+	/**
+	 * Ustawia tekst b³êdu wybranego pytania.
+	 * @param questionNumber numer pytania
+	 * @param obligatory true, jeœli pytanie ma byæ oznaczone jako obowi¹zkowe (czyli czy wymagana jest odpowiedŸ na to pytanie),
+	 * w przeciwnym przypadku false.
+	 * @return false, jeœli nie ma pytania o zadanym indeksie, w przeciwnym przypadku
+	 * true.
+	 */
 	public boolean setQuestionObligatory(int questionNumber, boolean obligatory){
-		throw new UnsupportedOperationException();
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return false;
+		else{
+			question.setObligatory(obligatory);
+			return true;
+		}
 	}
 	
-	public boolean getQuestionObligatory(int questionNumber){
-		throw new UnsupportedOperationException();
+	/**
+	 * Sprawdza, czy pytanie oznaczono jako obowi¹zkowe (czyli czy wymagana jest odpowiedŸ na to pytanie) .
+	 * @param questionNumber numer pytania
+	 * @return null, jeœli nie ma pytania o zadanym numerze lub pytanie jest nullem, w przeciwnym przypadku zwraca 
+     * true, jeœli pytanie jest obowi¹zkowe, false, jeœli nie.
+	 */
+	public Boolean getQuestionObligatory(int questionNumber){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return null;
+		else{
+			return question.isObligatory();
+		}
 	}
-	
-	public boolean setTextConstraints(){
-		throw new UnsupportedOperationException();
+	/**
+	 * Ustawia ograniczenia typu tekstowego dla pytania tekstowego. Jeœli nie chcesz ustawiaæ jakiegoœ parametru,
+	 * wpisz null.
+	 * @param questionNumber numer pytania.
+	 * @param minLength wymagana minimalna d³ugoœæ odpowiedzi. 
+	 * @param maxLength wymagana maksymalna d³ugoœæ odpowiedzi.
+	 * @param regex wyra¿enie regularne, które musi spe³niaæ odpowiedŸ.
+	 * @return false, jeœli nie ma pytania o zadanym indeksie (lub jest równe null) lub minLength > maxLength, lub
+	 * pytanie o zadanym indeksie nie jest pytaniem typu tekstowego, w przeciwnym przypadku - jeœli uda³o siê
+	 * ustawiæ ograniczenia, zwraca true.
+	 */
+	public boolean setTextConstraints(int questionNumber, Integer minLength, Integer maxLength, Pattern regex){
+		try{
+			Question question;
+			if((question = getQuestion(questionNumber)) == null)
+				return false;
+			if(question instanceof TextQuestion){
+				TextQuestion textQuestion = (TextQuestion) question;
+				TextConstraint textConstraint = new TextConstraint(minLength, maxLength, regex);
+				textQuestion.setConstraint(textConstraint);
+				return true;
+			}
+			else return false;
+		}
+		catch(IllegalArgumentException e){
+			return false;
+		}
 	}
-	
-	public boolean setNumberConstraints(){
-		throw new UnsupportedOperationException();
+	//toDo:
+	public boolean setNumberConstraints(int questionNumber, Double minValue, Double maxValue, 
+			boolean mustBeInteger, Double notEquals, boolean notBetweenMaxAndMinValue){
+		try{
+			Question question;
+			if((question = getQuestion(questionNumber)) == null)
+				return false;
+			if(question instanceof TextQuestion){
+				TextQuestion textQuestion = (TextQuestion) question;
+				NumberConstraint numberConstraint = new NumberConstraint(minValue, maxValue, mustBeInteger, notEquals, notBetweenMaxAndMinValue);
+				textQuestion.setConstraint(numberConstraint);
+				return true;
+			}
+			else return false;
+		}
+		catch(IllegalArgumentException e){
+			return false;
+		}
 	}
 	
 	public int getQuestionsCount(){
