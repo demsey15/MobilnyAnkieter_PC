@@ -18,7 +18,7 @@ public class SurveyHandler {
     
     /**
      * get survey of given id
-     * @param idOfSurveys survej id
+     * @param idOfSurveys survey id
      * @return survey of given id
      */
     public Survey provideSurvey(int idOfSurveys)
@@ -45,6 +45,11 @@ public class SurveyHandler {
         return maxSurveysId;
     }
     
+    /**
+     * copy survey of given id
+     * @param idOfSurveys survey id
+     * @return id of new survey, if given id exists or -1 otherwise
+     */
     public int copyOldAndCreateNewSurvey(int idOfSurveys)
     {
         if (surveysId.containsKey(idOfSurveys))
