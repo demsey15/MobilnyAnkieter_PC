@@ -18,7 +18,7 @@ import bohonos.demski.mieldzioc.interviewer.Interviewer;
 public class Survey {
     
 	
-    public List<Question> questions = new ArrayList<Question>();
+    private List<Question> questions = new ArrayList<Question>();
     private GregorianCalendar startTime = null;
     private GregorianCalendar finishTime = null;
     private Interviewer interviewer;
@@ -168,10 +168,19 @@ public class Survey {
      * add new question in the particular place
      * @param index place where do add
      * @param question new question to add
+     * @return true iff action was successful
      */
-    public void addQuestion(int index, Question question)
+    public boolean addQuestion(int index, Question question)
     {
-        questions.add(index, question);
+        if (index<questions.size())
+        {
+            questions.add(index, question);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     /**
@@ -200,6 +209,31 @@ public class Survey {
     public boolean removeQuestion(Question question)
     {
         return questions.remove(question);
+    }
+    
+    public Question getQuestion(int index)
+    {
+        return questions.get(index);
+    }
+    
+    public boolean questionListContains(Question question)
+    {
+        return questions.contains(question);
+    }
+    
+    public int indexOfQuestion(Question question)
+    {
+        return questions.indexOf(question);
+    }
+    
+    public boolean questionListEmpty()
+    {
+        return questions.isEmpty();
+    }
+    
+    public Question setQuestion(int index, Question question)
+    {
+        return questions.set(index, question);
     }
     
     public Survey(List<Question> questions, GregorianCalendar startTime, GregorianCalendar finishTime, Interviewer interviewer, int idOfSurveys, String title, String description, String summary, int numberOfSurvey)
