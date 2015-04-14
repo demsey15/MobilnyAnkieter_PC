@@ -205,7 +205,7 @@ public class CreatingSurvey {
 	}
 	
 	/**
-	 * Ustawia tekst b³êdu wybranego pytania.
+	 * Ustawia, czy pytanie jest obowi¹zkowe.
 	 * @param questionNumber numer pytania
 	 * @param obligatory true, jeœli pytanie ma byæ oznaczone jako obowi¹zkowe (czyli czy wymagana jest odpowiedŸ na to pytanie),
 	 * w przeciwnym przypadku false.
@@ -368,7 +368,7 @@ public class CreatingSurvey {
 	 * @return null, jeœli podany numer pytania nie jest poprawny (< 0 lub >= survey.questionListSize()),
 	 * w przeciwnym przypadku zwraca pytanie o zadanym indeksie. Uwaga z uwagi na klasê Survey, pytanie mo¿e byæ nullem.
 	 */
-	private Question getQuestion(int questionNumber){
+	public Question getQuestion(int questionNumber){
 		if(questionNumber < 0 || questionNumber >= survey.questionListSize())
 			return null;
 		else return survey.getQuestion(questionNumber);
