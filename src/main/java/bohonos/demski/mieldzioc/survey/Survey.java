@@ -3,13 +3,12 @@
  */
 package bohonos.demski.mieldzioc.survey;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Objects;
 
-import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
+import bohonos.demski.mieldzioc.questions.Question;
 
 /**
  * @author Andrzej Bohonos
@@ -218,7 +217,7 @@ public class Survey {
      */
     public Question getQuestion(int index)
     {
-        return questions.get(index);
+    	return questions.get(index);
     }
     
     /**
