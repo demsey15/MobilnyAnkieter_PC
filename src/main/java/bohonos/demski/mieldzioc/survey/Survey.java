@@ -211,26 +211,57 @@ public class Survey {
         return questions.remove(question);
     }
     
+    /**
+     * get question of particular index without removing it
+     * @param index index of question
+     * @return question of given index
+     */
     public Question getQuestion(int index)
     {
         return questions.get(index);
     }
     
+    /**
+     * check if list contains particular question
+     * @param question question we check
+     * @return true iff list contains this question
+     */
     public boolean questionListContains(Question question)
     {
         return questions.contains(question);
     }
     
+    /**
+     * return index of particular question
+     * @param question question we check
+     * @return index of question, if list contains this question or -1 otherwise
+     */
     public int indexOfQuestion(Question question)
     {
-        return questions.indexOf(question);
+        if (questions.contains(question))
+        {
+            return questions.indexOf(question);
+        }
+        else
+        {
+            return -1;
+        }
     }
     
+    /**
+     * @return true iff question list is empty
+     */
     public boolean questionListEmpty()
     {
         return questions.isEmpty();
     }
     
+    /**
+     * replace question of given index by other one
+     * @param index place, where we want to make replacement
+     * @param question new question
+     * @return old question
+     */
     public Question setQuestion(int index, Question question)
     {
         return questions.set(index, question);
