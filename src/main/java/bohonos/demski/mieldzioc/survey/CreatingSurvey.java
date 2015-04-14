@@ -262,7 +262,19 @@ public class CreatingSurvey {
 			return false;
 		}
 	}
-	//toDo:
+	/**
+	 *  Ustawia ograniczenia typu liczbowego dla pytania tekstowego. Jeœli nie chcesz ustawiaæ jakiegoœ parametru,
+	 * wpisz null. Tekst z takim ograniczeniem nie mo¿e zawieraæ innych znaków oprócz liczby.
+	 * @param questionNumber numer pytania
+	 * @param minValue minimalna wartoœæ sprawdzanej liczby
+	 * @param maxValue maksymalna wartoœæ sprawdzanej liczby
+	 * @param mustBeInteger true, jeœli liczba musi byæ typu ca³kowitego, inaczej false
+	 * @param notEquals liczba, której sprawdzana liczba nie mo¿e siê równaæ
+	 * @param notBetweenMaxAndMinValue true, jeœli sprawdzana liczba nie mo¿e byæ w przedziale [minValue, maxValue]
+	 * @return false, jeœli nie ma pytania o zadanym indeksie (lub jest równe null) lub
+	 * pytanie o zadanym indeksie nie jest pytaniem typu tekstowego, w przeciwnym przypadku - jeœli uda³o siê
+	 * ustawiæ ograniczenia, zwraca true.
+	 */
 	public boolean setNumberConstraints(int questionNumber, Double minValue, Double maxValue, 
 			boolean mustBeInteger, Double notEquals, boolean notBetweenMaxAndMinValue){
 		try{
@@ -281,9 +293,12 @@ public class CreatingSurvey {
 			return false;
 		}
 	}
-	
+	/**
+	 * Zwraca liczbê pytañ dodanych do ankiety.
+	 * @return liczba pytañ dodanych do ankiety.
+	 */
 	public int getQuestionsCount(){
-		throw new UnsupportedOperationException();
+		return survey.questionListSize();
 	}
 	
 	/**
@@ -308,6 +323,40 @@ public class CreatingSurvey {
 	public void setSurveySummary(String summary){
 		survey.setSummary(summary);
 	}	
+	
+	/**
+	 * Przesuwa pytanie o zadanym indeksie o jeden indeks do przodu.
+	 * @param questionNumber numer pytania (numeracja od zera).
+	 * @return false, jeœli nie ma pytania o zadanym indeksie albo nie ma pytania o póŸniejszym indeksie
+	 * (wówczas nie ma dok¹d przesun¹æ pytania), w przeciwnym przypadku true.
+	 */
+	public boolean moveQuestionForwards(int questionNumber){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null || (getQuestion(questionNumber + 1)) == null)
+			return false;
+		else{
+			survey.removeQuestion(questionNumber);
+			survey.addQuestion(questionNumber + 1, question);
+			return true;
+		}
+	}
+	
+	/**
+	 * Przesuwa pytanie o zadanym indeksie o jeden indeks do ty³u.
+	 * @param questionNumber numer pytania (numeracja od zera).
+	 * @return false, jeœli nie ma pytania o zadanym indeksie albo nie ma pytania o wczeœniejszym indeksie
+	 * (wówczas nie ma dok¹d przesun¹æ pytania), w przeciwnym przypadku true.
+	 */
+	public boolean moveQuestionBackwards(int questionNumber){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null || (getQuestion(questionNumber - 1)) == null)
+			return false;
+		else{
+			survey.removeQuestion(questionNumber);
+			survey.addQuestion(questionNumber - 1, question);
+			return true;
+		}
+	}
 	
 	/**
 	 * Sprawdza, czy podany numer pytania jest poprawny, jeœli tak, to zwraca
