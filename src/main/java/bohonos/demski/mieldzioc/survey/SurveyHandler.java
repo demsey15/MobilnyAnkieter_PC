@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  *
- * @author Andrzej
+ * @author Andrzej Bohonos
  */
 public class SurveyHandler {
     
@@ -65,5 +65,79 @@ public class SurveyHandler {
         {
             return -1;
         }
+    }
+    
+    /**
+     * get status of particular survey
+     * @param idOfSurveys id of survey
+     * @return status of survey, if such survey exists or -1 otherwise
+     */
+    public int getSurveyStatus(int idOfSurveys)
+    {
+            if (surveysId.containsKey(idOfSurveys))
+            {
+                Survey survey = surveysId.get(idOfSurveys);
+                return surveys.get(survey);
+            }
+            else
+            {
+                return -1;
+            }
+    }
+    
+    /**
+     * status of particular survey
+     * @param survey given survey
+     * @return status of survey, if such survey exists or -1 otherwise
+     */
+    public int getSurveyStatus(Survey survey)
+    {
+        if (surveys.containsKey(survey))
+        {
+            return surveys.get(survey);
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    
+    /**
+     * change status of particular survey
+     * @param idOfSurveys id of survey
+     * @param status new status (-1 is forbidden)
+     * @return true, iff action was successful
+     */
+    public boolean setSurveyStatus(int idOfSurveys, int status)
+    {
+            if (surveysId.containsKey(idOfSurveys) && status!=-1)
+            {
+                Survey survey = surveysId.get(idOfSurveys);
+                surveys.put(survey, status);
+                return true;
+            }
+            else
+            {
+                return false;
+            }      
+    }
+    
+    /**
+     * change status of particular survey
+     * @param survey given survey
+     * @param status new status (-1 is forbidden)
+     * @return true, iff action was successful
+     */
+    public boolean setSurveyStatus(Survey survey, int status)
+    {
+            if (surveys.containsKey(survey) && status!=-1)
+            {
+                surveys.put(survey, status);
+                return true;
+            }
+            else
+            {
+                return false;
+            }      
     }
 }
