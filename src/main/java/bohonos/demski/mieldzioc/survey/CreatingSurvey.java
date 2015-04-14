@@ -5,6 +5,7 @@ package bohonos.demski.mieldzioc.survey;
 
 import java.util.List;
 
+import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.questions.GridQuestion;
 import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
@@ -20,8 +21,12 @@ import bohonos.demski.mieldzioc.questions.TextQuestion;
 public class CreatingSurvey {
 	Survey survey;
 
-	public CreatingSurvey() {
-		this.survey = new Survey();
+	/**
+	 * Stwórz klasê odpowiedzialn¹ za tworzenie nowej ankiety.
+	 * @param interviewer ankieter tworz¹cy dan¹ ankietê.
+	 */
+	public CreatingSurvey(Interviewer interviewer) {
+		this.survey = new Survey(interviewer);
 	}
 	
 	/**
@@ -115,6 +120,26 @@ public class CreatingSurvey {
 		throw new UnsupportedOperationException();
 	}
 	
+	/**
+	 * Ustaw tytu³ tworzonej ankiety.
+	 * @param title tytu³ ankiety
+	 */
+	public void setSurveyTitle(String title){
+		survey.setTitle(title);
+	}
+	/**
+	 * Ustaw opis tworzonej ankiety.
+	 * @param description opis ankiety
+	 */
+	public void setSurveyDescription(String description){
+		survey.setDescription(description);
+	}
 	
-	
+	/**
+	 * Ustaw podsumowanie tworzonej ankiety.
+	 * @param summary podsumowanie
+	 */
+	public void setSurveySummary(String summary){
+		survey.setSummary(summary);
+	}	
 }
