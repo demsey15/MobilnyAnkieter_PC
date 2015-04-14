@@ -17,6 +17,7 @@ import bohonos.demski.mieldzioc.interviewer.Interviewer;
  */
 public class Survey {
     
+	
     public List<Question> questions = new ArrayList<Question>();
     private GregorianCalendar startTime = null;
     private GregorianCalendar finishTime = null;
@@ -187,5 +188,16 @@ public class Survey {
         this.description = description;
         this.numberOfSurvey = numberOfSurvey;
     }
+    
+    /**
+	 * Stwórz now¹ ankietê, podaj¹c jako argument ankietera tworz¹cego ankietê. 
+	 * Jeœli tworzony jest szablon ankiety, stworzon¹ ankietê nale¿y przekazaæ klasie SurveyHandler,
+	 * ona nada szablonowi numer grupy ankiet. 
+	 * @author Dominik Demski
+	 * @param interviewer - Ankieter, który stworzy³ dan¹ ankietê.
+	 */
+    public Survey(Interviewer interviewer) {
+		this.interviewer = interviewer;
+	}
 
 }
