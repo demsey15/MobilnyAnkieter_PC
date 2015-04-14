@@ -145,6 +145,36 @@ public class Survey {
         this.interviewer = interviewer;
     }
     
+    public int questionListSize()
+    {
+        return questions.size();
+    }
+    
+    public boolean addQuestion(Question question)
+    {
+        return questions.add(question);
+    }
+    
+    public void addQuestion(int index, Question question)
+    {
+        questions.add(index, question);
+    }
+    
+    public void questionListClear()
+    {
+        questions.clear();
+    }
+    
+    public Question removeQuestion(int index)
+    {
+        return questions.remove(index);
+    }
+    
+    public boolean removeQuestion(Question question)
+    {
+        return questions.remove(question);
+    }
+    
     public Survey(List<Question> questions, GregorianCalendar startTime, GregorianCalendar finishTime, Interviewer interviewer, int idOfSurveys, String title, String description, String summary, int numberOfSurvey)
     {
         this.questions = questions;
