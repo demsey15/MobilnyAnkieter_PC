@@ -19,6 +19,8 @@ import bohonos.demski.mieldzioc.questions.TextQuestion;
 
 /**
  * @author Dominik Demski
+ * 
+ * Klasa odpowiedzialna za tworzenie nowej ankiety.
  *
  */
 public class CreatingSurvey {
