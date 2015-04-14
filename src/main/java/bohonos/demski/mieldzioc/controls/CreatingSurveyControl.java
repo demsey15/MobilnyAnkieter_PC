@@ -263,6 +263,16 @@ public class CreatingSurveyControl {
 		return creatingSurvey.getQuestion(questionNumber);
 	}
 	
+	/**
+	 * Zwraca typ pytania (patrz sta³e wklasie Question).
+	 * @param questionNumber numer pytania.
+	 * @return -1, jeœli nie ma pytania o zadanym indeksie albo nie wywo³ano wczesniej metody createNewSurvey(), albo typ pytania jest nieznany
+	 */
+	public int getQuestionType(int questionNumber){
+		if(creatingSurvey == null) return -1;
+		return creatingSurvey.getQuestionType(questionNumber);
+	}
+	
 
 
 }

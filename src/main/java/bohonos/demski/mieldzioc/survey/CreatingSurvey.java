@@ -361,6 +361,18 @@ public class CreatingSurvey {
 	}
 	
 	/**
+	 * Zwraca typ pytania (patrz sta³e wklasie Question).
+	 * @param questionNumber numer pytania.
+	 * @return -1, jeœli nie ma pytania o zadanym indeksie albo typ pytania jest nieznany
+	 */
+	public int getQuestionType(int questionNumber){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return -1;
+		else return question.getQuestionType();
+	}
+	
+	/**
 	 * Sprawdza, czy podany numer pytania jest poprawny, jeœli tak, to zwraca
 	 * pytanie o zadanym indeksie. Uwaga: zwrócone pytanie potencjalnie mo¿e mieæ wartoœæ null - 
 	 * klasa Survey tego nie kontroluje.
@@ -373,4 +385,6 @@ public class CreatingSurvey {
 			return null;
 		else return survey.getQuestion(questionNumber);
 	}
+	
+	
 }
