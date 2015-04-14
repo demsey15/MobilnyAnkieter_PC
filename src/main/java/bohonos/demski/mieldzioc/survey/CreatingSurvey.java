@@ -30,7 +30,7 @@ public class CreatingSurvey {
 	}
 	
 	/**
-	 * Add question to creating survey.
+	 * Add question to creating survey as a last question.
 	 * @param type of question, see Question constants.
 	 * @return number of added question, -1 if question hasn't been added
 	 */
@@ -64,12 +64,15 @@ public class CreatingSurvey {
 		default:
 			return -1;
 		}
-		//dodaj pytanie i zwróæ indeks tego pytania
-		throw new UnsupportedOperationException();
+		if(survey.addQuestion(question)){
+			return survey.questionListSize() - 1;
+		}
+		else return -1;
 	}
 	
 	public List<String> getAnswersAsList(int questionNumber){
-		throw new UnsupportedOperationException();
+		//Question question = survey.
+	throw new UnsupportedOperationException();
 	}
 	
 	public String getAnswerFromQuestion(int questionNumber, int answerNumber){
