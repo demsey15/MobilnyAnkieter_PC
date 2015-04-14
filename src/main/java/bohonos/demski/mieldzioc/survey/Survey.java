@@ -146,31 +146,57 @@ public class Survey {
         this.interviewer = interviewer;
     }
     
+    /**
+     * @return size of questions list
+     */
     public int questionListSize()
     {
         return questions.size();
     }
     
+    /**
+     * add new question in the end of list
+     * @param question new question to add
+     * @return true iff action was successful
+     */
     public boolean addQuestion(Question question)
     {
         return questions.add(question);
     }
     
+    /**
+     * add new question in the particular place
+     * @param index place where do add
+     * @param question new question to add
+     */
     public void addQuestion(int index, Question question)
     {
         questions.add(index, question);
     }
     
+    /**
+     * clear whole list of questions
+     */
     public void questionListClear()
     {
         questions.clear();
     }
     
+    /**
+     * remove question from particular place
+     * @param index place from where we remove
+     * @return romoved question
+     */
     public Question removeQuestion(int index)
     {
         return questions.remove(index);
     }
     
+    /**
+     * remove question from the list
+     * @param question questiom to remove
+     * @return true iff action was successful
+     */
     public boolean removeQuestion(Question question)
     {
         return questions.remove(question);
