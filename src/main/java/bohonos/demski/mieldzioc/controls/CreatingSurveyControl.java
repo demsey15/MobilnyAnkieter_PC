@@ -273,6 +273,53 @@ public class CreatingSurveyControl {
 		return creatingSurvey.getQuestionType(questionNumber);
 	}
 	
+	/**
+	 * Ustawia etykietê przy minimalnej wartoœci pytania typu skala.
+	 * @param questionNumber numer pytania.
+	 * @param minLabel etykieta do ustawienia.
+	 * @return false, jeœli podany numer pytania nie jest poprawny (< 0 lub >= survey.questionListSize()) lub
+	 * pytanie o zadanym numerze nie jest typu skala, albo nie wywo³ano wczesniej metody createNewSurvey(), w przeciwnym przypadku true.
+	 */
+	public boolean setScaleQuestionMinLabel(int questionNumber, String minLabel){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.setScaleQuestionMinLabel(questionNumber, minLabel);
+	}
+	
+	/**
+	 * Ustawia etykietê przy maksymalnej wartoœci pytania typu skala.
+	 * @param questionNumber numer pytania.
+	 * @param maxLabel etykieta do ustawienia.
+	 * @return false, jeœli podany numer pytania nie jest poprawny (< 0 lub >= survey.questionListSize()) lub
+	 * pytanie o zadanym numerze nie jest typu skala, albo nie wywo³ano wczesniej metody createNewSurvey(),w przeciwnym przypadku true.
+	 */
+	public boolean setScaleQuestionMaxLabel(int questionNumber, String maxLabel){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.setScaleQuestionMaxLabel(questionNumber, maxLabel);
+	}
+	
+	/**
+	 * Ustawia maksymaln¹ wartoœæ pytania typu skala.
+	 * @param questionNumber numer pytania.
+	 * @param maxValue wartoœæ do ustawienia.
+	 * @return false, jeœli podany numer pytania nie jest poprawny (< 0 lub >= survey.questionListSize()) lub
+	 * pytanie o zadanym numerze nie jest typu skala, albo nie wywo³ano wczesniej metody createNewSurvey(), w przeciwnym przypadku true.
+	 */
+	public boolean setScaleQuestionMaxValue(int questionNumber, int maxValue){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.setScaleQuestionMaxValue(questionNumber, maxValue);
+	}
+	
+	/**
+	 * Ustawia minimaln¹ wartoœæ pytania typu skala.
+	 * @param questionNumber numer pytania.
+	 * @param minValue wartoœæ do ustawienia.
+	 * @return false, jeœli podany numer pytania nie jest poprawny (< 0 lub >= survey.questionListSize()) lub
+	 * pytanie o zadanym numerze nie jest typu skala, albo nie wywo³ano wczesniej metody createNewSurvey(), w przeciwnym przypadku true.
+	 */
+	public boolean setScaleQuestionMinValue(int questionNumber, int minValue){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.setScaleQuestionMinValue(questionNumber, minValue);
+	}	
 
 
 }

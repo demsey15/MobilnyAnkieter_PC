@@ -13,6 +13,10 @@ import java.util.Objects;
  */
 public class OneChoiceQuestion extends Question {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<String> answers = new ArrayList<String>();
 	private int userAnswer = -1;  //-1 = there is no user's answer
 	private boolean isDropDownList;

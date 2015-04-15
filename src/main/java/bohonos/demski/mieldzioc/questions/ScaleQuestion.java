@@ -13,6 +13,10 @@ import java.util.Objects;
  */
 public class ScaleQuestion extends Question {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int minValue;
 	private int maxValue;
 	private String maxLabel;

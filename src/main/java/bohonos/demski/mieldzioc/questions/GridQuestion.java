@@ -15,6 +15,10 @@ import bohonos.demski.mieldzioc.common.Pair;
  */
 public class GridQuestion extends Question {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<String> columnLabels = new ArrayList<String>();
 	private List<String> rowLabels = new ArrayList<String>();
 	private List<Pair<Integer, Integer>> userAnswers = new ArrayList<Pair<Integer, Integer>>();  //Pair<rowNumber, columnNumber>

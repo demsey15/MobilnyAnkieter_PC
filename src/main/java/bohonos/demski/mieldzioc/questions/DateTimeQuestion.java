@@ -15,6 +15,10 @@ public class DateTimeQuestion extends Question {
 
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private GregorianCalendar userAnswer;  //sometimes may be null
 	private boolean onlyTime;
 	private boolean onlyDate;

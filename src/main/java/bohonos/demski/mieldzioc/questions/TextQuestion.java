@@ -15,6 +15,10 @@ import bohonos.demski.mieldzioc.constraints.TextValidator;
  */
 public class TextQuestion extends Question {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final int SHORT_ANSWER_MAX_LENGTH = 50;
 	public static final int LONG_ANSWER_MAX_LENGTH = 250;
 	

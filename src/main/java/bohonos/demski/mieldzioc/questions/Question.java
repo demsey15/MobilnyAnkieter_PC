@@ -3,6 +3,7 @@
  */
 package bohonos.demski.mieldzioc.questions;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,8 +11,12 @@ import java.util.Objects;
  * @author Dominik Demski
  *
  */
-public abstract class Question {
+public abstract class Question implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final int ONE_CHOICE_QUESTION = 0;
 	public static final int MULTIPLE_CHOICE_QUESTION = 1;
 	public static final int DROP_DOWN_QUESTION = 2;
@@ -31,7 +36,9 @@ public abstract class Question {
 		}
 		if(this instanceof GridQuestion) return GRID_QUESTION;
 		if(this instanceof MultipleChoiceQuestion) return MULTIPLE_CHOICE_QUESTION;
-		if(this instanceof OneChoiceQuestion) return ONE_CHOICE_QUESTION;
+		if(this instanceof OneChoiceQuestion){
+			return (((OneChoiceQuestion) this).getIsDropDownList()) ? DROP_DOWN_QUESTION : ONE_CHOICE_QUESTION;
+		}
 		if(this instanceof ScaleQuestion) return SCALE_QUESTION;
 		if(this instanceof TextQuestion) return TEXT_QUESTION;
 		else return -1;

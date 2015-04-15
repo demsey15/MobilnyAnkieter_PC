@@ -11,6 +11,10 @@ import java.util.Objects;
  */
 public class MultipleChoiceQuestion extends Question{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<String> answers = new ArrayList<String>();
 	private List<Integer> userAnswers = new ArrayList<Integer>();
 	
