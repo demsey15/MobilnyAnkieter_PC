@@ -14,4 +14,7 @@ public class InterviewerPrivileges {
     public void changePrivileges(boolean creating){
         this.creating=creating;
     }
+    public boolean getCreating(){
+        return creating;
+    }
 }

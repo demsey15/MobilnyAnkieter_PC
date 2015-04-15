@@ -113,4 +113,7 @@ public class Interviewer {
         intervSurveyPrivileges.put(id, privileges);
     }
     //brakuje edytowania outOfWorkTime i intervSurveyPrivileges
+    public boolean getInterviewerPrivileges(){
+        return privileges.getCreating();
+    }
 }
