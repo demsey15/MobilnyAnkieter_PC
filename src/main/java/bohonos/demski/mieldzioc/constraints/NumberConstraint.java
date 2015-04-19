@@ -3,14 +3,19 @@
  */
 package bohonos.demski.mieldzioc.constraints;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Dominik Demski
  * 
  */
-public class NumberConstraint implements IConstraint{
+public class NumberConstraint implements IConstraint, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Double minValue;
 	private Double maxValue;
 	private boolean mustBeInteger;

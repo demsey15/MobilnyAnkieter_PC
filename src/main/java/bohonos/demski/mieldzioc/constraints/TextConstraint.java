@@ -1,5 +1,6 @@
 package bohonos.demski.mieldzioc.constraints;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,8 +9,12 @@ import java.util.regex.Pattern;
  * @author Dominik Demski
  * 
  */
-public class TextConstraint implements IConstraint {
+public class TextConstraint implements IConstraint, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer minLength;
 	private Integer maxLength;
 	private Pattern regex;

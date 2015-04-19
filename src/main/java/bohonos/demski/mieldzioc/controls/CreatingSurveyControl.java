@@ -1,7 +1,9 @@
 package bohonos.demski.mieldzioc.controls;
 
-import java.util.regex.Pattern;
+import java.util.List;
 
+import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.CreatingSurvey;
 
@@ -165,7 +167,7 @@ public class CreatingSurveyControl {
 	 * pytanie o zadanym indeksie nie jest pytaniem typu tekstowego albo nie wywo³ano wczesniej metody createNewSurvey(),
 	 *  w przeciwnym przypadku - jeœli uda³o siê ustawiæ ograniczenia, zwraca true.
 	 */
-	public boolean setTextConstraints(int questionNumber, Integer minLength, Integer maxLength, Pattern regex){
+	public boolean setTextConstraints(int questionNumber, Integer minLength, Integer maxLength, String regex){
 		if(creatingSurvey == null) return false;
 		return creatingSurvey.setTextConstraints(questionNumber, minLength, maxLength, regex);
 	}
@@ -185,7 +187,7 @@ public class CreatingSurveyControl {
 	public boolean setNumberConstraints(int questionNumber, Double minValue, Double maxValue, 
 			boolean mustBeInteger, Double notEquals, boolean notBetweenMaxAndMinValue){
 		if(creatingSurvey == null) return false;
-		return creatingSurvey.setNumberConstraints(getQuestionsCount(), minValue, maxValue, mustBeInteger, notEquals, notBetweenMaxAndMinValue);
+		return creatingSurvey.setNumberConstraints(questionNumber, minValue, maxValue, mustBeInteger, notEquals, notBetweenMaxAndMinValue);
 	}
 	/**
 	 * Zwraca liczbê pytañ dodanych do ankiety.
@@ -322,4 +324,70 @@ public class CreatingSurveyControl {
 	}	
 
 
+	/**
+	 * Dodaj odpowiedŸ mo¿liw¹ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
+	 * i listy rozwijanej).
+	 * @param questionNumber numer pytania
+	 * @param answer odpowiedŸ do dodania
+	 * @return true, jeœli dodano odpowiedŸ, false, jeœli nie (nie ma pytania o zadanym numerze
+	 * albo pytanie jest z³ego typu, albo nie wywo³ano wczesniej metody createNewSurvey()).
+	 */
+	public boolean addAnswerToChooseQuestion(int questionNumber, String answer){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.addAnswerToChooseQuestion(questionNumber, answer);
+	}	
+	/**
+	 * Dodaj odpowiedŸ mo¿liw¹ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
+	 * i listy rozwijanej) w konkretne miejsce.
+	 * @param questionNumber numer pytania
+	 * @param answer odpowiedŸ do dodania
+	 * @param position indeks, pod który ma zostaæ dodana odpowiedŸ (numeracja od zera).
+	 * @return true, jeœli dodano odpowiedŸ, false, jeœli nie (nie ma pytania o zadanym numerze
+	 * albo pytanie jest z³ego typu, albo position < 0 lub position >= liczba dotychczasowych odpowiedzi,
+	 *  albo nie wywo³ano wczesniej metody createNewSurvey()).
+	 */
+	public boolean addAnswerToChooseQuestion(int questionNumber, String answer, int position){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.addAnswerToChooseQuestion(questionNumber, answer, position);
+	}
+	/**
+	 *  Usuñ odpowiedŸ mo¿liw¹ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
+	 * i listy rozwijanej).
+	 * @param questionNumber numer pytania
+	 * @param position numer odpowiedzi (oba numery liczone od zera)
+	 * @return true, jeœli odpowiedŸ usuniêto, false jeœli nie ma takiej odpowiedzi, nie ma takiego
+	 * pytania lub pytanie jest z³ego typu, albo nie wywo³ano wczesniej metody createNewSurvey()).
+	 */
+	public boolean removeAnswerFromChooseQuestion(int questionNumber, int position){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.removeAnswerFromChooseQuestion(questionNumber, position);
+	}
+	/**
+	 * Przesuñ odpowiedŸ do pytania typu wyboru (jednoktornego, wielokrotnego,
+	 * rozwijana lista) o jeden indeks do przodu.
+	 * @param questionNumber numer pytania.
+	 * @param answeNo numer odpowiedzi do przesuniêcia.
+	 * @return true, jeœli odpowiedŸ przesuniêto, false jeœli nie (pytanie by³o z³ego typu,
+	 * nie ma pytania o zadanym indeksie lub podano b³êdny indeks odpowiedzi: answeNo < 0 || 
+	 * answeNo >= answers.size() || (answeNo + 1) >= answers.size()), 
+	 * albo nie wywo³ano wczesniej metody createNewSurvey()).
+	 */
+	public boolean moveAnswerForChooseQuestionForwards(int questionNumber, int answeNo){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.moveAnswerForChooseQuestionForwards(questionNumber, answeNo);	
+	}
+	
+	/**
+	 * Przesuñ odpowiedŸ do pytania typu wyboru (jednoktornego, wielokrotnego,
+	 * rozwijana lista) o jeden indeks w ty³u.
+	 * @param questionNumber numer pytania.
+	 * @param answeNo numer odpowiedzi do przesuniêcia.
+	 * @return true, jeœli odpowiedŸ przesuniêto, false jeœli nie (pytanie by³o z³ego typu,
+	 * nie ma pytania o zadanym indeksie lub podano b³êdny indeks odpowiedzi: answeNo < 1 || answeNo >= answers.size()).
+	 *albo nie wywo³ano wczesniej metody createNewSurvey()).
+	 */
+	public boolean moveAnswerForChooseQuestionBackwards(int questionNumber, int answeNo){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.moveAnswerForChooseQuestionBackwards(questionNumber, answeNo);
+	}
 }

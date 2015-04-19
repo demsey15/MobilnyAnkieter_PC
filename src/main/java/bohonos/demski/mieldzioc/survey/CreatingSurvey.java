@@ -244,17 +244,21 @@ public class CreatingSurvey {
 	 * @param maxLength wymagana maksymalna d³ugoœæ odpowiedzi.
 	 * @param regex wyra¿enie regularne, które musi spe³niaæ odpowiedŸ.
 	 * @return false, jeœli nie ma pytania o zadanym indeksie (lub jest równe null) lub minLength > maxLength, lub
-	 * pytanie o zadanym indeksie nie jest pytaniem typu tekstowego, w przeciwnym przypadku - jeœli uda³o siê
+	 * pytanie o zadanym indeksie nie jest pytaniem typu tekstowego, 
+	 * lub podane wyra¿enie nie jest wyra¿eniem regularnym,
+	 * w przeciwnym przypadku - jeœli uda³o siê
 	 * ustawiæ ograniczenia, zwraca true.
 	 */
-	public boolean setTextConstraints(int questionNumber, Integer minLength, Integer maxLength, Pattern regex){
+	public boolean setTextConstraints(int questionNumber, Integer minLength, 
+			Integer maxLength, String regex){
 		try{
 			Question question;
 			if((question = getQuestion(questionNumber)) == null)
 				return false;
 			if(question instanceof TextQuestion){
 				TextQuestion textQuestion = (TextQuestion) question;
-				TextConstraint textConstraint = new TextConstraint(minLength, maxLength, regex);
+				Pattern regex2 = (regex == null) ? null : Pattern.compile(regex);
+				TextConstraint textConstraint = new TextConstraint(minLength, maxLength, regex2);
 				textQuestion.setConstraint(textConstraint);
 				return true;
 			}
@@ -453,4 +457,156 @@ public class CreatingSurvey {
 		scaleQuestion.setMinValue(minValue);
 		return true;
 	}	
+	
+	/**
+	 * Dodaj odpowiedŸ mo¿liw¹ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
+	 * i listy rozwijanej).
+	 * @param questionNumber numer pytania
+	 * @param answer odpowiedŸ do dodania
+	 * @return true, jeœli dodano odpowiedŸ, false, jeœli nie (nie ma pytania o zadanym numerze
+	 * albo pytanie jest z³ego typu).
+	 */
+	public boolean addAnswerToChooseQuestion(int questionNumber, String answer){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return false;
+		if(question instanceof MultipleChoiceQuestion){
+			MultipleChoiceQuestion question2 = (MultipleChoiceQuestion) question;
+			question2.addAnswer(answer);
+			return true;
+		}
+		else if(question instanceof OneChoiceQuestion){
+			OneChoiceQuestion question2 = (OneChoiceQuestion) question;
+			question2.addAnswer(answer);
+			return true;
+		}
+		else return false;
+	}
+	
+	/**
+	 * Dodaj odpowiedŸ mo¿liw¹ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
+	 * i listy rozwijanej) w konkretne miejsce.
+	 * @param questionNumber numer pytania
+	 * @param answer odpowiedŸ do dodania
+	 * @param position indeks, pod który ma zostaæ dodana odpowiedŸ (numeracja od zera).
+	 * @return true, jeœli dodano odpowiedŸ, false, jeœli nie (nie ma pytania o zadanym numerze
+	 * albo pytanie jest z³ego typu, albo position < 0 lub position >= liczba dotychczasowych odpowiedzi).
+	 */
+	public boolean addAnswerToChooseQuestion(int questionNumber, String answer, int position){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return false;
+		if(question instanceof MultipleChoiceQuestion){
+			MultipleChoiceQuestion question2 = (MultipleChoiceQuestion) question;
+			return question2.addAnswer(answer, position);
+		}
+		else if(question instanceof OneChoiceQuestion){
+			OneChoiceQuestion question2 = (OneChoiceQuestion) question;
+			return question2.addAnswer(answer, position);
+		}
+		else return false;
+	}
+	/**
+	 *  Usuñ odpowiedŸ mo¿liw¹ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
+	 * i listy rozwijanej).
+	 * @param questionNumber numer pytania
+	 * @param position numer odpowiedzi (oba numery liczone od zera)
+	 * @return true, jeœli odpowiedŸ usuniêto, false jeœli nie ma takiej odpowiedzi, nie ma takiego
+	 * pytania lub pytanie jest z³ego typu.
+	 */
+	public boolean removeAnswerFromChooseQuestion(int questionNumber, int position){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return false;
+		if(question instanceof MultipleChoiceQuestion){
+			MultipleChoiceQuestion question2 = (MultipleChoiceQuestion) question;
+			return question2.deleteAnswer(position);
+		}
+		else if(question instanceof OneChoiceQuestion){
+			OneChoiceQuestion question2 = (OneChoiceQuestion) question;
+			return question2.deleteAnswer(position);
+		}
+		else return false;
+	}
+	/**
+	 * Przesuñ odpowiedŸ do pytania typu wyboru (jednoktornego, wielokrotnego,
+	 * rozwijana lista) o jeden indeks do przodu.
+	 * @param questionNumber numer pytania.
+	 * @param answeNo numer odpowiedzi do przesuniêcia.
+	 * @return true, jeœli odpowiedŸ przesuniêto, false jeœli nie (pytanie by³o z³ego typu,
+	 * nie ma pytania o zadanym indeksie lub podano b³êdny indeks odpowiedzi: answeNo < 0 || 
+	 * answeNo >= answers.size() || (answeNo + 1) >= answers.size()).
+	 */
+	public boolean moveAnswerForChooseQuestionForwards(int questionNumber, int answeNo){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return false;
+		if(question instanceof MultipleChoiceQuestion){
+			MultipleChoiceQuestion question2 = (MultipleChoiceQuestion) question;
+			List<String> answers = question2.getAnswersAsStringList();
+			if(answeNo < 0 || answeNo >= answers.size() || (answeNo + 1) >= answers.size()){
+				return false;
+			}
+			else{
+				String nextAnswer = answers.get(answeNo + 1);
+				answers.add(answeNo, nextAnswer);
+				return true;
+			}
+			
+		}
+		else if(question instanceof OneChoiceQuestion){
+			OneChoiceQuestion question2 = (OneChoiceQuestion) question;
+			List<String> answers = question2.getAnswersAsStringList();
+			if(answeNo < 0 || answeNo >= answers.size() || (answeNo + 1) >= answers.size()){
+				return false;
+			}
+			else{
+				String nextAnswer = answers.get(answeNo + 1);
+				answers.add(answeNo, nextAnswer);
+				return true;
+			}
+		}
+		else return false;
+	}
+	
+	/**
+	 * Przesuñ odpowiedŸ do pytania typu wyboru (jednoktornego, wielokrotnego,
+	 * rozwijana lista) o jeden indeks w ty³u.
+	 * @param questionNumber numer pytania.
+	 * @param answeNo numer odpowiedzi do przesuniêcia.
+	 * @return true, jeœli odpowiedŸ przesuniêto, false jeœli nie (pytanie by³o z³ego typu,
+	 * nie ma pytania o zadanym indeksie lub podano b³êdny indeks odpowiedzi: answeNo < 1 || answeNo >= answers.size()).
+	 */
+	public boolean moveAnswerForChooseQuestionBackwards(int questionNumber, int answeNo){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			return false;
+		if(question instanceof MultipleChoiceQuestion){
+			MultipleChoiceQuestion question2 = (MultipleChoiceQuestion) question;
+			List<String> answers = question2.getAnswersAsStringList();
+			if(answeNo < 1 || answeNo >= answers.size()){
+				return false;
+			}
+			else{
+				String previousAnswer = answers.remove(answeNo - 1);
+				answers.add(answeNo, previousAnswer);
+				return true;
+			}
+			
+		}
+		else if(question instanceof OneChoiceQuestion){
+			OneChoiceQuestion question2 = (OneChoiceQuestion) question;
+			List<String> answers = question2.getAnswersAsStringList();
+			if(answeNo < 1 || answeNo >= answers.size()){
+				return false;
+			}
+			else{
+				String previousAnswer = answers.remove(answeNo - 1);
+				answers.add(answeNo, previousAnswer);
+				return true;
+			}
+		}
+		else return false;
+	}
+	
 }
