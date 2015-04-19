@@ -36,7 +36,7 @@ public class Interviewer {
     * @param id
     * @param hireday 
     */ 
-    Interviewer(String name, String surname, int id, GregorianCalendar hireday)
+    public Interviewer(String name, String surname, int id, GregorianCalendar hireday)
     {
         this.name=name;
         this.surname=surname;
@@ -113,4 +113,7 @@ public class Interviewer {
         intervSurveyPrivileges.put(id, privileges);
     }
     //brakuje edytowania outOfWorkTime i intervSurveyPrivileges
+    public boolean getInterviewerPrivileges(){
+        return privileges.getCreating();
+    }
 }
