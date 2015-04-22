@@ -1,9 +1,5 @@
 package bohonos.demski.mieldzioc.controls;
 
-import java.util.List;
-
-import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
-import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.CreatingSurvey;
 
