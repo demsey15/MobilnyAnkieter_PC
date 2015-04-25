@@ -19,7 +19,7 @@ public class MultipleChoiceQuestion extends Question{
 	private List<Integer> userAnswers = new ArrayList<Integer>();
 	
 	/**
-	 * Create new MultipleChoiceQuestion object with obligatory status.
+	 * Create new MultipleChoiceQuestion object with obligatory status as true.
 	 * @param question text of question
 	 */
 	public MultipleChoiceQuestion(String question){

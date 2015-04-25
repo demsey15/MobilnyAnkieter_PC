@@ -1,5 +1,7 @@
 package bohonos.demski.mieldzioc.controls;
 
+import java.util.List;
+
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.CreatingSurvey;
 
@@ -385,5 +387,81 @@ public class CreatingSurveyControl {
 	public boolean moveAnswerForChooseQuestionBackwards(int questionNumber, int answeNo){
 		if(creatingSurvey == null) return false;
 		return creatingSurvey.moveAnswerForChooseQuestionBackwards(questionNumber, answeNo);
+	}
+	
+	
+	/**
+	 * Zwraca listê mo¿liwych do wyboru odpowiedzi dla pytania o zadanym indeksie.
+	 * Jeœli nie ma pytania o zadanym indeksie, wyrzuca wyj¹tek NullPointerException.
+	 * @param questionNumber numer pytania.
+	 * @return lista mo¿liwych odpowiedzi, null, jeœli nie ma odpowiedzi dla pytania tego typu
+	 * lub nie wywo³ano wczesniej metody  createNewSurvey().
+	 */
+	public List<String> getAnswersAsStringList(int questionNumber){
+		if(creatingSurvey == null) return null;
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			throw new NullPointerException("Nie ma pytania o zadanym numerze");
+		return question.getAnswersAsStringList();
+	}
+	
+	/**
+	 * Usuwa pytanie o zadanym indeksie.
+	 * @param questionNumber numer pytania (pytania liczone od 0).
+	 * @return true, jesli usuniêto pytanie, false, jesli zadany numer jest nieprawid³owy:
+	 * questionNumber < 0 || questionNumber >= survey.questionListSize() lub nie wywo³ano 
+	 * wczesniej metody createNewSurvey().
+	 */
+	public boolean removeQuestion(int questionNumber){
+		if(creatingSurvey == null) return false;
+		return creatingSurvey.removeQuestion(questionNumber);
+	}
+	
+	/**
+	 * Ustawia etykiety kolumn dla pytania typu tabela. Jeœli lista jest równa null
+	 * wyrzuci wyj¹tek NullPointerException. Jeœli nie wywo³ano wczesniej metody
+	 * createNewSurvey(), nie zrobi nic.
+	 * @param questionNumber numer pytania
+	 * @param labels etykiety, lista nie mo¿e byæ równa null.
+	 */
+	public void setGridColumnLabels(int questionNumber, List<String> labels){
+		if(creatingSurvey != null){
+			creatingSurvey.setGridColumnLabels(questionNumber, labels);
+		}
+	}
+	
+	/**
+	 * Ustawia etykiety wierszy dla pytania typu tabela. Jeœli lista jest równa null
+	 * wyrzuci wyj¹tek NullPointerException. Jeœli nie wywo³ano wczesniej metody
+	 * createNewSurvey(), nie zrobi nic.
+	 * @param questionNumber numer pytania
+	 * @param labels etykiety, lista nie mo¿e byæ równa null.
+	 */
+	public void setGridRowLabels(int questionNumber, List<String> labels){
+		if(creatingSurvey != null){
+			creatingSurvey.setGridRowLabels(questionNumber, labels);
+		}
+	}
+	
+	/**
+	 * Zwraca etykiety wierszy dla pytania typu tabela.
+	 * @param questionNumber numer pytania.
+	 * @return etykiety wierszy, zwróci null tylko, jeœli nie wywo³ano wczesniej metody
+	 * createNewSurvey().
+	 */
+	public List<String> getGridRowLabels(int questionNumber){
+		if(creatingSurvey == null) return null;
+		return creatingSurvey.getGridRowLabels(questionNumber);
+	}
+	
+	/**
+	 * Zwraca etykiety kolumn dla pytania typu tabela.
+	 * @param questionNumber numer pytania.
+	 * @return etykiety kolumn, zwróci null tylko, jeœli nie wywo³ano wczesniej metody
+	 * createNewSurvey().
+	 */
+	public List<String> getGridColumnLabels(int questionNumber){
+		if(creatingSurvey == null) return null;
+		return creatingSurvey.getGridColumnLabels(questionNumber);
 	}
 }

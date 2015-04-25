@@ -78,6 +78,38 @@ public class GridQuestion extends Question {
 		this.columnLabels = columnLabels;
 		this.rowLabels = rowLabels;
 	}
+	/**
+	 * 
+	 * @return zwraca etykiety kolumn, nigdy nie zwróci null.
+	 */
+	public List<String> getColumnLabels() {
+		return columnLabels;
+	}
+
+	/**
+	 * Ustawia wartoœci etykiet kolumn, nie mog¹ byæ one nullem.
+	 * @param columnLabels etykiety kolumn.
+	 */
+	public void setColumnLabels(List<String> columnLabels) {
+		if(columnLabels == null) throw new NullPointerException("Etykiety nie mog¹ byæ nullem");
+		this.columnLabels = columnLabels;
+	}
+
+	/**
+	 * 
+	 * @return zwraca etykiety wierszy, nigdy nie zwróci null.
+	 */
+	public List<String> getRowLabels() {
+		return rowLabels;
+	}
+	/**
+	 * Ustawia wartoœci etykiet wierszy, nie mog¹ byæ one nullem.
+	 * @param rowLabels etykiety wierszy.
+	 */
+	public void setRowLabels(List<String> rowLabels) {
+		if(rowLabels == null) throw new NullPointerException("Etykiety nie mog¹ byæ nullem");
+		this.rowLabels = rowLabels;
+	}
 
 	/**
 	 * Each answer should be in format: #rowLabel# ^columnLabel^ 

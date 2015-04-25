@@ -55,7 +55,7 @@ public class CreatingSurvey {
 			question = new TextQuestion(null, false);
 			break;
 		case Question.MULTIPLE_CHOICE_QUESTION:
-			question = new MultipleChoiceQuestion(null, true);
+			question = new MultipleChoiceQuestion(null, false);
 			break;
 		case Question.ONE_CHOICE_QUESTION:
 			question = new OneChoiceQuestion(null, false);
@@ -608,5 +608,96 @@ public class CreatingSurvey {
 		}
 		else return false;
 	}
+	
+	/**
+	 * Zwraca listê mo¿liwych do wyboru odpowiedzi dla pytania o zadanym indeksie.
+	 * Jeœli nie ma pytania o zadanym indeksie, wyrzuca wyj¹tek NullPointerException.
+	 * @param questionNumber numer pytania.
+	 * @return lista mo¿liwych odpowiedzi.
+	 */
+	public List<String> getAnswersAsStringList(int questionNumber){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			throw new NullPointerException("Nie ma pytania o zadanym numerze");
+		return question.getAnswersAsStringList();
+	}
+	
+	/**
+	 * Usuwa pytanie o zadanym indeksie.
+	 * @param questionNumber numer pytania (pytania liczone od 0).
+	 * @return true, jesli usuniêto pytanie, false, jesli zadany numer jest nieprawid³owy:
+	 * questionNumber < 0 || questionNumber >= survey.questionListSize().
+	 */
+	public boolean removeQuestion(int questionNumber){
+		if(questionNumber < 0 || questionNumber >= survey.questionListSize())
+			return false;
+		survey.removeQuestion(questionNumber);
+		return true;
+	}
+	
+	/**
+	 * Ustawia etykiety kolumn dla pytania typu tabela.
+	 * @param questionNumber numer pytania
+	 * @param labels etykiety, lista nie mo¿e byæ równa null.
+	 */
+	public void setGridColumnLabels(int questionNumber, List<String> labels){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			throw new NullPointerException("Nie ma pytania o zadanym numerze");
+		if(question.getQuestionType() == Question.GRID_QUESTION){
+			GridQuestion gridQuestion = (GridQuestion) question;
+			gridQuestion.setColumnLabels(labels);
+		}
+		else throw new IllegalArgumentException("Podane pytanie powinno byæ typu GridQuestion");
+	}
+	
+	/**
+	 * Ustawia etykiety wierszy dla pytania typu tabela.
+	 * @param questionNumber numer pytania
+	 * @param labels etykiety, lista nie mo¿e byæ równa null.
+	 */
+	public void setGridRowLabels(int questionNumber, List<String> labels){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			throw new NullPointerException("Nie ma pytania o zadanym numerze");
+		if(question.getQuestionType() == Question.GRID_QUESTION){
+			GridQuestion gridQuestion = (GridQuestion) question;
+			gridQuestion.setRowLabels(labels);
+		}
+		else throw new IllegalArgumentException("Podane pytanie powinno byæ typu GridQuestion");
+	}
+	
+	/**
+	 * Zwraca etykiety wierszy dla pytania typu tabela.
+	 * @param questionNumber numer pytania.
+	 * @return etykiety wierszy, nigdy nie zwróci null.
+	 */
+	public List<String> getGridRowLabels(int questionNumber){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			throw new NullPointerException("Nie ma pytania o zadanym numerze");
+		if(question.getQuestionType() == Question.GRID_QUESTION){
+			GridQuestion gridQuestion = (GridQuestion) question;
+			return gridQuestion.getRowLabels();
+		}
+		else throw new IllegalArgumentException("Podane pytanie powinno byæ typu GridQuestion");
+	}
+	
+	/**
+	 * Zwraca etykiety kolumn dla pytania typu tabela.
+	 * @param questionNumber numer pytania.
+	 * @return etykiety kolumn, nigdy nie zwróci null.
+	 */
+	public List<String> getGridColumnLabels(int questionNumber){
+		Question question;
+		if((question = getQuestion(questionNumber)) == null)
+			throw new NullPointerException("Nie ma pytania o zadanym numerze");
+		if(question.getQuestionType() == Question.GRID_QUESTION){
+			GridQuestion gridQuestion = (GridQuestion) question;
+			return gridQuestion.getColumnLabels();
+		}
+		else throw new IllegalArgumentException("Podane pytanie powinno byæ typu GridQuestion");
+	}
+	
 	
 }
