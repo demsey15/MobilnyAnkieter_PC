@@ -266,6 +266,19 @@ public class Survey {
         return questions.set(index, question);
     }
     
+    /**
+     * overwritten equals method
+     * @param otherSurvey other survey to compare
+     * @return true iff both surveys ids and numbers are equal 
+     */
+    public boolean equals(Survey otherSurvey)
+    {
+        if (this.idOfSurveys==otherSurvey.getIdOfSurveys() && this.numberOfSurvey==otherSurvey.getNumberOfSurvey())
+            return true;
+        else
+            return false;
+    }
+    
     public Survey(List<Question> questions, GregorianCalendar startTime, GregorianCalendar finishTime, Interviewer interviewer, int idOfSurveys, String title, String description, String summary, int numberOfSurvey)
     {
         this.questions = questions;
