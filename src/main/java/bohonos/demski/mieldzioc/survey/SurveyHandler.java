@@ -65,10 +65,10 @@ public class SurveyHandler {
      * @param survey survey to add
      * @return id of this survey template
      */
-    public int addNewSurveyTemplate(Survey survey, String interviewerId)
+    public int addNewSurveyTemplate(Survey survey)
     {
         maxSurveysId++;
-        String id = interviewerId + localIdToString(maxSurveysId);
+        String id = survey.getInterviewer().getId() + localIdToString(maxSurveysId);
         survey.setIdOfSurveys(id);
         surveysId.put(id, survey);
         surveys.put(survey, IN_PROGRESS);     //default value

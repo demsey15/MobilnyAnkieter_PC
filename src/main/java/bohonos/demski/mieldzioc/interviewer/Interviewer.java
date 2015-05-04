@@ -5,15 +5,14 @@
  */
 package bohonos.demski.mieldzioc.interviewer;
 
-import java.util.AbstractMap.SimpleEntry;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import bohonos.demski.mieldzioc.common.*;
-import java.io.Serializable;
+import java.util.TreeMap;
+
+import bohonos.demski.mieldzioc.common.Pair;
 //import javax.persistence.*;
 //import javafx.util;
 /**
