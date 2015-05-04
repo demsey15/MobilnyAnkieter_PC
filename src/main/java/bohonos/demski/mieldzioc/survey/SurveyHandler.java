@@ -16,6 +16,9 @@ public class SurveyHandler {
     private Map<Survey, Integer> surveys = new HashMap<Survey, Integer>();
     private Map<Integer, Survey> surveysId = new HashMap<Integer, Survey>();
     
+   
+    
+    
     /**
      * get survey of given id
      * @param idOfSurveys survey id

@@ -699,5 +699,11 @@ public class CreatingSurvey {
 		else throw new IllegalArgumentException("Podane pytanie powinno byæ typu GridQuestion");
 	}
 	
-	
+	/**
+	 * Zwraca utworzon¹ ankietê. Nie ma ona jeszcze nadanego id. Nale¿y to zrobiæ w SurveyHandler
+	 * @return utworzona ankieta.
+	 */
+	public Survey finishCreating(){
+		return survey;
+	}
 }

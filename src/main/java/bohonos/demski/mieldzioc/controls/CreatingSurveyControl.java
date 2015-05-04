@@ -4,6 +4,8 @@ import java.util.List;
 
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.CreatingSurvey;
+import bohonos.demski.mieldzioc.survey.Survey;
+import bohonos.demski.mieldzioc.survey.SurveyHandler;
 
 
 
@@ -463,5 +465,18 @@ public class CreatingSurveyControl {
 	public List<String> getGridColumnLabels(int questionNumber){
 		if(creatingSurvey == null) return null;
 		return creatingSurvey.getGridColumnLabels(questionNumber);
+	}
+	
+	/**
+	 * Koñczy tworzenie ankiety, zwraca id nowo utworzonego szablonu (id grupy ankiet).
+	 * @param handler obiekt klasy SurveyHandler zajmuj¹cy siê szablonami ankiet.
+	 * @return id nowo utworzonego szablonu (id grupy ankiet).
+	 */
+	public int finishCreating(SurveyHandler handler){
+		if(creatingSurvey == null) return -1;
+		Survey survey = creatingSurvey.finishCreating();
+		creatingSurvey = null;
+		
+		return handler.addNewSurveyTemplate(survey);
 	}
 }
