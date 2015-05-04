@@ -39,10 +39,10 @@ public class InterviewersRepository {
      * @param idi
      * @return 
      */
-    public Interviewer getInterviewer(int idi){
+    public Interviewer getInterviewer(String idi){
         for(Interviewer person : interviewers)
         {
-            if(person.getId()==idi)
+            if(person.getId().equals(idi))
                 return person;
         }
         return null;
@@ -54,7 +54,7 @@ public class InterviewersRepository {
   /**
    * U¿ywaj¹c metody getAllInterviewers() z parametrem from otrzymujemy listê wszystkich zatrudnionych aniekterów od podanego dnia
    * @param from
-   * @return 
+   * @return lista
    */
   public List<Interviewer> getAllInterviewers(GregorianCalendar from){ 
       List<Interviewer> lista = new ArrayList<Interviewer>();
@@ -69,7 +69,7 @@ public class InterviewersRepository {
    * U¿ywaj¹c metody getAllInterviewers() z parametrami from i to, dostajemy listê ankieterów zatrudnionych od dnia from do dnia to w³¹cznie z tym dniem. 
    * @param from
    * @param to
-   * @return 
+   * @return lista
    */
   public List<Interviewer> getAllInterviewers(GregorianCalendar from, GregorianCalendar to){
       List<Interviewer> lista = new ArrayList<Interviewer>();
@@ -82,11 +82,11 @@ public class InterviewersRepository {
   /**
    * Metoda checkListInterviewers() sprawdza czy podany ankieter nie znajduje siê ju¿ przypadkiem na liœcie. Jeœli siê znajduje, to dostajemy true. W przeciwnym wypadku false. 
    * @param man
-   * @return 
+   * @return true or false
    */
   public boolean checkListInterviewers(Interviewer man){
       for(Interviewer person : interviewers){
-          if(man.getId()==person.getId())
+          if(man.getId().equals(person.getId()))
               return true;
       }
       return false;
@@ -96,7 +96,7 @@ public class InterviewersRepository {
    * Metoda equalsInterviewers porównuje dwóch ankieterów po id i zwraca true, jeœli s¹ to Ci sami ankieterzy, afalse gdy nie s¹.
    * @param man1
    * @param man2
-   * @return 
+   * @return true or false
    */
   public boolean equalsInterviewers(Interviewer man1,Interviewer man2){
       if(man1.getId()==man2.getId())

@@ -6,9 +6,9 @@
 package bohonos.demski.mieldzioc.desktopapplication;
 
 import bohonos.demski.mieldzioc.interviewer.*;
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.GridLayout;
+//import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -35,6 +35,7 @@ public class AddInterviewer extends JFrame implements ActionListener{
     private JLabel nameLabel, surnameLabel, idLabel, dateLabel;
     private Container addcon;
     private JButton anul, createinterv; 
+    private InterviewersRepository interrep = new InterviewersRepository(); //tymczasowo 
     AddInterviewer(){
         super("Dodanie ankietera");
         addWindowListener(new WindowAdapter() {
@@ -107,9 +108,9 @@ public class AddInterviewer extends JFrame implements ActionListener{
             GregorianCalendar cal = new GregorianCalendar();
             now=(Date) jdate.getValue();
             cal.setTime(now);
-            int myid = Integer.parseInt(jid.getText());
+            String myid = jid.getText();
             Interviewer newinterv = new Interviewer(jname.getText(),jsurname.getText(),myid, cal);
-            InterviewersRepository interrep = new InterviewersRepository(); //to bêdzie musia³o byæ gdzie indziej, jeden obiekt tylko tej klasy zostanie stworzony
+             //to bêdzie musia³o byæ gdzie indziej, jeden obiekt tylko tej klasy zostanie stworzony
             System.out.println(interrep.addInterviewer(newinterv));
             //dispose();
         }

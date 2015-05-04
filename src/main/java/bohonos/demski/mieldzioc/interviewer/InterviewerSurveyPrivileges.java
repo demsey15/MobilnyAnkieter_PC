@@ -10,7 +10,15 @@ package bohonos.demski.mieldzioc.interviewer;
  * @author Delirus
  */
 public class InterviewerSurveyPrivileges {
-    public boolean editing, filling, editingWithoutAdminAgreement, fillingStatistics;
+    private boolean editing, filling, editingWithoutAdminAgreement, fillingStatistics;
+    
+     public InterviewerSurveyPrivileges(boolean editing, boolean filling, boolean editingWithoutAdminAgreement, boolean fillingStatistics){
+        this.editing= editing;
+        this.filling = filling;
+        this.editingWithoutAdminAgreement = editingWithoutAdminAgreement;
+        this.fillingStatistics = fillingStatistics;
+    }
+     
     public void setEditing(boolean editing){
         this.editing= editing;
     }
@@ -22,5 +30,21 @@ public class InterviewerSurveyPrivileges {
     }
     public void setFillingStatistics(boolean fillingStatistics){
         this.fillingStatistics= fillingStatistics;
+    }
+    
+    public boolean isEditing() {
+        return editing;
+    }
+
+    public boolean isFilling() {
+        return filling;
+    }
+
+    public boolean isEditingWithoutAdminAgreement() {
+        return editingWithoutAdminAgreement;
+    }
+
+    public boolean isFillingStatistics() {
+        return fillingStatistics;
     }
 }

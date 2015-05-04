@@ -12,18 +12,23 @@ import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import bohonos.demski.mieldzioc.common.*;
+import java.io.Serializable;
+//import javax.persistence.*;
 //import javafx.util;
 /**
  *
  * @author Delirus
  */
-public class Interviewer {
+//@Entity
+public class Interviewer implements Serializable{
     private String name, surname;
-    private int id; //PESEL
+    //@Id
+    private String id; //PESEL
     private GregorianCalendar hiredDay;
     private GregorianCalendar relieveDay=null;
     //private boolean isActive;
-    private List<Entry<GregorianCalendar,GregorianCalendar>> outOfWorkTime = new ArrayList<Entry<GregorianCalendar,GregorianCalendar>>();
+    private List<Pair<GregorianCalendar,GregorianCalendar>> outOfWorkTime = new ArrayList<Pair<GregorianCalendar,GregorianCalendar>>();
     //private List<Pair<GregorianCalendar,GregorianCalendar>> outOfWorkTime = new ArrayList<>();
     //public InterviewerSurveyPrivileges privileges = new InterviewerSurveyPrivileges();
     private Map<Integer, InterviewerSurveyPrivileges> intervSurveyPrivileges = new TreeMap<Integer, InterviewerSurveyPrivileges>(); //ewentuanie HashMap
@@ -36,7 +41,7 @@ public class Interviewer {
     * @param id
     * @param hireday 
     */ 
-    public Interviewer(String name, String surname, int id, GregorianCalendar hireday)
+    public Interviewer(String name, String surname, String id, GregorianCalendar hireday)
     {
         this.name=name;
         this.surname=surname;
@@ -51,9 +56,9 @@ public class Interviewer {
      */
     public boolean isActive(){
         GregorianCalendar now = new GregorianCalendar();
-        for (Entry<GregorianCalendar, GregorianCalendar> entr : outOfWorkTime)
+        for (Pair<GregorianCalendar, GregorianCalendar> entr : outOfWorkTime)
         {
-            if( now.compareTo(entr.getKey())>=0 && now.compareTo(entr.getValue())<=0)
+            if( now.compareTo(entr.getFirst())>=0 && now.compareTo(entr.getSecond())<=0)
                     return false;
         }
         return true;
@@ -67,7 +72,7 @@ public class Interviewer {
         return surname;
     }
    
-    public int getId(){
+    public String getId(){
         return id;
     }
     
@@ -79,7 +84,7 @@ public class Interviewer {
         return relieveDay;
     }
      
-    public List<Entry<GregorianCalendar,GregorianCalendar>> getOutOfWorkTime(){
+    public List<Pair<GregorianCalendar,GregorianCalendar>> getOutOfWorkTime(){
         return outOfWorkTime;
     }
       
@@ -95,7 +100,7 @@ public class Interviewer {
         this.surname=surname;
     }
     
-    public void editeId(int id){
+    public void editeId(String id){
         this.id=id;
     }
     
@@ -106,14 +111,18 @@ public class Interviewer {
         this.relieveDay=relieveDay;
     }
      public void setOutOfWorkTime (GregorianCalendar g1, GregorianCalendar g2){
-        outOfWorkTime.add(new SimpleEntry<GregorianCalendar, GregorianCalendar>(g1, g2));
+        outOfWorkTime.add(new Pair<GregorianCalendar, GregorianCalendar>(g1, g2));
     }
     
     public void setPrivilegesForInterviewer(int numberOfSurvey, InterviewerSurveyPrivileges privileges){
-        intervSurveyPrivileges.put(id, privileges);
+        intervSurveyPrivileges.put(numberOfSurvey, privileges);
     }
     //brakuje edytowania outOfWorkTime i intervSurveyPrivileges
     public boolean getInterviewerPrivileges(){
         return privileges.getCreating();
+    }
+    
+     public void setInterviewerPrivileges(boolean x){
+        privileges.changePrivileges(x);
     }
 }
