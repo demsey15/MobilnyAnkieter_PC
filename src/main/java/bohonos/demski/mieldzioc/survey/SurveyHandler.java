@@ -16,10 +16,12 @@ public class SurveyHandler {
     public static final int ACTIVE = 1;
     public static final int INACTIVE = 2;
     public static final int NO_SURVEY = -1;
+    
+    public static final int LOCAL_ID_LENGTH = 6;
             
     private int maxSurveysId = 0;
     private Map<Survey, Integer> surveys = new HashMap<Survey, Integer>();
-    private Map<Integer, Survey> surveysId = new HashMap<Integer, Survey>();
+    private Map<String, Survey> surveysId = new HashMap<String, Survey>();
     
    
     
@@ -29,7 +31,7 @@ public class SurveyHandler {
      * @param idOfSurveys survey id
      * @return survey of given id
      */
-    public Survey provideSurvey(int idOfSurveys)
+    public Survey provideSurvey(String idOfSurveys)
     {
         return surveysId.get(idOfSurveys);
     }
@@ -39,18 +41,56 @@ public class SurveyHandler {
         return maxSurveysId;
     }
     
+    public void setMaxSurveysId(int id)
+    {
+        maxSurveysId = id;
+    }
+    
+    /**
+     * creates 6-char local id of survey
+     * @param localId integer value to transform
+     * @return local id
+     */
+    private String localIdToString(int localId)
+    {
+        String id = Integer.toString(localId);
+        while (id.length()<LOCAL_ID_LENGTH)
+        {
+            id = "0" + id;
+        }
+        return id;
+    }
     /**
      * add new survey template to map
      * @param survey survey to add
      * @return id of this survey template
      */
-    public int addNewSurveyTemplate(Survey survey)
+    public int addNewSurveyTemplate(Survey survey, String interviewerId)
     {
         maxSurveysId++;
-        survey.setIdOfSurveys(maxSurveysId);
-        surveysId.put(maxSurveysId, survey);
+        String id = interviewerId + localIdToString(maxSurveysId);
+        survey.setIdOfSurveys(id);
+        surveysId.put(id, survey);
         surveys.put(survey, IN_PROGRESS);     //default value
         return maxSurveysId;
+    }
+    
+    /**
+     * load survey to map
+     * @param survey survey to load
+     * @param status status of loding survey
+     * @return true, if survey was added or false, if such survey already exists in map
+     */
+    public boolean loadSurveyTemplate(Survey survey, int status)
+    {
+        if (surveys.containsKey(survey))
+            return false;
+        else
+        {
+            surveys.put(survey, status);
+            surveysId.put(survey.getIdOfSurveys(), survey);
+            return true;
+        }
     }
     
     /**
@@ -58,14 +98,15 @@ public class SurveyHandler {
      * @param idOfSurveys survey id
      * @return id of new survey, if given id exists or -1 otherwise
      */
-    public int copyOldAndCreateNewSurvey(int idOfSurveys)
+    public int copyOldAndCreateNewSurvey(String idOfSurveys, String interviewerId)
     {
         if (surveysId.containsKey(idOfSurveys))
                 {
                     maxSurveysId++;
+                    String id = interviewerId + localIdToString(maxSurveysId);
                     Survey survey = surveysId.get(idOfSurveys);
-                    survey.setIdOfSurveys(maxSurveysId);
-                    surveysId.put(maxSurveysId, survey);
+                    survey.setIdOfSurveys(id);
+                    surveysId.put(id, survey);
                     surveys.put(survey, IN_PROGRESS);     //default value
                     return maxSurveysId;
                 }

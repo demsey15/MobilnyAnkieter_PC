@@ -21,7 +21,7 @@ public class Survey {
     private GregorianCalendar startTime = null;
     private GregorianCalendar finishTime = null;
     private Interviewer interviewer;
-    private int idOfSurveys;
+    private String idOfSurveys;
     private String title;
     private String description;
     private String summary;
@@ -115,12 +115,12 @@ public class Survey {
         this.summary = summary;
     }
     
-    public int getIdOfSurveys()
+    public String getIdOfSurveys()
     {
         return idOfSurveys;
     }
     
-    public void setIdOfSurveys(int idOfSurveys)
+    public void setIdOfSurveys(String idOfSurveys)
     {
         this.idOfSurveys = idOfSurveys;
     }
@@ -287,7 +287,7 @@ public class Survey {
             return false;
     }
     
-    public Survey(List<Question> questions, GregorianCalendar startTime, GregorianCalendar finishTime, Interviewer interviewer, int idOfSurveys, String title, String description, String summary, int numberOfSurvey)
+    public Survey(List<Question> questions, GregorianCalendar startTime, GregorianCalendar finishTime, Interviewer interviewer, String idOfSurveys, String title, String description, String summary, int numberOfSurvey)
     {
         this.questions = questions;
         this.startTime = startTime;
