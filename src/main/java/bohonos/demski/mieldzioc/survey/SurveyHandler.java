@@ -12,6 +12,11 @@ import java.util.Map;
  */
 public class SurveyHandler {
     
+    public static final int IN_PROGRESS = 0;
+    public static final int ACTIVE = 1;
+    public static final int INACTIVE = 2;
+    public static final int NO_SURVEY = -1;
+            
     private int maxSurveysId = 0;
     private Map<Survey, Integer> surveys = new HashMap<Survey, Integer>();
     private Map<Integer, Survey> surveysId = new HashMap<Integer, Survey>();
@@ -41,7 +46,7 @@ public class SurveyHandler {
         maxSurveysId++;
         survey.setIdOfSurveys(maxSurveysId);
         surveysId.put(maxSurveysId, survey);
-        surveys.put(survey, 0);     //default value: 0
+        surveys.put(survey, IN_PROGRESS);     //default value
         return maxSurveysId;
     }
     
@@ -58,12 +63,12 @@ public class SurveyHandler {
                     Survey survey = surveysId.get(idOfSurveys);
                     survey.setIdOfSurveys(maxSurveysId);
                     surveysId.put(maxSurveysId, survey);
-                    surveys.put(survey, 0);     //default value: 0
+                    surveys.put(survey, IN_PROGRESS);     //default value
                     return maxSurveysId;
                 }
         else
         {
-            return -1;
+            return NO_SURVEY;
         }
     }
     
@@ -81,7 +86,7 @@ public class SurveyHandler {
             }
             else
             {
-                return -1;
+                return NO_SURVEY;
             }
     }
     
@@ -98,7 +103,7 @@ public class SurveyHandler {
         }
         else
         {
-            return -1;
+            return NO_SURVEY;
         }
     }
     
@@ -110,7 +115,7 @@ public class SurveyHandler {
      */
     public boolean setSurveyStatus(int idOfSurveys, int status)
     {
-            if (surveysId.containsKey(idOfSurveys) && status!=-1)
+            if (surveysId.containsKey(idOfSurveys) && status!=NO_SURVEY)
             {
                 Survey survey = surveysId.get(idOfSurveys);
                 surveys.put(survey, status);
@@ -130,7 +135,7 @@ public class SurveyHandler {
      */
     public boolean setSurveyStatus(Survey survey, int status)
     {
-            if (surveys.containsKey(survey) && status!=-1)
+            if (surveys.containsKey(survey) && status!=NO_SURVEY)
             {
                 surveys.put(survey, status);
                 return true;
