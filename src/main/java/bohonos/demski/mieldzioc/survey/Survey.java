@@ -268,11 +268,19 @@ public class Survey {
     
     /**
      * overwritten equals method
-     * @param otherSurvey other survey to compare
-     * @return true iff both surveys ids and numbers are equal 
+     * @param o other object to compare
+     * @return true iff both are surveys with the some ids and numbers 
      */
-    public boolean equals(Survey otherSurvey)
+    @Override
+    public boolean equals(Object o)
     {
+        if (this==o) 
+            return true;
+        if (o==null)
+            return false;
+        if (this.getClass()!=o.getClass())
+            return false;
+        Survey otherSurvey = (Survey)o;
         if (this.idOfSurveys==otherSurvey.getIdOfSurveys() && this.numberOfSurvey==otherSurvey.getNumberOfSurvey())
             return true;
         else
