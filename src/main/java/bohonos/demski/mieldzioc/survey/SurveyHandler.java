@@ -189,4 +189,9 @@ public class SurveyHandler {
                 return false;
             }      
     }
+    
+    public SurveyHandler(int maxSurveysId)
+    {
+        this.maxSurveysId = maxSurveysId;
+    }
 }
