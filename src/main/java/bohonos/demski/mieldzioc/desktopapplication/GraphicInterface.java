@@ -87,6 +87,14 @@ public class GraphicInterface extends JFrame implements ActionListener{
                         }
 		});
         }
+        if(source == creator){
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    CreatorFrame creator = new CreatorFrame();
+                }
+            });
+        }
     }
 
 }
