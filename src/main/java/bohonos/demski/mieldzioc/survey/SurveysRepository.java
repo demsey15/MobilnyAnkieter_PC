@@ -228,4 +228,7 @@ public class SurveysRepository {
         return surveysWithIdInterviewer;
     }
     
+    public SurveysRepository(Map<String,List<Survey>> surveys) {
+        this.surveys = surveys;
+    }
 }
