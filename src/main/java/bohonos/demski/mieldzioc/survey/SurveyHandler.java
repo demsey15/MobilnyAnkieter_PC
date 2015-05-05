@@ -60,19 +60,20 @@ public class SurveyHandler {
         }
         return id;
     }
+    
     /**
      * add new survey template to map
      * @param survey survey to add
      * @return id of this survey template
      */
-    public int addNewSurveyTemplate(Survey survey)
+    public String addNewSurveyTemplate(Survey survey)
     {
         maxSurveysId++;
         String id = survey.getInterviewer().getId() + localIdToString(maxSurveysId);
         survey.setIdOfSurveys(id);
         surveysId.put(id, survey);
         surveys.put(survey, IN_PROGRESS);     //default value
-        return maxSurveysId;
+        return id;
     }
     
     /**
@@ -96,9 +97,9 @@ public class SurveyHandler {
     /**
      * copy survey of given id
      * @param idOfSurveys survey id
-     * @return id of new survey, if given id exists or -1 otherwise
+     * @return id of new survey, if given id exists or "no survey" otherwise
      */
-    public int copyOldAndCreateNewSurvey(String idOfSurveys, String interviewerId)
+    public String copyOldAndCreateNewSurvey(String idOfSurveys, String interviewerId)
     {
         if (surveysId.containsKey(idOfSurveys))
                 {
@@ -108,11 +109,11 @@ public class SurveyHandler {
                     survey.setIdOfSurveys(id);
                     surveysId.put(id, survey);
                     surveys.put(survey, IN_PROGRESS);     //default value
-                    return maxSurveysId;
+                    return id;
                 }
         else
         {
-            return NO_SURVEY;
+            return "no survey";
         }
     }
     
@@ -121,7 +122,7 @@ public class SurveyHandler {
      * @param idOfSurveys id of survey
      * @return status of survey, if such survey exists or -1 otherwise
      */
-    public int getSurveyStatus(int idOfSurveys)
+    public int getSurveyStatus(String idOfSurveys)
     {
             if (surveysId.containsKey(idOfSurveys))
             {
