@@ -124,4 +124,20 @@ public class Interviewer implements Serializable{
      public void setInterviewerPrivileges(boolean x){
         privileges.changePrivileges(x);
     }
+     
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this==o) 
+            return true;
+        if (o==null)
+            return false;
+        if (this.getClass()!=o.getClass())
+            return false;
+        Interviewer otherInterviewer = (Interviewer)o;
+        if (this.id.equals(otherInterviewer.getId()))
+            return true;
+        else
+            return false;
+    }
 }

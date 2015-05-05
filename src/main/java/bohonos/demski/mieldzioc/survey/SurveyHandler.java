@@ -27,13 +27,25 @@ public class SurveyHandler {
     
     
     /**
-     * get survey of given id
+     * get new copy survey with given id
      * @param idOfSurveys survey id
-     * @return survey of given id
+     * @return copy of survey with given id
      */
     public Survey provideSurvey(String idOfSurveys)
     {
         return surveysId.get(idOfSurveys);
+    }
+    
+    /**
+     * returns survey with given id
+     * @param idOfSurveys survey id
+     * @return survey with given id
+     * @throws CloneNotSupportedException 
+     */
+    public Survey getSurvey(String idOfSurveys) throws CloneNotSupportedException
+    {
+        Survey survey = surveysId.get(idOfSurveys).clone();
+        return survey;
     }
     
     public int getMaxSurveysId()
@@ -99,16 +111,17 @@ public class SurveyHandler {
      * @param idOfSurveys survey id
      * @return id of new survey, if given id exists or "no survey" otherwise
      */
-    public String copyOldAndCreateNewSurvey(String idOfSurveys, String interviewerId)
+    public String copyOldAndCreateNewSurvey(String idOfSurveys, String interviewerId) throws CloneNotSupportedException
     {
         if (surveysId.containsKey(idOfSurveys))
                 {
                     maxSurveysId++;
                     String id = interviewerId + localIdToString(maxSurveysId);
-                    Survey survey = surveysId.get(idOfSurveys);
-                    survey.setIdOfSurveys(id);
-                    surveysId.put(id, survey);
-                    surveys.put(survey, IN_PROGRESS);     //default value
+                    Survey oldSurvey = surveysId.get(idOfSurveys);
+                    Survey newSurvey = oldSurvey.clone();
+                    newSurvey.setIdOfSurveys(id);
+                    surveysId.put(id, newSurvey);
+                    surveys.put(newSurvey, IN_PROGRESS);     //default value
                     return id;
                 }
         else
@@ -191,8 +204,41 @@ public class SurveyHandler {
             }      
     }
     
+    /**
+     * returns map of surveys with given status
+     * @param status given status
+     * @return map of surveys and their status
+     */
+    public Map<Survey,Integer> getStatusSurveys(int status)
+    {
+        Map<Survey,Integer> statusSurveys = new HashMap<Survey,Integer>();
+        for (Map.Entry<Survey, Integer> entry : surveys.entrySet()) {
+            if (entry.getValue().equals(status)) {
+                statusSurveys.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return statusSurveys;
+    }
+    
+    /**
+     * returns map of surveysId and surveys with given status
+     * @param status given status
+     * @return map of surveysId and surveys
+     */
+    public Map<String,Survey> getStatusSurveysId(int status)
+    {
+        Map<String, Survey> statusSurveysId = new HashMap<String, Survey>();
+        for (Map.Entry<Survey, Integer> entry : surveys.entrySet()) {
+            if (entry.getValue().equals(status)) {
+                statusSurveysId.put(entry.getKey().getIdOfSurveys(), entry.getKey());
+            }
+        }
+        return statusSurveysId;
+    }    
+    
     public SurveyHandler(int maxSurveysId)
     {
         this.maxSurveysId = maxSurveysId;
     }
+    
 }
