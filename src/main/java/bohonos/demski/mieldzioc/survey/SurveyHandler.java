@@ -99,16 +99,17 @@ public class SurveyHandler {
      * @param idOfSurveys survey id
      * @return id of new survey, if given id exists or "no survey" otherwise
      */
-    public String copyOldAndCreateNewSurvey(String idOfSurveys, String interviewerId)
+    public String copyOldAndCreateNewSurvey(String idOfSurveys, String interviewerId) throws CloneNotSupportedException
     {
         if (surveysId.containsKey(idOfSurveys))
                 {
                     maxSurveysId++;
                     String id = interviewerId + localIdToString(maxSurveysId);
-                    Survey survey = surveysId.get(idOfSurveys);
-                    survey.setIdOfSurveys(id);
-                    surveysId.put(id, survey);
-                    surveys.put(survey, IN_PROGRESS);     //default value
+                    Survey oldSurvey = surveysId.get(idOfSurveys);
+                    Survey newSurvey = oldSurvey.clone();
+                    newSurvey.setIdOfSurveys(id);
+                    surveysId.put(id, newSurvey);
+                    surveys.put(newSurvey, IN_PROGRESS);     //default value
                     return id;
                 }
         else
