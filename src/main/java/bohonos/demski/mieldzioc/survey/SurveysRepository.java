@@ -7,11 +7,9 @@ package bohonos.demski.mieldzioc.survey;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 
@@ -22,7 +20,7 @@ import bohonos.demski.mieldzioc.interviewer.Interviewer;
 public class SurveysRepository {
     
     public Map<String, List<Survey>> surveys = new HashMap<String, List<Survey>>();
-    public Map<String, Integer> numbersOfSurveys = new HashMap<String, Integer>();
+    public Map<String, Integer> maxNumbersOfSurveys = new HashMap<String, Integer>();
     
     /**
      * returns list of surveys with given id
@@ -34,12 +32,12 @@ public class SurveysRepository {
     }
     
     /**
-     * returns number of surveys with given id
+     * returns maximal number of surveys with given id
      * @param idOfSurveys given id of surveys, we want to count
      * @return number of surveys
      */
-    public int getNumberOfSurveys(String idOfSurveys) {
-        return numbersOfSurveys.get(idOfSurveys);
+    public int getMaxNumberOfSurveys(String idOfSurveys) {
+        return maxNumbersOfSurveys.get(idOfSurveys);
     }
     
     /**
@@ -51,12 +49,38 @@ public class SurveysRepository {
     }
     
     /**
-     * returns map of numbers of all surveys in repository
+     * returns map of maximal numbers of all surveys in repository
      * @return map of numbers
      */
-    public Map<String, Integer> getAllNumbersOfSurveys() {
-        return numbersOfSurveys;
+    public Map<String, Integer> getAllMaxNumbersOfSurveys() {
+        return maxNumbersOfSurveys;
     }   
+    
+    /**
+     * overwrites maximal number of surveys with given id
+     * @param idOfSurveys given id of surveys
+     * @return maximal numper of surveys from given group
+     */
+    private int countMaxNumberOfSurveys(String idOfSurveys) {
+        List<Survey> surveysWithId = surveys.get(idOfSurveys); 
+        int number=0;
+        for (Survey surveysWithId1 : surveysWithId) {
+            if (number < surveysWithId1.getNumberOfSurvey()) {
+                number = surveysWithId1.getNumberOfSurvey();
+            }
+        }
+        maxNumbersOfSurveys.put(idOfSurveys, number);
+        return number;
+    }
+    
+    /**
+     * overwrites maximal numbers of all surveys in repository
+     */
+    private void countAllMaxNumbersOfSurveys() {
+        for (Map.Entry<String,List<Survey>> entry : surveys.entrySet()) {
+            countMaxNumberOfSurveys(entry.getKey());
+        }        
+    }
     
     /**
      * returns list of surveys of given id, finished after or in given date
@@ -67,9 +91,10 @@ public class SurveysRepository {
     public List<Survey> getSurveys(String idOfSurveys, GregorianCalendar from) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys);
         List<Survey> surveysWithIdFrom = new ArrayList<Survey>();
-        for (int i=0; i<surveysWithId.size(); i++) {
-            if (surveysWithId.get(i).getFinishTime().before(from)==false)
-                surveysWithIdFrom.add(surveysWithId.get(i));
+        for (Survey surveysWithId1 : surveysWithId) {
+            if (surveysWithId1.getFinishTime().before(from) == false) {
+                surveysWithIdFrom.add(surveysWithId1);
+            }
         }
         return surveysWithIdFrom;
     }
@@ -104,9 +129,10 @@ public class SurveysRepository {
     public List<Survey> getSurveys(String idOfSurveys, GregorianCalendar from, GregorianCalendar to) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys);
         List<Survey> surveysWithIdFrom = new ArrayList<Survey>();
-        for (int i=0; i<surveysWithId.size(); i++) {
-            if (surveysWithId.get(i).getFinishTime().before(from)==false && surveysWithId.get(i).getFinishTime().after(to)==false)
-                surveysWithIdFrom.add(surveysWithId.get(i));
+        for (Survey surveysWithId1 : surveysWithId) {
+            if (surveysWithId1.getFinishTime().before(from) == false && surveysWithId1.getFinishTime().after(to) == false) {
+                surveysWithIdFrom.add(surveysWithId1);
+            }
         }
         return surveysWithIdFrom;
     }    
@@ -134,7 +160,7 @@ public class SurveysRepository {
     
     /**
      * returns map of surveys of given interviewer
-     * @param interviwer interviewer, whose surveys we want to get
+     * @param interviewer interviewer, whose surveys we want to get
      * @return  map of surveys
      */
     public Map<String,List<Survey>> getAllInterviewerSurveys(Interviewer interviewer) {
@@ -155,15 +181,16 @@ public class SurveysRepository {
     /**
      * returns list of surveys with given id, of given interviewer
      * @param idOfSurveys id of group of surveys we are looking for
-     * @param interviwer interviewer, whose surveys we want to get
+     * @param interviewer interviewer, whose surveys we want to get
      * @return list of surveys
      */
     public List<Survey> getInterviewerSurveys(String idOfSurveys, Interviewer interviewer) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys);
         List<Survey> surveysWithIdInterviewer = new ArrayList<Survey>();
-        for (int i=0; i<surveysWithId.size(); i++) {
-            if (surveysWithId.get(i).getInterviewer().equals(interviewer))
-                surveysWithIdInterviewer.add(surveysWithId.get(i));
+        for (Survey surveysWithId1 : surveysWithId) {
+            if (surveysWithId1.getInterviewer().equals(interviewer)) {
+                surveysWithIdInterviewer.add(surveysWithId1);
+            }
         }
         return surveysWithIdInterviewer;
     }
@@ -171,7 +198,7 @@ public class SurveysRepository {
     /**
      * returns map of surveys of given interviewer, finished after or in given date
      * @param from does not return surveys finishet before this date
-     * @param interviwer interviewer, whose surveys we want to ge
+     * @param interviewer interviewer, whose surveys we want to ge
      * @return map of surveys
      */
     public Map<String,List<Survey>> getAllInterviewerSurveys(GregorianCalendar from, Interviewer interviewer) {
@@ -193,15 +220,16 @@ public class SurveysRepository {
      * returns list of surveys with given id, of given interviewer, finished after or in given date
      * @param idOfSurveys id of group of surveys we are looking for
      * @param from does not return surveys finishet before this date
-     * @param interviwer interviewer, whose surveys we want to get
+     * @param interviewer interviewer, whose surveys we want to get
      * @return list of surveys
      */
     public List<Survey> getInterviewerSurveys(String idOfSurveys, GregorianCalendar from, Interviewer interviewer) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys);
         List<Survey> surveysWithIdInterviewer = new ArrayList<Survey>();
-        for (int i=0; i<surveysWithId.size(); i++) {
-            if (surveysWithId.get(i).getInterviewer().equals(interviewer) && surveysWithId.get(i).getFinishTime().before(from)==false)
-                surveysWithIdInterviewer.add(surveysWithId.get(i));
+        for (Survey surveysWithId1 : surveysWithId) {
+            if (surveysWithId1.getInterviewer().equals(interviewer) && surveysWithId1.getFinishTime().before(from) == false) {
+                surveysWithIdInterviewer.add(surveysWithId1);
+            }
         }
         return surveysWithIdInterviewer;
     }
@@ -239,9 +267,10 @@ public class SurveysRepository {
     public List<Survey> getInterviewerSurveys(String idOfSurveys, GregorianCalendar from, GregorianCalendar to, Interviewer interviewer) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys);
         List<Survey> surveysWithIdInterviewer = new ArrayList<Survey>();
-        for (int i=0; i<surveysWithId.size(); i++) {
-            if (surveysWithId.get(i).getInterviewer().equals(interviewer) && surveysWithId.get(i).getFinishTime().before(from)==false && surveysWithId.get(i).getFinishTime().after(to)==false)
-                surveysWithIdInterviewer.add(surveysWithId.get(i));
+        for (Survey surveysWithId1 : surveysWithId) {
+            if (surveysWithId1.getInterviewer().equals(interviewer) && surveysWithId1.getFinishTime().before(from) == false && surveysWithId1.getFinishTime().after(to) == false) {
+                surveysWithIdInterviewer.add(surveysWithId1);
+            }
         }
         return surveysWithIdInterviewer;
     }
@@ -258,7 +287,7 @@ public class SurveysRepository {
         }
         else {
             surveys.put(id, new ArrayList<Survey>());
-            numbersOfSurveys.put(id, 0);
+            maxNumbersOfSurveys.put(id, 0);
             return id;
         }
     }
@@ -274,26 +303,38 @@ public class SurveysRepository {
         }
         else {
             surveys.put(id, new ArrayList<Survey>());
-            numbersOfSurveys.put(id, 0);
+            maxNumbersOfSurveys.put(id, 0);
             return true;
         }
     }
-       
+    
+    /**
+     * adds new survey to repository and gives it own number
+     * if list of surveys of such id doesn't exist, method adds such list
+     * @param survey survey to add
+     * @return number of added survey
+     */
     public int addNewSurvey(Survey survey) {
         String id = survey.getIdOfSurveys();
         if(surveys.containsKey(id)==false) {
             surveys.put(id, new ArrayList<Survey>());
-            numbersOfSurveys.put(id, 0);
+            maxNumbersOfSurveys.put(id, 0);
         }
-        int number = numbersOfSurveys.get(id);
+        int number = maxNumbersOfSurveys.get(id);
         number++;
         survey.setNumberOfSurvey(number);
         surveys.get(id).add(survey);
-        numbersOfSurveys.put(id, number);
+        maxNumbersOfSurveys.put(id, number);
         return number;
     }
     
-    public SurveysRepository(Map<String,List<Survey>> surveys) {
+    public SurveysRepository(Map<String, List<Survey>> surveys) {
         this.surveys = surveys;
+        countAllMaxNumbersOfSurveys();
+    }
+    
+    public SurveysRepository(Map<String, List<Survey>> surveys, Map<String, Integer> numbersOfSurveys) {
+        this.surveys = surveys;
+        this.maxNumbersOfSurveys = numbersOfSurveys;
     }
 }

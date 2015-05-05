@@ -109,7 +109,9 @@ public class SurveyHandler {
     /**
      * copy survey of given id
      * @param idOfSurveys survey id
+     * @param interviewerId author of new survey template
      * @return id of new survey, if given id exists or "no survey" otherwise
+     * @throws java.lang.CloneNotSupportedException
      */
     public String copyOldAndCreateNewSurvey(String idOfSurveys, String interviewerId) throws CloneNotSupportedException
     {
