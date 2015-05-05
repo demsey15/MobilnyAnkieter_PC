@@ -171,7 +171,7 @@ public class SurveyHandler {
      * @param status new status (-1 is forbidden)
      * @return true, iff action was successful
      */
-    public boolean setSurveyStatus(int idOfSurveys, int status)
+    public boolean setSurveyStatus(String idOfSurveys, int status)
     {
             if (surveysId.containsKey(idOfSurveys) && status!=NO_SURVEY)
             {
