@@ -473,8 +473,8 @@ public class CreatingSurveyControl {
 	 * @param handler obiekt klasy SurveyHandler zajmuj¹cy siê szablonami ankiet.
 	 * @return id nowo utworzonego szablonu (id grupy ankiet).
 	 */
-	public int finishCreating(SurveyHandler handler){
-		if(creatingSurvey == null) return -1;
+	public String finishCreating(SurveyHandler handler){
+		if(creatingSurvey == null) return null;
 		Survey survey = creatingSurvey.finishCreating();
 		creatingSurvey = null;
 		

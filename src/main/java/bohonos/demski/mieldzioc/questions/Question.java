@@ -145,8 +145,8 @@ public abstract class Question implements Serializable, Cloneable{
 	
 	/**
 	 * Set user answers of this question. Be careful! All past answers will be removed regardless of result of this method. 
-	 * @param text list of answers
-	 * @return true is format and amount of answers are correct (then answers are added) otherwise false
+	 * @param text list of answers.
+	 * @return true if format and amount of answers are correct (then answers are added) otherwise false.
 	 */
 	public abstract boolean setUserAnswers(List<String> text);
 	
