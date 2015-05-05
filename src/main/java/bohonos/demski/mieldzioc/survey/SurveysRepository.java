@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import bohonos.demski.mieldzioc.interviewer.Interviewer;
+
 /**
  *
  * @author Andrzej
@@ -46,7 +48,7 @@ public class SurveysRepository {
      * @param from method returns surveys finished after this date or equal
      * @return map of surveys finished after or in given date
      */
-    public Map<String,List<Survey>> getSurveys(GregorianCalendar from) {
+    public Map<String,List<Survey>> getAllSurveys(GregorianCalendar from) {
         int i;
         Map<String,List<Survey>> surveysFrom = new HashMap<String,List<Survey>>();
         for (Map.Entry<String,List<Survey>> entry : surveys.entrySet()) {
@@ -84,7 +86,7 @@ public class SurveysRepository {
      * @param to does not return surveys finishet after this date
      * @return map of surveys
      */
-    public Map<String,List<Survey>> getSurveys(GregorianCalendar from, GregorianCalendar to) {
+    public Map<String,List<Survey>> getAllSurveys(GregorianCalendar from, GregorianCalendar to) {
         int i;
         Map<String,List<Survey>> surveysFrom = new HashMap<String,List<Survey>>();
         for (Map.Entry<String,List<Survey>> entry : surveys.entrySet()) {
@@ -97,6 +99,80 @@ public class SurveysRepository {
             surveysFrom.put(entry.getKey(), surveysWithIdFrom);
         }
         return surveysFrom;
+    }
+    
+    /**
+     * returns map of surveys of given interviewer
+     * @param interviwer interviewer, whose surveys we want to get
+     * @return  map of surveys
+     */
+    public Map<String,List<Survey>> getAllInterviewerSurveys(Interviewer interviewer) {
+        int i;
+        Map<String,List<Survey>> surveysFrom = new HashMap<String,List<Survey>>();
+        for (Map.Entry<String,List<Survey>> entry : surveys.entrySet()) {
+            List<Survey> surveysWithIdFrom = new ArrayList<Survey>();
+            for (i=0; i<entry.getValue().size(); i++) {
+                if (entry.getValue().get(i).getInterviewer().equals(interviewer)) {
+                    surveysWithIdFrom.add(entry.getValue().get(i));
+                }
+            }
+            surveysFrom.put(entry.getKey(), surveysWithIdFrom);
+        }
+        return surveysFrom;
+    }
+    
+    /**
+     * returns list of surveys with given id, of given interviewer
+     * @param idOfSurveys id of group of surveys we are looking for
+     * @param interviwer interviewer, whose surveys we want to get
+     * @return list of surveys
+     */
+    public List<Survey> getInterviewerSurveys(String idOfSurveys, Interviewer interviewer) {
+        List<Survey> surveysWithId = surveys.get(idOfSurveys);
+        List<Survey> surveysWithIdInterviewer = new ArrayList<Survey>();
+        for (int i=0; i<surveysWithId.size(); i++) {
+            if (surveysWithId.get(i).getInterviewer().equals(interviewer))
+                surveysWithIdInterviewer.add(surveysWithId.get(i));
+        }
+        return surveysWithIdInterviewer;
+    }
+    
+    /**
+     * returns map of surveys of given interviewer, finished after or in given date
+     * @param from does not return surveys finishet before this date
+     * @param interviwer interviewer, whose surveys we want to ge
+     * @return map of surveys
+     */
+    public Map<String,List<Survey>> getAllInterviewerSurveys(GregorianCalendar from, Interviewer interviewer) {
+        int i;
+        Map<String,List<Survey>> surveysFrom = new HashMap<String,List<Survey>>();
+        for (Map.Entry<String,List<Survey>> entry : surveys.entrySet()) {
+            List<Survey> surveysWithIdFrom = new ArrayList<Survey>();
+            for (i=0; i<entry.getValue().size(); i++) {
+                if (entry.getValue().get(i).getInterviewer().equals(interviewer) && entry.getValue().get(i).getFinishTime().before(from)==false) {
+                    surveysWithIdFrom.add(entry.getValue().get(i));
+                }
+            }
+            surveysFrom.put(entry.getKey(), surveysWithIdFrom);
+        }
+        return surveysFrom;
+    }    
+    
+    /**
+     * returns list of surveys with given id, of given interviewer, finished after or in given date
+     * @param idOfSurveys id of group of surveys we are looking for
+     * @param from does not return surveys finishet before this date
+     * @param interviwer interviewer, whose surveys we want to ge
+     * @return list of surveys
+     */
+    public List<Survey> getInterviewerSurveys(String idOfSurveys, GregorianCalendar from, Interviewer interviewer) {
+        List<Survey> surveysWithId = surveys.get(idOfSurveys);
+        List<Survey> surveysWithIdInterviewer = new ArrayList<Survey>();
+        for (int i=0; i<surveysWithId.size(); i++) {
+            if (surveysWithId.get(i).getInterviewer().equals(interviewer) && surveysWithId.get(i).getFinishTime().before(from)==false)
+                surveysWithIdInterviewer.add(surveysWithId.get(i));
+        }
+        return surveysWithIdInterviewer;
     }
     
 }
