@@ -204,8 +204,41 @@ public class SurveyHandler {
             }      
     }
     
+    /**
+     * returns map of surveys with given status
+     * @param status given status
+     * @return map of surveys and their status
+     */
+    public Map<Survey,Integer> getStatusSurveys(int status)
+    {
+        Map<Survey,Integer> statusSurveys = new HashMap<Survey,Integer>();
+        for (Map.Entry<Survey, Integer> entry : surveys.entrySet()) {
+            if (entry.getValue().equals(status)) {
+                statusSurveys.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return statusSurveys;
+    }
+    
+    /**
+     * returns map of surveysId and surveys with given status
+     * @param status given status
+     * @return map of surveysId and surveys
+     */
+    public Map<String,Survey> getStatusSurveysId(int status)
+    {
+        Map<String, Survey> statusSurveysId = new HashMap<String, Survey>();
+        for (Map.Entry<Survey, Integer> entry : surveys.entrySet()) {
+            if (entry.getValue().equals(status)) {
+                statusSurveysId.put(entry.getKey().getIdOfSurveys(), entry.getKey());
+            }
+        }
+        return statusSurveysId;
+    }    
+    
     public SurveyHandler(int maxSurveysId)
     {
         this.maxSurveysId = maxSurveysId;
     }
+    
 }
