@@ -22,6 +22,7 @@ import bohonos.demski.mieldzioc.interviewer.Interviewer;
 public class SurveysRepository {
     
     public Map<String, List<Survey>> surveys = new HashMap<String, List<Survey>>();
+    public Map<String, Integer> numbersOfSurveys = new HashMap<String, Integer>();
     
     /**
      * returns list of surveys with given id
@@ -33,12 +34,29 @@ public class SurveysRepository {
     }
     
     /**
+     * returns number of surveys with given id
+     * @param idOfSurveys given id of surveys, we want to count
+     * @return number of surveys
+     */
+    public int getNumberOfSurveys(String idOfSurveys) {
+        return numbersOfSurveys.get(idOfSurveys);
+    }
+    
+    /**
      * returns map of all surveys in repository
      * @return map of surveys
      */
     public Map<String, List<Survey>> getAllSurveys() {
         return surveys;
     }
+    
+    /**
+     * returns map of numbers of all surveys in repository
+     * @return map of numbers
+     */
+    public Map<String, Integer> getAllNumbersOfSurveys() {
+        return numbersOfSurveys;
+    }   
     
     /**
      * returns list of surveys of given id, finished after or in given date
@@ -226,6 +244,53 @@ public class SurveysRepository {
                 surveysWithIdInterviewer.add(surveysWithId.get(i));
         }
         return surveysWithIdInterviewer;
+    }
+    
+    /**
+     * add new group of surveys
+     * @param survey new tamplate, we want to add to repository
+     * @return id of given template or "already exists", if such group already exists
+     */
+    public String addNewSurveyGroup(Survey survey) {
+        String id = survey.getIdOfSurveys();
+        if (surveys.containsKey(id)) {
+            return "already exists";
+        }
+        else {
+            surveys.put(id, new ArrayList<Survey>());
+            numbersOfSurveys.put(id, 0);
+            return id;
+        }
+    }
+    
+    /**
+     * add new group of surveys
+     * @param id id of new tamplate, we want to add to repository
+     * @return true, if action was successful or false, if such group already exists
+     */
+    public boolean addNewSurveyGroup(String id) {
+        if (surveys.containsKey(id)) {
+            return false;
+        }
+        else {
+            surveys.put(id, new ArrayList<Survey>());
+            numbersOfSurveys.put(id, 0);
+            return true;
+        }
+    }
+       
+    public int addNewSurvey(Survey survey) {
+        String id = survey.getIdOfSurveys();
+        if(surveys.containsKey(id)==false) {
+            surveys.put(id, new ArrayList<Survey>());
+            numbersOfSurveys.put(id, 0);
+        }
+        int number = numbersOfSurveys.get(id);
+        number++;
+        survey.setNumberOfSurvey(number);
+        surveys.get(id).add(survey);
+        numbersOfSurveys.put(id, number);
+        return number;
     }
     
     public SurveysRepository(Map<String,List<Survey>> surveys) {
