@@ -15,9 +15,6 @@ import com.rits.cloning.Cloner;
  */
 public class ScaleQuestion extends Question {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int minValue;
 	private int maxValue;

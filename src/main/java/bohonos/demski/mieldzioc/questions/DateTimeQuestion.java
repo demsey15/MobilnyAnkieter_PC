@@ -75,7 +75,8 @@ public class DateTimeQuestion extends Question {
 	}
 
 	/**
-	 * Notice! List with answers should contains 3 or 6 elements in order: day (number), month (number from 1 to 12), year (four digit number, after 1970), hour, minute, second
+	 * Notice! List with answers should contains 3 or 6 elements in order: day (number)
+	 * , month (number from 1 to 12), year (four digit number, after 1970), hour, minute, second
 	 *  If you don't want to have day, month or year just put any correct values.
 	 *  @see bohonos.demski.mieldzioc.questions.Question#setUserAnswers(java.util.List)
 	 */
