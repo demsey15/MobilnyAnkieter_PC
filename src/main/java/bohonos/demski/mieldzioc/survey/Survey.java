@@ -6,6 +6,9 @@ package bohonos.demski.mieldzioc.survey;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.io.Serializable;
+
+import com.rits.cloning.Cloner;
 
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.questions.Question;
@@ -14,7 +17,7 @@ import bohonos.demski.mieldzioc.questions.Question;
  * @author Andrzej Bohonos
  *
  */
-public class Survey {
+public class Survey implements Serializable, Cloneable {
     
 	
     private List<Question> questions = new ArrayList<Question>();
@@ -43,6 +46,14 @@ public class Survey {
             return false;
         }
     }
+    
+    public GregorianCalendar getStartTime() {
+        return startTime;
+    }
+    
+    public GregorianCalendar getFinishTime() {
+        return finishTime;
+    }  
     
     /**
      * end filling new survey
@@ -247,6 +258,30 @@ public class Survey {
         }
     }
     
+    public Survey(List<Question> questions, GregorianCalendar startTime, GregorianCalendar finishTime, Interviewer interviewer, String idOfSurveys, String title, String description, String summary, int numberOfSurvey)
+    {
+        this.questions = questions;
+        this.startTime = startTime;
+        this.finishTime = finishTime;
+        this.idOfSurveys = idOfSurveys;
+        this.interviewer = interviewer;
+        this.title = title;
+        this.summary = summary;
+        this.description = description;
+        this.numberOfSurvey = numberOfSurvey;
+    }
+    
+    /**
+	 * Stwórz now¹ ankietê, podaj¹c jako argument ankietera tworz¹cego ankietê. 
+	 * Jeœli tworzony jest szablon ankiety, stworzon¹ ankietê nale¿y przekazaæ klasie SurveyHandler,
+	 * ona nada szablonowi numer grupy ankiet. 
+	 * @author Dominik Demski
+	 * @param interviewer - Ankieter, który stworzy³ dan¹ ankietê.
+	 */
+    public Survey(Interviewer interviewer) {
+		this.interviewer = interviewer;
+	}
+        
     /**
      * @return true iff question list is empty
      */
@@ -287,28 +322,14 @@ public class Survey {
             return false;
     }
     
-    public Survey(List<Question> questions, GregorianCalendar startTime, GregorianCalendar finishTime, Interviewer interviewer, String idOfSurveys, String title, String description, String summary, int numberOfSurvey)
-    {
-        this.questions = questions;
-        this.startTime = startTime;
-        this.finishTime = finishTime;
-        this.idOfSurveys = idOfSurveys;
-        this.interviewer = interviewer;
-        this.title = title;
-        this.summary = summary;
-        this.description = description;
-        this.numberOfSurvey = numberOfSurvey;
-    }
-    
     /**
-	 * Stwórz now¹ ankietê, podaj¹c jako argument ankietera tworz¹cego ankietê. 
-	 * Jeœli tworzony jest szablon ankiety, stworzon¹ ankietê nale¿y przekazaæ klasie SurveyHandler,
-	 * ona nada szablonowi numer grupy ankiet. 
-	 * @author Dominik Demski
-	 * @param interviewer - Ankieter, który stworzy³ dan¹ ankietê.
-	 */
-    public Survey(Interviewer interviewer) {
-		this.interviewer = interviewer;
-	}
+     * 
+     * @return
+     * @throws CloneNotSupportedException 
+     */
+    @Override
+    public Survey clone() throws CloneNotSupportedException {
+	return (new Cloner()).deepClone(this);
+    }
 
 }

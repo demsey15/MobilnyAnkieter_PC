@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.rits.cloning.Cloner;
+
 /**
  * 
  * @author Dominik Demski
@@ -155,5 +157,10 @@ public class MultipleChoiceQuestion extends Question{
 		
 		return super.equals(o2) && Objects.equals(answers, o2.answers) && 
 				Objects.equals(userAnswers, o2.userAnswers);
+	}
+	
+	@Override
+	public MultipleChoiceQuestion clone() throws CloneNotSupportedException {
+		return (new Cloner()).deepClone(this);
 	}
 }

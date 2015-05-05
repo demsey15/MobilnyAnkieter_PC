@@ -6,6 +6,8 @@ package bohonos.demski.mieldzioc.questions;
 import java.util.List;
 import java.util.Objects;
 
+import com.rits.cloning.Cloner;
+
 import bohonos.demski.mieldzioc.constraints.IConstraint;
 import bohonos.demski.mieldzioc.constraints.TextValidator;
 
@@ -128,6 +130,11 @@ public class TextQuestion extends Question {
 		
 		return super.equals(o2) && Objects.equals(userAnswer, o2.userAnswer) &&
 				Objects.equals(constraint, o2.constraint);
+	}
+	
+	@Override
+	public TextQuestion clone() throws CloneNotSupportedException {
+		return (new Cloner()).deepClone(this);
 	}
 
 }

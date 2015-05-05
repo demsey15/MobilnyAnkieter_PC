@@ -7,6 +7,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 
+import com.rits.cloning.Cloner;
+
 /**
  * @author Dominik Demski
  * 
@@ -155,6 +157,11 @@ public class DateTimeQuestion extends Question {
 		
 		return super.equals(o2) &&  Objects.equals(userAnswer, o2.userAnswer) && 
 				this.onlyDate == o2.onlyDate && this.onlyTime == o2.onlyTime;
+	}
+	
+	@Override
+	public DateTimeQuestion clone() throws CloneNotSupportedException {
+		return (new Cloner()).deepClone(this);
 	}
 
 }
