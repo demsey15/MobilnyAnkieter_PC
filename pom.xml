@@ -3,4 +3,12 @@
   <groupId>bohonos.demski.mieldzioc</groupId>
   <artifactId>bezpieczny_ankieter</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+   <dependencies>
+      <dependency>
+            <groupId>uk.com.robust-it</groupId>
+            <artifactId>cloning</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+    </dependencies>
 </project>

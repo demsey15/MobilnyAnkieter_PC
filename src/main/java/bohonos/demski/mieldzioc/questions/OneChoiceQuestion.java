@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.rits.cloning.Cloner;
+
 /**
  * @author Dominik Demski
  *
@@ -194,6 +196,11 @@ public class OneChoiceQuestion extends Question {
 		return super.equals(o2) && Objects.equals(answers, o2.answers) && 
 				Objects.equals(userAnswer, o2.userAnswer) && 
 				this.isDropDownList == o2.isDropDownList;
+	}
+	
+	@Override
+	public OneChoiceQuestion clone() throws CloneNotSupportedException {
+		return (new Cloner()).deepClone(this);
 	}
 
 }

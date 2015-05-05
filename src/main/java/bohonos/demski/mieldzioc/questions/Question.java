@@ -7,11 +7,13 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+import com.rits.cloning.Cloner;
+
 /**
  * @author Dominik Demski
  *
  */
-public abstract class Question implements Serializable{
+public abstract class Question implements Serializable, Cloneable{
 	
 	/**
 	 * 
@@ -172,5 +174,10 @@ public abstract class Question implements Serializable{
 		return this.obligatory == o2.obligatory && Objects.equals(this.errorMessage, o2.errorMessage) && 
 				Objects.equals(this.hint, o2.hint) && Objects.equals(this.pictureUrl, o2.pictureUrl) &&
 				Objects.equals(this.question, o2.question);
+	}
+	
+	@Override
+	public Question clone() throws CloneNotSupportedException {
+		return (new Cloner()).deepClone(this);
 	}
 }

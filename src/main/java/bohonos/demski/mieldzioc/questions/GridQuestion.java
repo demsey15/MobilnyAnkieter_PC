@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.rits.cloning.Cloner;
+
 import bohonos.demski.mieldzioc.common.Pair;
 
 /**
@@ -227,6 +229,11 @@ public class GridQuestion extends Question {
 		return super.equals(o2) && Objects.equals(userAnswers, o2.userAnswers) &&
 				Objects.equals(rowLabels, o2.rowLabels) &&
 				Objects.equals(columnLabels, o2.columnLabels);
+	}
+	
+	@Override
+	public GridQuestion clone() throws CloneNotSupportedException {
+		return (new Cloner()).deepClone(this);
 	}
 
 }
