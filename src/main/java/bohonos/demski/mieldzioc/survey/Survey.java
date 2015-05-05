@@ -47,6 +47,14 @@ public class Survey implements Serializable, Cloneable {
         }
     }
     
+    public GregorianCalendar getStartTime() {
+        return startTime;
+    }
+    
+    public GregorianCalendar getFinishTime() {
+        return finishTime;
+    }  
+    
     /**
      * end filling new survey
      * @return true iff action was successful
