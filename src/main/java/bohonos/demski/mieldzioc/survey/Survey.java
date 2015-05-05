@@ -316,7 +316,7 @@ public class Survey implements Serializable, Cloneable {
         if (this.getClass()!=o.getClass())
             return false;
         Survey otherSurvey = (Survey)o;
-        if (this.idOfSurveys==otherSurvey.getIdOfSurveys() && this.numberOfSurvey==otherSurvey.getNumberOfSurvey())
+        if (this.idOfSurveys.equals(otherSurvey.getIdOfSurveys()) && this.numberOfSurvey==otherSurvey.getNumberOfSurvey())
             return true;
         else
             return false;
