@@ -138,6 +138,7 @@ public class DateTimeQuestion extends Question {
 
 	public void setOnlyTime(boolean onlyTime) {
 		this.onlyTime = onlyTime;
+		this.onlyDate = !onlyTime;
 	}
 
 	public boolean isOnlyDate() {
@@ -146,6 +147,7 @@ public class DateTimeQuestion extends Question {
 
 	public void setOnlyDate(boolean onlyDate) {
 		this.onlyDate = onlyDate;
+		this.onlyTime = !onlyDate;
 	}
 	
 	@Override
