@@ -59,6 +59,19 @@ public class QuestionPanel extends JPanel implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent ae) {
+        Object source = ae.getSource();
+        
+        if (source == questionUp) {
+            
+        }
+        
+        if (source == questionUp) {
+            
+        }
+        
+        if (source == questionUp) {
+            
+        }
         
     }
     
