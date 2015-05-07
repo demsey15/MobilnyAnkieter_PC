@@ -16,7 +16,7 @@ import javax.swing.JButton;
  */
 public class SurveyPanel extends JPanel implements ActionListener {
     
-    CreatorLogic creatorLogic;
+    private CreatorLogic creatorLogic;
     
     public SurveyPanel(CreatorLogic cl) {
         

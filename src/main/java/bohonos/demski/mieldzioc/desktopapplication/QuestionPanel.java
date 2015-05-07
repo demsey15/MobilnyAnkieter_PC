@@ -16,7 +16,7 @@ import javax.swing.JButton;
  */
 public class QuestionPanel extends JPanel implements ActionListener {
     
-    CreatorLogic creatorLogic;
+    private CreatorLogic creatorLogic;
     
     private JButton questionUp;
     private JButton questionDown;

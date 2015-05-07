@@ -17,24 +17,29 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 /**
  *
  * @author Andrzej
  */
 public class CreatorFrame extends JFrame implements ActionListener {
     
-    JMenu menuSurvey;
-    JMenu menuQuestion;
+    private JMenu menuSurvey;
+    private JMenu menuQuestion;
     
-    JMenuItem itemNewSurvey;
-    JMenuItem itemCopyOldSurvey;
-    JMenuItem itemEditSurvey; 
-    JMenuItem itemDataTimeQuestion;
-    JMenuItem itemGridQuestion;
-    JMenuItem itemMultipleChioceQuestion;
-    JMenuItem itemOneChoiceQuestion;
-    JMenuItem itemScaleQuestion;
-    JMenuItem itemTextQuestion;
+    private JMenuItem itemNewSurvey;
+    private JMenuItem itemCopyOldSurvey;
+    private JMenuItem itemEditSurvey; 
+    private JMenuItem itemDataTimeQuestion;
+    private JMenuItem itemGridQuestion;
+    private JMenuItem itemMultipleChioceQuestion;
+    private JMenuItem itemOneChoiceQuestion;
+    private JMenuItem itemScaleQuestion;
+    private JMenuItem itemTextQuestion;
+    
+    private JTabbedPane tabbedPane;
+    
+    private CreatorLogic creatorLogic;
     
     public CreatorFrame(){
         super("Kreator ankiet");
@@ -44,6 +49,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
 		dispose();
             }
 	});
+        
+        creatorLogic = new CreatorLogic();
         
         setSize(800, 600);
 	setLocation(300,200);
@@ -91,7 +98,9 @@ public class CreatorFrame extends JFrame implements ActionListener {
         menuBar.add(menuSurvey);
         menuBar.add(menuQuestion);
         setJMenuBar(menuBar);
-           
+        
+        tabbedPane = new JTabbedPane();
+        add(tabbedPane);   
         setVisible(true);
     }
     
@@ -99,7 +108,9 @@ public class CreatorFrame extends JFrame implements ActionListener {
         Object source = ae.getSource();
         
         if (source == itemNewSurvey) {
-            
+            SurveyPanel surveyPanel = new SurveyPanel(creatorLogic);
+            tabbedPane.addTab("tab", surveyPanel);
+            //System.out.println("udalo sie");
         }
         
         if (source == itemCopyOldSurvey) {
