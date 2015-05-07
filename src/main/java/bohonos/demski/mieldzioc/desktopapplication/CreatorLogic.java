@@ -35,8 +35,17 @@ public class CreatorLogic {
      * @return title of survey template
      */
     public String getSurveyTitle(String idOfSurvey) {
-        String title = surveyHandler.getSurvey(idOfSurvey).getTitle();
-        return title;
+        return surveyHandler.getSurvey(idOfSurvey).getTitle();
+    }
+    
+    public void setSurveyTitleAndDescription(String idOfSurvey, String title, String description) throws CloneNotSupportedException {
+        Survey survey = surveyHandler.provideSurvey(idOfSurvey);
+        survey.setTitle(title);
+        survey.setDescription(description);
+    }
+    
+    public String getSurveyDescription(String idOfSurvey) {
+        return surveyHandler.getSurvey(idOfSurvey).getDescription();
     }
     
     public CreatorLogic() {
