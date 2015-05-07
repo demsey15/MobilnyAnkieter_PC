@@ -3,6 +3,7 @@
  */
 package bohonos.demski.mieldzioc.survey;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -46,7 +47,7 @@ public class CreatingSurvey {
 			question = new DateTimeQuestion(null, false, false, true);
 			break;
 		case Question.DROP_DOWN_QUESTION:
-			question = new OneChoiceQuestion(null, false, null, true);
+			question = new OneChoiceQuestion(null, false, new ArrayList<String>(), true);
 			break;
 		case Question.GRID_QUESTION:
 			question = new GridQuestion(null, false);
@@ -467,6 +468,7 @@ public class CreatingSurvey {
 	 * albo pytanie jest z³ego typu).
 	 */
 	public boolean addAnswerToChooseQuestion(int questionNumber, String answer){
+		if(answer == null) throw new NullPointerException("Odpowiedz nie moze byc nullem!");
 		Question question;
 		if((question = getQuestion(questionNumber)) == null)
 			return false;

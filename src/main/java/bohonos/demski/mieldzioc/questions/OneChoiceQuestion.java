@@ -49,9 +49,11 @@ public class OneChoiceQuestion extends Question {
 	 * @param question text of question
 	 * @param obligatory true if answer this question is obligatory
 	 * @param answers lists of question's answers
+	 * @throws NullPointerException jeœli przekazana lista odpowiedzi jest nullem.
 	 */
 	public OneChoiceQuestion(String question, boolean obligatory, List<String> answers){
 		super(question, obligatory);
+		if(answers == null) throw new NullPointerException("Lista odpowiedzi nie moze byæ nullem!");
 		this.answers = answers;
 	}
 	
@@ -61,9 +63,11 @@ public class OneChoiceQuestion extends Question {
 	 * @param obligatory true if answer this question is obligatory
 	 * @param answers lists of question's answers
 	 * @param isDropDownList true if question should be presented as drop-down list
+	 * @throws NullPointerException jeœli przekazana lista odpowiedzi jest nullem.
 	 */
 	public OneChoiceQuestion(String question, boolean obligatory, List<String> answers, boolean isDropDownList){
 		super(question, obligatory);
+		if(answers == null) throw new NullPointerException("Lista odpowiedzi nie moze byæ nullem!");
 		this.answers = answers;
 		this.isDropDownList = isDropDownList;
 	}
@@ -89,9 +93,11 @@ public class OneChoiceQuestion extends Question {
 	 * @param hint hint for the user connected with this question
 	 * @param isDropDownList true if question should be presented as drop-down list
 	 * @param answers lists of question's answers
+	 * @throws NullPointerException jeœli przekazana lista odpowiedzi jest nullem.
 	 */
 	public OneChoiceQuestion(String question, boolean obligatory, String errorMessage, String hint, boolean isDropDownList, List<String> answers) {
 		super(question, obligatory, errorMessage, hint);
+		if(answers == null) throw new NullPointerException("Lista odpowiedzi nie moze byæ nullem!");
 		this.isDropDownList = isDropDownList;
 		this.answers = answers;
 	}
@@ -133,6 +139,7 @@ public class OneChoiceQuestion extends Question {
 	 * @param answer answer to add.
 	 */
 	public void addAnswer(String answer){
+		if(answer == null) throw new NullPointerException("Odpowiedz nie moze byc nullem");
 		answers.add(answer);
 	}
 	
@@ -145,6 +152,7 @@ public class OneChoiceQuestion extends Question {
 	 * @return true if answers is added otherwise false
 	 */
 	public boolean addAnswer(String answer, int positionOfAnswer){
+		if(answer == null) throw new NullPointerException("Odpowiedz nie moze byc nullem");
 		if(positionOfAnswer < 0 || positionOfAnswer > answers.size()) return false;
 		answers.add(positionOfAnswer, answer);
 		return true;
