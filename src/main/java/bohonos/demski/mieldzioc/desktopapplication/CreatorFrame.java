@@ -23,38 +23,54 @@ import javax.swing.JPanel;
  */
 public class CreatorFrame extends JFrame implements ActionListener {
     
+    JMenu menuSurvey;
+    JMenu menuQuestion;
+    
+    JMenuItem itemNewSurvey;
+    JMenuItem itemCopyOldSurvey;
+    JMenuItem itemEditSurvey; 
+    JMenuItem itemDataTimeQuestion;
+    JMenuItem itemGridQuestion;
+    JMenuItem itemMultipleChioceQuestion;
+    JMenuItem itemOneChoiceQuestion;
+    JMenuItem itemScaleQuestion;
+    JMenuItem itemTextQuestion;
+    
     public CreatorFrame(){
         super("Kreator ankiet");
-        /*addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we){
 		dispose();
-				//System.exit(0);
             }
-	});*/
+	});
         
         setSize(800, 600);
 	setLocation(300,200);
         setResizable(false);
         
-        JMenu menuSurvey = new JMenu("Ankieta");
+        menuSurvey = new JMenu("Ankieta");
         
-        JMenuItem itemNewSurvey = new JMenuItem("Stwórz now¹ ankietê");
-        JMenuItem itemCopyOldSurvey = new JMenuItem("Swórz now¹ na podstawie...");
-        JMenuItem itemEditSurvey = new JMenuItem("Edytuj ankietê"); 
+        itemNewSurvey = new JMenuItem("Stwórz now¹ ankietê");
+        itemCopyOldSurvey = new JMenuItem("Swórz now¹ na podstawie...");
+        itemEditSurvey = new JMenuItem("Edytuj ankietê"); 
         
         menuSurvey.add(itemNewSurvey);
         menuSurvey.add(itemCopyOldSurvey);
         menuSurvey.add(itemEditSurvey);
         
-        JMenu menuQuestion = new JMenu("Dodaj Pytanie");
+        itemNewSurvey.addActionListener(this);
+        itemCopyOldSurvey.addActionListener(this);
+        itemEditSurvey.addActionListener(this);
+        
+        menuQuestion = new JMenu("Dodaj Pytanie");
 
-        JMenuItem itemDataTimeQuestion = new JMenuItem("Pytanie o datê");
-        JMenuItem itemGridQuestion = new JMenuItem("Pytanie typu GrigQuestion");
-        JMenuItem itemMultipleChioceQuestion = new JMenuItem("Pytanie wielokrotnego wyboru");
-        JMenuItem itemOneChoiceQuestion = new JMenuItem("Pytanie jednokrotnego wyboru");
-        JMenuItem itemScaleQuestion = new JMenuItem("Pytanie ze skal¹");
-        JMenuItem itemTextQuestion = new JMenuItem("Pytanie tekstowe");
+        itemDataTimeQuestion = new JMenuItem("Pytanie o datê");
+        itemGridQuestion = new JMenuItem("Pytanie typu GrigQuestion");
+        itemMultipleChioceQuestion = new JMenuItem("Pytanie wielokrotnego wyboru");
+        itemOneChoiceQuestion = new JMenuItem("Pytanie jednokrotnego wyboru");
+        itemScaleQuestion = new JMenuItem("Pytanie ze skal¹");
+        itemTextQuestion = new JMenuItem("Pytanie tekstowe");
         
         menuQuestion.add(itemDataTimeQuestion);
         menuQuestion.add(itemGridQuestion);
@@ -63,18 +79,60 @@ public class CreatorFrame extends JFrame implements ActionListener {
         menuQuestion.add(itemScaleQuestion);
         menuQuestion.add(itemTextQuestion);
         
+        itemDataTimeQuestion.addActionListener(this);
+        itemGridQuestion.addActionListener(this);  
+        itemMultipleChioceQuestion.addActionListener(this);
+        itemOneChoiceQuestion.addActionListener(this);
+        itemScaleQuestion.addActionListener(this);   
+        itemTextQuestion.addActionListener(this);        
+        
         JMenuBar menuBar = new JMenuBar();
         
         menuBar.add(menuSurvey);
         menuBar.add(menuQuestion);
         setJMenuBar(menuBar);
-        
-        
+           
         setVisible(true);
     }
     
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
+        Object source = ae.getSource();
         
+        if (source == itemNewSurvey) {
+            
+        }
+        
+        if (source == itemCopyOldSurvey) {
+            
+        }
+        
+        if (source == itemEditSurvey) {
+            
+        }
+        
+        if (source == itemDataTimeQuestion) {
+            
+        }
+        
+        if (source == itemGridQuestion) {
+            
+        }
+        
+        if (source == itemMultipleChioceQuestion) {
+            
+        }
+        
+        if (source == itemOneChoiceQuestion) {
+            
+        }
+        
+        if (source == itemScaleQuestion) {
+            
+        }
+        
+        if (source == itemTextQuestion) {
+            
+        }
     }
     
 }
