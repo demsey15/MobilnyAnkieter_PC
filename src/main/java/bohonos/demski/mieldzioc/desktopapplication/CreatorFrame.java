@@ -108,8 +108,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
         Object source = ae.getSource();
         
         if (source == itemNewSurvey) {
-            SurveyPanel surveyPanel = new SurveyPanel(creatorLogic);
             String idOfSurvey = creatorLogic.newSurvey();
+            SurveyPanel surveyPanel = new SurveyPanel(creatorLogic, idOfSurvey);
             tabbedPane.addTab("id ankiety: " + idOfSurvey, surveyPanel);
         }
         

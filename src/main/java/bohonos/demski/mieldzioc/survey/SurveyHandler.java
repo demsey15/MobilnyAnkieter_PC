@@ -30,22 +30,22 @@ public class SurveyHandler {
      * get new copy survey with given id
      * @param idOfSurveys survey id
      * @return copy of survey with given id
+     * @throws java.lang.CloneNotSupportedException
      */
-    public Survey provideSurvey(String idOfSurveys)
+    public Survey provideSurvey(String idOfSurveys) throws CloneNotSupportedException
     {
-        return surveysId.get(idOfSurveys);
+        Survey survey = surveysId.get(idOfSurveys).clone();
+        return survey;
     }
     
     /**
      * returns survey with given id
      * @param idOfSurveys survey id
-     * @return survey with given id
-     * @throws CloneNotSupportedException 
+     * @return reference to survey with given id
      */
-    public Survey getSurvey(String idOfSurveys) throws CloneNotSupportedException
+    public Survey getSurvey(String idOfSurveys)
     {
-        Survey survey = surveysId.get(idOfSurveys).clone();
-        return survey;
+        return surveysId.get(idOfSurveys);
     }
     
     public int getMaxSurveysId()
@@ -241,6 +241,7 @@ public class SurveyHandler {
     public SurveyHandler(int maxSurveysId)
     {
         this.maxSurveysId = maxSurveysId;
+        
     }
     
 }

@@ -7,32 +7,34 @@ package bohonos.demski.mieldzioc.desktopapplication;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
-import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Andrzej
  */
-public class SurveyPanel extends JPanel implements ActionListener {
+public class CreatingSurveyFrame extends JFrame implements ActionListener {
     
     private CreatorLogic creatorLogic;
     private String idOfSurvey;
     
-    private CreatingSurveyFrame creatingSurveyFrame;
-    
-    public SurveyPanel(CreatorLogic cl, String id) {
+    public CreatingSurveyFrame(CreatorLogic cl, String id) {
+        
+        super("nowa ankieta");
         
         creatorLogic = cl;
         idOfSurvey = id;
-        creatingSurveyFrame = new CreatingSurveyFrame(cl, id);
         
+        setSize(200, 150);
+        setLocation(400,300);
+        setResizable(false);
+        
+        setVisible(true);
         
     }
-    
-    public void actionPerformed(ActionEvent ae) {
-        Object source = ae.getSource();
 
+    public void actionPerformed(ActionEvent ae) {
+        
     }
     
 }

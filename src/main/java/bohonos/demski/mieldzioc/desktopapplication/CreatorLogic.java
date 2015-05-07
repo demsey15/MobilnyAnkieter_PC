@@ -29,6 +29,16 @@ public class CreatorLogic {
         return idOfSurvey;
     }
     
+    /**
+     * returns title of survey template with given id
+     * @param idOfSurvey id of survey template, we are interested in
+     * @return title of survey template
+     */
+    public String getSurveyTitle(String idOfSurvey) {
+        String title = surveyHandler.getSurvey(idOfSurvey).getTitle();
+        return title;
+    }
+    
     public CreatorLogic() {
         surveyHandler = new SurveyHandler(0);
         interviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
