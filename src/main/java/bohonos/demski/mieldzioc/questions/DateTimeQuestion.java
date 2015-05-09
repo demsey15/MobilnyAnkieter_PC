@@ -3,6 +3,7 @@
  */
 package bohonos.demski.mieldzioc.questions;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
@@ -123,6 +124,8 @@ public class DateTimeQuestion extends Question {
 	public List<String> getAnswersAsStringList() {
 		return null;
 	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see bochonos.demski.mieldzioc.questions.Question#isAnswered()
@@ -165,6 +168,29 @@ public class DateTimeQuestion extends Question {
 	@Override
 	public DateTimeQuestion clone() throws CloneNotSupportedException {
 		return (new Cloner()).deepClone(this);
+	}
+
+	/**
+	 * Zwraca listê z odpowiedziami u¿ytkownika; w zaleznoœci od typu pytania na kolejnych
+	 * miejscach znajduj¹ siê: dzieñ, miesi¹c (cyfra od 1 do 12), rok albo godzina,
+	 * minuta, sekunda. W przypadku braku odpowiedzi zwracana jest pusta lista.
+	 */
+	@Override
+	public List<String> getUserAnswersAsStringList() {
+		List<String> list = new ArrayList<String>(3);
+		if(userAnswer != null){
+			if(isOnlyDate()){
+				list.add((String.valueOf(userAnswer.get(GregorianCalendar.DAY_OF_MONTH))));
+				list.add(String.valueOf(userAnswer.get(GregorianCalendar.MONTH + 1)));
+				list.add(String.valueOf(userAnswer.get(GregorianCalendar.YEAR)));
+			}
+			else if(isOnlyTime()){
+				list.add((String.valueOf(userAnswer.get(GregorianCalendar.HOUR_OF_DAY))));
+				list.add(String.valueOf(userAnswer.get(GregorianCalendar.MINUTE)));
+				list.add(String.valueOf(userAnswer.get(GregorianCalendar.SECOND)));
+			}
+		}
+		return list;
 	}
 
 }

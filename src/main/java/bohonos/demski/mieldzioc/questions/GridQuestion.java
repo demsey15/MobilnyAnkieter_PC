@@ -154,6 +154,7 @@ public class GridQuestion extends Question {
 	 * Each answer will be in format: #rowLabel# ^columnLabel^.
 	 * @return User's answers in format: #rowLabel# ^columnLabel^.
 	 */
+	@Override
 	public List<String> getUserAnswersAsStringList() {
 		List<String> result = new ArrayList<String>();
 		

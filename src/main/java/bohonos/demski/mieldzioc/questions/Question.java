@@ -159,6 +159,13 @@ public abstract class Question implements Serializable, Cloneable{
 	
 	/**
 	 * 
+	 * @return zwraca listê odpowiedzi u¿ytkownika (w przypadku braku odpowiedzi lista
+	 * bêdzie pusta).
+	 */
+	public abstract List<String> getUserAnswersAsStringList();
+	
+	/**
+	 * 
 	 * @return true if there are user's answers for this question, otherwise false
 	 */
 	public abstract boolean isAnswered();

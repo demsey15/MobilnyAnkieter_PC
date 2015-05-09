@@ -163,4 +163,18 @@ public class MultipleChoiceQuestion extends Question{
 	public MultipleChoiceQuestion clone() throws CloneNotSupportedException {
 		return (new Cloner()).deepClone(this);
 	}
+	
+	/**
+	 * Zwraca listê odpowiedzi udzielonych przez u¿ytkownika.
+	 */
+	@Override
+	public List<String> getUserAnswersAsStringList() {
+		List<String> list = new ArrayList<String>(userAnswers.size());
+		if(isAnswered()){
+			for(Integer i : userAnswers){
+				list.add(answers.get(i));
+			}
+		}
+		return list;
+	}
 }

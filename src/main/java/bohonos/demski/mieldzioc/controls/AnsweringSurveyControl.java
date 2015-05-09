@@ -21,9 +21,13 @@ public class AnsweringSurveyControl {
 	}
 
 	public void startAnswering(String idOfSurveys, Interviewer interviewer){
-		if((this.survey = surveyHandler.provideSurvey(idOfSurveys)) == null)
-			throw new NullPointerException("Wype³nianie ankiety - nie ma ankiety o zadanym id "
-					+ "grupy ankiet.");
+		try {
+			if((this.survey = surveyHandler.provideSurvey(idOfSurveys)) == null)
+				throw new NullPointerException("Wype³nianie ankiety - nie ma ankiety o zadanym id "
+						+ "grupy ankiet.");
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 		survey.setInterviewer(interviewer);
 		survey.startSurvey();
 	}

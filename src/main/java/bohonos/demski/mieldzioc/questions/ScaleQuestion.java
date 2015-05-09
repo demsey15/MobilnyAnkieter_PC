@@ -182,5 +182,15 @@ public class ScaleQuestion extends Question {
 	public ScaleQuestion clone() throws CloneNotSupportedException {
 		return (new Cloner()).deepClone(this);
 	}
+	
+	/**
+	 * Zwraca odpowiedü udzielonπ przez uøytkownika w postaci listy.
+	 */
+	@Override
+	public List<String> getUserAnswersAsStringList() {
+		List<String> list = new ArrayList<String>(1);
+		if(isAnswered()) list.add(String.valueOf(userAnswer));
+		return list;
+	}
 
 }
