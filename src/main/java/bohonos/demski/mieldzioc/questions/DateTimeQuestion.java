@@ -90,7 +90,7 @@ public class DateTimeQuestion extends Question {
 		int day = 0;
 		int month = 0;
 		int year = 0;
-		int hour = 0;
+		int hour = 1;
 		int minute = 0;
 		int second = 0;
 		try{
