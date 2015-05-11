@@ -234,4 +234,14 @@ public class AnsweringSurveyControl {
 		}
 		else return false;
 	}
+	
+	/**
+	 * 
+	 * @return zwraca id grupy ankiet wype³nianej ankiety.
+	 */
+	public String getIdOfSurveysFillingSurvey(){
+		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
+				+ " wywo³aj metodê startAnswering");
+		return survey.getIdOfSurveys();
+	}
 }
