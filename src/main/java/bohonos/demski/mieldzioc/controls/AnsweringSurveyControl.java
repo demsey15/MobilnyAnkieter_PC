@@ -244,4 +244,33 @@ public class AnsweringSurveyControl {
 				+ " wywo³aj metodê startAnswering");
 		return survey.getIdOfSurveys();
 	}
+	/**
+	 * 
+	 * @return zwracan tytu³ wype³nianej ankiety.
+	 */
+	public String getSurveysTitle(){
+		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
+				+ " wywo³aj metodê startAnswering");
+		return survey.getTitle();
+	}
+	
+	/**
+	 * 
+	 * @return zwraca opis wype³nianej ankiety.
+	 */
+	public String getSurveysDescription(){
+		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
+				+ " wywo³aj metodê startAnswering");
+		return survey.getDescription();
+	}
+	
+	/**
+	 * 
+	 * @return zwraca podsumowanie wype³nianej ankiety.
+	 */
+	public String getSurveysSummary(){
+		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
+				+ " wywo³aj metodê startAnswering");
+		return survey.getSummary();
+	}
 }
