@@ -65,11 +65,11 @@ public class QuestionPanel extends JPanel implements ActionListener {
             
         }
         
-        if (source == questionUp) {
+        if (source == questionDown) {
             
         }
         
-        if (source == questionUp) {
+        if (source == questionDelete) {
             
         }
         
