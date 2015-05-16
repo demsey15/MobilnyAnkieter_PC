@@ -76,7 +76,7 @@ public class SurveysRepository {
     /**
      * overwrites maximal numbers of all surveys in repository
      */
-    private void countAllMaxNumbersOfSurveys() {
+    public void countAllMaxNumbersOfSurveys() {
         for (Map.Entry<String,List<Survey>> entry : surveys.entrySet()) {
             countMaxNumberOfSurveys(entry.getKey());
         }        
