@@ -4,6 +4,7 @@
 package bohonos.demski.mieldzioc.networkConnection;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
@@ -47,6 +48,10 @@ public class ServerConnectionFacade {
 	
 	public final static int SEND_FILLED_SURVEYS = 16;
 	public final static int SURVEY_INACTIVE = 17;
+	
+	public final static int GET_ACTIVE_SURVEY_TEMPLATE = 18;
+	public final static int GET_INACTIVE_SURVEY_TEMPLATE = 19;
+	public final static int GET_IN_PROGRESS_SURVEY_TEMPLATE = 20;
 	
 	
 	private SocketChannel socketChannel;
@@ -186,6 +191,70 @@ public class ServerConnectionFacade {
 		return results;
 	}
 	
+	public List<Survey> getActiveSurveyTemplates(String usersId, char[] password){
+		if(usersId == null || password == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return null;
+		}
+		sendInt(GET_ACTIVE_SURVEY_TEMPLATE);
+		List<Survey> surveys = new ArrayList<Survey>();
+		int size = readInt();
+		for(int i = 0; i < size; i++){
+			surveys.add((Survey) readObject());
+		}
+		
+		return surveys;
+	}
+	
+	public List<Survey> getInactiveSurveyTemplates(String usersId, char[] password){
+		if(usersId == null || password == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return null;
+		}
+		sendInt(GET_INACTIVE_SURVEY_TEMPLATE);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		List<Survey> surveys = new ArrayList<Survey>();
+		int size = readInt();
+		for(int i = 0; i < size; i++){
+			surveys.add((Survey) readObject());
+		}
+		
+		return surveys;
+	}
+	
+	public List<Survey> getInProgressSurveyTemplates(String usersId, char[] password){
+		if(usersId == null || password == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return null;
+		}
+		sendInt(GET_IN_PROGRESS_SURVEY_TEMPLATE);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		List<Survey> surveys = new ArrayList<Survey>();
+		int size = readInt();
+		for(int i = 0; i < size; i++){
+			surveys.add((Survey) readObject());
+		}
+		
+		return surveys;
+	}
+	
 	private boolean login(String usersId, char[] password){
 		System.out.println("Wysy³am id");
 		sendString(usersId);
@@ -249,6 +318,18 @@ public class ServerConnectionFacade {
 		catch(NumberFormatException e){
 			return BAD_DATA_FORMAT;
 		}
+	}
+	
+	private Object readObject(){
+		try {
+			ObjectInputStream inObj = new ObjectInputStream(Channels.newInputStream(socketChannel));
+			return inObj.readObject();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static void main(String[] args) {
