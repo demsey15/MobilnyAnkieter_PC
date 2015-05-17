@@ -20,7 +20,11 @@ import bohonos.demski.mieldzioc.questions.Question;
 public class Survey implements Serializable, Cloneable {
     
 	
-    private List<Question> questions = new ArrayList<Question>();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Question> questions = new ArrayList<Question>();
     private GregorianCalendar startTime = null;
     private GregorianCalendar finishTime = null;
     private Interviewer interviewer;
