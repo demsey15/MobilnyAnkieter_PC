@@ -9,7 +9,9 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.nio.channels.Channels;
 import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Scanner;
 
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
@@ -43,6 +45,9 @@ public class ServerConnectionFacade {
 	public final static int SURVEY_UNEDITABLE = 14;
 	public final static int LACK_OF_SURVEY_TEMPLATE_WITH_ID = 15;
 	
+	public final static int SEND_FILLED_SURVEYS = 16;
+	public final static int SURVEY_INACTIVE = 17;
+	
 	
 	private SocketChannel socketChannel;
 	private Scanner in;
@@ -72,7 +77,10 @@ public class ServerConnectionFacade {
 		sendInt(SEND_NEW_TEMPLATE);
 		int authorization = readInt();
 		System.out.println("Otrzyma³em " + authorization);
-		if(authorization == AUTHORIZATION_FAILED) return AUTHORIZATION_FAILED; 
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return AUTHORIZATION_FAILED; 
+		}
 		sendObject(survey);
 		int status = readInt();
 		disconnect();
@@ -99,7 +107,10 @@ public class ServerConnectionFacade {
 		}
 		sendInt(CHANGE_SURVEY_STATUS);
 		int authorization = readInt();
-		if(authorization == AUTHORIZATION_FAILED) return AUTHORIZATION_FAILED;
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return AUTHORIZATION_FAILED;
+		}
 		sendString(idOfSurveys);
 		sendInt(status);
 		int operationStatus = readInt();
@@ -128,12 +139,51 @@ public class ServerConnectionFacade {
 		}
 		sendInt(UPDATE_SURVEY_TEMPLATE);
 		int authorization = readInt();
-		System.out.println("Otrzyma³em " + authorization);
-		if(authorization == AUTHORIZATION_FAILED) return AUTHORIZATION_FAILED; 
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return AUTHORIZATION_FAILED; 
+		}
 		sendObject(survey);
 		int status = readInt();
 		disconnect();
 		return status; 	
+	}
+	
+	/**
+	 * Wysy³a listê wype³nionych ankiet.
+	 * @param surveys lista wype³nionych ankiet (nie mo¿e byæ równa null).
+	 * @param usersId id ankietera.
+	 * @param password has³o ankietera.
+	 * @return lista z kodem: BAD_PASSWORD, jeœli podano b³êdne has³o lub nie ma u¿ytkownika o podanym id,
+	 * AUTHORIZATION_FAILED, jeœli u¿ytkownik nie ma dopowiednich uprawnieñ (musi byæ ankieterem),
+	 * albo lista z kodami (dla ka¿dej ankiety odpowiednio): 
+	 * BAD_DATA_FORMAT, jeœli ankieta o zadanym numerze znajduje siê ju¿ w repozytorium,
+	 *  OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie, SURVEY_INACTIVE, jeœli ankieta nie ma
+	 *  statusu "aktywna".
+	 */
+	public List<Integer> sendFilledSurveys(List<Survey> surveys, String usersId, char[] password){
+		if(surveys == null ||usersId == null || password == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		List<Integer> results = new ArrayList<Integer>(surveys.size());
+		if(!login(usersId, password)){
+			disconnect();
+			results.add(BAD_PASSWORD);
+			return results;
+		}
+		sendInt(SEND_FILLED_SURVEYS);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			results.add(AUTHORIZATION_FAILED);
+			return results;
+		}
+		sendInt(surveys.size());
+		for(int i = 0; i < surveys.size(); i++){
+			sendObject(surveys.get(i));
+			results.add(readInt());
+		}
+		return results;
 	}
 	
 	private boolean login(String usersId, char[] password){
@@ -207,7 +257,14 @@ public class ServerConnectionFacade {
 		interviewer.setInterviewerPrivileges(true);
 		Survey survey = new Survey(interviewer);
 		survey.setIdOfSurveys("ja");
+		Survey survey2 = new Survey(interviewer);
+		survey2.setIdOfSurveys("ja");
+		
     	facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
     	facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.ACTIVE, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
+    	facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.IN_PROGRESS, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
+    	facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
 	}
 }
