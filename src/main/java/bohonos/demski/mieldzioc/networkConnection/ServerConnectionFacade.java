@@ -53,6 +53,9 @@ public class ServerConnectionFacade {
 	public final static int GET_INACTIVE_SURVEY_TEMPLATE = 19;
 	public final static int GET_IN_PROGRESS_SURVEY_TEMPLATE = 20;
 	
+	public final static int ADD_NEW_INTERVIEWER = 21;
+	public final static int ADD_NEW_ADMINISTRATOR = 22;
+	
 	
 	private SocketChannel socketChannel;
 	private Scanner in;
@@ -253,6 +256,52 @@ public class ServerConnectionFacade {
 		}
 		
 		return surveys;
+	}
+	
+	public int addNewInterviewer(Interviewer interviewerToAdd, char[] passwordToAdd,
+									String usersId, char[] password){
+		if(interviewerToAdd == null || password == null || usersId == null ||
+				passwordToAdd == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return BAD_PASSWORD;
+		}
+		sendInt(ADD_NEW_INTERVIEWER);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return AUTHORIZATION_FAILED; 
+		}
+		sendObject(interviewerToAdd);
+		sendString(new String(passwordToAdd));
+		int status = readInt();
+		disconnect();
+		return status; 	
+	}
+	
+	public int addNewAdministrator(String adminId, char[] adminPassword,
+			String usersId, char[] password){
+		if(adminId == null || password == null || usersId == null ||
+				adminPassword == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+		disconnect();
+		return BAD_PASSWORD;
+		}
+		sendInt(ADD_NEW_ADMINISTRATOR);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return AUTHORIZATION_FAILED; 
+		}
+		sendString(adminId);
+		sendString(new String(adminPassword));
+		int status = readInt();
+		disconnect();
+		return status; 	
 	}
 	
 	private boolean login(String usersId, char[] password){
