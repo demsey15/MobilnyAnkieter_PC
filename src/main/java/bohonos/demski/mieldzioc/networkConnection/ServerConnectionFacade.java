@@ -39,6 +39,11 @@ public class ServerConnectionFacade {
 	
 	public final static int CHANGE_SURVEY_STATUS = 12;
 	
+	public final static int UPDATE_SURVEY_TEMPLATE = 13;
+	public final static int SURVEY_UNEDITABLE = 14;
+	public final static int LACK_OF_SURVEY_TEMPLATE_WITH_ID = 15;
+	
+	
 	private SocketChannel socketChannel;
 	private Scanner in;
 	private PrintWriter out;
@@ -53,6 +58,8 @@ public class ServerConnectionFacade {
 	 * jeœli szablon o podanym id ju¿ istnieje, OPERATION_OK, jeœli operacja przebieg³a pomyœlnie.
 	 */
 	public int sendSurveyTemplate(Survey survey, String usersId, char[] password){
+		if(survey == null ||usersId == null || password == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
 		System.out.println("£¹czê");
 		connect();
 		System.out.println("£¹czê po");
@@ -72,7 +79,19 @@ public class ServerConnectionFacade {
 		return status; 
 	}
 	
+	/**
+	 * Zmienia status szablonu ankiet.
+	 * @param idOfSurveys id grupy ankiet.
+	 * @param status status (patrz sta³e w klasie SurevyHandler).
+	 * @param usersId id u¿ytkownika zmianiaj¹cego status (status mo¿e zmieniæ tylko administrator).
+	 * @param password has³o u¿ytkownika.
+	 * @return BAD_PASSWORD, jeœli podano b³êdne has³o lub nie ma u¿ytkownika o podanym id,
+	 * AUTHORIZATION_FAILED, jeœli u¿ytkownik nie jest administratorem, BAD_DATA_FORMAT, jeœli nie ma
+	 * ankiety o zadanym id, OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie.
+	 */
 	public int changeSurveyStatus(String idOfSurveys, int status, String usersId, char[] password){
+		if(idOfSurveys == null ||usersId == null || password == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
 		connect();
 		if(!login(usersId, password)){
 			disconnect();
@@ -86,6 +105,35 @@ public class ServerConnectionFacade {
 		int operationStatus = readInt();
 		disconnect();
 		return operationStatus; 
+	}
+	
+	/**
+	 * Aktualizuj szablon ankiet.
+	 * @param survey szablon.
+	 * @param usersId id u¿ytkownika.
+	 * @param password has³o u¿ytwkonika.
+	 * @return BAD_PASSWORD, jeœli podano b³êdne has³o lub nie ma u¿ytkownika o podanym id,
+	 * AUTHORIZATION_FAILED, jeœli u¿ytkownik nie ma dopowiednich uprawnieñ (uprawnienia do tworzenia
+	 * ankiet), BAD_DATA_FORMAT, jeœli nie ma
+	 * ankiety o zadanym id lub ankieta nie ma statusu IN_PROGRESS,
+	 *  OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie.
+	 */
+	public int updateSurveyTemplate(Survey survey, String usersId, char[] password){
+		if(survey == null ||usersId == null || password == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return BAD_PASSWORD;
+		}
+		sendInt(UPDATE_SURVEY_TEMPLATE);
+		int authorization = readInt();
+		System.out.println("Otrzyma³em " + authorization);
+		if(authorization == AUTHORIZATION_FAILED) return AUTHORIZATION_FAILED; 
+		sendObject(survey);
+		int status = readInt();
+		disconnect();
+		return status; 	
 	}
 	
 	private boolean login(String usersId, char[] password){
