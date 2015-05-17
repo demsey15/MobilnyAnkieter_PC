@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.survey.Survey;
+import bohonos.demski.mieldzioc.survey.SurveyHandler;
 
 /**
  * @author Dominik Demski
@@ -36,11 +37,21 @@ public class ServerConnectionFacade {
 	public final static int SEND_NEW_TEMPLATE = 10;
 	public final static int TEMPLATE_ALREADY_EXISTS = 11;
 	
+	public final static int CHANGE_SURVEY_STATUS = 12;
+	
 	private SocketChannel socketChannel;
-//	private Socket socketChannel;
 	private Scanner in;
 	private PrintWriter out;
 	
+	/**
+	 * Wysy³a nowy szablon ankiety na serwer.
+	 * @param survey szablon.
+	 * @param usersId id przesy³aj¹cego u¿ytkownika (musi mieæ uprawnienia do tworzenia ankiet).
+	 * @param password has³o u¿ytkownika.
+	 * @return zwraca BAD_PASSWORD, jeœli podane has³o jest b³êdne lub nie ma u¿ytkownika o podanym id,
+	 * AUTHORIZATION_FAILED, jeœli u¿ytkownik nie ma odpowienich uprawnieñ, TEMPLATE_ALREADY_EXISTS,
+	 * jeœli szablon o podanym id ju¿ istnieje, OPERATION_OK, jeœli operacja przebieg³a pomyœlnie.
+	 */
 	public int sendSurveyTemplate(Survey survey, String usersId, char[] password){
 		System.out.println("£¹czê");
 		connect();
@@ -59,6 +70,22 @@ public class ServerConnectionFacade {
 		int status = readInt();
 		disconnect();
 		return status; 
+	}
+	
+	public int changeSurveyStatus(String idOfSurveys, int status, String usersId, char[] password){
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return BAD_PASSWORD;
+		}
+		sendInt(CHANGE_SURVEY_STATUS);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED) return AUTHORIZATION_FAILED;
+		sendString(idOfSurveys);
+		sendInt(status);
+		int operationStatus = readInt();
+		disconnect();
+		return operationStatus; 
 	}
 	
 	private boolean login(String usersId, char[] password){
@@ -133,6 +160,6 @@ public class ServerConnectionFacade {
 		Survey survey = new Survey(interviewer);
 		survey.setIdOfSurveys("ja");
     	facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
-	
+    	facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.ACTIVE, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
 	}
 }
