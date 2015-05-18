@@ -401,6 +401,44 @@ public class ServerConnectionFacade {
 		}
 	}
 	
+	/**
+	 * Pobierz ankietera (mo¿e to zrobiæ tylko administrator lub ankieter sam siebie).
+	 * @param interviewerId id ankietera do pobrania.
+	 * @param usersId id pobieraj¹cego u¿ytkownika.
+	 * @param password has³o pobieraj¹cego u¿ytkownika.
+	 * @return ankieter lub null, jeœli: podano b³êdne
+	 * dane logowania, loguj¹cy siê u¿ytkownik nie ma odpowiednich uprawnieñ, brak
+	 * ankietera o zadanym id.
+	 */
+	public Interviewer getInterviewer(String interviewerId, String usersId, char[] password){
+		if(password == null || usersId == null || interviewerId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+		disconnect();
+		return null;
+		}
+		sendInt(GET_INTERVIEWER);
+		sendString(interviewerId);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		else{
+			if(readInt() == OPERATION_OK){
+				Interviewer interviewer = (Interviewer) readObject();
+				disconnect();
+				return interviewer;
+			}
+			else{
+				disconnect();
+				return null;   //nie ma takiego interviewera.
+			}
+			
+		}
+	}
+	
 	private boolean login(String usersId, char[] password){
 		System.out.println("Wysy³am id");
 		sendString(usersId);
