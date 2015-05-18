@@ -15,6 +15,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
 
+import org.omg.CORBA.BAD_CONTEXT;
+
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.survey.Survey;
 import bohonos.demski.mieldzioc.survey.SurveyHandler;
@@ -439,6 +441,12 @@ public class ServerConnectionFacade {
 		}
 	}
 	
+	/**
+	 * SprawdŸ poprawnoœæ has³a i loginu.
+	 * @param usersId login u¿ytkownika.
+	 * @param password has³o.
+	 * @return true, jeœli dane s¹ poprawne, false w przeciwnym przypadku.
+	 */
 	public boolean authenticate(String usersId, char[] password){
 		if(password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
@@ -454,6 +462,47 @@ public class ServerConnectionFacade {
 		}
 	}
 	
+	/**
+	 * Zwalnia ankietera o zadanym id.
+	 * @param interviewerId id ankietera do zwolnienia.
+	 * @param relieveDay data zwolnienia.
+	 * @param usersId id admnistratora, który chce zwolniæ pracownika.
+	 * @param password has³o administratora.
+	 * @return BAD_PASSWORD b³êdne dane logowania, AUTHORIZATION_FAILED zalogowany u¿ytkownik
+	 * nie jest administratorem (tylko administrator mo¿e zwolniæ ankietera), BAD_DATA_FORMAT,
+	 * jeœli nie ma ankietera o podanym id, OPERATION_OK, jeœli zwolniono ankietera.
+	 */
+	public int dismissInterviewer(String interviewerId, GregorianCalendar relieveDay,
+			String usersId, char[] password){
+		if(password == null || usersId == null || interviewerId == null || relieveDay == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+		disconnect();
+		return BAD_PASSWORD;
+		}
+		else{
+			sendInt(DISMISS_INTERVIEWER);
+			int authorization = readInt();
+			if(authorization == AUTHORIZATION_FAILED){
+				disconnect();
+				return AUTHORIZATION_FAILED; 
+			}
+			else{
+				sendString(interviewerId);
+				int status = readInt();
+				if(status == BAD_DATA_FORMAT){
+					disconnect();
+					return BAD_DATA_FORMAT;
+				}
+				else{
+					sendObject(relieveDay);
+					disconnect();
+					return OPERATION_OK;
+				}
+			}	
+		}
+	}
 	private boolean login(String usersId, char[] password){
 		System.out.println("Wysy³am id");
 		sendString(usersId);
