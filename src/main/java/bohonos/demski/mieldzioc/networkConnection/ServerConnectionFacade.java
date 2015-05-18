@@ -643,6 +643,46 @@ public class ServerConnectionFacade {
 			}
 	}
 	
+	/**
+	 * Odczytuje uprawnienia ankietera do tworzenia ankiet.
+	 * @param interviewerId id ankietera.
+	 * @param usersId id u¿ytkownika pytaj¹cego o uprawnienia. (pytaæ mo¿e
+	 * u¿ytkownik o siebie samego albo administrator)
+	 * @param password has³o.
+	 * @return  BAD_PASSWORD, jeœli dane do logowania s¹ niepoprawne, AUTHORIZATION_FAILED
+	 * jeœli pytaj¹cy nie ma odpowiednich uprawnieñ (pytaæ mo¿e
+	 * u¿ytkownik o siebie samego albo administrator),
+	 * BAD_DATA_FORMAT, jeœli nie ma ankietera o zadanym id,
+	 * 1 jeœli ankieter mo¿e tworzyæ ankiety, w przeciwnym przypadku 0.
+	 */
+	public int getInterviewerCreatingPrivileges(String interviewerId, 
+			String usersId, char[] password){
+		if(interviewerId == null || password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return BAD_PASSWORD;
+		}
+		sendInt(GET_INTERVIEWER_CREATING_PRIVILIGES);
+		sendString(interviewerId);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return AUTHORIZATION_FAILED; 
+		}
+		else{
+			int result = readInt();
+			if(result == BAD_DATA_FORMAT){
+				disconnect();
+				return BAD_DATA_FORMAT;
+			}
+			else{
+					return readInt();
+				}
+			}
+	}
+	
 	private boolean login(String usersId, char[] password){
 		System.out.println("Wysy³am id");
 		sendString(usersId);
