@@ -439,6 +439,21 @@ public class ServerConnectionFacade {
 		}
 	}
 	
+	public boolean authenticate(String usersId, char[] password){
+		if(password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+		disconnect();
+		return false;
+		}
+		else{
+			sendInt(AUTHENTICATION);
+			disconnect();
+			return true;
+		}
+	}
+	
 	private boolean login(String usersId, char[] password){
 		System.out.println("Wysy³am id");
 		sendString(usersId);
