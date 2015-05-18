@@ -13,6 +13,7 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
@@ -596,6 +597,50 @@ public class ServerConnectionFacade {
 				return readInt();
 			}
 		}
+	}
+	
+	
+	/**
+	 * Odczytuje uprawnienia ankietera grup ankiet.
+	 * @param interviewerId id ankietera.
+	 * @param usersId id u¿ytkownika pytaj¹cego o uprawnienia. (pytaæ mo¿e
+	 * u¿ytkownik o siebie samego albo administrator)
+	 * @param password has³o.
+	 * @return  null, jeœli dane do logowania s¹ niepoprawne, 
+	 * albo pytaj¹cy nie ma odpowiednich uprawnieñ (pytaæ mo¿e
+	 * u¿ytkownik o siebie samego albo administrator),
+	 * albo nie ma ankietera o zadanym id,
+	 * jesli wszystko przebieg³o pomyœlnie - zwraca mapê z danymi.
+	 */
+	public Map<String, InterviewerSurveyPrivileges> getAllInterviewerPrivileges(String interviewerId, 
+			String usersId, char[] password){
+		if(interviewerId == null || password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return null;
+		}
+		sendInt(GET_SURVEYS_FILLED_BY_INTERVIEWER);
+		sendString(interviewerId);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		else{
+			int result = readInt();
+			if(result == BAD_DATA_FORMAT){
+				disconnect();
+				return null;
+			}
+			else{
+				@SuppressWarnings("unchecked")
+				Map<String, InterviewerSurveyPrivileges> map =
+						(Map<String, InterviewerSurveyPrivileges>)readObject();
+				return map;
+				}
+			}
 	}
 	
 	private boolean login(String usersId, char[] password){
