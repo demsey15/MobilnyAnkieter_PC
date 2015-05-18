@@ -644,6 +644,46 @@ public class ServerConnectionFacade {
 	}
 	
 	/**
+	 * Ustala uprawnienia ankietera do tworzenia ankiet.
+	 * @param interviewerId id ankietera, któremu nale¿y nadaæ uprawnienia.
+	 * @param canCreate true, jeœli ankieter mo¿e tworzyæ nowe ankiety.
+	 * @param usersId id administratora nadaj¹cego uprawnienia. 
+	 * @param password has³o administratora.
+	 * @return  BAD_PASSWORD, jeœli dane do logowania s¹ niepoprawne, AUTHORIZATION_FAILED
+	 * jeœli pytaj¹cy nie ma odpowiednich uprawnieñ (nie jest administratorem),
+	 * BAD_DATA_FORMAT, jeœli nie ma ankietera o zadanym id,
+	 * OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie.
+	 */
+	public int setInterviewerCreatingPrivileges(Interviewer interviewer, boolean canCreate,
+			String usersId, char[] password){
+		if(interviewer == null || password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return BAD_PASSWORD;
+		}
+		sendInt(SET_INTERVIEWER_CREATING_PRIVILIGES);
+		sendString(interviewer.getId());
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return AUTHORIZATION_FAILED; 
+		}
+		else{
+			int result = readInt();
+			if(result == BAD_DATA_FORMAT){
+				disconnect();
+				return BAD_DATA_FORMAT;
+			}
+			else{
+					sendInt((canCreate)? 1 : 0);
+					return OPERATION_OK;
+				}
+			}
+	}
+	
+	/**
 	 * Odczytuje uprawnienia ankietera do tworzenia ankiet.
 	 * @param interviewerId id ankietera.
 	 * @param usersId id u¿ytkownika pytaj¹cego o uprawnienia. (pytaæ mo¿e
