@@ -56,6 +56,9 @@ public class ServerConnectionFacade {
 	public final static int ADD_NEW_INTERVIEWER = 21;
 	public final static int ADD_NEW_ADMINISTRATOR = 22;
 	
+	public final static int GET_FILLED_SURVEYS = 23;
+	public final static int SENDING_FILLED_SURVEYS = 24;
+	
 	
 	private SocketChannel socketChannel;
 	private Scanner in;
@@ -191,6 +194,7 @@ public class ServerConnectionFacade {
 			sendObject(surveys.get(i));
 			results.add(readInt());
 		}
+		disconnect();
 		return results;
 	}
 	
@@ -208,7 +212,7 @@ public class ServerConnectionFacade {
 		for(int i = 0; i < size; i++){
 			surveys.add((Survey) readObject());
 		}
-		
+		disconnect();
 		return surveys;
 	}
 	
@@ -231,7 +235,7 @@ public class ServerConnectionFacade {
 		for(int i = 0; i < size; i++){
 			surveys.add((Survey) readObject());
 		}
-		
+		disconnect();
 		return surveys;
 	}
 	
@@ -254,7 +258,7 @@ public class ServerConnectionFacade {
 		for(int i = 0; i < size; i++){
 			surveys.add((Survey) readObject());
 		}
-		
+		disconnect();
 		return surveys;
 	}
 	
@@ -302,6 +306,54 @@ public class ServerConnectionFacade {
 		int status = readInt();
 		disconnect();
 		return status; 	
+	}
+	
+	/**
+	 * Pobierz listê wype³nionych ankiet (mo¿e to zrobiæ tylko administrator).
+	 * @param idOfSurveys id grupy ankiet do pobrania.
+	 * @param usersId id administratora.
+	 * @param password has³o administratora.
+	 * @return listê wype³nionych ankiet dla danej grupy ankiet lub null, jeœli: podano b³êdne
+	 * dane logowania, loguj¹cy siê u¿ytkownik nie jest administratorem, nie ma grupy ankiet o
+	 * podanym id lub nie przes³ano jeszcze ¿adnego wyniku, wyst¹pi³ nieznany b³¹d.
+	 */
+	public List<Survey> getFilledSurveys(String idOfSurveys, String usersId, char[] password){
+		if(idOfSurveys == null || password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+		disconnect();
+		return null;
+		}
+		sendInt(GET_FILLED_SURVEYS);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		else{
+			int result = readInt();
+			if(result == BAD_DATA_FORMAT){
+				disconnect();
+				return null;
+			}
+			else{
+				int size = readInt();
+				List<Survey> list = new ArrayList<Survey>(size);
+				for(int i = 0; i < size; i++){
+					Survey survey = (Survey) readObject();
+					list.add(survey);
+				}
+				if(readInt() == OPERATION_OK){
+					disconnect();
+					return list;
+				}
+				else{
+					disconnect();
+					return null;   //nie powinno siê zdarzyæ
+				}
+			}
+		}
 	}
 	
 	private boolean login(String usersId, char[] password){
