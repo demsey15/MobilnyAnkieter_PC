@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
+import bohonos.demski.mieldzioc.interviewer.InterviewerSurveyPrivileges;
 import bohonos.demski.mieldzioc.survey.Survey;
 import bohonos.demski.mieldzioc.survey.SurveyHandler;
 
@@ -549,6 +550,50 @@ public class ServerConnectionFacade {
 				}
 				disconnect();
 				return list;
+			}
+		}
+	}
+	
+	/**
+	 * Wysy³a na serwer uprawnienia ankietera odnoœnie danej grupy ankiet.
+	 * @param interviewerId id ankietera.
+	 * @param privileges przywileje.
+	 * @param idOfSurveys id grupy ankiet.
+	 * @param usersId id admnistratora wysy³aj¹cego uprawnienia.
+	 * @param password has³o.
+	 * @return  BAD_PASSWORD, jeœli dane do logowania s¹ niepoprawne, 
+	 * AUTHORIZATION_FAILED, jeœli nadaj¹cy uprawnienia nie jest administratorem,
+	 * BAD_DATA_FORMAT, jeœli nie ma zadanej grupy ankiet albo nie ma ankietera o zadanym id,
+	 * jesli wszystko przebieg³o pomyœlnie - OPERATION_OK.
+	 */
+	public int sendInterviewerPrivileges(String interviewerId, 
+			InterviewerSurveyPrivileges privileges, String idOfSurveys,
+			String usersId, char[] password){
+		if(interviewerId == null || password == null || usersId == null || privileges == null
+				|| idOfSurveys == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return BAD_PASSWORD;
+		}
+		sendInt(GET_SURVEYS_FILLED_BY_INTERVIEWER);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return AUTHORIZATION_FAILED; 
+		}
+		else{
+			sendString(interviewerId);
+			int result = readInt();
+			if(result == BAD_DATA_FORMAT){
+				disconnect();
+				return BAD_DATA_FORMAT;
+			}
+			else{
+				sendObject(privileges);
+				sendString(idOfSurveys);
+				return readInt();
 			}
 		}
 	}
