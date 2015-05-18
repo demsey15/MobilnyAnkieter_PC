@@ -65,6 +65,8 @@ public class ServerConnectionFacade {
 	public final static int DISMISS_INTERVIEWER = 28;
 	public final static int BACK_TO_WORK_INTERVIEWER = 29;
 	
+	public final static int GET_SURVEYS_FILLED_BY_INTERVIEWER = 30;
+	
 	
 	private SocketChannel socketChannel;
 	private Scanner in;
@@ -501,6 +503,51 @@ public class ServerConnectionFacade {
 			}	
 		}
 	}
+	
+	/**
+	 * Pobierz listê wype³nionych ankiet (mo¿e to zrobiæ tylko administrator).
+	 * @param idOfSurveys id grupy ankiet do pobrania.
+	 * @param usersId id administratora.
+	 * @param password has³o administratora.
+	 * @return listê wype³nionych ankiet dla danej grupy ankiet lub null, jeœli: podano b³êdne
+	 * dane logowania, loguj¹cy siê u¿ytkownik nie jest administratorem, nie ma grupy ankiet o
+	 * podanym id lub nie przes³ano jeszcze ¿adnego wyniku, wyst¹pi³ nieznany b³¹d.
+	 */
+	public List<Survey> getSurveysFilledByInterviewer(String interviewerId, 
+			String usersId, char[] password){
+		if(interviewerId == null || password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return null;
+		}
+		sendInt(GET_SURVEYS_FILLED_BY_INTERVIEWER);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		else{
+			sendString(interviewerId);
+			int result = readInt();
+			if(result == BAD_DATA_FORMAT){
+				disconnect();
+				return null;
+			}
+			else{
+				int size = readInt();
+				List<Survey> list = new ArrayList<Survey>(size);
+				for(int i = 0; i < size; i++){
+					Survey survey = (Survey) readObject();
+					list.add(survey);
+				}
+				disconnect();
+				return list;
+			}
+		}
+	}
+	
 	private boolean login(String usersId, char[] password){
 		System.out.println("Wysy³am id");
 		sendString(usersId);
