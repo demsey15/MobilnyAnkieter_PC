@@ -59,6 +59,12 @@ public class ServerConnectionFacade {
 	public final static int GET_FILLED_SURVEYS = 23;
 	public final static int SENDING_FILLED_SURVEYS = 24;
 	
+	public final static int GET_ALL_INTERVIEWERS = 25;
+	public final static int GET_INTERVIEWER = 26;
+	public final static int AUTHENTICATION = 27;
+	public final static int DISMISS_INTERVIEWER = 28;
+	public final static int BACK_TO_WORK_INTERVIEWER = 29;
+	
 	
 	private SocketChannel socketChannel;
 	private Scanner in;
@@ -353,6 +359,45 @@ public class ServerConnectionFacade {
 					return null;   //nie powinno siê zdarzyæ
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Pobierz listê ankieterów (mo¿e to zrobiæ tylko administrator).
+	 * @param usersId id administratora.
+	 * @param password has³o administratora.
+	 * @return listê ankieterów lub null, jeœli: podano b³êdne
+	 * dane logowania, loguj¹cy siê u¿ytkownik nie jest administratorem, wyst¹pi³ nieznany b³¹d.
+	 */
+	public List<Interviewer> getAllInterviewers(String usersId, char[] password){
+		if(password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+		disconnect();
+		return null;
+		}
+		sendInt(GET_ALL_INTERVIEWERS);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		else{
+			int size = readInt();
+			List<Interviewer> list = new ArrayList<Interviewer>(size);
+			for(int i = 0; i < size; i++){
+				list.add((Interviewer) readObject());
+			}
+			if(readInt() == OPERATION_OK){
+				disconnect();
+				return list;
+			}
+			else{
+				disconnect();
+				return null;   //nie powinno siê zdarzyæ
+			}
+			
 		}
 	}
 	
