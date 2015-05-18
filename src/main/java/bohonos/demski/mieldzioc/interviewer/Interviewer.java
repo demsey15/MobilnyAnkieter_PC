@@ -21,7 +21,11 @@ import bohonos.demski.mieldzioc.common.Pair;
  */
 //@Entity
 public class Interviewer implements Serializable{
-    private String name, surname;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String name, surname;
     //@Id
     private String id; //PESEL
     private GregorianCalendar hiredDay;

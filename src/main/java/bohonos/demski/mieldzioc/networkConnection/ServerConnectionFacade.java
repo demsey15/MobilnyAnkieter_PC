@@ -67,6 +67,11 @@ public class ServerConnectionFacade {
 	
 	public final static int GET_SURVEYS_FILLED_BY_INTERVIEWER = 30;
 	
+	public final static int SEND_INTERVIEWER_PRIVILAGES = 31;
+	public final static int GET_INTERVIEWER_PRIVILAGES = 32;
+	public final static int GET_INTERVIEWER_CREATING_PRIVILIGES = 33;
+	public final static int SET_INTERVIEWER_CREATING_PRIVILIGES = 34;
+	
 	
 	private SocketChannel socketChannel;
 	private Scanner in;
