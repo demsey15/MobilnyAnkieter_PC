@@ -15,8 +15,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
 
-import org.omg.CORBA.BAD_CONTEXT;
-
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.survey.Survey;
 import bohonos.demski.mieldzioc.survey.SurveyHandler;
