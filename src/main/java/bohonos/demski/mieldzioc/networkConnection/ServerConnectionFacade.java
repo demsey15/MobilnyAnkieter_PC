@@ -11,6 +11,7 @@ import java.net.InetSocketAddress;
 import java.nio.channels.Channels;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,6 @@ import java.util.Scanner;
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.interviewer.InterviewerSurveyPrivileges;
 import bohonos.demski.mieldzioc.survey.Survey;
-import bohonos.demski.mieldzioc.survey.SurveyHandler;
 
 /**
  * @author Dominik Demski
@@ -746,7 +746,7 @@ public class ServerConnectionFacade {
 			disconnect();
 			return null;
 		}
-		sendInt(GET_ACTIVE_SURVEY_TEMPLATE);
+		sendInt(GET_ACTIVE_TEMPLATES_ID_FOR_INTERVIEWER);
 		sendString(interviewerId);
 		int authorization = readInt();
 		if(authorization == AUTHORIZATION_FAILED){
@@ -760,8 +760,11 @@ public class ServerConnectionFacade {
 				return null;
 			}
 			else{
-				@SuppressWarnings("unchecked")
-				List<String> result = (List<String>) readObject();
+				int size = readInt();
+				List<String> result = new ArrayList<String>(size);
+				for(int i = 0; i < size; i++){
+					result.add(readString());
+				}
 				return result;
 			}
 		}
@@ -800,8 +803,11 @@ public class ServerConnectionFacade {
 				return null;
 			}
 			else{
-				@SuppressWarnings("unchecked")
-				List<String> result = (List<String>) readObject();
+				int size = readInt();
+				List<String> result = new ArrayList<String>(size);
+				for(int i = 0; i < size; i++){
+					result.add(readString());
+				}
 				return result;
 			}
 		}
@@ -910,10 +916,18 @@ public class ServerConnectionFacade {
 		}
 	}
 	
+	private String readString(){
+		String received =  in.nextLine();
+		System.out.println("Odczyta³em: " + received);
+		return received;
+	}
+	
 	private Object readObject(){
 		try {
 			ObjectInputStream inObj = new ObjectInputStream(Channels.newInputStream(socketChannel));
-			return inObj.readObject();
+			Object obj = inObj.readObject();
+			System.out.println("Odczyta³em obiekt: " + obj);
+			return obj;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -924,18 +938,21 @@ public class ServerConnectionFacade {
 	
 	public static void main(String[] args) {
 		ServerConnectionFacade facade = new ServerConnectionFacade();
-		Interviewer interviewer = new Interviewer("", "", "92110908338", new GregorianCalendar());
+		Interviewer interviewer = new Interviewer("", "", "11111111111", new GregorianCalendar());
 		interviewer.setInterviewerPrivileges(true);
 		Survey survey = new Survey(interviewer);
 		survey.setIdOfSurveys("ja");
 		Survey survey2 = new Survey(interviewer);
 		survey2.setIdOfSurveys("ja");
 		
-    	facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
+		List<String> list = (List<String>) facade.getActiveIdTemplateForInterviewer(interviewer.getId(), interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	System.out.println(Arrays.toString(list.toArray()));
+		/*facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
     	facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.ACTIVE, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
     	facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
     	facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.IN_PROGRESS, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
     	facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
     	facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	*/
 	}
 }
