@@ -74,6 +74,10 @@ public class ServerConnectionFacade {
 	public final static int GET_INTERVIEWER_CREATING_PRIVILIGES = 33;
 	public final static int SET_INTERVIEWER_CREATING_PRIVILIGES = 34;
 	
+
+	public final static int GET_ACTIVE_TEMPLATES_ID_FOR_INTERVIEWER = 35; //pobierz ankiety, które ankieter mo¿e wype³niaæ
+	public final static int GET_EDITABLE_TEMPLATES_ID_FOR_INTERVIEWER = 36; //pobierz ankiety, które ankieter mo¿e edytowaæ
+	
 	
 	private SocketChannel socketChannel;
 	private Scanner in;
@@ -721,6 +725,86 @@ public class ServerConnectionFacade {
 					return readInt();
 				}
 			}
+	}
+	
+	/**
+	 * Pobiera listê z indeksami ankiet, które mo¿e wype³niaæ dany ankieter.
+	 * @param interviewerId id ankietera.
+	 * @param usersId id pytaj¹cego.
+	 * @param password has³o pytaj¹cego.
+	 * @return null, jeœli dane do logowania s¹ niepoprawne,
+	 * jeœli pytaj¹cy nie ma odpowiednich uprawnieñ (pytaæ mo¿e
+	 * u¿ytkownik o siebie samego albo administrator),
+	 * , jeœli nie ma ankietera o zadanym id,
+	 * w przeciwnym przypadku listê z indeksami.
+	 */
+	public List<String> getActiveIdTemplateForInterviewer(String interviewerId, String usersId, char[] password){
+		if(interviewerId == null || password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return null;
+		}
+		sendInt(GET_ACTIVE_SURVEY_TEMPLATE);
+		sendString(interviewerId);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		else{
+			int status = readInt();
+			if(status == BAD_DATA_FORMAT){
+				disconnect();
+				return null;
+			}
+			else{
+				@SuppressWarnings("unchecked")
+				List<String> result = (List<String>) readObject();
+				return result;
+			}
+		}
+	}
+	
+	/**
+	 * Pobiera listê z indeksami ankiet, które mo¿e edytowaæ dany ankieter.
+	 * @param interviewerId id ankietera.
+	 * @param usersId id pytaj¹cego.
+	 * @param password has³o pytaj¹cego.
+	 * @return null, jeœli dane do logowania s¹ niepoprawne,
+	 * jeœli pytaj¹cy nie ma odpowiednich uprawnieñ (pytaæ mo¿e
+	 * u¿ytkownik o siebie samego albo administrator),
+	 * , jeœli nie ma ankietera o zadanym id,
+	 * w przeciwnym przypadku listê z indeksami.
+	 */
+	public List<String> getEditableIdTemplateForInterviewer(String interviewerId, String usersId, char[] password){
+		if(interviewerId == null || password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return null;
+		}
+		sendInt(GET_EDITABLE_TEMPLATES_ID_FOR_INTERVIEWER);
+		sendString(interviewerId);
+		int authorization = readInt();
+		if(authorization == AUTHORIZATION_FAILED){
+			disconnect();
+			return null; 
+		}
+		else{
+			int status = readInt();
+			if(status == BAD_DATA_FORMAT){
+				disconnect();
+				return null;
+			}
+			else{
+				@SuppressWarnings("unchecked")
+				List<String> result = (List<String>) readObject();
+				return result;
+			}
+		}
 	}
 	
 	private boolean login(String usersId, char[] password){
