@@ -74,6 +74,7 @@ public class AnsweringSurveyControl {
 		if(answer == null) throw new NullPointerException("OdpowiedŸ nie mo¿e byæ nullem");
 		
 		List<String> answerList = new ArrayList<String>(1);
+		
 		answerList.add(answer);
 		return survey.getQuestion(questionsNumber).setUserAnswers(answerList);
 	}
@@ -81,7 +82,7 @@ public class AnsweringSurveyControl {
 	/**
 	 * Dodaj odpowiedŸ do pytania wielokrotnego wyboru.
 	 * @param questionsNumber numer pytania.
-	 * @param answer odpowiedŸ.
+	 * @param answer lista odpowiedzi.
 	 * @return true, jeœli dodano odpowiedŸ, w przeciwnym przypadku false.
 	 * @throws NullPointerException jeœli nie wywo³ano wczesniej metody startAnswering lub odpowiedŸ
 	 * jest nullem.
@@ -219,16 +220,57 @@ public class AnsweringSurveyControl {
 	
 	/**
 	 * Zakoñcz wype³nianie ankiety.
-	 * @return true, jeœli odpowiedziano na wszystkie pytania obowi¹zkowe (ankieta zosta³a ukoñczona),
+	 * @param surveysRepository repozytorium ankiet
+	 * @return true, jeœli ukoñczono ankietê i uda³o siê j¹ dodaæ do repozytorium,
 	 * w przeciwnym przypadku false (nie ukoñczono jeszcze wype³niania ankiety).
 	 */
 	public boolean finishAnswering(SurveysRepository surveysRepository){
 		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
 				+ " wywo³aj metodê startAnswering");
 		if(survey.finishSurvey()){
+			if(surveysRepository.addNewSurvey(survey) == -1) return false;
 			survey = null;
 			return true;
 		}
 		else return false;
+	}
+	
+	/**
+	 * 
+	 * @return zwraca id grupy ankiet wype³nianej ankiety.
+	 */
+	public String getIdOfSurveysFillingSurvey(){
+		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
+				+ " wywo³aj metodê startAnswering");
+		return survey.getIdOfSurveys();
+	}
+	/**
+	 * 
+	 * @return zwracan tytu³ wype³nianej ankiety.
+	 */
+	public String getSurveysTitle(){
+		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
+				+ " wywo³aj metodê startAnswering");
+		return survey.getTitle();
+	}
+	
+	/**
+	 * 
+	 * @return zwraca opis wype³nianej ankiety.
+	 */
+	public String getSurveysDescription(){
+		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
+				+ " wywo³aj metodê startAnswering");
+		return survey.getDescription();
+	}
+	
+	/**
+	 * 
+	 * @return zwraca podsumowanie wype³nianej ankiety.
+	 */
+	public String getSurveysSummary(){
+		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
+				+ " wywo³aj metodê startAnswering");
+		return survey.getSummary();
 	}
 }

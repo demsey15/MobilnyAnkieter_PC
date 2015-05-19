@@ -5,12 +5,18 @@
  */
 package bohonos.demski.mieldzioc.interviewer;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Delirus
  */
-public class InterviewerSurveyPrivileges {
-    private boolean editing, filling, editingWithoutAdminAgreement, fillingStatistics;
+public class InterviewerSurveyPrivileges implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private boolean editing, filling, editingWithoutAdminAgreement, fillingStatistics;
     
      public InterviewerSurveyPrivileges(boolean editing, boolean filling, boolean editingWithoutAdminAgreement, boolean fillingStatistics){
         this.editing= editing;

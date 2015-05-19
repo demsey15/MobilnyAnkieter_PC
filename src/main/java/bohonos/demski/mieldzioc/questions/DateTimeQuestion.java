@@ -90,9 +90,9 @@ public class DateTimeQuestion extends Question {
 		int day = 0;
 		int month = 0;
 		int year = 0;
-		int hour = 0;
-		int minute = 0;
-		int second = 0;
+		int hour = 1;
+		int minute = 1;
+		int second = 1;
 		try{
 		day = Integer.parseInt(text.get(0));
 		month = Integer.parseInt(text.get(1));
