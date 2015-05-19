@@ -77,7 +77,7 @@ public class ServerConnectionFacade {
 
 	public final static int GET_ACTIVE_TEMPLATES_ID_FOR_INTERVIEWER = 35; //pobierz ankiety, które ankieter mo¿e wype³niaæ
 	public final static int GET_EDITABLE_TEMPLATES_ID_FOR_INTERVIEWER = 36; //pobierz ankiety, które ankieter mo¿e edytowaæ
-	
+	public final static int GET_SURVEY_TEMPLATE = 37;
 	
 	private SocketChannel socketChannel;
 	private Scanner in;
@@ -803,6 +803,44 @@ public class ServerConnectionFacade {
 				@SuppressWarnings("unchecked")
 				List<String> result = (List<String>) readObject();
 				return result;
+			}
+		}
+	}
+	
+	/**
+	 * Pobierz szablon ankiety.
+	 * @param idOfSurveys id szablonu.
+	 * @param usersId id pytaj¹cego.
+	 * @param password has³o pytaj¹cego.
+	 * @return null, jeœli dane do logowania s¹ niepoprawne,
+	 * jeœli pytaj¹cy nie ma odpowiednich uprawnieñ (nieaktywne ankiety mo¿e pobraæ
+	 * tylko admnistrator, inne ka¿dy),
+	 * , jeœli nie ma szablonu o zadanym id,
+	 * w przeciwnym przypadku ankietê.
+	 */
+	public Survey getSurveyTemplate(String idOfSurveys, String usersId, char[] password){
+		if(idOfSurveys == null || password == null || usersId == null)
+			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
+		connect();
+		if(!login(usersId, password)){
+			disconnect();
+			return null;
+		}
+		sendInt(GET_SURVEY_TEMPLATE);
+		sendString(idOfSurveys);
+		int status = readInt();
+		if(status == BAD_DATA_FORMAT){
+			disconnect();
+			return null;
+		}
+		else{
+			int authorization = readInt();
+			if(authorization == AUTHORIZATION_FAILED){
+				disconnect();
+				return null;
+			}
+			else{
+				return (Survey) readObject();
 			}
 		}
 	}
