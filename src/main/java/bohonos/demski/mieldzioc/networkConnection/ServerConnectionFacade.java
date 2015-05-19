@@ -28,7 +28,7 @@ import bohonos.demski.mieldzioc.survey.SurveyHandler;
 public class ServerConnectionFacade {
 	
 	public final static int PORT = 8046;
-	public final static String HOST = "192.168.1.2";
+	public final static String HOST = "192.168.0.104";
 	
 	public final static int BAD_DATA_FORMAT = -2;
 	public final static int UNKNOWN_FAIL = -1;
