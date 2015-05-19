@@ -30,7 +30,7 @@ public class Interviewer implements Serializable{
     private List<Pair<GregorianCalendar,GregorianCalendar>> outOfWorkTime = new ArrayList<Pair<GregorianCalendar,GregorianCalendar>>();
     //private List<Pair<GregorianCalendar,GregorianCalendar>> outOfWorkTime = new ArrayList<>();
     //public InterviewerSurveyPrivileges privileges = new InterviewerSurveyPrivileges();
-    private Map<Integer, InterviewerSurveyPrivileges> intervSurveyPrivileges = new TreeMap<Integer, InterviewerSurveyPrivileges>(); //ewentuanie HashMap
+    private Map<String, InterviewerSurveyPrivileges> intervSurveyPrivileges = new TreeMap<String, InterviewerSurveyPrivileges>(); //ewentuanie HashMap
     private InterviewerPrivileges privileges = new InterviewerPrivileges();
    
    /**
@@ -54,6 +54,9 @@ public class Interviewer implements Serializable{
      * @return 
      */
     public boolean isActive(){
+        if(relieveDay!=null){
+            return false;
+        }
         GregorianCalendar now = new GregorianCalendar();
         for (Pair<GregorianCalendar, GregorianCalendar> entr : outOfWorkTime)
         {
@@ -87,7 +90,7 @@ public class Interviewer implements Serializable{
         return outOfWorkTime;
     }
       
-    public Map<Integer, InterviewerSurveyPrivileges> getIntervSurveyPrivileges(){
+    public Map<String, InterviewerSurveyPrivileges> getIntervSurveyPrivileges(){
         return intervSurveyPrivileges;
     }
     
@@ -113,7 +116,7 @@ public class Interviewer implements Serializable{
         outOfWorkTime.add(new Pair<GregorianCalendar, GregorianCalendar>(g1, g2));
     }
     
-    public void setPrivilegesForInterviewer(int numberOfSurvey, InterviewerSurveyPrivileges privileges){
+    public void setPrivilegesForInterviewer(String numberOfSurvey, InterviewerSurveyPrivileges privileges){
         intervSurveyPrivileges.put(numberOfSurvey, privileges);
     }
     //brakuje edytowania outOfWorkTime i intervSurveyPrivileges
@@ -139,5 +142,10 @@ public class Interviewer implements Serializable{
             return true;
         else
             return false;
+    }
+    public void returnInterviewer(GregorianCalendar date2){
+        GregorianCalendar date = relieveDay;
+        this.relieveDay=null;
+        setOutOfWorkTime(date, date2);
     }
 }
