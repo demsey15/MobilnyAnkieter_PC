@@ -9,18 +9,27 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.nio.channels.Channels;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.google.gson.Gson;
-
+import bohonos.demski.mieldzioc.constraints.IConstraint;
+import bohonos.demski.mieldzioc.constraints.NumberConstraint;
+import bohonos.demski.mieldzioc.constraints.TextConstraint;
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.interviewer.InterviewerSurveyPrivileges;
+import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.questions.GridQuestion;
+import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.Question;
+import bohonos.demski.mieldzioc.questions.ScaleQuestion;
+import bohonos.demski.mieldzioc.questions.TextQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
+
+import com.google.gson.Gson;
 
 /**
  * @author Dominik Demski
@@ -29,8 +38,8 @@ import bohonos.demski.mieldzioc.survey.Survey;
 public class ServerConnectionFacade {
 	
 	public final static int PORT = 8046;
-//	public final static String HOST = "192.168.0.104";
-	public final static String HOST = "150.254.78.24";
+	public final static String HOST = "192.168.0.104";
+//	public final static String HOST = "150.254.78.24";
 	
 	public final static int BAD_DATA_FORMAT = -2;
 	public final static int UNKNOWN_FAIL = -1;
@@ -850,7 +859,7 @@ public class ServerConnectionFacade {
 				return null;
 			}
 			else{
-				return gson.fromJson(readString(), Survey.class);
+				return receiveSurveyTemplate();
 			}
 		}
 	}
@@ -950,6 +959,56 @@ public class ServerConnectionFacade {
 		return null;
 	}
 	
+	private Survey receiveSurveyTemplate(){
+		Survey survey = new Survey(null);
+		survey.setTitle(readString());
+		survey.setDescription(readString());
+		survey.setSummary(readString());
+		survey.setIdOfSurveys(readString());
+		Gson gson = new Gson();
+		survey.setInterviewer(gson.fromJson(readString(), Interviewer.class));
+	
+		int i = readInt();
+		for(int j = 0; j < i; j++){
+			int type = readInt();
+			Question question;
+			if(type == Question.DATE_QUESTION || type == Question.TIME_QUESTION){
+				question = gson.fromJson(readString(), DateTimeQuestion.class);
+			}
+			else if(type == Question.DROP_DOWN_QUESTION || type == Question.ONE_CHOICE_QUESTION){
+				question = gson.fromJson(readString(), OneChoiceQuestion.class);
+			}
+			else if(type == Question.GRID_QUESTION){
+				question = gson.fromJson(readString(), GridQuestion.class);
+			}
+			else if(type == Question.MULTIPLE_CHOICE_QUESTION){
+				question = gson.fromJson(readString(), MultipleChoiceQuestion.class);
+			}
+			else if(type == Question.SCALE_QUESTION){
+				question = gson.fromJson(readString(), ScaleQuestion.class);
+			}
+			else{
+				TextQuestion txt = new TextQuestion();
+				txt.setErrorMessage(readString());
+				txt.setHint(readString());
+				txt.setPictureURL(readString());
+				txt.setQuestion(readString());
+				IConstraint constraint;
+				String s = readString();
+				if(s.equals("text")){
+					constraint = gson.fromJson(readString(), TextConstraint.class);
+				}
+				else{
+					constraint = gson.fromJson(readString(), NumberConstraint.class);
+				}
+				txt.setConstraint(constraint);
+				question = txt;
+			}
+			survey.addQuestion(question);
+		}
+		return survey;
+	}
+	
 	public static void main(String[] args) {
 		ServerConnectionFacade facade = new ServerConnectionFacade();
 		Interviewer interviewer = new Interviewer("", "", "12345678999", new GregorianCalendar());
@@ -967,7 +1026,14 @@ public class ServerConnectionFacade {
     	//facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.IN_PROGRESS, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
     	//facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
     	//facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
-    	Survey su = facade.getSurveyTemplate(survey.getIdOfSurveys(), interviewer.getId(), new char[] {'a', 'b', 'c'});
-    	System.out.println(su.getIdOfSurveys());
+    //	Survey su = facade.getSurveyTemplate("12345678999000001", interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	Gson gson = new Gson();
+    	GridQuestion q = new GridQuestion();
+    	q.setQuestion("Nana");
+    	String s = gson.toJson(q);
+    	System.out.println(s);
+    	Question e = gson.fromJson(s, GridQuestion.class);
+    	System.out.println(e.getQuestion());
+		//System.out.println(su.getIdOfSurveys());
 	}
 }
