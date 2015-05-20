@@ -3,11 +3,8 @@
  */
 package bohonos.demski.mieldzioc.survey;
 
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
-
-import bohonos.demski.mieldzioc.interviewer.Interviewer;
 
 
 /**

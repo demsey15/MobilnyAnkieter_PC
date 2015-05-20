@@ -8,14 +8,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.channels.Channels;
-import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
 
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.interviewer.InterviewerSurveyPrivileges;
@@ -28,7 +29,8 @@ import bohonos.demski.mieldzioc.survey.Survey;
 public class ServerConnectionFacade {
 	
 	public final static int PORT = 8046;
-	public final static String HOST = "192.168.0.104";
+//	public final static String HOST = "192.168.0.104";
+	public final static String HOST = "150.254.78.24";
 	
 	public final static int BAD_DATA_FORMAT = -2;
 	public final static int UNKNOWN_FAIL = -1;
@@ -79,9 +81,11 @@ public class ServerConnectionFacade {
 	public final static int GET_EDITABLE_TEMPLATES_ID_FOR_INTERVIEWER = 36; //pobierz ankiety, które ankieter mo¿e edytowaæ
 	public final static int GET_SURVEY_TEMPLATE = 37;
 	
-	private SocketChannel socketChannel;
+//	private SocketChannel socketChannel;
+	private Socket socketChannel;
 	private Scanner in;
 	private PrintWriter out;
+	private Gson gson = new Gson();
 	
 	/**
 	 * Wysy³a nowy szablon ankiety na serwer.
@@ -846,10 +850,11 @@ public class ServerConnectionFacade {
 				return null;
 			}
 			else{
-				return (Survey) readObject();
+				return gson.fromJson(readString(), Survey.class);
 			}
 		}
 	}
+	
 	
 	private boolean login(String usersId, char[] password){
 		System.out.println("Wysy³am id");
@@ -867,9 +872,14 @@ public class ServerConnectionFacade {
 	
 	private void connect(){
 		try {
-			socketChannel = SocketChannel.open(new InetSocketAddress(HOST, PORT));
-			out = new PrintWriter(Channels.newOutputStream(socketChannel), true);
-			in = new Scanner(socketChannel);
+			//socketChannel = SocketChannel.open(new InetSocketAddress(HOST, PORT));
+			socketChannel = new Socket();
+			socketChannel.setSoTimeout(20000); //20 sekund na wys³anie i odebranie danych
+			socketChannel.connect(new InetSocketAddress(HOST, PORT), 2000); //20 sekund na po³¹czenie
+			//out = new PrintWriter(Channels.newOutputStream(socketChannel), true);
+			//in = new Scanner(socketChannel);
+			out = new PrintWriter(socketChannel.getOutputStream(), true);
+			in = new Scanner(socketChannel.getInputStream());
 		} catch (IOException e) {
 			System.out.println("B³¹d");
 			e.printStackTrace();
@@ -893,8 +903,11 @@ public class ServerConnectionFacade {
 	
 	private void sendObject(Object obj){
 		try {
-			ObjectOutputStream outOb = new ObjectOutputStream(Channels.newOutputStream(socketChannel));
+			
+		//	ObjectOutputStream outOb = new ObjectOutputStream(Channels.newOutputStream(socketChannel));
+			ObjectOutputStream outOb = new ObjectOutputStream(socketChannel.getOutputStream());
 			outOb.writeObject(obj);
+			outOb.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -924,7 +937,8 @@ public class ServerConnectionFacade {
 	
 	private Object readObject(){
 		try {
-			ObjectInputStream inObj = new ObjectInputStream(Channels.newInputStream(socketChannel));
+			//ObjectInputStream inObj = new ObjectInputStream(Channels.newInputStream(socketChannel));
+			ObjectInputStream inObj = new ObjectInputStream(socketChannel.getInputStream());
 			Object obj = inObj.readObject();
 			System.out.println("Odczyta³em obiekt: " + obj);
 			return obj;
@@ -938,21 +952,22 @@ public class ServerConnectionFacade {
 	
 	public static void main(String[] args) {
 		ServerConnectionFacade facade = new ServerConnectionFacade();
-		Interviewer interviewer = new Interviewer("", "", "11111111111", new GregorianCalendar());
+		Interviewer interviewer = new Interviewer("", "", "12345678999", new GregorianCalendar());
 		interviewer.setInterviewerPrivileges(true);
 		Survey survey = new Survey(interviewer);
 		survey.setIdOfSurveys("ja");
 		Survey survey2 = new Survey(interviewer);
 		survey2.setIdOfSurveys("ja");
 		
-		List<String> list = (List<String>) facade.getActiveIdTemplateForInterviewer(interviewer.getId(), interviewer.getId(), new char[] {'a', 'b', 'c'});
-    	System.out.println(Arrays.toString(list.toArray()));
-		/*facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
-    	facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.ACTIVE, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
-    	facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
-    	facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.IN_PROGRESS, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
-    	facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
-    	facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
-    	*/
+	//	List<String> list = (List<String>) facade.getActiveIdTemplateForInterviewer(interviewer.getId(), interviewer.getId(), new char[] {'a', 'b', 'c'});
+    //	System.out.println(Arrays.toString(list.toArray()));
+		facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
+    //	facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.ACTIVE, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
+    //	facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	//facade.changeSurveyStatus(survey.getIdOfSurveys(), SurveyHandler.IN_PROGRESS, "admin", new char[] {'a', 'd', 'm', 'i', 'n'});
+    	//facade.updateSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	//facade.sendSurveyTemplate(survey, interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	Survey su = facade.getSurveyTemplate(survey.getIdOfSurveys(), interviewer.getId(), new char[] {'a', 'b', 'c'});
+    	System.out.println(su.getIdOfSurveys());
 	}
 }
