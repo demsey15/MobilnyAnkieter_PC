@@ -20,17 +20,17 @@ import javax.swing.JTextField;
  */
 public class CreatingSurveyFrame extends JFrame implements ActionListener {
     
-    private CreatorLogic creatorLogic;
+    private ApplicationLogic applicationLogic;
     private String idOfSurvey;
     private JButton saveButton;
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
-    public CreatingSurveyFrame(CreatorLogic cl, String id) {
+    public CreatingSurveyFrame(ApplicationLogic appLogic, String id) {
         
         super("nowa ankieta");
         
-        creatorLogic = cl;
+        applicationLogic = appLogic;
         idOfSurvey = id;
         
         setSize(300, 300);
@@ -72,12 +72,8 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
         Object source = ae.getSource();
         
         if (source == saveButton) {
-            if (titleField.getText().equals("")==false && descriptionField.getText().equals("")==false) {
-                try {
-                    creatorLogic.setSurveyTitleAndDescription(idOfSurvey, titleField.getText(), descriptionField.getText());
-                } catch (CloneNotSupportedException ex) {
-                    Logger.getLogger(CreatingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            if (titleField.getText().equals("")==false) {
+                //to do
                 dispose();
             }
         }
