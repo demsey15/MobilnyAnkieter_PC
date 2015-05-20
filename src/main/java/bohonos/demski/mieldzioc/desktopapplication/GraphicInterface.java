@@ -94,7 +94,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
             EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    CreatorFrame creator = new CreatorFrame();
+                    CreatorFrame creator = new CreatorFrame(appsLogic);
                 }
             });
         }
