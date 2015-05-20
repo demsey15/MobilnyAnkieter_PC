@@ -103,13 +103,23 @@ public class CreatorFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
     
+    /**
+     * adds new tab containing survey template with given id
+     * @param id id of survey template
+     */
+    public void addSurveyPanel(String id) {
+        SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, id);
+        tabbedPane.addTab("id ankiety: " + id, surveyPanel);
+    }
+    
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
         
         if (source == itemNewSurvey) {
-            String idOfSurvey = applicationLogic.newSurvey();
-            SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, idOfSurvey);
-            tabbedPane.addTab("id ankiety: " + idOfSurvey, surveyPanel);
+            CreatingSurveyFrame creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, this);
+            //String idOfSurvey = applicationLogic.newSurvey();
+            //SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, idOfSurvey);
+            //tabbedPane.addTab("id ankiety: " + idOfSurvey, surveyPanel);
         }
         
         if (source == itemCopyOldSurvey) {

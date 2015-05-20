@@ -21,17 +21,19 @@ import javax.swing.JTextField;
 public class CreatingSurveyFrame extends JFrame implements ActionListener {
     
     private ApplicationLogic applicationLogic;
+    private CreatorFrame creatorFrame;
     private String idOfSurvey;
     private JButton saveButton;
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
-    public CreatingSurveyFrame(ApplicationLogic appLogic, String id) {
+    public CreatingSurveyFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
         
         super("nowa ankieta");
         
         applicationLogic = appLogic;
-        idOfSurvey = id;
+        creatorFrame = crFrame;
+        //idOfSurvey = id;
         
         setSize(300, 300);
         setLocation(400,300);
@@ -73,7 +75,10 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
         
         if (source == saveButton) {
             if (titleField.getText().equals("")==false) {
-                //to do
+                String idOfSurvey = applicationLogic.newSurvey();
+                applicationLogic.setSurveyTitle(idOfSurvey, titleField.getText());
+                applicationLogic.setSurveyDescription(idOfSurvey, descriptionField.getText());
+                creatorFrame.addSurveyPanel(idOfSurvey);
                 dispose();
             }
         }

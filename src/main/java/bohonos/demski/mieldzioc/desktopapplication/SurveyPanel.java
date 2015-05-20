@@ -30,8 +30,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
         
         applicationLogic = appLogic;
         idOfSurvey = id;
-        creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, id);
-        saveButton = creatingSurveyFrame.addActionListenerSave(this);
+        //creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, id);
+        //saveButton = creatingSurveyFrame.addActionListenerSave(this);
         this.setLayout(null);
         
         //titleLabel = new JLabel("tytu³: ");
