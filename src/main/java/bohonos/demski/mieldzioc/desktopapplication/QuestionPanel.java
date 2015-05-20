@@ -16,15 +16,15 @@ import javax.swing.JButton;
  */
 public class QuestionPanel extends JPanel implements ActionListener {
     
-    private CreatorLogic creatorLogic;
+    private ApplicationLogic applicationLogic;
     
     private JButton questionUp;
     private JButton questionDown;
     private JButton questionDelete;
     
-    public QuestionPanel(CreatorLogic cl) {
+    public QuestionPanel(ApplicationLogic appLogic) {
         
-        creatorLogic = cl;
+        applicationLogic = appLogic;
         
     }
 

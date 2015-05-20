@@ -19,18 +19,18 @@ import javax.swing.JLabel;
  */
 public class SurveyPanel extends JPanel implements ActionListener {
     
-    private CreatorLogic creatorLogic;
+    private ApplicationLogic applicationLogic;
     private String idOfSurvey;
     private JButton saveButton;
     private JLabel titleLabel, descriptionLabel, title, description;
     
     private CreatingSurveyFrame creatingSurveyFrame;
     
-    public SurveyPanel(CreatorLogic cl, String id) {
+    public SurveyPanel(ApplicationLogic appLogic, String id) {
         
-        creatorLogic = cl;
+        applicationLogic = appLogic;
         idOfSurvey = id;
-        creatingSurveyFrame = new CreatingSurveyFrame(cl, id);
+        creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, id);
         saveButton = creatingSurveyFrame.addActionListenerSave(this);
         this.setLayout(null);
         

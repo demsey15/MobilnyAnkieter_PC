@@ -39,18 +39,17 @@ public class CreatorFrame extends JFrame implements ActionListener {
     
     private JTabbedPane tabbedPane;
     
-    private CreatorLogic creatorLogic;
+    private ApplicationLogic applicationLogic;
     
-    public CreatorFrame(){
+    public CreatorFrame(ApplicationLogic appLogic){
         super("Kreator ankiet");
+        applicationLogic = appLogic;
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we){
 		dispose();
             }
 	});
-        
-        creatorLogic = new CreatorLogic();
         
         setSize(800, 600);
 	setLocation(300,200);
@@ -108,8 +107,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
         Object source = ae.getSource();
         
         if (source == itemNewSurvey) {
-            String idOfSurvey = creatorLogic.newSurvey();
-            SurveyPanel surveyPanel = new SurveyPanel(creatorLogic, idOfSurvey);
+            String idOfSurvey = applicationLogic.newSurvey();
+            SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, idOfSurvey);
             tabbedPane.addTab("id ankiety: " + idOfSurvey, surveyPanel);
         }
         
