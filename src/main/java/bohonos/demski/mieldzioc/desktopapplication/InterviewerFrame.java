@@ -24,9 +24,10 @@ public class InterviewerFrame extends JFrame implements ActionListener {
     private JButton addinterv, listinterv, close;
     private JPanel panel;
     private Container con;
-
-    public InterviewerFrame(){
+    private ApplicationLogic appsLogic;
+    public InterviewerFrame(ApplicationLogic appsLogic){
         super("Menad¿er ankieterów");
+        this.appsLogic=appsLogic;
         addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){
@@ -75,7 +76,7 @@ public class InterviewerFrame extends JFrame implements ActionListener {
             EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-                            AddInterviewer addinterviewer= new AddInterviewer();
+                            AddInterviewer addinterviewer= new AddInterviewer(appsLogic);
                         }
 		});
         }

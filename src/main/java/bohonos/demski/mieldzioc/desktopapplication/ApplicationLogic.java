@@ -62,4 +62,7 @@ public class ApplicationLogic {
         loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
         intervierwsRepository = new InterviewersRepository();
     }
+    public boolean addInterviewer(Interviewer interv){
+        return intervierwsRepository.addInterviewer(interv);
+    }
 }
