@@ -41,10 +41,9 @@ public class ApplicationLogic {
      * sets title of survey with given id
      * @param idOfSurvey id of survey template
      * @param title title of survey template
-     * @throws CloneNotSupportedException 
      */
-    public void setSurveyTitle(String idOfSurvey, String title) throws CloneNotSupportedException {
-        Survey survey = surveyHandler.provideSurvey(idOfSurvey);
+    public void setSurveyTitle(String idOfSurvey, String title) {
+        Survey survey = surveyHandler.getSurvey(idOfSurvey);
         survey.setTitle(title);
     }
     
@@ -56,6 +55,24 @@ public class ApplicationLogic {
     public String getSurveyDescription(String idOfSurvey) {
         return surveyHandler.getSurvey(idOfSurvey).getDescription();
     }
+    
+    /**
+     * sets description of survey with given id
+     * @param idOfSurvey id of survey template
+     * @param description description of survey template
+     */
+    public void setSurveyDescription(String idOfSurvey, String description) {
+        Survey survey = surveyHandler.getSurvey(idOfSurvey);
+        survey.setDescription(description);
+    }
+    
+    /**
+     * sets currently logged interviewer
+     * @param interviewer logged interviewer
+     */
+    public void setLoggedInterviever(Interviewer interviewer) {
+        loggedInterviewer = interviewer;
+    } 
     
     public ApplicationLogic() {
         surveyHandler = new SurveyHandler(0);
