@@ -107,7 +107,14 @@ public class ApplicationLogic {
         intervierwsRepository = new InterviewersRepository();
     }
     
-    
+
+
+    /**
+     * adds interviewer to repository
+     * @param interv interviewer to add
+     * @return true, if interviewer was added, or false, if such interviewer already exists
+     */
+
     public boolean addInterviewer(Interviewer interv){
         return intervierwsRepository.addInterviewer(interv);
     }
