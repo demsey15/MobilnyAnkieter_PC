@@ -34,13 +34,13 @@ public class SurveyPanel extends JPanel implements ActionListener {
         //saveButton = creatingSurveyFrame.addActionListenerSave(this);
         this.setLayout(null);
         
-        //titleLabel = new JLabel("tytu³: ");
-        //titleLabel.setBounds(20, 20, 70, 30);
-        //this.add(titleLabel);
+        titleLabel = new JLabel("tytu³ :   " + applicationLogic.getSurveyTitle(idOfSurvey));
+        titleLabel.setBounds(20, 20, 300, 30);
+        this.add(titleLabel);
         
-        //descriptionLabel = new JLabel("opis: ");
-        //descriptionLabel.setBounds(20, 70, 70, 30);
-        //this.add(descriptionLabel);
+        descriptionLabel = new JLabel("opis :   "+ applicationLogic.getSurveyDescription(idOfSurvey));
+        descriptionLabel.setBounds(20, 70, 300, 30);
+        this.add(descriptionLabel);
         
     }
     
