@@ -10,6 +10,7 @@ import bohonos.demski.mieldzioc.interviewer.*;
 import bohonos.demski.mieldzioc.questions.*;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 /**
  *
  * @author Andrzej
@@ -27,6 +28,16 @@ public class ApplicationLogic {
     public String newSurvey() {
         String idOfSurvey = surveyHandler.addNewSurveyTemplate(new Survey(loggedInterviewer));
         return idOfSurvey;
+    }
+    
+    /**
+     * adds newSurvey, based on existing survey
+     * @param idOfSurvey id of existing survey template
+     * @return if of new survey template
+     * @throws CloneNotSupportedException 
+     */
+    public String copySurvey(String idOfSurvey) throws CloneNotSupportedException {
+        return surveyHandler.copyOldAndCreateNewSurvey(idOfSurvey, loggedInterviewer.getId());
     }
     
     /**
@@ -74,6 +85,21 @@ public class ApplicationLogic {
     public void setLoggedInterviever(Interviewer interviewer) {
         loggedInterviewer = interviewer;
     } 
+    
+    /**
+     * returns list of surveys templates with status "in progress"
+     * @return String array
+     */
+    public String[] getSurveysList() {
+        Map<String,Survey> surveys = surveyHandler.getStatusSurveysId(0);
+        String[] surveysList = new String[surveys.size()];
+        int iterator = 0;
+        for (Map.Entry<String,Survey> entry : surveys.entrySet()) {
+            surveysList[iterator] = entry.getKey();
+            iterator++;
+        }
+        return surveysList;
+    }
     
     public ApplicationLogic() {
         surveyHandler = new SurveyHandler(0);

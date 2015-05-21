@@ -23,7 +23,7 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
     private ApplicationLogic applicationLogic;
     private CreatorFrame creatorFrame;
     private String idOfSurvey;
-    private JButton saveButton;
+    private JButton saveButton, cancelButton;
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
@@ -57,9 +57,14 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
         this.add(descriptionField);
         
         saveButton = new JButton("Zapisz");
-        saveButton.setBounds(100, 200, 100, 40);
+        saveButton.setBounds(160, 200, 100, 40);
         this.add(saveButton);
         saveButton.addActionListener(this);
+        
+        cancelButton = new JButton("Anuluj");
+        cancelButton.setBounds(40, 200, 100, 40);
+        this.add(cancelButton);
+        cancelButton.addActionListener(this);
         
         setVisible(true);
         
@@ -81,6 +86,9 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
                 creatorFrame.addSurveyPanel(idOfSurvey);
                 dispose();
             }
+        }
+        if (source == cancelButton) {
+            dispose();
         }
     }
     

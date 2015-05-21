@@ -5,14 +5,18 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -37,7 +41,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
     private JMenuItem itemScaleQuestion;
     private JMenuItem itemTextQuestion;
     
-    private JTabbedPane tabbedPane;
+    private CloseButtonTabbedPane tabbedPane;
     
     private ApplicationLogic applicationLogic;
     
@@ -98,7 +102,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
         menuBar.add(menuQuestion);
         setJMenuBar(menuBar);
         
-        tabbedPane = new JTabbedPane();
+        tabbedPane = new CloseButtonTabbedPane();
         add(tabbedPane);   
         setVisible(true);
     }
@@ -109,7 +113,32 @@ public class CreatorFrame extends JFrame implements ActionListener {
      */
     public void addSurveyPanel(String id) {
         SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, id);
-        tabbedPane.addTab("id ankiety: " + id, surveyPanel);
+        if (tabbedPane.indexOfTab(id) == -1) {
+            tabbedPane.addTab(id, surveyPanel);
+        }
+        /*int index = tabbedPane.indexOfTab(id);
+        JPanel panelTab = new JPanel(new GridBagLayout());
+        panelTab.setOpaque(false);
+        JLabel labelTitle = new JLabel(id);
+        JButton closeButton = new JButton("x");
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+        
+        panelTab.add(labelTitle, gbc);
+        
+        gbc.gridx++;
+        gbc.weightx = 0;
+        panelTab.add(closeButton, gbc);
+        
+        tabbedPane.setTabComponentAt(index, panelTab);
+        
+        
+        closeButton.addActionListener(this);
+        
+        */
     }
     
     public void actionPerformed(ActionEvent ae) {
@@ -123,11 +152,11 @@ public class CreatorFrame extends JFrame implements ActionListener {
         }
         
         if (source == itemCopyOldSurvey) {
-            
+            CopingSurveyFrame copingSurveyFrame = new CopingSurveyFrame(applicationLogic, this);
         }
         
         if (source == itemEditSurvey) {
-            
+            LoadingSurveyFrame loadingSurveyFrame = new LoadingSurveyFrame(applicationLogic, this);
         }
         
         if (source == itemDataTimeQuestion) {
@@ -153,6 +182,26 @@ public class CreatorFrame extends JFrame implements ActionListener {
         if (source == itemTextQuestion) {
             
         }
+        
+        //Component selectedTab = tabbedPane.getSelectedComponent();
+        //int selectedTab = tabbedPane.indexOfTab(getName());
+        //if(selectedTab>=0){
+        //if (selectedTab != null) {
+        //   tabbedPane.remove(selectedTab);
+        //}
+        
+        /*JButton btn = (JButton) ae.getSource();
+        String s1 = btn.getActionCommand();
+        for (int counter = 1; counter < tabbedPane.getTabCount(); counter++) {
+            JPanel pnl = (JPanel) tabbedPane.getTabComponentAt(counter);
+            btn = (JButton) pnl.getComponent(0);
+            String s2 = btn.getActionCommand();
+            if (s1.equals(s2)) {
+                tabbedPane.removeTabAt(counter);
+                break;
+            }
+        }*/
+        
     }
     
 }
