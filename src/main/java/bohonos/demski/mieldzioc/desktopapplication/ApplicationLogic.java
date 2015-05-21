@@ -9,6 +9,7 @@ import bohonos.demski.mieldzioc.survey.*;
 import bohonos.demski.mieldzioc.interviewer.*;
 import bohonos.demski.mieldzioc.questions.*;
 import java.util.GregorianCalendar;
+import java.util.List;
 /**
  *
  * @author Andrzej
@@ -79,7 +80,13 @@ public class ApplicationLogic {
         loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
         intervierwsRepository = new InterviewersRepository();
     }
+    
+    
     public boolean addInterviewer(Interviewer interv){
         return intervierwsRepository.addInterviewer(interv);
+    }
+    
+    public List<Interviewer> getInterviewers(){
+        return intervierwsRepository.getAllInterviewers();
     }
 }

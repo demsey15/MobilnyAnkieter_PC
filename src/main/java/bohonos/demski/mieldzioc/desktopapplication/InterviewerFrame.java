@@ -80,5 +80,13 @@ public class InterviewerFrame extends JFrame implements ActionListener {
                         }
 		});
         }
+        if(source == listinterv){
+            EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+                            ListInterviewersFrame listinterviewers= new ListInterviewersFrame(appsLogic);
+                        }
+		});
+        }
     }
 }
