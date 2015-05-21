@@ -17,25 +17,14 @@ import javax.swing.JTextField;
  *
  * @author Delirus
  */
-public class AddDataTimeQuestionFrame extends JFrame implements ActionListener{
+public class AddDataTimeQuestionFrame extends AddQuestionFrame {
     
-    private ApplicationLogic applicationLogic;
-    private CreatorFrame creatorFrame;
-    //private JTextField titleField, descriptionField;
-    //private JLabel titleLabel, descriptionLabel;
     
     public AddDataTimeQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
-        super("Dodaj pytanie typu DataTime");
         
-        applicationLogic = appLogic;
-        creatorFrame = crFrame;
+        super(appLogic, crFrame);
         
-        setSize(300, 300);
-        setLocation(400,300);
-        setResizable(false);
-        this.setLayout(null);
         
-        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {

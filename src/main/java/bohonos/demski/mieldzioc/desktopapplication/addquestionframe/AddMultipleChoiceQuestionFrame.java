@@ -15,22 +15,14 @@ import javax.swing.JFrame;
  *
  * @author Delirus
  */
-public class AddMultipleChoiceQuestionFrame extends JFrame implements ActionListener {
-    private ApplicationLogic applicationLogic;
-    private CreatorFrame creatorFrame;
+public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
+    
     
     public AddMultipleChoiceQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
-        super("Dodaj pytanie typu MutlipleChoice");
         
-        applicationLogic = appLogic;
-        creatorFrame = crFrame;
+        super(appLogic, crFrame);
         
-        setSize(300, 300);
-        setLocation(400,300);
-        setResizable(false);
-        this.setLayout(null);
         
-        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
