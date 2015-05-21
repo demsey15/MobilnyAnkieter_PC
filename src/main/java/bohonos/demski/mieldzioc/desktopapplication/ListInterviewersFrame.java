@@ -22,6 +22,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -35,6 +37,7 @@ public class ListInterviewersFrame extends JFrame implements ActionListener{
     private List<Interviewer> allInterviewers;
     private JScrollPane listScroller;
     private JList list;
+    private List<String> selectedInterviewer;
     
       public DefaultListModel getNamesInterviewers(){
         DefaultListModel listModel = new DefaultListModel();
@@ -75,11 +78,18 @@ public class ListInterviewersFrame extends JFrame implements ActionListener{
         
         list = new JList(getNamesInterviewers());
         list.setSelectedIndex(1);
-        listScroller = new JScrollPane(list);
+        list.setBounds(40, 10, 40, 170);
+        ListSelectionListener lsl = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                selectedInterviewer = list.getSelectedValuesList();
+            }
+        };
+        this.add(list);
+        //listScroller = new JScrollPane(list);
         //listScroller.setPreferredSize(new Dimension(250, 80));
-        listScroller.setSize(100, 200);
+        //listScroller.setSize(100, 200);
         //System.out.println(list.getSelectedValue());
-        con.add(listScroller);
+        //con.add(listScroller);
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setVisible(true);
     }
