@@ -27,6 +27,13 @@ public class AddDataTimeQuestionFrame extends JFrame implements ActionListener{
         
         applicationLogic = appLogic;
         creatorFrame = crFrame;
+        
+        setSize(300, 300);
+        setLocation(400,300);
+        setResizable(false);
+        this.setLayout(null);
+        
+        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
