@@ -9,6 +9,7 @@ import bohonos.demski.mieldzioc.survey.*;
 import bohonos.demski.mieldzioc.interviewer.*;
 import bohonos.demski.mieldzioc.questions.*;
 import java.util.GregorianCalendar;
+import java.util.Map;
 /**
  *
  * @author Andrzej
@@ -73,6 +74,21 @@ public class ApplicationLogic {
     public void setLoggedInterviever(Interviewer interviewer) {
         loggedInterviewer = interviewer;
     } 
+    
+    /**
+     * returns list of surveys templates with status "in progress"
+     * @return String array
+     */
+    public String[] getSurveysList() {
+        Map<String,Survey> surveys = surveyHandler.getStatusSurveysId(0);
+        String[] surveysList = new String[surveys.size()];
+        int iterator = 0;
+        for (Map.Entry<String,Survey> entry : surveys.entrySet()) {
+            surveysList[iterator] = entry.getKey();
+            iterator++;
+        }
+        return surveysList;
+    }
     
     public ApplicationLogic() {
         surveyHandler = new SurveyHandler(0);
