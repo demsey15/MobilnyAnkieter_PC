@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bohonos.demski.mieldzioc.desktopapplication;
+package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
+import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -13,12 +15,12 @@ import javax.swing.JFrame;
  *
  * @author Delirus
  */
-public class AddOneChoiceQuestionFrame extends JFrame implements ActionListener {
+public class AddMultipleChoiceQuestionFrame extends JFrame implements ActionListener {
     private ApplicationLogic applicationLogic;
     private CreatorFrame creatorFrame;
     
-    public AddOneChoiceQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
-        super("Dodaj pytanie typu OneChoice");
+    public AddMultipleChoiceQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+        super("Dodaj pytanie typu MutlipleChoice");
         
         applicationLogic = appLogic;
         creatorFrame = crFrame;

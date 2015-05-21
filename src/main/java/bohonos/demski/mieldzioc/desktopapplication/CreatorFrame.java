@@ -5,6 +5,12 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddTextQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddScaleQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddOneChoiceQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddMultipleChoiceQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddGridQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddDataTimeQuestionFrame;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.EventQueue;

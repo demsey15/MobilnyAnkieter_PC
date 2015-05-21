@@ -3,27 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bohonos.demski.mieldzioc.desktopapplication;
+package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
+import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 /**
  *
  * @author Delirus
  */
-public class AddDataTimeQuestionFrame extends JFrame implements ActionListener{
-    
+public class AddTextQuestionFrame extends JFrame implements ActionListener {
     private ApplicationLogic applicationLogic;
     private CreatorFrame creatorFrame;
-    //private JTextField titleField, descriptionField;
-    //private JLabel titleLabel, descriptionLabel;
     
-    public AddDataTimeQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
-        super("Dodaj pytanie typu DataTime");
+    public AddTextQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+        super("Dodaj pytanie typu Text");
         
         applicationLogic = appLogic;
         creatorFrame = crFrame;

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bohonos.demski.mieldzioc.desktopapplication;
+package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
+import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;

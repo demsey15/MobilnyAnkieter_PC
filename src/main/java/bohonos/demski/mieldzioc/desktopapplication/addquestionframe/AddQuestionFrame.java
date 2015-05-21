@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bohonos.demski.mieldzioc.desktopapplication;
+package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 /**
  *
  * @author Andrzej
  */
-public class GridQuestionPanel extends QuestionPanel {
-
-    public GridQuestionPanel(ApplicationLogic appLogic) {
-        super(appLogic);
-    }
+public class AddQuestionFrame {
     
 }

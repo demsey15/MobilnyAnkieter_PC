@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bohonos.demski.mieldzioc.desktopapplication;
+package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
+
+import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 
 /**
  *
  * @author Andrzej
  */
-public class MultipleChoiceQuestionPanel extends QuestionPanel {
+public class TextQuestionPanel extends QuestionPanel {
 
-    public MultipleChoiceQuestionPanel(ApplicationLogic appLogic) {
+    public TextQuestionPanel(ApplicationLogic appLogic) {
         super(appLogic);
     }
     
