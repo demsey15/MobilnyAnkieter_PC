@@ -138,23 +138,23 @@ public class CreatorFrame extends JFrame implements ActionListener {
         }
         
         if (source == itemGridQuestion) {
-            
+            AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemMultipleChioceQuestion) {
-            
+            AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemOneChoiceQuestion) {
-            
+            AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemScaleQuestion) {
-            
+            AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemTextQuestion) {
-            
+            AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(applicationLogic, this);
         }
 
     }
