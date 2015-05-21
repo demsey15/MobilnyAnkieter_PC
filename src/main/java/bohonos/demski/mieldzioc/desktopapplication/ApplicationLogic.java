@@ -30,6 +30,16 @@ public class ApplicationLogic {
     }
     
     /**
+     * adds newSurvey, based on existing survey
+     * @param idOfSurvey id of existing survey template
+     * @return if of new survey template
+     * @throws CloneNotSupportedException 
+     */
+    public String copySurvey(String idOfSurvey) throws CloneNotSupportedException {
+        return surveyHandler.copyOldAndCreateNewSurvey(idOfSurvey, loggedInterviewer.getId());
+    }
+    
+    /**
      * returns title of survey template with given id
      * @param idOfSurvey id of survey template, we are interested in
      * @return title of survey template

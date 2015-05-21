@@ -113,7 +113,9 @@ public class CreatorFrame extends JFrame implements ActionListener {
      */
     public void addSurveyPanel(String id) {
         SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, id);
-        tabbedPane.addTab(id, surveyPanel);
+        if (tabbedPane.indexOfTab(id) == -1) {
+            tabbedPane.addTab(id, surveyPanel);
+        }
         /*int index = tabbedPane.indexOfTab(id);
         JPanel panelTab = new JPanel(new GridBagLayout());
         panelTab.setOpaque(false);
@@ -150,7 +152,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
         }
         
         if (source == itemCopyOldSurvey) {
-            
+            CopingSurveyFrame copingSurveyFrame = new CopingSurveyFrame(applicationLogic, this);
         }
         
         if (source == itemEditSurvey) {

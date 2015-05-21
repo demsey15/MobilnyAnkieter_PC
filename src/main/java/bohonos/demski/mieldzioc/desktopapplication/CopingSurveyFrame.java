@@ -8,10 +8,14 @@ package bohonos.demski.mieldzioc.desktopapplication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -19,19 +23,37 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Andrzej
  */
-public class LoadingSurveyFrame extends JFrame implements ActionListener{
-    private JButton editButton, cancelButton;
+public class CopingSurveyFrame extends JFrame implements ActionListener{
+    private JButton copyButton, cancelButton;
     private ApplicationLogic applicationLogic;
     private CreatorFrame creatorFrame;
     private String[] surveysList;
     private DefaultListModel surveysItems;
     private JList list;
     private List<String> selectedSurveysList;
+    private JTextField titleField, descriptionField;
+    private JLabel titleLabel, descriptionLabel;
     
-    public LoadingSurveyFrame(ApplicationLogic applicationLogic, CreatorFrame creatorFrame){
-        super("edytuj ankietê");
+    public CopingSurveyFrame(ApplicationLogic applicationLogic, CreatorFrame creatorFrame){
+        super("nowa ankieta na podstawie...");
         this.applicationLogic = applicationLogic;
         this.creatorFrame = creatorFrame;
+        
+        titleLabel = new JLabel("tytu³: ");
+        titleLabel.setBounds(20, 20, 70, 30);
+        this.add(titleLabel);
+        
+        descriptionLabel = new JLabel("opis: ");
+        descriptionLabel.setBounds(20, 70, 70, 30);
+        this.add(descriptionLabel);
+        
+        titleField = new JTextField();
+        titleField.setBounds(80, 20, 200, 30);
+        this.add(titleField);
+        
+        descriptionField = new JTextField();
+        descriptionField.setBounds(80, 70, 200, 30);
+        this.add(descriptionField);
         
         surveysList = applicationLogic.getSurveysList();
         surveysItems = new DefaultListModel();
@@ -39,7 +61,7 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
         for (int iterator = 0; iterator < surveysList.length; iterator++) {
             surveysItems.addElement(surveysList[iterator] + "  " + applicationLogic.getSurveyTitle(surveysList[iterator]));
         }
-        list.setBounds(40, 10, 220, 170);
+        list.setBounds(40, 110, 220, 170);
         ListSelectionListener lsl = new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 selectedSurveysList = list.getSelectedValuesList();
@@ -48,18 +70,18 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
         this.add(list);
         list.addListSelectionListener(lsl);
         
-        setSize(300, 300);
+        setSize(300, 400);
         setLocation(400,300);
         setResizable(false);
         this.setLayout(null);
         
-        editButton = new JButton("Edytuj");
-        editButton.setBounds(160, 200, 100, 40);
-        this.add(editButton);
-        editButton.addActionListener(this);
+        copyButton = new JButton("Zapisz");
+        copyButton.setBounds(160, 300, 100, 40);
+        this.add(copyButton);
+        copyButton.addActionListener(this);
         
         cancelButton = new JButton("Anuluj");
-        cancelButton.setBounds(40, 200, 100, 40);
+        cancelButton.setBounds(40, 300, 100, 40);
         this.add(cancelButton);
         cancelButton.addActionListener(this);
         
@@ -76,12 +98,19 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
             dispose();
         }
         
-        if (source == editButton) {
-            for (int iterator = 0; iterator < selectedSurveysList.size(); iterator++) {
-                String str = selectedSurveysList.get(iterator);
-                String[] splited = str.split("\\s+");
-                creatorFrame.addSurveyPanel(splited[0]);
+        if (source == copyButton && titleField.getText().equals("")==false) {
+            String str = selectedSurveysList.get(0);
+            String[] splited = str.split("\\s+");
+            creatorFrame.addSurveyPanel(splited[0]);
+            try {
+                String idOfSurvey = applicationLogic.copySurvey(splited[0]);
+                applicationLogic.setSurveyTitle(idOfSurvey, titleField.getText());
+                applicationLogic.setSurveyDescription(idOfSurvey, descriptionField.getText());
+                creatorFrame.addSurveyPanel(idOfSurvey);
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             dispose();
         }
         
