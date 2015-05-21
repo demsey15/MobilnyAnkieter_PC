@@ -154,7 +154,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
         }
         
         if (source == itemEditSurvey) {
-            
+            LoadingSurveyFrame loadingSurveyFrame = new LoadingSurveyFrame(applicationLogic, this);
         }
         
         if (source == itemDataTimeQuestion) {
