@@ -160,7 +160,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
         }
         
         if (source == itemDataTimeQuestion) {
-            
+            AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemGridQuestion) {
