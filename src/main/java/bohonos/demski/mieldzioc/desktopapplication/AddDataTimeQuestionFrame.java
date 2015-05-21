@@ -8,14 +8,19 @@ package bohonos.demski.mieldzioc.desktopapplication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Delirus
  */
 public class AddDataTimeQuestionFrame extends JFrame implements ActionListener{
+    
     private ApplicationLogic applicationLogic;
     private CreatorFrame creatorFrame;
+    //private JTextField titleField, descriptionField;
+    //private JLabel titleLabel, descriptionLabel;
     
     public AddDataTimeQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
         super("Dodaj pytanie typu DataTime");
