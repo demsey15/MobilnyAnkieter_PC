@@ -105,6 +105,12 @@ public class ApplicationLogic {
         loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
         intervierwsRepository = new InterviewersRepository();
     }
+    
+    /**
+     * adds interviewer to repository
+     * @param interv interviewer to add
+     * @return true, if interviewer was added, or false, if such interviewer already exists
+     */
     public boolean addInterviewer(Interviewer interv){
         return intervierwsRepository.addInterviewer(interv);
     }

@@ -116,29 +116,6 @@ public class CreatorFrame extends JFrame implements ActionListener {
         if (tabbedPane.indexOfTab(id) == -1) {
             tabbedPane.addTab(id, surveyPanel);
         }
-        /*int index = tabbedPane.indexOfTab(id);
-        JPanel panelTab = new JPanel(new GridBagLayout());
-        panelTab.setOpaque(false);
-        JLabel labelTitle = new JLabel(id);
-        JButton closeButton = new JButton("x");
-        
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-        
-        panelTab.add(labelTitle, gbc);
-        
-        gbc.gridx++;
-        gbc.weightx = 0;
-        panelTab.add(closeButton, gbc);
-        
-        tabbedPane.setTabComponentAt(index, panelTab);
-        
-        
-        closeButton.addActionListener(this);
-        
-        */
     }
     
     public void actionPerformed(ActionEvent ae) {
@@ -146,9 +123,6 @@ public class CreatorFrame extends JFrame implements ActionListener {
         
         if (source == itemNewSurvey) {
             CreatingSurveyFrame creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, this);
-            //String idOfSurvey = applicationLogic.newSurvey();
-            //SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, idOfSurvey);
-            //tabbedPane.addTab("id ankiety: " + idOfSurvey, surveyPanel);
         }
         
         if (source == itemCopyOldSurvey) {
@@ -182,26 +156,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
         if (source == itemTextQuestion) {
             
         }
-        
-        //Component selectedTab = tabbedPane.getSelectedComponent();
-        //int selectedTab = tabbedPane.indexOfTab(getName());
-        //if(selectedTab>=0){
-        //if (selectedTab != null) {
-        //   tabbedPane.remove(selectedTab);
-        //}
-        
-        /*JButton btn = (JButton) ae.getSource();
-        String s1 = btn.getActionCommand();
-        for (int counter = 1; counter < tabbedPane.getTabCount(); counter++) {
-            JPanel pnl = (JPanel) tabbedPane.getTabComponentAt(counter);
-            btn = (JButton) pnl.getComponent(0);
-            String s2 = btn.getActionCommand();
-            if (s1.equals(s2)) {
-                tabbedPane.removeTabAt(counter);
-                break;
-            }
-        }*/
-        
+
     }
     
 }
