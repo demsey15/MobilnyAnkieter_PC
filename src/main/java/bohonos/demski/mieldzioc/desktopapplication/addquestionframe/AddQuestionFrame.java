@@ -41,18 +41,42 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         applicationLogic = appLogic;
         creatorFrame = crFrame;
         
-        setSize(300, 300);
+        setSize(500, 300);
         setLocation(400,300);
         setResizable(false);
         this.setLayout(null);
         
+        questionLabel = new JLabel("pytanie: ");
+        questionLabel.setBounds(20, 10, 170, 25);
+        this.add(questionLabel);
+         
+        questionField = new JTextField();
+        questionField.setBounds(180, 10, 300, 25);
+        this.add(questionField);
+        
+        hintLabel = new JLabel("wskazówka: ");
+        hintLabel.setBounds(20, 50, 170, 25);
+        this.add(hintLabel);
+
+        hintField = new JTextField();
+        hintField.setBounds(180, 50, 300, 25);
+        this.add(hintField);
+        
+        errorMessageLabel = new JLabel("informacja o b³êdzie: ");
+        errorMessageLabel.setBounds(20, 90, 170, 25);
+        this.add(errorMessageLabel);
+
+        errorMessageField = new JTextField();
+        errorMessageField.setBounds(180, 90, 300, 25);
+        this.add(errorMessageField);
+        
         addButton = new JButton("Dodaj");
-        addButton.setBounds(160, 200, 100, 40);
+        addButton.setBounds(260, 200, 120, 40);
         this.add(addButton);
         addButton.addActionListener(this);
         
         cancelButton = new JButton("Anuluj");
-        cancelButton.setBounds(40, 200, 100, 40);
+        cancelButton.setBounds(100, 200, 120, 40);
         this.add(cancelButton);
         cancelButton.addActionListener(this);
         
@@ -77,7 +101,8 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         
         if (source==addButton) {
             if (questionConditions()==true) {
-                
+                // to do
+                dispose();
             }
         }
     }
