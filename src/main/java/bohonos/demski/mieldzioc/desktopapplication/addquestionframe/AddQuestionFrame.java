@@ -70,6 +70,12 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         errorMessageField.setBounds(180, 90, 300, 25);
         this.add(errorMessageField);
         
+        buttonGroup = new ButtonGroup();
+        obligatoryButton = new JRadioButton("Czy pytanie jest obowi¹zkowe?");
+        obligatoryButton.setBounds(180, 130, 300, 25);
+        buttonGroup.add(obligatoryButton);
+        this.add(obligatoryButton);
+        
         addButton = new JButton("Dodaj");
         addButton.setBounds(260, 200, 120, 40);
         this.add(addButton);
