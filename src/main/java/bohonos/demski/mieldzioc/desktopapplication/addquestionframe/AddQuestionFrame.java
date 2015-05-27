@@ -43,7 +43,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     
     protected ApplicationLogic applicationLogic;
     protected CreatorFrame creatorFrame;
-    protected JButton addButton, cancelButton;
+    protected JButton addButton, cancelButton, addAnswerButton;
     protected JTextField questionField, hintField, errorMessageField;
     protected JLabel questionLabel, hintLabel, errorMessageLabel;
     protected JCheckBox obligatoryBox;
@@ -105,30 +105,45 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         this.add(cancelButton);
         cancelButton.addActionListener(this);
         
+        addAnswerButton = new JButton("Dodaj odpowiedü");
+        addAnswerButton.addActionListener(this);
+        
         setVisible(true);
     }
     
     /**
-     * checks, if all conditions are satisfied (has to be overwrite)
+     * checks, if all conditions are satisfied (has to be overwriten)
      * @return true, iff conditions are satisfied
      */
     protected Boolean questionConditions() {
         return true;
+    }
+    
+    /**
+     * adds answer to MultipleChoiceQuestion and OneChoiceQuestion (has to be overwriten)
+     * @param answer answer to add
+     */
+    protected void addAnswer(String answer) {
+        
     }
 
     public void actionPerformed(ActionEvent ae) {
         
         Object source = ae.getSource();
         
-        if (source==cancelButton) {
+        if (source == cancelButton) {
             dispose();
         }
         
-        if (source==addButton) {
+        if (source == addButton) {
             if (questionConditions()==true) {
                 // to do
                 dispose();
             }
+        }
+        
+        if (source == addAnswerButton) {
+            AddAnswerFrame addAnswerFrame = new AddAnswerFrame(applicationLogic, this);
         }
     }
     

@@ -19,6 +19,10 @@ import javax.swing.JLabel;
  */
 public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
     
+    private final int ANSWER_BUTTONS_X_POSITION = 450;
+    private final int ANSWER_BUTTONS_WIDTH = 130;
+    private final int ANSWER_BUTTONS_HEIGHT = 40;
+    
     private List<String> answers;
     
     private JLabel answerLabel;
@@ -33,7 +37,9 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
         answerLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(answerLabel);
         
-        // to do
+        addAnswerButton.setBounds(ANSWER_BUTTONS_X_POSITION, CURRENT_Y_POSITION, ANSWER_BUTTONS_WIDTH, ANSWER_BUTTONS_HEIGHT);
+        this.add(addAnswerButton);
+        
         
         CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
 
@@ -48,4 +54,9 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
         return true;
     }
 
+    @Override
+    protected void addAnswer(String answer) {
+        
+    }
+    
 }

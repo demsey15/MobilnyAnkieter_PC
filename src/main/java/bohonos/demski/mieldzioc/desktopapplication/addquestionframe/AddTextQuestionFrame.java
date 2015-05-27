@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  */
 public class AddTextQuestionFrame extends AddQuestionFrame {
     
-    protected final int NUMBER_FIELDS_WIDTH = 60;
+    private final int NUMBER_FIELDS_WIDTH = 60;
 
     private int maxLength;
     private int minLength;

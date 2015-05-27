@@ -21,10 +21,10 @@ import javax.swing.JTextField;
  */
 public class AddAnswerFrame extends JFrame implements ActionListener {
     
-    private final int CANCEL_BUTTON_X_POSITION = 80;
-    private final int ADD_BUTTON_X_POSITION = 260;
-    private final int CANCEL_BUTTON_Y_POSITION = 140;
-    private final int ADD_BUTTON_Y_POSITION = 140;
+    private final int CANCEL_BUTTON_X_POSITION = 60;
+    private final int ADD_BUTTON_X_POSITION = 240;
+    private final int CANCEL_BUTTON_Y_POSITION = 110;
+    private final int ADD_BUTTON_Y_POSITION = 110;
     private final int BUTTON_WIDTH = 120;
     private final int BUTTON_HEIGHT = 40;
     private final int LABEL_X_POSITION = 20;
