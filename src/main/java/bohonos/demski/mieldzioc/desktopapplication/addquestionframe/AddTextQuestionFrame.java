@@ -58,5 +58,10 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
         cancelButton.setBounds(CANCEL_BUTTON_X_POSITION, CURRENT_Y_POSITION + SPACE_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
 
     }
+    
+    @Override
+    protected Boolean questionConditions() {
+        return true;
+    }
 
 }
