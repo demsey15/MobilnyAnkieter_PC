@@ -9,17 +9,31 @@ import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
 /**
  *
  * @author Andrzej
  */
 public class AddQuestionFrame extends JFrame implements ActionListener {
+    
+    protected final int LABELS_WIDTH = 200;
+    protected final int LABELS_HEIGHT = 25;
+    protected final int LABELS_X_POSITION = 20;
+    protected final int FIELDS_WIDTH = 300;
+    protected final int FIELDS_HEIGHT = 25;
+    protected final int FIELDS_X_POSITION = 220;
+    protected final int SPACE_HEIGHT = 15;
+    protected final int CANCEL_BUTTON_X_POSITION = 140;
+    protected final int ADD_BUTTON_X_POSITION = 300;
+    protected final int BUTTON_WIDTH = 120;
+    protected final int BUTTON_HEIGHT = 40;
+    
+    protected int CURRENT_Y_POSITION = 10;
     
     protected Boolean obligatory;
     protected String question = "";
@@ -32,8 +46,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     protected JButton addButton, cancelButton;
     protected JTextField questionField, hintField, errorMessageField;
     protected JLabel questionLabel, hintLabel, errorMessageLabel;
-    protected ButtonGroup buttonGroup;
-    protected JRadioButton obligatoryButton;
+    protected JCheckBox obligatoryBox;
     
     public AddQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
         super("Dodaj pytanie");
@@ -41,48 +54,54 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         applicationLogic = appLogic;
         creatorFrame = crFrame;
         
-        setSize(500, 300);
+        setSize(600, 300);
         setLocation(400,300);
         setResizable(false);
         this.setLayout(null);
         
         questionLabel = new JLabel("pytanie: ");
-        questionLabel.setBounds(20, 10, 170, 25);
+        questionLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(questionLabel);
          
         questionField = new JTextField();
-        questionField.setBounds(180, 10, 300, 25);
+        questionField.setBounds(FIELDS_X_POSITION, CURRENT_Y_POSITION, FIELDS_WIDTH, FIELDS_HEIGHT);
         this.add(questionField);
         
+        CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
+        
         hintLabel = new JLabel("wskazówka: ");
-        hintLabel.setBounds(20, 50, 170, 25);
+        hintLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(hintLabel);
 
         hintField = new JTextField();
-        hintField.setBounds(180, 50, 300, 25);
+        hintField.setBounds(FIELDS_X_POSITION, CURRENT_Y_POSITION, FIELDS_WIDTH, FIELDS_HEIGHT);
         this.add(hintField);
         
+        CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
+        
         errorMessageLabel = new JLabel("informacja o b³êdzie: ");
-        errorMessageLabel.setBounds(20, 90, 170, 25);
+        errorMessageLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(errorMessageLabel);
 
         errorMessageField = new JTextField();
-        errorMessageField.setBounds(180, 90, 300, 25);
+        errorMessageField.setBounds(FIELDS_X_POSITION, CURRENT_Y_POSITION, FIELDS_WIDTH, FIELDS_HEIGHT);
         this.add(errorMessageField);
         
-        buttonGroup = new ButtonGroup();
-        obligatoryButton = new JRadioButton("Czy pytanie jest obowi¹zkowe?");
-        obligatoryButton.setBounds(180, 130, 300, 25);
-        buttonGroup.add(obligatoryButton);
-        this.add(obligatoryButton);
+        CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
+        
+        obligatoryBox = new JCheckBox("pytanie obowi¹zkowe");
+        obligatoryBox.setBounds(FIELDS_X_POSITION, CURRENT_Y_POSITION, FIELDS_WIDTH, FIELDS_HEIGHT);
+        this.add(obligatoryBox);
+        
+        CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
         
         addButton = new JButton("Dodaj");
-        addButton.setBounds(260, 200, 120, 40);
+        addButton.setBounds(ADD_BUTTON_X_POSITION, CURRENT_Y_POSITION + SPACE_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         this.add(addButton);
         addButton.addActionListener(this);
         
         cancelButton = new JButton("Anuluj");
-        cancelButton.setBounds(100, 200, 120, 40);
+        cancelButton.setBounds(CANCEL_BUTTON_X_POSITION, CURRENT_Y_POSITION + SPACE_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
         this.add(cancelButton);
         cancelButton.addActionListener(this);
         
