@@ -58,7 +58,7 @@ public class AddAnswerFrame extends JFrame implements ActionListener {
         setResizable(false);
         this.setLayout(null);
         
-        answerLabel = new JLabel("pytanie: ");
+        answerLabel = new JLabel("odpowiedü: ");
         answerLabel.setBounds(LABEL_X_POSITION, LABEL_Y_POSITION, LABEL_WIDTH, LABEL_HEIGHT);
         this.add(answerLabel);
          
@@ -88,8 +88,11 @@ public class AddAnswerFrame extends JFrame implements ActionListener {
         }
         
         if (source == addButton) {
-            //to do
-            dispose();
+            answer = answerField.getText();
+            //if (answer.equals("")==false) {
+                addQuestionFrame.addAnswer(answer);
+                dispose();
+            //}
         }
         
     }

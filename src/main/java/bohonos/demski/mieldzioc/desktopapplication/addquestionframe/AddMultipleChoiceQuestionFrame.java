@@ -9,9 +9,14 @@ import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -22,14 +27,23 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
     private final int ANSWER_BUTTONS_X_POSITION = 450;
     private final int ANSWER_BUTTONS_WIDTH = 130;
     private final int ANSWER_BUTTONS_HEIGHT = 40;
+    private final int LIST_X_POSITION = 220;
+    private final int LIST_WIDTH = 220;
+    private final int LIST_HEIGHT = 200;
+    private final int BUTTONS_Y_POSITION = 400;
     
     private List<String> answers;
+    private List<String> selectedAnswers;
     
     private JLabel answerLabel;
+    private JList answerList;
+    private DefaultListModel answerListItems;
     
     public AddMultipleChoiceQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
         
         super(appLogic, crFrame);
+        
+        answers = new ArrayList<String>();
         
         this.setSize(600, 500);
         
@@ -37,15 +51,28 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
         answerLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(answerLabel);
         
+        answerListItems = new DefaultListModel();
+        answerList = new JList(answerListItems);
+        answerList.setBounds(LIST_X_POSITION, CURRENT_Y_POSITION, LIST_WIDTH, LIST_HEIGHT);
+        ListSelectionListener lsl = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                selectedAnswers = answerList.getSelectedValuesList();
+            }
+        };
+        this.add(answerList);
+        answerList.addListSelectionListener(lsl);
+        
         addAnswerButton.setBounds(ANSWER_BUTTONS_X_POSITION, CURRENT_Y_POSITION, ANSWER_BUTTONS_WIDTH, ANSWER_BUTTONS_HEIGHT);
         this.add(addAnswerButton);
         
+        CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT + SPACE_HEIGHT;
         
-        CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
+        deleteAnswerButton.setBounds(ANSWER_BUTTONS_X_POSITION, CURRENT_Y_POSITION, ANSWER_BUTTONS_WIDTH, ANSWER_BUTTONS_HEIGHT);
+        this.add(deleteAnswerButton);
 
-        addButton.setBounds(ADD_BUTTON_X_POSITION, CURRENT_Y_POSITION + SPACE_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
+        addButton.setBounds(ADD_BUTTON_X_POSITION, BUTTONS_Y_POSITION, BUTTON_WIDTH, BUTTON_HEIGHT);
 
-        cancelButton.setBounds(CANCEL_BUTTON_X_POSITION, CURRENT_Y_POSITION + SPACE_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
+        cancelButton.setBounds(CANCEL_BUTTON_X_POSITION, BUTTONS_Y_POSITION, BUTTON_WIDTH, BUTTON_HEIGHT);
         
     }
     
@@ -56,7 +83,14 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
 
     @Override
     protected void addAnswer(String answer) {
-        
+        answers.add(answer);
+        answerListItems.addElement(answer);
+    }
+    
+    @Override
+    protected void deleteAnswer() {
+            answers.remove(selectedAnswers.get(0));
+            answerListItems.removeElement(selectedAnswers.get(0));
     }
     
 }

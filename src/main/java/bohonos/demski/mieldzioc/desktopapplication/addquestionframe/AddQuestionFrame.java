@@ -43,7 +43,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     
     protected ApplicationLogic applicationLogic;
     protected CreatorFrame creatorFrame;
-    protected JButton addButton, cancelButton, addAnswerButton;
+    protected JButton addButton, cancelButton, addAnswerButton, deleteAnswerButton;
     protected JTextField questionField, hintField, errorMessageField;
     protected JLabel questionLabel, hintLabel, errorMessageLabel;
     protected JCheckBox obligatoryBox;
@@ -108,6 +108,9 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         addAnswerButton = new JButton("Dodaj odpowiedü");
         addAnswerButton.addActionListener(this);
         
+        deleteAnswerButton = new JButton("UsuÒ odpowiedü");
+        deleteAnswerButton.addActionListener(this);
+        
         setVisible(true);
     }
     
@@ -124,6 +127,13 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
      * @param answer answer to add
      */
     protected void addAnswer(String answer) {
+        
+    }
+    
+    /**
+     * removes chosen answer from the list (has to be overwriten)
+     */
+    protected void deleteAnswer() {
         
     }
 
@@ -144,6 +154,10 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         
         if (source == addAnswerButton) {
             AddAnswerFrame addAnswerFrame = new AddAnswerFrame(applicationLogic, this);
+        }
+        
+        if (source == deleteAnswerButton) {
+            this.deleteAnswer();
         }
     }
     
