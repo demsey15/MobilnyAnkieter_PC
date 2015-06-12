@@ -21,17 +21,19 @@ import javax.swing.JTextField;
 public class CreatingSurveyFrame extends JFrame implements ActionListener {
     
     private ApplicationLogic applicationLogic;
+    private CreatorFrame creatorFrame;
     private String idOfSurvey;
-    private JButton saveButton;
+    private JButton saveButton, cancelButton;
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
-    public CreatingSurveyFrame(ApplicationLogic appLogic, String id) {
+    public CreatingSurveyFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
         
         super("nowa ankieta");
         
         applicationLogic = appLogic;
-        idOfSurvey = id;
+        creatorFrame = crFrame;
+        //idOfSurvey = id;
         
         setSize(300, 300);
         setLocation(400,300);
@@ -55,9 +57,14 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
         this.add(descriptionField);
         
         saveButton = new JButton("Zapisz");
-        saveButton.setBounds(100, 200, 100, 40);
+        saveButton.setBounds(160, 200, 100, 40);
         this.add(saveButton);
         saveButton.addActionListener(this);
+        
+        cancelButton = new JButton("Anuluj");
+        cancelButton.setBounds(40, 200, 100, 40);
+        this.add(cancelButton);
+        cancelButton.addActionListener(this);
         
         setVisible(true);
         
@@ -73,9 +80,15 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
         
         if (source == saveButton) {
             if (titleField.getText().equals("")==false) {
-                //to do
+                String idOfSurvey = applicationLogic.newSurvey();
+                applicationLogic.setSurveyTitle(idOfSurvey, titleField.getText());
+                applicationLogic.setSurveyDescription(idOfSurvey, descriptionField.getText());
+                creatorFrame.addSurveyPanel(idOfSurvey);
                 dispose();
             }
+        }
+        if (source == cancelButton) {
+            dispose();
         }
     }
     

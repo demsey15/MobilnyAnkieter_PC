@@ -101,5 +101,7 @@ public class InterviewersRepository {
   public boolean equalsInterviewers(Interviewer man1,Interviewer man2){
         return man1.getId().equals(man2.getId());
   }
+  
+
   //edytowanie listy , usuwanie ankieterów i te sprawy trzeba dodaæ
 }

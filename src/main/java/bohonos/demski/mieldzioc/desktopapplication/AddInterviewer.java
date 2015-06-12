@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -106,6 +107,7 @@ public class AddInterviewer extends JFrame implements ActionListener{
             //System.exit(0);
         }
         if(source == createinterv){
+            //JOptionPane optionPane;
             Date now = new Date();
             GregorianCalendar cal = new GregorianCalendar();
             now=(Date) jdate.getValue();
@@ -113,7 +115,11 @@ public class AddInterviewer extends JFrame implements ActionListener{
             String myid = jid.getText();
             Interviewer newinterv = new Interviewer(jname.getText(),jsurname.getText(),myid, cal);
              //to bêdzie musia³o byæ gdzie indziej, jeden obiekt tylko tej klasy zostanie stworzony
-            System.out.println(appsLogic.addInterviewer(newinterv));
+            if(appsLogic.addInterviewer(newinterv))
+                JOptionPane.showMessageDialog(this, "Dodano ankietera");
+            else
+                JOptionPane.showMessageDialog(this, "Nie dodano ankietera");
+                
             //dispose();
         }
         

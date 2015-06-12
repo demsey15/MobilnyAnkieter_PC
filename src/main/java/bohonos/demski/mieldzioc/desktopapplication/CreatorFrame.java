@@ -5,14 +5,24 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddTextQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddScaleQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddOneChoiceQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddMultipleChoiceQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddGridQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddDataTimeQuestionFrame;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -37,7 +47,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
     private JMenuItem itemScaleQuestion;
     private JMenuItem itemTextQuestion;
     
-    private JTabbedPane tabbedPane;
+    private CloseButtonTabbedPane tabbedPane;
     
     private ApplicationLogic applicationLogic;
     
@@ -98,51 +108,61 @@ public class CreatorFrame extends JFrame implements ActionListener {
         menuBar.add(menuQuestion);
         setJMenuBar(menuBar);
         
-        tabbedPane = new JTabbedPane();
+        tabbedPane = new CloseButtonTabbedPane();
         add(tabbedPane);   
         setVisible(true);
+    }
+    
+    /**
+     * adds new tab containing survey template with given id
+     * @param id id of survey template
+     */
+    public void addSurveyPanel(String id) {
+        SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, id);
+        if (tabbedPane.indexOfTab(id) == -1) {
+            tabbedPane.addTab(id, surveyPanel);
+        }
     }
     
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
         
         if (source == itemNewSurvey) {
-            String idOfSurvey = applicationLogic.newSurvey();
-            SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, idOfSurvey);
-            tabbedPane.addTab("id ankiety: " + idOfSurvey, surveyPanel);
+            CreatingSurveyFrame creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, this);
         }
         
         if (source == itemCopyOldSurvey) {
-            
+            CopingSurveyFrame copingSurveyFrame = new CopingSurveyFrame(applicationLogic, this);
         }
         
         if (source == itemEditSurvey) {
-            
+            LoadingSurveyFrame loadingSurveyFrame = new LoadingSurveyFrame(applicationLogic, this);
         }
         
         if (source == itemDataTimeQuestion) {
-            
+            AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemGridQuestion) {
-            
+            AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemMultipleChioceQuestion) {
-            
+            AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemOneChoiceQuestion) {
-            
+            AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemScaleQuestion) {
-            
+            AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(applicationLogic, this);
         }
         
         if (source == itemTextQuestion) {
-            
+            AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(applicationLogic, this);
         }
+
     }
     
 }
