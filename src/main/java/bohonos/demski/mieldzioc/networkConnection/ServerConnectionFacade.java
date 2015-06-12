@@ -38,8 +38,8 @@ import com.google.gson.Gson;
 public class ServerConnectionFacade {
 	
 	public final static int PORT = 8046;
-	public final static String HOST = "192.168.0.104";
-//	public final static String HOST = "150.254.78.24";
+//	public final static String HOST = "192.168.0.104";
+	public final static String HOST = "150.254.79.9";
 	
 	public final static int BAD_DATA_FORMAT = -2;
 	public final static int UNKNOWN_FAIL = -1;
