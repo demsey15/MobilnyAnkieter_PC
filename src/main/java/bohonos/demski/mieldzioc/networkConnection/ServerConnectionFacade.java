@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import bohonos.demski.mieldzioc.constraints.IConstraint;
 import bohonos.demski.mieldzioc.constraints.NumberConstraint;
@@ -130,7 +131,8 @@ public class ServerConnectionFacade {
 			disconnect();
 			return AUTHORIZATION_FAILED; 
 		}
-		sendObject(survey);
+		//sendObject(survey);
+		sendSurveyTemplate(survey);
 		int status = readInt();
 		disconnect();
 		return status; 
@@ -965,11 +967,56 @@ public class ServerConnectionFacade {
 		return null;
 	}
 	
+	private void sendSurveyTemplate(Survey survey){
+		sendString(survey.getTitle());
+		sendString(survey.getDescription());
+		sendString(survey.getSummary());
+		sendString(survey.getIdOfSurveys());
+		Gson gson = new Gson();
+		sendString(gson.toJson(survey.getInterviewer()));
+		int i = survey.questionListSize();
+		sendInt(i);
+		for(int j = 0; j < i; j++){
+			Question question = survey.getQuestion(j);
+			int type = question.getQuestionType();
+			sendInt(type);
+			if(type == Question.TEXT_QUESTION){
+				TextQuestion txt = (TextQuestion) question;
+				sendString(txt.getErrorMessage());
+				sendString(txt.getHint());
+				sendString(txt.getPictureURL());
+				sendString(txt.getQuestion());
+				IConstraint constraint = txt.getConstraint();
+				if(constraint instanceof TextConstraint){
+					sendString("text");
+					TextConstraint textConst = (TextConstraint) constraint;
+					sendString((textConst.getMaxLength() == null)? "null" : "" + textConst.getMaxLength());
+					sendString((textConst.getMinLength() == null)? "null" : "" + textConst.getMinLength());
+					sendString((textConst.getRegex() == null)? "null" : textConst.getRegex().pattern());
+				}
+				else{
+					sendString("number");
+					NumberConstraint numbConst = (NumberConstraint) constraint;
+					sendString((numbConst.getMaxValue() == null)? "null" : "" + numbConst.getMaxValue());
+					sendString((numbConst.getMinValue() == null)? "null" : "" + numbConst.getMinValue());
+					sendString((numbConst.getNotEquals() == null)? "null" : "" + numbConst.getNotEquals());
+					sendString((numbConst.isMustBeInteger())? "true" : "false");
+					sendString((numbConst.isNotBetweenMaxAndMinValue())? "true" : "false");
+					System.out.println("Ograniczenie liczbowe min: " + ((((NumberConstraint) constraint).getMinValue() == null)? "null" : ((NumberConstraint) constraint).getMinValue()));
+				}
+			}
+			else{
+				sendString(question.toJson());
+			}
+		}
+	}
+	
 	private Survey receiveSurveyTemplate(){
 		Survey survey = new Survey(null);
-		survey.setTitle(readString());
-		survey.setDescription(readString());
-		survey.setSummary(readString());
+		String read1;
+		survey.setTitle(((read1 = readString()) == null)? null : read1);
+		survey.setDescription(((read1 = readString()) == null)? null : read1);
+		survey.setSummary(((read1 = readString()) == null)? null : read1);
 		survey.setIdOfSurveys(readString());
 		Gson gson = new Gson();
 		survey.setInterviewer(gson.fromJson(readString(), Interviewer.class));
@@ -1002,10 +1049,23 @@ public class ServerConnectionFacade {
 				IConstraint constraint;
 				String s = readString();
 				if(s.equals("text")){
-					constraint = gson.fromJson(readString(), TextConstraint.class);
+					String read;
+					Integer maxLength = ((read = readString()).equals("null"))? null : Integer.parseInt(read);
+					Integer minLength = ((read = readString()).equals("null"))? null : Integer.parseInt(read);
+					String regexS = ((read = readString()).equals("null"))? null : read;
+					Pattern regex = null;
+					if(regexS != null)
+						regex = Pattern.compile(regexS);
+					constraint = new TextConstraint(minLength, maxLength, regex);
 				}
 				else{
-					constraint = gson.fromJson(readString(), NumberConstraint.class);
+					String read;
+					Double maxValue = ((read = readString()).equals("null"))? null : Double.parseDouble(read);
+					Double minValue = ((read = readString()).equals("null"))? null : Double.parseDouble(read);
+					Double notEquals = ((read = readString()).equals("null"))? null : Double.parseDouble(read);
+					boolean mustBeInteger = Boolean.valueOf(readString());
+					boolean notBetweenMaxAndMinValue = Boolean.valueOf(readString());
+					constraint = new NumberConstraint(minValue, maxValue, mustBeInteger, notEquals, notBetweenMaxAndMinValue);
 				}
 				txt.setConstraint(constraint);
 				question = txt;
