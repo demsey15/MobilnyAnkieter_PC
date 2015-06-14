@@ -39,7 +39,7 @@ public class ServerConnectionFacade {
 	
 	public final static int PORT = 8046;
 //	public final static String HOST = "192.168.0.104";
-	public final static String HOST = "150.254.79.9";
+	public final  String HOST;// = "150.254.79.9";
 	
 	public final static int BAD_DATA_FORMAT = -2;
 	public final static int UNKNOWN_FAIL = -1;
@@ -94,8 +94,14 @@ public class ServerConnectionFacade {
 	private Socket socketChannel;
 	private Scanner in;
 	private PrintWriter out;
-	private Gson gson = new Gson();
+	//private Gson gson = new Gson();
 	
+	
+	
+	public ServerConnectionFacade(String host) {
+		this.HOST = host;
+	}
+
 	/**
 	 * Wysy³a nowy szablon ankiety na serwer.
 	 * @param survey szablon.
@@ -1010,7 +1016,7 @@ public class ServerConnectionFacade {
 	}
 	
 	public static void main(String[] args) {
-		ServerConnectionFacade facade = new ServerConnectionFacade();
+		ServerConnectionFacade facade = new ServerConnectionFacade("150.254.79.9");
 		Interviewer interviewer = new Interviewer("", "", "12345678999", new GregorianCalendar());
 		interviewer.setInterviewerPrivileges(true);
 		Survey survey = new Survey(interviewer);
