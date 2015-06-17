@@ -37,6 +37,10 @@ public class ApplicationLogic {
         return instance;
     }
     
+    public SurveyHandler getSurveyHandler() {
+        return surveyHandler;
+    }
+    
     /**
      * adds new survey template to survey handler
      * @return id of new survey template

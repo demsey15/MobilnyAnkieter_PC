@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -48,7 +49,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     protected JLabel questionLabel, hintLabel, errorMessageLabel;
     protected JCheckBox obligatoryBox;
     
-    public AddQuestionFrame(CreatorFrame crFrame) {
+    public AddQuestionFrame(Survey survey, CreatorFrame crFrame) {
         super("Dodaj pytanie");
         
         applicationLogic = ApplicationLogic.getInstance();

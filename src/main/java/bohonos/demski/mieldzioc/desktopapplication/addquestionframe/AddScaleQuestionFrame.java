@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -18,9 +19,9 @@ import javax.swing.JFrame;
 public class AddScaleQuestionFrame extends AddQuestionFrame {
     
     
-    public AddScaleQuestionFrame(CreatorFrame crFrame) {
+    public AddScaleQuestionFrame(Survey survey, CreatorFrame crFrame) {
         
-        super(crFrame);
+        super(survey, crFrame);
         
         
     }

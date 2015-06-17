@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
@@ -26,9 +27,9 @@ public class AddDataTimeQuestionFrame extends AddQuestionFrame {
     private JCheckBox onlyDateBox;
     private JCheckBox onlyTimeBox;
     
-    public AddDataTimeQuestionFrame(CreatorFrame crFrame) {
+    public AddDataTimeQuestionFrame(Survey survey, CreatorFrame crFrame) {
         
-        super(crFrame);
+        super(survey, crFrame);
         
         this.setSize(600, 400);
         

@@ -5,6 +5,7 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
+import bohonos.demski.mieldzioc.survey.Survey;
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddTextQuestionFrame;
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddScaleQuestionFrame;
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddOneChoiceQuestionFrame;
@@ -121,6 +122,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
         SurveyPanel surveyPanel = new SurveyPanel(id);
         if (tabbedPane.indexOfTab(id) == -1) {
             tabbedPane.addTab(id, surveyPanel);
+            tabbedPane.setName(id);
         }
     }
     
@@ -140,27 +142,45 @@ public class CreatorFrame extends JFrame implements ActionListener {
         }
         
         if (source == itemDataTimeQuestion) {
-            AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(this);
+            if (tabbedPane.getSelectedIndex()!=-1) {
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(survey, this);
+            }
         }
         
         if (source == itemGridQuestion) {
-            AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(this);
+            if (tabbedPane.getSelectedIndex()!=-1) {
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(survey, this);
+            }
         }
         
         if (source == itemMultipleChioceQuestion) {
-            AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(this);
+            if (tabbedPane.getSelectedIndex()!=-1) {
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(survey, this);
+            }
         }
         
         if (source == itemOneChoiceQuestion) {
-            AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(this);
+            if (tabbedPane.getSelectedIndex()!=-1) {
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(survey, this);
+            }
         }
         
         if (source == itemScaleQuestion) {
-            AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(this);
+            if (tabbedPane.getSelectedIndex()!=-1) {
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(survey, this);
+            }
         }
         
         if (source == itemTextQuestion) {
-            AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(this);
+            if (tabbedPane.getSelectedIndex()!=-1) {
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(survey, this);
+            }
         }
 
     }
