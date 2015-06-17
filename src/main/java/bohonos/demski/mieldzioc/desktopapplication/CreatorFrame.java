@@ -122,7 +122,6 @@ public class CreatorFrame extends JFrame implements ActionListener {
         SurveyPanel surveyPanel = new SurveyPanel(id);
         if (tabbedPane.indexOfTab(id) == -1) {
             tabbedPane.addTab(id, surveyPanel);
-            tabbedPane.setName(id);
         }
     }
     
@@ -143,42 +142,48 @@ public class CreatorFrame extends JFrame implements ActionListener {
         
         if (source == itemDataTimeQuestion) {
             if (tabbedPane.getSelectedIndex()!=-1) {
-                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
                 AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(survey, this);
             }
         }
         
         if (source == itemGridQuestion) {
             if (tabbedPane.getSelectedIndex()!=-1) {
-                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
                 AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(survey, this);
             }
         }
         
         if (source == itemMultipleChioceQuestion) {
             if (tabbedPane.getSelectedIndex()!=-1) {
-                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
                 AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(survey, this);
             }
         }
         
         if (source == itemOneChoiceQuestion) {
             if (tabbedPane.getSelectedIndex()!=-1) {
-                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
                 AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(survey, this);
             }
         }
         
         if (source == itemScaleQuestion) {
             if (tabbedPane.getSelectedIndex()!=-1) {
-                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
                 AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(survey, this);
             }
         }
         
         if (source == itemTextQuestion) {
             if (tabbedPane.getSelectedIndex()!=-1) {
-                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabbedPane.getName());
+                String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
+                Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
                 AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(survey, this);
             }
         }
