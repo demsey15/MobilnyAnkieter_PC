@@ -26,9 +26,9 @@ public class SurveyPanel extends JPanel implements ActionListener {
     
     private CreatingSurveyFrame creatingSurveyFrame;
     
-    public SurveyPanel(ApplicationLogic appLogic, String id) {
+    public SurveyPanel(String id) {
         
-        applicationLogic = appLogic;
+        applicationLogic = ApplicationLogic.getInstance();
         idOfSurvey = id;
         //creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, id);
         //saveButton = creatingSurveyFrame.addActionListenerSave(this);

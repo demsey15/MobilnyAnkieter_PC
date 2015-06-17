@@ -27,11 +27,11 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
-    public CreatingSurveyFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+    public CreatingSurveyFrame(CreatorFrame crFrame) {
         
         super("nowa ankieta");
         
-        applicationLogic = appLogic;
+        applicationLogic = ApplicationLogic.getInstance();
         creatorFrame = crFrame;
         //idOfSurvey = id;
         

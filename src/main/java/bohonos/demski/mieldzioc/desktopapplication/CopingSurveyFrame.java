@@ -34,9 +34,9 @@ public class CopingSurveyFrame extends JFrame implements ActionListener{
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
-    public CopingSurveyFrame(ApplicationLogic applicationLogic, CreatorFrame creatorFrame){
+    public CopingSurveyFrame(CreatorFrame creatorFrame){
         super("nowa ankieta na podstawie...");
-        this.applicationLogic = applicationLogic;
+        applicationLogic = ApplicationLogic.getInstance();
         this.creatorFrame = creatorFrame;
         
         titleLabel = new JLabel("tytu³: ");
