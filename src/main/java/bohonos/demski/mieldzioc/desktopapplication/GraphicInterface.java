@@ -27,11 +27,11 @@ public class GraphicInterface extends JFrame implements ActionListener{
     private JPanel panel;
    // private GridLayout gridLayout ;
     private Container con;
-    private final ApplicationLogic appsLogic;
+    private final ApplicationLogic applicationLogic;
     
     public GraphicInterface(){
         super("Bezpieczny ankieter");
-        appsLogic = new ApplicationLogic();
+        applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){
@@ -86,7 +86,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
             EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-                            InterviewerFrame menageinterv= new InterviewerFrame(appsLogic);
+                            InterviewerFrame menageinterv= new InterviewerFrame();
                         }
 		});
         }
@@ -94,7 +94,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
             EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    CreatorFrame creator = new CreatorFrame(appsLogic);
+                    CreatorFrame creator = new CreatorFrame();
                 }
             });
         }

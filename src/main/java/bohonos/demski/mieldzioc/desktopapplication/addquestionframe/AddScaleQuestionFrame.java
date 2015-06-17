@@ -18,9 +18,9 @@ import javax.swing.JFrame;
 public class AddScaleQuestionFrame extends AddQuestionFrame {
     
     
-    public AddScaleQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+    public AddScaleQuestionFrame(CreatorFrame crFrame) {
         
-        super(appLogic, crFrame);
+        super(crFrame);
         
         
     }

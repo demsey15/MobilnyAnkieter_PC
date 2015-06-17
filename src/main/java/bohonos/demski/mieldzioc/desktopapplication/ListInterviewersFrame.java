@@ -30,7 +30,7 @@ import javax.swing.event.ListSelectionListener;
  * @author Delirus
  */
 public class ListInterviewersFrame extends JFrame implements ActionListener{
-    private ApplicationLogic appsLogic;
+    private ApplicationLogic applicationLogic;
     private JPanel panel;
     private Container con;
     private JButton close;
@@ -49,10 +49,10 @@ public class ListInterviewersFrame extends JFrame implements ActionListener{
       return listModel;
   }
     
-    public ListInterviewersFrame(ApplicationLogic appsLogic){
+    public ListInterviewersFrame(){
         super("Lista ankieterów");
-        this.appsLogic=appsLogic;
-        allInterviewers=appsLogic.getInterviewers();
+        applicationLogic = ApplicationLogic.getInstance();
+        allInterviewers=applicationLogic.getInterviewers();
         addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){

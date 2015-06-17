@@ -18,9 +18,9 @@ import javax.swing.JFrame;
 public class AddGridQuestionFrame extends AddQuestionFrame {
     
     
-    public AddGridQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+    public AddGridQuestionFrame(CreatorFrame crFrame) {
         
-        super(appLogic, crFrame);
+        super(crFrame);
         
         
     }

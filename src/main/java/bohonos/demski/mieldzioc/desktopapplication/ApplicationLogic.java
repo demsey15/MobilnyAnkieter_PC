@@ -20,6 +20,22 @@ public class ApplicationLogic {
     private SurveyHandler surveyHandler;
     private Interviewer loggedInterviewer;
     private InterviewersRepository intervierwsRepository;
+    private static ApplicationLogic instance;
+    
+    
+    
+    private ApplicationLogic() {
+        surveyHandler = new SurveyHandler(0);
+        loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
+        intervierwsRepository = new InterviewersRepository();
+    }
+    
+    public static ApplicationLogic getInstance() {
+        if (instance == null) {
+            instance = new ApplicationLogic();
+        }
+        return instance;
+    }
     
     /**
      * adds new survey template to survey handler
@@ -101,14 +117,6 @@ public class ApplicationLogic {
         return surveysList;
     }
     
-    public ApplicationLogic() {
-        surveyHandler = new SurveyHandler(0);
-        loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
-        intervierwsRepository = new InterviewersRepository();
-    }
-    
-
-
     /**
      * adds interviewer to repository
      * @param interv interviewer to add

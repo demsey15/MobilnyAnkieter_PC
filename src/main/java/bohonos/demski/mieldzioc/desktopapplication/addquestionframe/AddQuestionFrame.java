@@ -48,10 +48,10 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     protected JLabel questionLabel, hintLabel, errorMessageLabel;
     protected JCheckBox obligatoryBox;
     
-    public AddQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+    public AddQuestionFrame(CreatorFrame crFrame) {
         super("Dodaj pytanie");
         
-        applicationLogic = appLogic;
+        applicationLogic = ApplicationLogic.getInstance();
         creatorFrame = crFrame;
         
         setSize(600, 300);
@@ -153,7 +153,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         }
         
         if (source == addAnswerButton) {
-            AddAnswerFrame addAnswerFrame = new AddAnswerFrame(applicationLogic, this);
+            AddAnswerFrame addAnswerFrame = new AddAnswerFrame(this);
         }
         
         if (source == deleteAnswerButton) {

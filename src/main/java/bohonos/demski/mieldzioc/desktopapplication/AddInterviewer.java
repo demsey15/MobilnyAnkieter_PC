@@ -36,11 +36,11 @@ public class AddInterviewer extends JFrame implements ActionListener{
     private JLabel nameLabel, surnameLabel, idLabel, dateLabel;
     private Container addcon;
     private JButton anul, createinterv; 
-    private ApplicationLogic appsLogic;
+    private ApplicationLogic applicationLogic;
     //private InterviewersRepository interrep = new InterviewersRepository(); //tymczasowo 
-    AddInterviewer(ApplicationLogic appsLogic){
+    AddInterviewer(){
         super("Dodanie ankietera");
-        this.appsLogic=appsLogic;
+        applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){
@@ -115,7 +115,7 @@ public class AddInterviewer extends JFrame implements ActionListener{
             String myid = jid.getText();
             Interviewer newinterv = new Interviewer(jname.getText(),jsurname.getText(),myid, cal);
              //to bêdzie musia³o byæ gdzie indziej, jeden obiekt tylko tej klasy zostanie stworzony
-            if(appsLogic.addInterviewer(newinterv))
+            if(applicationLogic.addInterviewer(newinterv))
                 JOptionPane.showMessageDialog(this, "Dodano ankietera");
             else
                 JOptionPane.showMessageDialog(this, "Nie dodano ankietera");

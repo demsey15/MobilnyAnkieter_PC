@@ -39,9 +39,9 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
     private JList answerList;
     private DefaultListModel answerListItems;
     
-    public AddMultipleChoiceQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+    public AddMultipleChoiceQuestionFrame(CreatorFrame crFrame) {
         
-        super(appLogic, crFrame);
+        super(crFrame);
         
         answers = new ArrayList<String>();
         

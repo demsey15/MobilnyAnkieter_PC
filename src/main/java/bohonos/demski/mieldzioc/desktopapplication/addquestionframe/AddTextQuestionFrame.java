@@ -27,9 +27,9 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
     private JLabel minLengthLabel, maxLengthLabel;
     private JTextField minLengthField, maxLengthField;
     
-    public AddTextQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+    public AddTextQuestionFrame(CreatorFrame crFrame) {
         
-        super(appLogic, crFrame);
+        super(crFrame);
         
         this.setSize(600, 400);
 

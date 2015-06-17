@@ -51,9 +51,9 @@ public class CreatorFrame extends JFrame implements ActionListener {
     
     private ApplicationLogic applicationLogic;
     
-    public CreatorFrame(ApplicationLogic appLogic){
+    public CreatorFrame(){
         super("Kreator ankiet");
-        applicationLogic = appLogic;
+        applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we){
@@ -118,7 +118,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * @param id id of survey template
      */
     public void addSurveyPanel(String id) {
-        SurveyPanel surveyPanel = new SurveyPanel(applicationLogic, id);
+        SurveyPanel surveyPanel = new SurveyPanel(id);
         if (tabbedPane.indexOfTab(id) == -1) {
             tabbedPane.addTab(id, surveyPanel);
         }
@@ -128,39 +128,39 @@ public class CreatorFrame extends JFrame implements ActionListener {
         Object source = ae.getSource();
         
         if (source == itemNewSurvey) {
-            CreatingSurveyFrame creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, this);
+            CreatingSurveyFrame creatingSurveyFrame = new CreatingSurveyFrame(this);
         }
         
         if (source == itemCopyOldSurvey) {
-            CopingSurveyFrame copingSurveyFrame = new CopingSurveyFrame(applicationLogic, this);
+            CopingSurveyFrame copingSurveyFrame = new CopingSurveyFrame(this);
         }
         
         if (source == itemEditSurvey) {
-            LoadingSurveyFrame loadingSurveyFrame = new LoadingSurveyFrame(applicationLogic, this);
+            LoadingSurveyFrame loadingSurveyFrame = new LoadingSurveyFrame(this);
         }
         
         if (source == itemDataTimeQuestion) {
-            AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(applicationLogic, this);
+            AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(this);
         }
         
         if (source == itemGridQuestion) {
-            AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(applicationLogic, this);
+            AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(this);
         }
         
         if (source == itemMultipleChioceQuestion) {
-            AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(applicationLogic, this);
+            AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(this);
         }
         
         if (source == itemOneChoiceQuestion) {
-            AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(applicationLogic, this);
+            AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(this);
         }
         
         if (source == itemScaleQuestion) {
-            AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(applicationLogic, this);
+            AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(this);
         }
         
         if (source == itemTextQuestion) {
-            AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(applicationLogic, this);
+            AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(this);
         }
 
     }

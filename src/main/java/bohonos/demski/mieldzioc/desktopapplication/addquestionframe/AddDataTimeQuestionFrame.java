@@ -26,9 +26,9 @@ public class AddDataTimeQuestionFrame extends AddQuestionFrame {
     private JCheckBox onlyDateBox;
     private JCheckBox onlyTimeBox;
     
-    public AddDataTimeQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+    public AddDataTimeQuestionFrame(CreatorFrame crFrame) {
         
-        super(appLogic, crFrame);
+        super(crFrame);
         
         this.setSize(600, 400);
         
