@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +42,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     protected String pictureUrl = "";
     protected String hint = "";
     protected String errorMessage = "";
+    protected Survey survey;
     
     protected ApplicationLogic applicationLogic;
     protected CreatorFrame creatorFrame;
@@ -54,6 +56,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         
         applicationLogic = ApplicationLogic.getInstance();
         creatorFrame = crFrame;
+        this.survey = survey;
         
         setSize(600, 300);
         setLocation(400,300);
@@ -116,6 +119,14 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     }
     
     /**
+     * creates new question
+     * @return new question or null, if question was not created
+     */
+    protected Question createQuestion() {
+        return null;
+    }
+    
+    /**
      * checks, if all conditions are satisfied (has to be overwriten)
      * @return true, iff conditions are satisfied
      */
@@ -148,7 +159,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         
         if (source == addButton) {
             if (questionConditions()==true) {
-                // to do
+                survey.addQuestion(createQuestion());
                 dispose();
             }
         }

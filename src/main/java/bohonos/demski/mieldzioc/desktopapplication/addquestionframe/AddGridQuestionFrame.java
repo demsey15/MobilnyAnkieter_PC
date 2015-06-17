@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,16 @@ public class AddGridQuestionFrame extends AddQuestionFrame {
         super(survey, crFrame);
         
         
+    }
+    
+    @Override
+    protected Question createQuestion() {
+        return null; //to do
+    }
+    
+    @Override
+    protected Boolean questionConditions() {
+        return true;
     }
 
 }
