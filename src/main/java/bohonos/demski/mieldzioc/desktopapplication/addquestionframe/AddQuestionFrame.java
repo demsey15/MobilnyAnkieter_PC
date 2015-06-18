@@ -47,6 +47,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     protected ApplicationLogic applicationLogic;
     protected CreatorFrame creatorFrame;
     protected JButton addButton, cancelButton, addAnswerButton, deleteAnswerButton;
+    protected JButton addRowButton, deleteRowButton, addColumnButton, deleteColumnButton;
     protected JTextField questionField, hintField, errorMessageField;
     protected JLabel questionLabel, hintLabel, errorMessageLabel;
     protected JCheckBox obligatoryBox;
@@ -115,6 +116,19 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         deleteAnswerButton = new JButton("Usuñ odpowiedŸ");
         deleteAnswerButton.addActionListener(this);
         
+        addRowButton = new JButton("Dodaj wiersz");
+        addRowButton.addActionListener(this);
+               
+        deleteRowButton = new JButton("Usuñ wiersz");
+        deleteRowButton.addActionListener(this);
+        
+        addColumnButton = new JButton("Dodaj kolumnê");
+        addColumnButton.addActionListener(this);
+               
+        deleteColumnButton = new JButton("Usuñ kolumnê");
+        deleteColumnButton.addActionListener(this);
+        
+        
         setVisible(true);
     }
     
@@ -148,6 +162,36 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     protected void deleteAnswer() {
         
     }
+    
+    /**
+     * adds new row to the list (has to be overwriten)
+     * @param Row label of new row
+     */
+    protected void addRow(String Row) {
+        
+    }
+    
+    /**
+     * deletes choosen row from the list (has to be overwriten)
+     */
+    protected void deleteRow() {
+        
+    }
+    
+    /**
+     * adds new column to the list (has to be overwriten)
+     * @param column label of new column
+     */
+    protected void addColumn(String column) {
+        
+    }
+    
+    /**
+     * deletes choosen column from the list (has to be overwriten)
+     */
+    protected void deleteColumn() {
+        
+    }
 
     public void actionPerformed(ActionEvent ae) {
         
@@ -170,6 +214,22 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         
         if (source == deleteAnswerButton) {
             this.deleteAnswer();
+        }
+        
+        if (source == addRowButton) {
+            AddRowFrame addRowFrame = new AddRowFrame(this);
+        }
+        
+        if (source == deleteRowButton) {
+            this.deleteRow();
+        }
+        
+        if (source == addColumnButton) {
+            AddColumnFrame addColumnFrame = new AddColumnFrame(this);
+        }
+        
+        if (source == deleteColumnButton) {
+            this.deleteColumn();
         }
     }
     

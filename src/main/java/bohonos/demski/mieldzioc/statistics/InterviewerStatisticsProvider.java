@@ -118,6 +118,12 @@ public class InterviewerStatisticsProvider {
         return days;
     } 
     
+      /**
+       * Metoda zwraca œredni¹ liczbê zebranych ankiet przez ankietera na dzieñ w ci¹gu okresu, wktórym pracowa³ 
+       * @param surveys
+       * @param interviewer
+       * @return 
+       */
     public float getMeanFilledSurveysOnADay(List<Survey> surveys, Interviewer interviewer) {
         float mean;
         float days = numberOfDaysInWork(interviewer);
@@ -131,6 +137,13 @@ public class InterviewerStatisticsProvider {
         return mean;
     }
     
+    /**
+     * Metoda zwraca œredni¹ liczbê zebranych ankiet przez ankietera na dzieñ, od wybranego dnia, liczone s¹ dni, w których pracowa³
+     * @param surveys
+     * @param interviewer
+     * @param from
+     * @return 
+     */
     public float getMeanFilledSurveysOnADay(List<Survey> surveys, Interviewer interviewer, GregorianCalendar from) {
         float mean;
         float days = numberOfDaysInWork(interviewer, from);
@@ -144,6 +157,14 @@ public class InterviewerStatisticsProvider {
         return mean;
     }
     
+    /**
+     * Metoda zwraca œrednia liczbê zebranch ankiet na dzieñ przez wybranego ankietera, licz¹ siê tylko te dni, wktórych pracowa³.
+     * @param surveys
+     * @param interviewer
+     * @param from
+     * @param to
+     * @return 
+     */
      public float getMeanFilledSurveysOnADay(List<Survey> surveys, Interviewer interviewer, GregorianCalendar from, GregorianCalendar to) {
         float mean;
         float days = numberOfDaysInWork(interviewer, from, to);
@@ -157,6 +178,12 @@ public class InterviewerStatisticsProvider {
         return mean;
     }
      
+     /**
+      * Metoda zwraca mapê, która zawiera jako klucze poszczególne dni w których ankieter zebra³ jakieœ ankiety, zaœ wartoœciami s¹ liczby zebranych ankiet w tym dniu.
+      * @param surveys
+      * @param interviewer
+      * @return 
+      */
     public HashMap<GregorianCalendar, Integer> getAmountOfFilledSurveysInDays(List<Survey> surveys, Interviewer interviewer){
         HashMap<GregorianCalendar, Integer> filledSurveysInDays = new HashMap<GregorianCalendar, Integer>();
         for(Survey survey : surveys){
@@ -174,5 +201,74 @@ public class InterviewerStatisticsProvider {
         }
         return filledSurveysInDays;
     }
+    
+    /**
+     * Metoda zwraca mapê, która zawiera jako klucze poszczególne dni (od wybranego dnia - from) w których ankieter zebra³ jakieœ ankiety, zaœ wartoœciami s¹ liczby zebranych ankiet w tym dniu.
+     * @param surveys
+     * @param interviewer
+     * @param from
+     * @return 
+     */
+        public HashMap<GregorianCalendar, Integer> getAmountOfFilledSurveysInDays(List<Survey> surveys, Interviewer interviewer, GregorianCalendar from){
+        HashMap<GregorianCalendar, Integer> filledSurveysInDays = new HashMap<GregorianCalendar, Integer>();
+        for(Survey survey : surveys){
+           GregorianCalendar data = survey.getFinishTime();
+           int year = data.get(Calendar.YEAR);
+           int month = data.get(Calendar.MONTH);
+           int day = data.get(Calendar.DAY_OF_MONTH);
+           GregorianCalendar date = new GregorianCalendar(year, month, day);
+           if(date.compareTo(from)>=0){
+                if(!filledSurveysInDays.containsKey(date)){
+                    filledSurveysInDays.put(date, 1);
+                }
+                else{
+                    filledSurveysInDays.put(date, filledSurveysInDays.get(date)+1);
+                }
+           }
+        }
+        return filledSurveysInDays;
+    }
+        
+        /**
+         * Metoda zwraca mapê, która zawiera jako klucze poszczególne dni zadanego okresu (od from do to),w których ankieter zebra³ jakieœ ankiety, zaœ wartoœciami s¹ liczby zebranych ankiet w tym dniu.
+         * @param surveys
+         * @param interviewer
+         * @param from
+         * @param to
+         * @return 
+         */
+        public HashMap<GregorianCalendar, Integer> getAmountOfFilledSurveysInDays(List<Survey> surveys, Interviewer interviewer, GregorianCalendar from, GregorianCalendar to){
+        HashMap<GregorianCalendar, Integer> filledSurveysInDays = new HashMap<GregorianCalendar, Integer>();
+        for(Survey survey : surveys){
+           GregorianCalendar data = survey.getFinishTime();
+           int year = data.get(Calendar.YEAR);
+           int month = data.get(Calendar.MONTH);
+           int day = data.get(Calendar.DAY_OF_MONTH);
+           GregorianCalendar date = new GregorianCalendar(year, month, day);
+             if(date.compareTo(from)>=0 && to.compareTo(date)>=0){
+                if(!filledSurveysInDays.containsKey(date)){
+                    filledSurveysInDays.put(date, 1);
+                }
+                else{
+                    filledSurveysInDays.put(date, filledSurveysInDays.get(date)+1);
+                }
+           }
+        }
+        return filledSurveysInDays;
+    }
      
+    /**
+     * Metoda zwraca liczbê wype³nionych ankiet.
+     * @param surveys
+     * @return 
+     */
+    public int getAmountOfFilledSurveys(List<Survey> surveys){
+        int amount=0;
+        for(Survey survey : surveys){
+            if(survey.getFinishTime()!=null){
+                amount+=1;
+            }
+        }
+        return amount;
+    }
 }

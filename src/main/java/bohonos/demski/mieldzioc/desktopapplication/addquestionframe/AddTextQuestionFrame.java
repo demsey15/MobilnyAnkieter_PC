@@ -68,7 +68,7 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Boolean questionConditions() {
-        if (question.equals("")==false) {
+        if (questionField.getText().equals("")==false) {
             return true;
         }
         else {
