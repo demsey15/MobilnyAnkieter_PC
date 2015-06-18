@@ -39,19 +39,19 @@ public class AddColumnFrame extends JFrame implements ActionListener {
     private String column;
     
     private ApplicationLogic applicationLogic;
-    private AddGridQuestionFrame addGridQuestionFrame;
+    private AddQuestionFrame addQuestionFrame;
     
     private JButton addButton, cancelButton;
     private JTextField columnField;
     private JLabel columnLabel;
     
     
-    public AddColumnFrame(AddGridQuestionFrame addGridQuestFrame) {
+    public AddColumnFrame(AddQuestionFrame addQuestFrame) {
         
         super("Dodaj etykietê kolumny");
         
         applicationLogic = ApplicationLogic.getInstance();
-        addGridQuestionFrame = addGridQuestFrame;
+        addQuestionFrame = addQuestFrame;
         
         setSize(400, 200);
         setLocation(600,400);
@@ -90,7 +90,7 @@ public class AddColumnFrame extends JFrame implements ActionListener {
         if (source == addButton) {
             column = columnField.getText();
             //if (answer.equals("")==false) {
-                addGridQuestionFrame.addRow(column);
+                addQuestionFrame.addColumn(column);
                 dispose();
             //}
         }

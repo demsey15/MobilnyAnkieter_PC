@@ -39,19 +39,19 @@ public class AddRowFrame extends JFrame implements ActionListener {
     private String row;
     
     private ApplicationLogic applicationLogic;
-    private AddGridQuestionFrame addGridQuestionFrame;
+    private AddQuestionFrame addQuestionFrame;
     
     private JButton addButton, cancelButton;
     private JTextField rowField;
     private JLabel rowLabel;
     
     
-    public AddRowFrame(AddGridQuestionFrame addGridQuestFrame) {
+    public AddRowFrame(AddQuestionFrame addQuestFrame) {
         
         super("Dodaj etykietê wiersza");
         
         applicationLogic = ApplicationLogic.getInstance();
-        addGridQuestionFrame = addGridQuestFrame;
+        addQuestionFrame = addQuestFrame;
         
         setSize(400, 200);
         setLocation(600,400);
@@ -90,7 +90,7 @@ public class AddRowFrame extends JFrame implements ActionListener {
         if (source == addButton) {
             row = rowField.getText();
             //if (answer.equals("")==false) {
-                addGridQuestionFrame.addRow(row);
+                addQuestionFrame.addRow(row);
                 dispose();
             //}
         }
