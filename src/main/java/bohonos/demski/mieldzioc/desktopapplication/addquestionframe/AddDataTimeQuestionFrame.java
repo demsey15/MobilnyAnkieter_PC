@@ -60,7 +60,12 @@ public class AddDataTimeQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Boolean questionConditions() {
-        return true;
+        if (question.equals("")==false) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
 }

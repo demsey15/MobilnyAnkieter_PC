@@ -79,19 +79,24 @@ public class AddOneChoiceQuestionFrame extends AddQuestionFrame {
     }
     
     @Override
+    protected Question createQuestion() {
+        return null; //to do
+    }
+    
+    @Override
     protected Boolean questionConditions() {
-        return true;
+        if (question.equals("")==false && answers.isEmpty()==false) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
     protected void addAnswer(String answer) {
         answers.add(answer);
         answerListItems.addElement(answer);
-    }
-    
-    @Override
-    protected Question createQuestion() {
-        return null; //to do
     }
     
     @Override
