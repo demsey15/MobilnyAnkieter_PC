@@ -85,7 +85,7 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Boolean questionConditions() {
-        if (question.equals("")==false && answers.isEmpty()==false) {
+        if (questionField.getText().equals("")==false && answers.isEmpty()==false) {
             return true;
         }
         else {
