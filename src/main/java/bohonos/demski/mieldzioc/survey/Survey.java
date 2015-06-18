@@ -326,7 +326,24 @@ public class Survey implements Serializable, Cloneable {
             return false;
     }
     
+    
     /**
+     * @author Dominik Demski
+     * @param startTime
+     */
+    public void setStartTime(GregorianCalendar startTime) {
+		this.startTime = startTime;
+	}
+
+    /**
+     * @author Dominik Demski
+     * @param finishTime
+     */
+	public void setFinishTime(GregorianCalendar finishTime) {
+		this.finishTime = finishTime;
+	}
+
+	/**
      * 
      * @return
      * @throws CloneNotSupportedException 
