@@ -201,41 +201,36 @@ public class ServerConnectionFacade {
 	}
 	
 	/**
-	 * Wysy³a listê wype³nionych ankiet.
-	 * @param surveys lista wype³nionych ankiet (nie mo¿e byæ równa null).
+	 * Wysy³a wype³nion¹ ankietê.
+	 * @param survey wype³niona ankieta (nie mo¿e byæ równa null).
 	 * @param usersId id ankietera.
 	 * @param password has³o ankietera.
-	 * @return lista z kodem: BAD_PASSWORD, jeœli podano b³êdne has³o lub nie ma u¿ytkownika o podanym id,
+	 * @return kodem: BAD_PASSWORD, jeœli podano b³êdne has³o lub nie ma u¿ytkownika o podanym id,
 	 * AUTHORIZATION_FAILED, jeœli u¿ytkownik nie ma dopowiednich uprawnieñ (musi byæ ankieterem),
 	 * albo lista z kodami (dla ka¿dej ankiety odpowiednio): 
 	 * BAD_DATA_FORMAT, jeœli ankieta o zadanym numerze znajduje siê ju¿ w repozytorium,
 	 *  OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie, SURVEY_INACTIVE, jeœli ankieta nie ma
 	 *  statusu "aktywna".
 	 */
-	public List<Integer> sendFilledSurveys(List<Survey> surveys, String usersId, char[] password){
-		if(surveys == null ||usersId == null || password == null)
+	public int sendFilledSurvey(Survey survey, String usersId, char[] password){
+		if(survey == null ||usersId == null || password == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
 		connect();
-		List<Integer> results = new ArrayList<Integer>(surveys.size());
+	
 		if(!login(usersId, password)){
 			disconnect();
-			results.add(BAD_PASSWORD);
-			return results;
+			return BAD_PASSWORD;
 		}
 		sendInt(SEND_FILLED_SURVEYS);
 		int authorization = readInt();
 		if(authorization == AUTHORIZATION_FAILED){
 			disconnect();
-			results.add(AUTHORIZATION_FAILED);
-			return results;
+			return AUTHORIZATION_FAILED;
 		}
-		sendInt(surveys.size());
-		for(int i = 0; i < surveys.size(); i++){
-			sendObject(surveys.get(i));
-			results.add(readInt());
-		}
+		sendFilledSurvey(survey);
+		int result = readInt();
 		disconnect();
-		return results;
+		return result;
 	}
 	
 	public List<Survey> getActiveSurveyTemplates(String usersId, char[] password){
@@ -1073,6 +1068,25 @@ public class ServerConnectionFacade {
 			survey.addQuestion(question);
 		}
 		return survey;
+	}
+	
+	private void sendFilledSurvey(Survey survey){
+		sendSurveyTemplate(survey);
+		
+		sendInt(survey.getNumberOfSurvey());
+	
+		Gson gson = new Gson();
+		sendString(gson.toJson(survey.getStartTime()));
+		sendString(gson.toJson(survey.getFinishTime()));
+		
+		for(int i = 0; i < survey.questionListSize(); i++){
+			List<String> answers = survey.getQuestion(i).getUserAnswersAsStringList();
+			sendInt(answers.size());
+			
+			for(int j = 0; j < answers.size(); j++){
+				sendString(answers.get(j));
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
