@@ -112,6 +112,7 @@ public class AddInterviewer extends JFrame implements ActionListener{
             GregorianCalendar cal = new GregorianCalendar();
             now=(Date) jdate.getValue();
             cal.setTime(now);
+            //System.out.println("data: "+cal.getTime().getTime());
             String myid = jid.getText();
             Interviewer newinterv = new Interviewer(jname.getText(),jsurname.getText(),myid, cal);
              //to bêdzie musia³o byæ gdzie indziej, jeden obiekt tylko tej klasy zostanie stworzony
