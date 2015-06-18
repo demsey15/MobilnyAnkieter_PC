@@ -376,7 +376,7 @@ public class ServerConnectionFacade {
 				int size = readInt();
 				List<Survey> list = new ArrayList<Survey>(size);
 				for(int i = 0; i < size; i++){
-					Survey survey = (Survey) readObject();
+					Survey survey = receiveFilledSurvey();
 					list.add(survey);
 				}
 				if(readInt() == OPERATION_OK){
@@ -1087,6 +1087,30 @@ public class ServerConnectionFacade {
 				sendString(answers.get(j));
 			}
 		}
+	}
+	
+	private Survey receiveFilledSurvey(){
+		Survey survey = receiveSurveyTemplate();
+		int surveyNumber = readInt();
+		survey.setNumberOfSurvey(surveyNumber);
+		Gson gson = new Gson();
+		String fromString = readString();
+		System.out.println("Odczyta³em datê: " + fromString);
+		GregorianCalendar from = gson.fromJson(fromString, GregorianCalendar.class);
+		GregorianCalendar to = gson.fromJson(readString(), GregorianCalendar.class);
+		survey.setStartTime(from);
+		survey.setFinishTime(to);
+		
+		for(int i = 0; i < survey.questionListSize(); i++){
+			int amount = readInt();
+			System.out.println("W pytaniu: " + i + " mam " + amount + " odpowiedzi");
+			List<String> answers = new ArrayList<String>(amount);
+			for(int j = 0; j < amount; j++){
+				answers.add(readString());
+			}
+			survey.getQuestion(i).setUserAnswers(answers);
+		}
+		return survey;
 	}
 	
 	public static void main(String[] args) {
