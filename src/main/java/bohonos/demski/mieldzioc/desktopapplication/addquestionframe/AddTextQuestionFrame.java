@@ -7,6 +7,8 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.Question;
+import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -27,9 +29,9 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
     private JLabel minLengthLabel, maxLengthLabel;
     private JTextField minLengthField, maxLengthField;
     
-    public AddTextQuestionFrame(CreatorFrame crFrame) {
+    public AddTextQuestionFrame(Survey survey, CreatorFrame crFrame) {
         
-        super(crFrame);
+        super(survey, crFrame);
         
         this.setSize(600, 400);
 
@@ -60,8 +62,18 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
     }
     
     @Override
+    protected Question createQuestion() {
+        return null; //to do
+    }
+    
+    @Override
     protected Boolean questionConditions() {
-        return true;
+        if (question.equals("")==false) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }
