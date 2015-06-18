@@ -28,9 +28,9 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
     private JList list;
     private List<String> selectedSurveysList;
     
-    public LoadingSurveyFrame(ApplicationLogic applicationLogic, CreatorFrame creatorFrame){
+    public LoadingSurveyFrame(CreatorFrame creatorFrame){
         super("edytuj ankietê");
-        this.applicationLogic = applicationLogic;
+        applicationLogic = ApplicationLogic.getInstance();
         this.creatorFrame = creatorFrame;
         
         surveysList = applicationLogic.getSurveysList();

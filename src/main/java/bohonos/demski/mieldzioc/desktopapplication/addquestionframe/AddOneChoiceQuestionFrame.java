@@ -7,6 +7,8 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.Question;
+import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -39,9 +41,9 @@ public class AddOneChoiceQuestionFrame extends AddQuestionFrame {
     private JList answerList;
     private DefaultListModel answerListItems;
     
-    public AddOneChoiceQuestionFrame(ApplicationLogic appLogic, CreatorFrame crFrame) {
+    public AddOneChoiceQuestionFrame(Survey survey, CreatorFrame crFrame) {
         
-        super(appLogic, crFrame);
+        super(survey, crFrame);
         
         answers = new ArrayList<String>();
         
@@ -77,8 +79,18 @@ public class AddOneChoiceQuestionFrame extends AddQuestionFrame {
     }
     
     @Override
+    protected Question createQuestion() {
+        return null; //to do
+    }
+    
+    @Override
     protected Boolean questionConditions() {
-        return true;
+        if (question.equals("")==false && answers.isEmpty()==false) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override

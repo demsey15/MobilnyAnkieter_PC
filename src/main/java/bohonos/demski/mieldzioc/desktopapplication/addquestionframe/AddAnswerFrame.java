@@ -46,11 +46,11 @@ public class AddAnswerFrame extends JFrame implements ActionListener {
     private JLabel answerLabel;
     
     
-    public AddAnswerFrame(ApplicationLogic appLogic, AddQuestionFrame addQuestFrame) {
+    public AddAnswerFrame(AddQuestionFrame addQuestFrame) {
         
         super("Dodaj odpowiedü");
         
-        applicationLogic = appLogic;
+        applicationLogic = ApplicationLogic.getInstance();
         addQuestionFrame = addQuestFrame;
         
         setSize(400, 200);
