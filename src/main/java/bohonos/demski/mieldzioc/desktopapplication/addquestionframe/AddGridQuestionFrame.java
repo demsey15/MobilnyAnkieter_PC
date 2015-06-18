@@ -27,6 +27,36 @@ public class AddGridQuestionFrame extends AddQuestionFrame {
         
     }
     
+    /**
+     * adds new row to the list
+     * @param row label of new row
+     */
+    public void addRow(String row) {
+        
+    }
+    
+    /**
+     * deletes choosen row from the list
+     */
+    public void deleteRow() {
+        
+    }
+    
+    /**
+     * adds new column to the list
+     * @param column label of new column
+     */
+    public void addColumn(String column) {
+        
+    }
+    
+    /**
+     * deletes choosen column from the list
+     */
+    public void deleteColumn() {
+        
+    }
+    
     @Override
     protected Question createQuestion() {
         return null; //to do
