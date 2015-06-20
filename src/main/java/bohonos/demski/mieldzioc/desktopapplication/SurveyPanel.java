@@ -5,6 +5,11 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
+import bohonos.demski.mieldzioc.desktopapplication.questionpanel.DateTimeQuestionPanel;
+import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
+import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -12,6 +17,8 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 /**
  *
@@ -23,6 +30,10 @@ public class SurveyPanel extends JPanel implements ActionListener {
     private String idOfSurvey;
     private JButton saveButton;
     private JLabel titleLabel, descriptionLabel, title, description;
+    private JPanel questionsPanel;
+    private JScrollPane scrollPane;
+    private Container container;
+    private JTextPane exempleTextPane; //tests only
     
     private CreatingSurveyFrame creatingSurveyFrame;
     
@@ -42,6 +53,20 @@ public class SurveyPanel extends JPanel implements ActionListener {
         descriptionLabel.setBounds(20, 70, 300, 30);
         this.add(descriptionLabel);
         
+        questionsPanel = new JPanel();
+        questionsPanel.setLayout(new FlowLayout());
+        scrollPane = new JScrollPane(questionsPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(20, 120, 660, 350);
+        
+        this.add(scrollPane);
+        
+        
+    }
+    
+    public void addDateTimeQuestion(DateTimeQuestion dateTimeQuestion) {
+        questionsPanel.add(new DateTimeQuestionPanel(dateTimeQuestion));
     }
     
     public void actionPerformed(ActionEvent ae) {

@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.questions.TextQuestion;
 
 /**
  *
@@ -13,8 +14,8 @@ import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
  */
 public class TextQuestionPanel extends QuestionPanel {
 
-    public TextQuestionPanel(ApplicationLogic appLogic) {
-        super(appLogic);
+    public TextQuestionPanel(TextQuestion textQuestion) {
+        super(textQuestion);
     }
     
 }

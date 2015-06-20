@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,7 @@ import javax.swing.JTextField;
  *
  * @author Delirus
  */
-public class AddDataTimeQuestionFrame extends AddQuestionFrame {
+public class AddDateTimeQuestionFrame extends AddQuestionFrame {
     
     private Boolean onlyDate;
     private Boolean onlyTime;
@@ -28,7 +29,7 @@ public class AddDataTimeQuestionFrame extends AddQuestionFrame {
     private JCheckBox onlyDateBox;
     private JCheckBox onlyTimeBox;
     
-    public AddDataTimeQuestionFrame(Survey survey, CreatorFrame crFrame) {
+    public AddDateTimeQuestionFrame(Survey survey, CreatorFrame crFrame) {
         
         super(survey, crFrame);
         
@@ -54,6 +55,9 @@ public class AddDataTimeQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
+        DateTimeQuestion dateTimeQuestion = new DateTimeQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), onlyTimeBox.isSelected(), onlyDateBox.isSelected());
+        survey.addQuestion(dateTimeQuestion);
+        creatorFrame.addDateTimeQuestionPanel(dateTimeQuestion, survey);
         return null; //to do
     }
 

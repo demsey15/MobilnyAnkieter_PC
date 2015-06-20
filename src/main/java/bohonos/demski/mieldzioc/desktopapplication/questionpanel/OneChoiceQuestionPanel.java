@@ -6,16 +6,16 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
-import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 
 /**
  *
  * @author Andrzej
  */
-public class OneCoiceQuestionPanel extends QuestionPanel {
+public class OneChoiceQuestionPanel extends QuestionPanel {
 
-    public OneCoiceQuestionPanel(ApplicationLogic appLogic) {
-        super(appLogic);
+    public OneChoiceQuestionPanel(OneChoiceQuestion oneChoiceQuestion) {
+        super(oneChoiceQuestion);
     }
     
 }

@@ -11,7 +11,9 @@ import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddScaleQues
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddOneChoiceQuestionFrame;
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddMultipleChoiceQuestionFrame;
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddGridQuestionFrame;
-import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddDataTimeQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddDateTimeQuestionFrame;
+import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.questions.Question;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.EventQueue;
@@ -63,7 +65,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
 	});
         
         setSize(800, 600);
-	setLocation(300,200);
+	setLocation(300,100);
         setResizable(false);
         
         menuSurvey = new JMenu("Ankieta");
@@ -125,6 +127,25 @@ public class CreatorFrame extends JFrame implements ActionListener {
         }
     }
     
+    public void addDateTimeQuestionPanel(DateTimeQuestion question, Survey survey) {
+        /*String indexOfSurvey = survey.getIdOfSurveys();
+        int indexOfTab = -1;
+        for (int i=0; i<tabbedPane.getTabCount(); i++) {
+            if (tabbedPane.getTitleAt(i)==indexOfSurvey) {
+                indexOfTab = i;
+            }
+        }*/
+        //if (indexOfTab != -1) {
+            SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+            surveyPanel.addDateTimeQuestion(question);
+        //}
+            //String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
+            //Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
+            
+
+        
+    }
+    
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
         
@@ -144,7 +165,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
             if (tabbedPane.getSelectedIndex()!=-1) {
                 String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
-                AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(survey, this);
+                AddDateTimeQuestionFrame addDateTimeQuestionFrame = new AddDateTimeQuestionFrame(survey, this);
             }
         }
         

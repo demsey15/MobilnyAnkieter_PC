@@ -60,7 +60,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         this.survey = survey;
         
         setSize(600, 300);
-        setLocation(400,300);
+        setLocation(400,150);
         setResizable(false);
         this.setLayout(null);
         
@@ -127,7 +127,6 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
                
         deleteColumnButton = new JButton("Usuñ kolumnê");
         deleteColumnButton.addActionListener(this);
-        
         
         setVisible(true);
     }

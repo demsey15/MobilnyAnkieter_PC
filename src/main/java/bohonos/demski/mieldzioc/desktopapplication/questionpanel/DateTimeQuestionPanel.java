@@ -7,15 +7,16 @@ package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
+import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 
 /**
  *
  * @author Andrzej
  */
-public class DataTimeQuestionPanel extends QuestionPanel {
+public class DateTimeQuestionPanel extends QuestionPanel {
 
-    public DataTimeQuestionPanel(ApplicationLogic appLogic) {
-        super(appLogic);
+    public DateTimeQuestionPanel(DateTimeQuestion dataTimeQuestion) {
+        super(dataTimeQuestion);
     }
     
 }

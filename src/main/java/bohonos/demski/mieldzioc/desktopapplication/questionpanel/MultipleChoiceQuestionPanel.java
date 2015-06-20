@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
+import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
 
 /**
  *
@@ -14,8 +15,8 @@ import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
  */
 public class MultipleChoiceQuestionPanel extends QuestionPanel {
 
-    public MultipleChoiceQuestionPanel(ApplicationLogic appLogic) {
-        super(appLogic);
+    public MultipleChoiceQuestionPanel(MultipleChoiceQuestion multipleChoiceQuestion) {
+        super(multipleChoiceQuestion);
     }
     
 }
