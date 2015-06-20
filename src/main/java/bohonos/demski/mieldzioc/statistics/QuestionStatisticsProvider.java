@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.statistics;
 import bohonos.demski.mieldzioc.questions.*;
 import bohonos.demski.mieldzioc.survey.Survey;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -142,7 +143,8 @@ public class QuestionStatisticsProvider {
         int answer = 0;
         HashMap<Integer, Integer> mapa =new HashMap<Integer, Integer>();
         for(Survey survey : surveys){
-            int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
+            if(survey.isFinished()){
+                int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
                 if(typeQuestion==5){
                     ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber);
                     if(mapa.containsKey(quest.getUserAnswer())){
@@ -152,6 +154,7 @@ public class QuestionStatisticsProvider {
                         mapa.put(quest.getUserAnswer(), 1);
                     }
                 }
+            }
         }
         for(HashMap.Entry<Integer,Integer> entr: mapa.entrySet()){           
             if(mode<entr.getValue()){
@@ -162,4 +165,87 @@ public class QuestionStatisticsProvider {
         return answer;
     }
     
+    /**
+     * Metoda zwraca minimalnπ otrzymanπ odpowiedü dla pytania skala pochodzπcego z jakiegoú rodzaju ankiet.
+     * @param surveys
+     * @param questionNumber
+     * @return 
+     */
+    public float getMinValue(List<Survey> surveys, int questionNumber){
+        float min=0;
+        List<Integer> lista = new ArrayList<Integer>();
+        for(Survey survey : surveys){
+            if(survey.isFinished()){
+                int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
+                if(typeQuestion==5){
+                    ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber);
+                    lista.add(quest.getUserAnswer());
+                }
+            }
+        }
+        Collections.sort(lista);
+        min=lista.get(0);
+        return min;
+    }
+    
+    /**
+     * Metoda zwraca maksymalnπ otrzymanπ odpowiedü dla pytania skala pochodzπcego z jakiegoú rodzaju ankiet.
+     * @param surveys
+     * @param questionNumber
+     * @return 
+     */
+    public float getMaxValue(List<Survey> surveys, int questionNumber){
+        float max=0;
+        List<Integer> lista = new ArrayList<Integer>();
+        for(Survey survey : surveys){
+            if(survey.isFinished()){
+                int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
+                if(typeQuestion==5){
+                    ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber);
+                    lista.add(quest.getUserAnswer());
+                }
+            }
+        }
+        Collections.sort(lista);
+        max=lista.get(lista.size()-1);
+        return max;
+    }
+    
+    /**
+     * Metoda obliczajπca jaki procent ankietowanych wybra≥ odpowiedniπ odpowiedü w konkretnym pytaniu.
+     * @param surveys
+     * @param questionNumber
+     * @return 
+     */
+    public List<Float> getPrecentageOfChoosedOptions(List<Survey> surveys, int questionNumber){
+        List<Float> lista = new ArrayList<Float>();
+        HashMap<String, Integer> mapa =new HashMap<String, Integer>();
+        List<String> answers = new ArrayList<String>();
+        //inincjalizujemy mozliwe odpowiedzi w Hashmapie
+        answers = surveys.get(0).getQuestion(questionNumber).getAnswersAsStringList();
+        for(String answer : answers){
+            mapa.put(answer, 0);
+        }
+        
+        for(Survey survey : surveys){
+            int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
+            if(typeQuestion==0 || typeQuestion==1 ){
+                if(survey.isFinished()){
+                    List<String> userAnswers = new ArrayList<String>();
+                    userAnswers = survey.getQuestion(questionNumber).getUserAnswersAsStringList();
+                    for(String userAnswer : userAnswers){           
+                        mapa.put(userAnswer, mapa.get(userAnswer)+1);                   
+                    }
+                }
+            }
+        }
+        for(HashMap.Entry<String,Integer> entr: mapa.entrySet()){           
+            float percent = 100*entr.getValue()/surveys.size();
+            lista.add(percent);                         
+        }
+        
+        return lista;
+    }
+    
+   
 }
