@@ -85,7 +85,7 @@ public class AddScaleQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        ScaleQuestion scaleQuestion = new ScaleQuestion(questionField.getText(), obligatoryBox.isSelected(), Integer.valueOf(minValueField.getText()), Integer.valueOf(maxValueField.getText()));
+        ScaleQuestion scaleQuestion = new ScaleQuestion(questionField.getText(), obligatoryBox.isSelected(), Integer.valueOf(minValueField.getText()), Integer.valueOf(maxValueField.getText()), minLabelField.getText(), maxLabelField.getText());
         survey.addQuestion(scaleQuestion);
         creatorFrame.addScaleQuestionPanel(scaleQuestion);
         return null; //to do

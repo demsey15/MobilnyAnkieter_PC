@@ -115,8 +115,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      */
     public void addScaleQuestion(ScaleQuestion scaleQuestion) {
         ScaleQuestionPanel scaleQuestionPanel = new ScaleQuestionPanel(survey, scaleQuestion);
-        scaleQuestionPanel.setBounds(0, questionsPosition, 640, 50);
-        questionsPosition = questionsPosition + 50;
+        scaleQuestionPanel.setBounds(0, questionsPosition, 640, scaleQuestionPanel.HEIGHT);
+        questionsPosition = questionsPosition + scaleQuestionPanel.HEIGHT;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(scaleQuestionPanel);
         SwingUtilities.updateComponentTreeUI(this);

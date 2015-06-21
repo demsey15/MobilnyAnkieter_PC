@@ -18,7 +18,7 @@ import javax.swing.JCheckBox;
  */
 public class MultipleChoiceQuestionPanel extends QuestionPanel {
     
-    public static int HEIGHT = 35;
+    public int HEIGHT = 35;
 
     private List<String> answers;
     private MultipleChoiceQuestion multipleChoiceQuestion;

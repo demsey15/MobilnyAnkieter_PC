@@ -20,7 +20,7 @@ import javax.swing.JRadioButton;
  */
 public class OneChoiceQuestionPanel extends QuestionPanel {
     
-    public static int HEIGHT = 35;
+    public int HEIGHT = 35;
     private int currentYPosition = 35;
     private List<String> answers;
     
