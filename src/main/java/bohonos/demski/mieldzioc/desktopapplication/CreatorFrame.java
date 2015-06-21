@@ -186,6 +186,14 @@ public class CreatorFrame extends JFrame implements ActionListener {
         surveyPanel.addGridQuestion(gridQuestion);
     }
     
+    /**
+     * refreshes all QuestionPanels i choosen tab
+     */
+    public void refreshAllQuestionPanels() {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.refreshQuestionList();
+    }
+    
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
         

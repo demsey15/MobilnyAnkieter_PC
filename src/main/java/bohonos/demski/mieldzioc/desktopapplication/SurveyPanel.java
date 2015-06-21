@@ -16,6 +16,7 @@ import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.questions.GridQuestion;
 import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
 import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.questions.TextQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
@@ -151,6 +152,25 @@ public class SurveyPanel extends JPanel implements ActionListener {
         questionsPosition = questionsPosition + 100;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(gridQuestionPanel);
+    }
+    
+    /**
+     * refreshes all QuestionPanels in survey panel
+     */
+    public void refreshQuestionList() {
+        int size = survey.questionListSize();
+        for (int i=0; i<size; i++) {
+            Question question = survey.getQuestion(i);
+            int type = question.getQuestionType();
+            switch (type) {
+                case Question.DATE_QUESTION: addDateTimeQuestion((DateTimeQuestion)question);
+                case Question.TEXT_QUESTION: addTextQuestion((TextQuestion)question);
+                case Question.SCALE_QUESTION: addScaleQuestion((ScaleQuestion)question);
+                case Question.GRID_QUESTION: addGridQuestion((GridQuestion)question);
+                case Question.MULTIPLE_CHOICE_QUESTION: addMultipleChoiceQuestion((MultipleChoiceQuestion)question);
+                case Question.ONE_CHOICE_QUESTION: addOneChoiceQuestion((OneChoiceQuestion)question);
+            }
+        }
     }
     
     public void actionPerformed(ActionEvent ae) {
