@@ -8,6 +8,10 @@ package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -16,10 +20,11 @@ import bohonos.demski.mieldzioc.survey.Survey;
 public class OneChoiceQuestionPanel extends QuestionPanel {
 
     public OneChoiceQuestionPanel(Survey survey, OneChoiceQuestion oneChoiceQuestion) {
+        
         super(survey, oneChoiceQuestion);
         
-        HEIGHT = 80;
-        
+        HEIGHT = 120;
+
     }
     
 }

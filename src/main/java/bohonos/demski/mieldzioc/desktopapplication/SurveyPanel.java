@@ -87,8 +87,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      */
     public void addDateTimeQuestion(DateTimeQuestion dateTimeQuestion) {
         DateTimeQuestionPanel dateTimeQuestionPanel = new DateTimeQuestionPanel(survey, dateTimeQuestion);
-        dateTimeQuestionPanel.setBounds(0, questionsPosition, 640, 50);
-        questionsPosition = questionsPosition + 50;
+        dateTimeQuestionPanel.setBounds(0, questionsPosition, 640, 70);
+        questionsPosition = questionsPosition + 70;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(dateTimeQuestionPanel);
     }
@@ -99,8 +99,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      */
     public void addTextQuestion(TextQuestion textQuestion) {
         TextQuestionPanel textQuestionPanel = new TextQuestionPanel(survey, textQuestion);
-        textQuestionPanel.setBounds(0, questionsPosition, 640, 50);
-        questionsPosition = questionsPosition + 50;
+        textQuestionPanel.setBounds(0, questionsPosition, 640, 70);
+        questionsPosition = questionsPosition + 70;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(textQuestionPanel);
     }
@@ -123,8 +123,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      */
     public void addOneChoiceQuestion(OneChoiceQuestion oneChoiceQuestion) {
         OneChoiceQuestionPanel oneChoiceQuestionPanel = new OneChoiceQuestionPanel(survey, oneChoiceQuestion);
-        oneChoiceQuestionPanel.setBounds(0, questionsPosition, 640, 80);
-        questionsPosition = questionsPosition + 80;
+        oneChoiceQuestionPanel.setBounds(0, questionsPosition, 640, 120);
+        questionsPosition = questionsPosition + 120;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(oneChoiceQuestionPanel);
     }
@@ -135,8 +135,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      */
     public void addMultipleChoiceQuestion(MultipleChoiceQuestion multipleChoiceQuestion) {
         MultipleChoiceQuestionPanel multipleChoiceQuestionPanel = new MultipleChoiceQuestionPanel(survey, multipleChoiceQuestion);
-        multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 640, 80);
-        questionsPosition = questionsPosition + 80;
+        multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 640, 120);
+        questionsPosition = questionsPosition + 120;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(multipleChoiceQuestionPanel);
     }

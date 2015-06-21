@@ -36,9 +36,10 @@ public class QuestionPanel extends JPanel implements ActionListener {
         
         applicationLogic = ApplicationLogic.getInstance();
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        this.setLayout(null);
         
         questionLabel = new JLabel(question.getQuestion());
-        questionLabel.setBounds(20, 20, 300, 30);
+        questionLabel.setBounds(20, 5, 300, 20);
         this.add(questionLabel);
         
     }

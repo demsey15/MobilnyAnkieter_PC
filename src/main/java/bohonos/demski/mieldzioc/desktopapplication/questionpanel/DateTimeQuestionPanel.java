@@ -9,17 +9,26 @@ import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Andrzej
  */
 public class DateTimeQuestionPanel extends QuestionPanel {
-
-    public static int HEIGHT = 50;
+    
+    private JTextField answerField;
     
     public DateTimeQuestionPanel(Survey survey, DateTimeQuestion dataTimeQuestion) {
+        
         super(survey, dataTimeQuestion);
+        
+        HEIGHT = 70;
+        
+        answerField = new JTextField();
+        answerField.setEditable(false);
+        answerField.setBounds(20, 30, 80, 20);
+        this.add(answerField);
     }
     
 }

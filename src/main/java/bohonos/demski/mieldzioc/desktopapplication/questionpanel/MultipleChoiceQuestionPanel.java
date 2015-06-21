@@ -17,9 +17,10 @@ import bohonos.demski.mieldzioc.survey.Survey;
 public class MultipleChoiceQuestionPanel extends QuestionPanel {
 
     public MultipleChoiceQuestionPanel(Survey survey, MultipleChoiceQuestion multipleChoiceQuestion) {
+        
         super(survey, multipleChoiceQuestion);
         
-        HEIGHT = 80;
+        HEIGHT = 120;
     }
     
 }
