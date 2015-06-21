@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.questions.TextQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
 import javax.swing.JTextField;
@@ -20,9 +21,9 @@ public class TextQuestionPanel extends QuestionPanel {
     
     private JTextField answerField;
 
-    public TextQuestionPanel(Survey survey, TextQuestion textQuestion) {
+    public TextQuestionPanel(Survey survey, TextQuestion textQuestion, SurveyPanel surveyPanel) {
         
-        super(survey, textQuestion);
+        super(survey, textQuestion, surveyPanel);
         
         answerField = new JTextField();
         answerField.setEditable(false);

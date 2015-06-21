@@ -80,7 +80,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         
         this.add(scrollPane);
         
-        
+        //this.refreshQuestionList();
     }
     
     /**
@@ -88,8 +88,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * @param dateTimeQuestion new question to add
      */
     public void addDateTimeQuestion(DateTimeQuestion dateTimeQuestion) {
-        DateTimeQuestionPanel dateTimeQuestionPanel = new DateTimeQuestionPanel(survey, dateTimeQuestion);
-        dateTimeQuestionPanel.setBounds(0, questionsPosition, 640, 70);
+        DateTimeQuestionPanel dateTimeQuestionPanel = new DateTimeQuestionPanel(survey, dateTimeQuestion, this);
+        dateTimeQuestionPanel.setBounds(0, questionsPosition, 642, 70);
         questionsPosition = questionsPosition + 70;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(dateTimeQuestionPanel);
@@ -101,8 +101,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * @param textQuestion new question to add
      */
     public void addTextQuestion(TextQuestion textQuestion) {
-        TextQuestionPanel textQuestionPanel = new TextQuestionPanel(survey, textQuestion);
-        textQuestionPanel.setBounds(0, questionsPosition, 640, 70);
+        TextQuestionPanel textQuestionPanel = new TextQuestionPanel(survey, textQuestion, this);
+        textQuestionPanel.setBounds(0, questionsPosition, 642, 70);
         questionsPosition = questionsPosition + 70;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(textQuestionPanel);
@@ -114,10 +114,10 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * @param scaleQuestion new question to add
      */
     public void addScaleQuestion(ScaleQuestion scaleQuestion) {
-        ScaleQuestionPanel scaleQuestionPanel = new ScaleQuestionPanel(survey, scaleQuestion);
-        scaleQuestionPanel.setBounds(0, questionsPosition, 640, scaleQuestionPanel.HEIGHT);
+        ScaleQuestionPanel scaleQuestionPanel = new ScaleQuestionPanel(survey, scaleQuestion, this);
+        scaleQuestionPanel.setBounds(0, questionsPosition, 642, scaleQuestionPanel.HEIGHT);
         questionsPosition = questionsPosition + scaleQuestionPanel.HEIGHT;
-        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.setPreferredSize(new Dimension(642, questionsPosition));
         questionsPanel.add(scaleQuestionPanel);
         SwingUtilities.updateComponentTreeUI(this);
     }
@@ -127,10 +127,10 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * @param oneChoiceQuestion OneChoiceQuestion
      */
     public void addOneChoiceQuestion(OneChoiceQuestion oneChoiceQuestion) {
-        OneChoiceQuestionPanel oneChoiceQuestionPanel = new OneChoiceQuestionPanel(survey, oneChoiceQuestion);
-        oneChoiceQuestionPanel.setBounds(0, questionsPosition, 640, oneChoiceQuestionPanel.HEIGHT);
+        OneChoiceQuestionPanel oneChoiceQuestionPanel = new OneChoiceQuestionPanel(survey, oneChoiceQuestion, this);
+        oneChoiceQuestionPanel.setBounds(0, questionsPosition, 642, oneChoiceQuestionPanel.HEIGHT);
         questionsPosition = questionsPosition + oneChoiceQuestionPanel.HEIGHT;
-        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.setPreferredSize(new Dimension(642, questionsPosition));
         questionsPanel.add(oneChoiceQuestionPanel);
         SwingUtilities.updateComponentTreeUI(this); //added
     }
@@ -140,8 +140,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * @param multipleChoiceQuestion OneChoiceQuestion
      */
     public void addMultipleChoiceQuestion(MultipleChoiceQuestion multipleChoiceQuestion) {
-        MultipleChoiceQuestionPanel multipleChoiceQuestionPanel = new MultipleChoiceQuestionPanel(survey, multipleChoiceQuestion);
-        multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 640, multipleChoiceQuestionPanel.HEIGHT);
+        MultipleChoiceQuestionPanel multipleChoiceQuestionPanel = new MultipleChoiceQuestionPanel(survey, multipleChoiceQuestion, this);
+        multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 642, multipleChoiceQuestionPanel.HEIGHT);
         questionsPosition = questionsPosition + multipleChoiceQuestionPanel.HEIGHT;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(multipleChoiceQuestionPanel);
@@ -153,8 +153,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * @param gridQuestion OneChoiceQuestion
      */
     public void addGridQuestion(GridQuestion gridQuestion) {
-        GridQuestionPanel gridQuestionPanel = new GridQuestionPanel(survey, gridQuestion);
-        gridQuestionPanel.setBounds(0, questionsPosition, 640, 100);
+        GridQuestionPanel gridQuestionPanel = new GridQuestionPanel(survey, gridQuestion, this);
+        gridQuestionPanel.setBounds(0, questionsPosition, 642, 100);
         questionsPosition = questionsPosition + 100;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(gridQuestionPanel);

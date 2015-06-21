@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
 import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
@@ -23,9 +24,9 @@ public class MultipleChoiceQuestionPanel extends QuestionPanel {
     private List<String> answers;
     private MultipleChoiceQuestion multipleChoiceQuestion;
     
-    public MultipleChoiceQuestionPanel(Survey survey, MultipleChoiceQuestion multipleChoiceQuestion) {
+    public MultipleChoiceQuestionPanel(Survey survey, MultipleChoiceQuestion multipleChoiceQuestion, SurveyPanel surveyPanel) {
         
-        super(survey, multipleChoiceQuestion);
+        super(survey, multipleChoiceQuestion, surveyPanel);
         
         this.multipleChoiceQuestion = multipleChoiceQuestion;
         answers = this.multipleChoiceQuestion.getAnswersAsStringList();

@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
@@ -21,9 +22,9 @@ public class DateTimeQuestionPanel extends QuestionPanel {
     
     private JTextField answerField;
     
-    public DateTimeQuestionPanel(Survey survey, DateTimeQuestion dataTimeQuestion) {
+    public DateTimeQuestionPanel(Survey survey, DateTimeQuestion dataTimeQuestion, SurveyPanel surveyPanel) {
         
-        super(survey, dataTimeQuestion);
+        super(survey, dataTimeQuestion, surveyPanel);
         
         answerField = new JTextField();
         answerField.setEditable(false);

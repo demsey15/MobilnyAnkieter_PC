@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
 import javax.swing.ButtonGroup;
@@ -28,9 +29,9 @@ public class ScaleQuestionPanel extends QuestionPanel {
     private JLabel minValueLabel, maxValueLabel;
     private ButtonGroup buttonGroup;
     
-    public ScaleQuestionPanel(Survey survey, ScaleQuestion scaleQuestion) {
+    public ScaleQuestionPanel(Survey survey, ScaleQuestion scaleQuestion, SurveyPanel surveyPanel) {
         
-        super(survey, scaleQuestion);
+        super(survey, scaleQuestion, surveyPanel);
         
         this.scaleQuestion = scaleQuestion;
         minValue = this.scaleQuestion.getMinValue();
@@ -44,7 +45,7 @@ public class ScaleQuestionPanel extends QuestionPanel {
         
         if (minLabel!=null && minLabel.equals("")==false) {
             minValueLabel = new JLabel(minLabel);
-            int length = minLabel.length() * 8;
+            int length = minLabel.length() * 10;
             minValueLabel.setBounds(currentXPosition, 35, length, 20);
             this.add(minValueLabel);
             currentXPosition = currentXPosition + length + 10;
@@ -55,8 +56,8 @@ public class ScaleQuestionPanel extends QuestionPanel {
         
         for (int i=minValue; i<=maxValue; i++) {
             JRadioButton radioButton = new JRadioButton(Integer.toString(i));
-            radioButton.setBounds(currentXPosition, 35, 35, 20);
-            currentXPosition = currentXPosition + 45;
+            radioButton.setBounds(currentXPosition, 35, 40, 20);
+            currentXPosition = currentXPosition + 50;
             buttonGroup.add(radioButton);
             radioButton.setEnabled(false);
             this.add(radioButton);
@@ -64,7 +65,7 @@ public class ScaleQuestionPanel extends QuestionPanel {
         
         if (maxLabel!=null && maxLabel.equals("")==false) {
             maxValueLabel = new JLabel(maxLabel);
-            int length = maxLabel.length() * 8;
+            int length = maxLabel.length() * 10;
             maxValueLabel.setBounds(currentXPosition, 35, length, 20);
             this.add(maxValueLabel);
             currentXPosition = currentXPosition + length + 10;

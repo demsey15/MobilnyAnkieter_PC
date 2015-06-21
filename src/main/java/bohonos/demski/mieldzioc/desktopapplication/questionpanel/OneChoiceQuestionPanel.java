@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.util.ArrayList;
@@ -27,9 +28,9 @@ public class OneChoiceQuestionPanel extends QuestionPanel {
     private OneChoiceQuestion oneChoiceQuestion;
     private ButtonGroup buttonGroup;
 
-    public OneChoiceQuestionPanel(Survey survey, OneChoiceQuestion oneChoiceQuestion) {
+    public OneChoiceQuestionPanel(Survey survey, OneChoiceQuestion oneChoiceQuestion, SurveyPanel surveyPanel) {
         
-        super(survey, oneChoiceQuestion);
+        super(survey, oneChoiceQuestion, surveyPanel);
         
         this.oneChoiceQuestion = oneChoiceQuestion;
         answers = this.oneChoiceQuestion.getAnswersAsStringList();

@@ -7,11 +7,14 @@ package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.survey.Survey;
+import java.awt.Color;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,20 +26,25 @@ import javax.swing.JLabel;
 public class QuestionPanel extends JPanel implements ActionListener {
     
     public static int HEIGHT = 50;
-    public static final int WIDTH = 640;
+    public static final int WIDTH = 642;
     
     protected ApplicationLogic applicationLogic;
     protected Survey survey;
+    protected SurveyPanel surveyPanel;
+    protected Question question;
     
     private JButton questionUp;
     private JButton questionDown;
     private JButton questionDelete;
+    private JButton questionEdit;
     protected JLabel questionLabel;
     
-    public QuestionPanel(Survey survey, Question question) {
+    public QuestionPanel(Survey survey, Question question, SurveyPanel surveyPanel) {
         
         applicationLogic = ApplicationLogic.getInstance();
         this.survey = survey;
+        this.surveyPanel = surveyPanel;
+        this.question = question;
         
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setLayout(null);
@@ -45,6 +53,27 @@ public class QuestionPanel extends JPanel implements ActionListener {
         questionLabel.setBounds(20, 5, 300, 20);
         this.add(questionLabel);
         
+        this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+        
+        questionEdit = new JButton("Edytuj");
+        questionEdit.setBounds(450, 5, 80, 25);
+        questionEdit.addActionListener(this);
+        this.add(questionEdit);
+        
+        questionDelete = new JButton("Usuñ");
+        questionDelete.setBounds(450, 35, 80, 25);
+        questionDelete.addActionListener(this);
+        this.add(questionDelete);
+        
+        questionUp = new JButton("W górê");
+        questionUp.setBounds(540, 5, 80, 25);
+        questionUp.addActionListener(this);
+        this.add(questionUp);
+        
+        questionDown = new JButton("W dó³");
+        questionDown.setBounds(540, 35, 80, 25);
+        questionDown.addActionListener(this);
+        this.add(questionDown);
     }
 
     /**
@@ -89,6 +118,11 @@ public class QuestionPanel extends JPanel implements ActionListener {
         }
         
         if (source == questionDelete) {
+            this.survey.removeQuestion(question);
+            //this.surveyPanel.refreshQuestionList();
+        }
+        
+        if (source == questionEdit) {
             
         }
         

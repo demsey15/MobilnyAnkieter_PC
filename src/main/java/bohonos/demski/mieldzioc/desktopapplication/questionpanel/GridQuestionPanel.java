@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
 import bohonos.demski.mieldzioc.questions.GridQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
@@ -16,8 +17,8 @@ import bohonos.demski.mieldzioc.survey.Survey;
  */
 public class GridQuestionPanel extends QuestionPanel {
 
-    public GridQuestionPanel(Survey survey, GridQuestion gridQuestionPanel) {
-        super(survey, gridQuestionPanel);
+    public GridQuestionPanel(Survey survey, GridQuestion gridQuestionPanel, SurveyPanel surveyPanel) {
+        super(survey, gridQuestionPanel, surveyPanel);
         
         HEIGHT = 100;
     }
