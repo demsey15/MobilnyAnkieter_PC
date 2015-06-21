@@ -5,11 +5,16 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
+import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.survey.Survey;
+
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,15 +22,25 @@ import javax.swing.JButton;
  */
 public class QuestionPanel extends JPanel implements ActionListener {
     
+    public static int HEIGHT = 50;
+    public static final int WIDTH = 640;
+    
     private ApplicationLogic applicationLogic;
     
     private JButton questionUp;
     private JButton questionDown;
     private JButton questionDelete;
+    protected JLabel questionLabel;
     
-    public QuestionPanel(ApplicationLogic appLogic) {
+    public QuestionPanel(Survey survey, Question question) {
         
-        applicationLogic = appLogic;
+        applicationLogic = ApplicationLogic.getInstance();
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        this.setLayout(null);
+        
+        questionLabel = new JLabel(question.getQuestion());
+        questionLabel.setBounds(20, 5, 300, 20);
+        this.add(questionLabel);
         
     }
 

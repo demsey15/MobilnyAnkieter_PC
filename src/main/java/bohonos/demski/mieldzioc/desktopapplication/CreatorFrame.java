@@ -11,7 +11,14 @@ import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddScaleQues
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddOneChoiceQuestionFrame;
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddMultipleChoiceQuestionFrame;
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddGridQuestionFrame;
-import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddDataTimeQuestionFrame;
+import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddDateTimeQuestionFrame;
+import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.questions.GridQuestion;
+import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.Question;
+import bohonos.demski.mieldzioc.questions.ScaleQuestion;
+import bohonos.demski.mieldzioc.questions.TextQuestion;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.EventQueue;
@@ -63,7 +70,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
 	});
         
         setSize(800, 600);
-	setLocation(300,200);
+	setLocation(300,100);
         setResizable(false);
         
         menuSurvey = new JMenu("Ankieta");
@@ -125,6 +132,60 @@ public class CreatorFrame extends JFrame implements ActionListener {
         }
     }
     
+    /**
+     * adds new DateTimeQuestionPanel to choosen tab
+     * @param dateTimeQuestion new question to add
+     */
+    public void addDateTimeQuestionPanel(DateTimeQuestion dateTimeQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addDateTimeQuestion(dateTimeQuestion);
+    }
+    
+    /**
+     * adds new TextQuestionPanel to choosen tab
+     * @param textQuestion new question to add
+     */
+    public void addTextQuestionPanel(TextQuestion textQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addTextQuestion(textQuestion);
+    }
+    
+    /**
+     * adds new ScaleQuestionPanel to choosen tab
+     * @param scaleQuestion new question to add
+     */
+    public void addScaleQuestionPanel(ScaleQuestion scaleQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addScaleQuestion(scaleQuestion);
+    }
+    
+    /**
+     * adds new OneChoiceQuestionPanel to choosen tab
+     * @param oneChoiceQuestion new question to add
+     */
+    public void addOneChoiceQuestionPanel(OneChoiceQuestion oneChoiceQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addOneChoiceQuestion(oneChoiceQuestion);
+    }
+    
+    /**
+     * adds new MultipleChoiceQuestionPanel to choosen tab
+     * @param multipleChoiceQuestion new question to add
+     */
+    public void addMultipleChoiceQuestionPanel(MultipleChoiceQuestion multipleChoiceQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addMultipleChoiceQuestion(multipleChoiceQuestion);
+    }
+    
+    /**
+     * adds new GridQuestionPanel to choosen tab
+     * @param gridQuestion new question to add
+     */
+    public void addGridQuestionPanel(GridQuestion gridQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addGridQuestion(gridQuestion);
+    }
+    
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
         
@@ -144,7 +205,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
             if (tabbedPane.getSelectedIndex()!=-1) {
                 String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
-                AddDataTimeQuestionFrame addDataTimeQuestionFrame = new AddDataTimeQuestionFrame(survey, this);
+                AddDateTimeQuestionFrame addDateTimeQuestionFrame = new AddDateTimeQuestionFrame(survey, this);
             }
         }
         

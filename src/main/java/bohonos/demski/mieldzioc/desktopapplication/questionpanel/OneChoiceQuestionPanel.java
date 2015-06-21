@@ -6,17 +6,25 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
-import bohonos.demski.mieldzioc.questions.ScaleQuestion;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
 
 /**
  *
  * @author Andrzej
  */
-public class ScaleQuestionPanel extends QuestionPanel {
+public class OneChoiceQuestionPanel extends QuestionPanel {
 
-    public ScaleQuestionPanel(Survey survey, ScaleQuestion scaleQuestion) {
-        super(survey, scaleQuestion);
+    public OneChoiceQuestionPanel(Survey survey, OneChoiceQuestion oneChoiceQuestion) {
+        
+        super(survey, oneChoiceQuestion);
+        
+        HEIGHT = 120;
+
     }
     
 }

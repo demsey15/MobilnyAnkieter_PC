@@ -8,6 +8,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
 import bohonos.demski.mieldzioc.questions.Question;
+import bohonos.demski.mieldzioc.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -84,6 +85,9 @@ public class AddScaleQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
+        ScaleQuestion scaleQuestion = new ScaleQuestion(questionField.getText(), obligatoryBox.isSelected(), Integer.valueOf(minValueField.getText()), Integer.valueOf(maxValueField.getText()));
+        survey.addQuestion(scaleQuestion);
+        creatorFrame.addScaleQuestionPanel(scaleQuestion);
         return null; //to do
     }
     

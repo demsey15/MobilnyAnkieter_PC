@@ -6,7 +6,8 @@
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
-import bohonos.demski.mieldzioc.questions.TextQuestion;
+import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
+import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
 import javax.swing.JTextField;
 
@@ -14,19 +15,19 @@ import javax.swing.JTextField;
  *
  * @author Andrzej
  */
-public class TextQuestionPanel extends QuestionPanel {
+public class DateTimeQuestionPanel extends QuestionPanel {
     
     private JTextField answerField;
-
-    public TextQuestionPanel(Survey survey, TextQuestion textQuestion) {
+    
+    public DateTimeQuestionPanel(Survey survey, DateTimeQuestion dataTimeQuestion) {
         
-        super(survey, textQuestion);
+        super(survey, dataTimeQuestion);
         
         HEIGHT = 70;
         
         answerField = new JTextField();
         answerField.setEditable(false);
-        answerField.setBounds(20, 30, 300, 20);
+        answerField.setBounds(20, 30, 80, 20);
         this.add(answerField);
     }
     

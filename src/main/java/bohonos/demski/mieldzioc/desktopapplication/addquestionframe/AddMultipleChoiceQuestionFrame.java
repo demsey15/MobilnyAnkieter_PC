@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
@@ -80,7 +81,10 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        return null; //to do
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), answers);
+        survey.addQuestion(multipleChoiceQuestion);
+        creatorFrame.addMultipleChoiceQuestionPanel(multipleChoiceQuestion);
+        return null;
     }
     
     @Override
