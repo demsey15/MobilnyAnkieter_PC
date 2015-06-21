@@ -25,7 +25,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
     public static int HEIGHT = 50;
     public static final int WIDTH = 640;
     
-    private ApplicationLogic applicationLogic;
+    protected ApplicationLogic applicationLogic;
+    protected Survey survey;
     
     private JButton questionUp;
     private JButton questionDown;
@@ -35,9 +36,11 @@ public class QuestionPanel extends JPanel implements ActionListener {
     public QuestionPanel(Survey survey, Question question) {
         
         applicationLogic = ApplicationLogic.getInstance();
+        this.survey = survey;
+        
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setLayout(null);
-        
+
         questionLabel = new JLabel(question.getQuestion());
         questionLabel.setBounds(20, 5, 300, 20);
         this.add(questionLabel);

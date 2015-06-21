@@ -90,7 +90,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
         menuQuestion = new JMenu("Dodaj Pytanie");
 
         itemDataTimeQuestion = new JMenuItem("Pytanie o datê");
-        itemGridQuestion = new JMenuItem("Pytanie typu GrigQuestion");
+        itemGridQuestion = new JMenuItem("Pytanie typu GridQuestion");
         itemMultipleChioceQuestion = new JMenuItem("Pytanie wielokrotnego wyboru");
         itemOneChoiceQuestion = new JMenuItem("Pytanie jednokrotnego wyboru");
         itemScaleQuestion = new JMenuItem("Pytanie ze skal¹");

@@ -16,13 +16,13 @@ import javax.swing.JTextField;
  */
 public class TextQuestionPanel extends QuestionPanel {
     
+    public static int HEIGHT = 70;
+    
     private JTextField answerField;
 
     public TextQuestionPanel(Survey survey, TextQuestion textQuestion) {
         
         super(survey, textQuestion);
-        
-        HEIGHT = 70;
         
         answerField = new JTextField();
         answerField.setEditable(false);

@@ -17,13 +17,13 @@ import javax.swing.JTextField;
  */
 public class DateTimeQuestionPanel extends QuestionPanel {
     
+    public static int HEIGHT = 70;
+    
     private JTextField answerField;
     
     public DateTimeQuestionPanel(Survey survey, DateTimeQuestion dataTimeQuestion) {
         
         super(survey, dataTimeQuestion);
-        
-        HEIGHT = 70;
         
         answerField = new JTextField();
         answerField.setEditable(false);

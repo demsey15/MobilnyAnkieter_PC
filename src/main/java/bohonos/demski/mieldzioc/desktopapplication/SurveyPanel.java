@@ -32,6 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -92,6 +93,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         questionsPosition = questionsPosition + 70;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(dateTimeQuestionPanel);
+        SwingUtilities.updateComponentTreeUI(this);
     }
     
     /**
@@ -104,6 +106,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         questionsPosition = questionsPosition + 70;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(textQuestionPanel);
+        SwingUtilities.updateComponentTreeUI(this);
     }
     
     /**
@@ -116,6 +119,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         questionsPosition = questionsPosition + 50;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(scaleQuestionPanel);
+        SwingUtilities.updateComponentTreeUI(this);
     }
     
     /**
@@ -124,10 +128,11 @@ public class SurveyPanel extends JPanel implements ActionListener {
      */
     public void addOneChoiceQuestion(OneChoiceQuestion oneChoiceQuestion) {
         OneChoiceQuestionPanel oneChoiceQuestionPanel = new OneChoiceQuestionPanel(survey, oneChoiceQuestion);
-        oneChoiceQuestionPanel.setBounds(0, questionsPosition, 640, 120);
-        questionsPosition = questionsPosition + 120;
+        oneChoiceQuestionPanel.setBounds(0, questionsPosition, 640, oneChoiceQuestionPanel.HEIGHT);
+        questionsPosition = questionsPosition + oneChoiceQuestionPanel.HEIGHT;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(oneChoiceQuestionPanel);
+        SwingUtilities.updateComponentTreeUI(this); //added
     }
     
     /**
@@ -136,10 +141,11 @@ public class SurveyPanel extends JPanel implements ActionListener {
      */
     public void addMultipleChoiceQuestion(MultipleChoiceQuestion multipleChoiceQuestion) {
         MultipleChoiceQuestionPanel multipleChoiceQuestionPanel = new MultipleChoiceQuestionPanel(survey, multipleChoiceQuestion);
-        multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 640, 120);
-        questionsPosition = questionsPosition + 120;
+        multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 640, multipleChoiceQuestionPanel.HEIGHT);
+        questionsPosition = questionsPosition + multipleChoiceQuestionPanel.HEIGHT;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(multipleChoiceQuestionPanel);
+        SwingUtilities.updateComponentTreeUI(this);
     }
     
     /**
@@ -152,12 +158,14 @@ public class SurveyPanel extends JPanel implements ActionListener {
         questionsPosition = questionsPosition + 100;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(gridQuestionPanel);
+        SwingUtilities.updateComponentTreeUI(this);
     }
     
     /**
      * refreshes all QuestionPanels in survey panel
      */
     public void refreshQuestionList() {
+        questionsPanel = new JPanel();
         int size = survey.questionListSize();
         for (int i=0; i<size; i++) {
             Question question = survey.getQuestion(i);
@@ -171,6 +179,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
                 case Question.ONE_CHOICE_QUESTION: addOneChoiceQuestion((OneChoiceQuestion)question);
             }
         }
+        SwingUtilities.updateComponentTreeUI(this);
     }
     
     public void actionPerformed(ActionEvent ae) {
