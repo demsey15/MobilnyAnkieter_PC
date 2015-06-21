@@ -86,7 +86,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
             EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-                            InterviewerFrame menageinterv= new InterviewerFrame();
+                            MenagerInterviewersFrame menageinterv= new MenagerInterviewersFrame();
                         }
 		});
         }

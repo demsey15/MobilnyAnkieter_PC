@@ -41,7 +41,7 @@ public class InterviewerFrame extends JFrame implements ActionListener {
                 setResizable(false);
                 panel = new JPanel();   
                 addinterv = new JButton("Dodaj ankietera");
-                listinterv = new JButton("Lista ankieterów");
+                listinterv = new JButton("Menad¿er ankieterów");
                 close = new JButton("Zamknij");
 		con = this.getContentPane();
                 con.add(panel);
@@ -84,7 +84,7 @@ public class InterviewerFrame extends JFrame implements ActionListener {
             EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-                            ListInterviewersFrame listinterviewers= new ListInterviewersFrame();
+                            MenagerInterviewersFrame listinterviewers= new MenagerInterviewersFrame();
                         }
 		});
         }

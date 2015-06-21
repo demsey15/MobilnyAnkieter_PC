@@ -5,10 +5,8 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
-import bohonos.demski.mieldzioc.interviewer.*;
-//import java.awt.BorderLayout;
+import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import java.awt.Container;
-//import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -29,19 +27,17 @@ import javax.swing.JTextField;
  *
  * @author Delirus
  */
-public class AddInterviewer extends JFrame implements ActionListener{
-    
+public class EditInterviewer extends JFrame implements ActionListener{
+    private Interviewer interviewer;
     private JTextField jname, jsurname, jid;
     private JFormattedTextField jdate;
     private JLabel nameLabel, surnameLabel, idLabel, dateLabel;
     private Container addcon;
-    private JButton anul, createinterv; 
-    private ApplicationLogic applicationLogic;
-    private MenagerInterviewersFrame menager;
-    //private InterviewersRepository interrep = new InterviewersRepository(); //tymczasowo 
-    AddInterviewer(MenagerInterviewersFrame menager){
-        super("Dodanie ankietera");
-        applicationLogic = ApplicationLogic.getInstance();
+    private JButton anul, editinterv;
+    
+    public EditInterviewer(Interviewer interviewer){
+        super("Edycja ankietera");
+        //applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){
@@ -49,21 +45,20 @@ public class AddInterviewer extends JFrame implements ActionListener{
 				//System.exit(0);
 			}
 		});
-        this.menager = menager;
         setSize(800,600);
         setLocation(300,350);
         setResizable(false);
-        jname = new JTextField();
-        jsurname = new JTextField();
+        jname = new JTextField(interviewer.getName());
+        jsurname = new JTextField(interviewer.getSurname());
         nameLabel = new JLabel("Imiê: ");
         surnameLabel = new JLabel("Nazwisko: ");
-        jid = new JTextField();
+        jid = new JTextField(interviewer.getId());
         idLabel = new JLabel("ID: ");
         DateFormat format = new SimpleDateFormat("dd--MM--yyyy");
         jdate = new JFormattedTextField(format);
         dateLabel = new JLabel("Data zatrudnienia: ");
         anul = new JButton("Anuluj");
-        createinterv= new JButton("Dodaj ankietera");
+        editinterv= new JButton("Edytuj ankietera");
              
         nameLabel.setBounds(350, 0, 50, 40);
         jname.setBounds(400, 0, 100, 40);
@@ -74,7 +69,7 @@ public class AddInterviewer extends JFrame implements ActionListener{
         jdate.setBounds(400, 150, 100, 50);
         dateLabel.setBounds(275, 150, 125, 50);
         anul.setBounds(100, 400, 100, 50);
-        createinterv.setBounds(600, 400, 150, 50);
+        editinterv.setBounds(600, 400, 150, 50);
         
         //GregorianCalendar now = new GregorianCalendar();
         jdate.setValue(new Date());
@@ -90,41 +85,40 @@ public class AddInterviewer extends JFrame implements ActionListener{
         inputPanel.add(jdate);
         inputPanel.add(dateLabel);
         inputPanel.add(anul);
-        inputPanel.add(createinterv);
+        inputPanel.add(editinterv);
         
         addcon = this.getContentPane();
         addcon.add(inputPanel);
         
-        createinterv.addActionListener(this);
+        editinterv.addActionListener(this);
         anul.addActionListener(this);
 
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setVisible(true);
     }
-
+    
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if(source==anul){
             dispose();
             //System.exit(0);
         }
-        if(source == createinterv){
+        if(source == editinterv){
             //JOptionPane optionPane;
-            Date now = new Date();
+            Date now;
             GregorianCalendar cal = new GregorianCalendar();
             now=(Date) jdate.getValue();
             cal.setTime(now);
             //System.out.println("data: "+cal.getTime().getTime());
             String myid = jid.getText();
-            Interviewer newinterv = new Interviewer(jname.getText(),jsurname.getText(),myid, cal);
-             //to bêdzie musia³o byæ gdzie indziej, jeden obiekt tylko tej klasy zostanie stworzony
-            if(applicationLogic.addInterviewer(newinterv))
-                JOptionPane.showMessageDialog(this, "Dodano ankietera");
-            else
-                JOptionPane.showMessageDialog(this, "Nie dodano ankietera");
-            menager.refreshViewOfInterviewers();
+            interviewer.editeName(jname.getText());
+            interviewer.editeSurname(jsurname.getText());
+            interviewer.editeId(myid);
+            interviewer.editeHireDay(cal);               
+            JOptionPane.showMessageDialog(this, "Zedytowano ankietera");
+           
+                
             dispose();
         }
-        
     }
 }
