@@ -18,6 +18,8 @@ public class GridQuestionPanel extends QuestionPanel {
 
     public GridQuestionPanel(Survey survey, GridQuestion gridQuestionPanel) {
         super(survey, gridQuestionPanel);
+        
+        HEIGHT = 100;
     }
     
 }

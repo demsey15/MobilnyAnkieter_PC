@@ -17,6 +17,9 @@ public class OneChoiceQuestionPanel extends QuestionPanel {
 
     public OneChoiceQuestionPanel(Survey survey, OneChoiceQuestion oneChoiceQuestion) {
         super(survey, oneChoiceQuestion);
+        
+        HEIGHT = 80;
+        
     }
     
 }

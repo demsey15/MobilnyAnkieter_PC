@@ -13,6 +13,9 @@ import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddMultipleC
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddGridQuestionFrame;
 import bohonos.demski.mieldzioc.desktopapplication.addquestionframe.AddDateTimeQuestionFrame;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.questions.GridQuestion;
+import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.questions.TextQuestion;
@@ -148,12 +151,39 @@ public class CreatorFrame extends JFrame implements ActionListener {
     }
     
     /**
-     * new ScaleQuestionPanel to choosen tab
+     * adds new ScaleQuestionPanel to choosen tab
      * @param scaleQuestion new question to add
      */
     public void addScaleQuestionPanel(ScaleQuestion scaleQuestion) {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addScaleQuestion(scaleQuestion);
+    }
+    
+    /**
+     * adds new OneChoiceQuestionPanel to choosen tab
+     * @param oneChoiceQuestion new question to add
+     */
+    public void addOneChoiceQuestionPanel(OneChoiceQuestion oneChoiceQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addOneChoiceQuestion(oneChoiceQuestion);
+    }
+    
+    /**
+     * adds new MultipleChoiceQuestionPanel to choosen tab
+     * @param multipleChoiceQuestion new question to add
+     */
+    public void addMultipleChoiceQuestionPanel(MultipleChoiceQuestion multipleChoiceQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addMultipleChoiceQuestion(multipleChoiceQuestion);
+    }
+    
+    /**
+     * adds new GridQuestionPanel to choosen tab
+     * @param gridQuestion new question to add
+     */
+    public void addGridQuestionPanel(GridQuestion gridQuestion) {
+        SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+        surveyPanel.addGridQuestion(gridQuestion);
     }
     
     public void actionPerformed(ActionEvent ae) {

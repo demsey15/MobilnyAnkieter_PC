@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.GridQuestion;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
@@ -133,7 +134,10 @@ public class AddGridQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        return null; //to do
+        GridQuestion gridQuestion = new GridQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), columns, rows);
+        survey.addQuestion(gridQuestion);
+        creatorFrame.addGridQuestionPanel(gridQuestion);
+        return null;
     }
     
     @Override

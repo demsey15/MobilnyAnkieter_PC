@@ -6,10 +6,16 @@
 package bohonos.demski.mieldzioc.desktopapplication;
 
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.DateTimeQuestionPanel;
+import bohonos.demski.mieldzioc.desktopapplication.questionpanel.GridQuestionPanel;
+import bohonos.demski.mieldzioc.desktopapplication.questionpanel.MultipleChoiceQuestionPanel;
+import bohonos.demski.mieldzioc.desktopapplication.questionpanel.OneChoiceQuestionPanel;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.ScaleQuestionPanel;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.TextQuestionPanel;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.questions.GridQuestion;
+import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.questions.TextQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
@@ -109,6 +115,42 @@ public class SurveyPanel extends JPanel implements ActionListener {
         questionsPosition = questionsPosition + 50;
         questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
         questionsPanel.add(scaleQuestionPanel);
+    }
+    
+    /**
+     * adds new OneChoiceQuestion to panel
+     * @param oneChoiceQuestion OneChoiceQuestion
+     */
+    public void addOneChoiceQuestion(OneChoiceQuestion oneChoiceQuestion) {
+        OneChoiceQuestionPanel oneChoiceQuestionPanel = new OneChoiceQuestionPanel(survey, oneChoiceQuestion);
+        oneChoiceQuestionPanel.setBounds(0, questionsPosition, 640, 80);
+        questionsPosition = questionsPosition + 80;
+        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.add(oneChoiceQuestionPanel);
+    }
+    
+    /**
+     * adds new MultipleChoiceQuestion to panel
+     * @param multipleChoiceQuestion OneChoiceQuestion
+     */
+    public void addMultipleChoiceQuestion(MultipleChoiceQuestion multipleChoiceQuestion) {
+        MultipleChoiceQuestionPanel multipleChoiceQuestionPanel = new MultipleChoiceQuestionPanel(survey, multipleChoiceQuestion);
+        multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 640, 80);
+        questionsPosition = questionsPosition + 80;
+        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.add(multipleChoiceQuestionPanel);
+    }
+    
+    /**
+     * adds new GridQuestion to panel
+     * @param gridQuestion OneChoiceQuestion
+     */
+    public void addGridQuestion(GridQuestion gridQuestion) {
+        GridQuestionPanel gridQuestionPanel = new GridQuestionPanel(survey, gridQuestion);
+        gridQuestionPanel.setBounds(0, questionsPosition, 640, 100);
+        questionsPosition = questionsPosition + 100;
+        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.add(gridQuestionPanel);
     }
     
     public void actionPerformed(ActionEvent ae) {

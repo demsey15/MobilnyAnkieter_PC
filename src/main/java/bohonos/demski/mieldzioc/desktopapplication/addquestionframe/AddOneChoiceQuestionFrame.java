@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
@@ -80,7 +81,10 @@ public class AddOneChoiceQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        return null; //to do
+        OneChoiceQuestion oneChoiceQuestion = new OneChoiceQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), false, answers);
+        survey.addQuestion(oneChoiceQuestion);
+        creatorFrame.addOneChoiceQuestionPanel(oneChoiceQuestion);
+        return null;
     }
     
     @Override
