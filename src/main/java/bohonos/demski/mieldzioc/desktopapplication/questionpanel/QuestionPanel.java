@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.survey.Survey;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -21,7 +22,7 @@ import javax.swing.JLabel;
  */
 public class QuestionPanel extends JPanel implements ActionListener {
     
-    public static final int HEIGHT = 100;
+    public static int HEIGHT = 50;
     public static final int WIDTH = 640;
     
     private ApplicationLogic applicationLogic;
@@ -31,7 +32,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
     private JButton questionDelete;
     protected JLabel questionLabel;
     
-    public QuestionPanel(Question question) {
+    public QuestionPanel(Survey survey, Question question) {
         
         applicationLogic = ApplicationLogic.getInstance();
         setPreferredSize(new Dimension(WIDTH, HEIGHT));

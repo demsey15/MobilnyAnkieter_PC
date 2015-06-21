@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
+import bohonos.demski.mieldzioc.survey.Survey;
 
 /**
  *
@@ -14,8 +15,8 @@ import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
  */
 public class OneChoiceQuestionPanel extends QuestionPanel {
 
-    public OneChoiceQuestionPanel(OneChoiceQuestion oneChoiceQuestion) {
-        super(oneChoiceQuestion);
+    public OneChoiceQuestionPanel(Survey survey, OneChoiceQuestion oneChoiceQuestion) {
+        super(survey, oneChoiceQuestion);
     }
     
 }

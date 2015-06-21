@@ -5,8 +5,11 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication.addquestionframe;
 
+import bohonos.demski.mieldzioc.constraints.IConstraint;
+import bohonos.demski.mieldzioc.constraints.TextConstraint;
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.CreatorFrame;
+import bohonos.demski.mieldzioc.questions.TextQuestion;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.event.ActionEvent;
@@ -63,7 +66,28 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        return null; //to do
+        TextConstraint constraint = null;
+        int min, max;
+        if (minLengthField.getText().equals("")) {
+            if (maxLengthField.getText().equals("")) {
+                constraint = new TextConstraint(null, null, null);
+            }
+            else {
+                constraint = new TextConstraint(null, Integer.valueOf(maxLengthField.getText()), null);
+            }
+        }
+        else {
+            if (maxLengthField.getText().equals("")) {
+                constraint = new TextConstraint(Integer.valueOf(minLengthField.getText()), null, null);
+            }
+            else {
+                constraint = new TextConstraint(Integer.valueOf(minLengthField.getText()), Integer.valueOf(maxLengthField.getText()), null);
+            }
+        }
+        TextQuestion textQuestion = new TextQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), constraint);
+        survey.addQuestion(textQuestion);
+        creatorFrame.addTextQuestionPanel(textQuestion);
+        return null;
     }
     
     @Override

@@ -8,6 +8,7 @@ package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.survey.Survey;
 
 /**
  *
@@ -15,8 +16,10 @@ import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
  */
 public class DateTimeQuestionPanel extends QuestionPanel {
 
-    public DateTimeQuestionPanel(DateTimeQuestion dataTimeQuestion) {
-        super(dataTimeQuestion);
+    public static int HEIGHT = 50;
+    
+    public DateTimeQuestionPanel(Survey survey, DateTimeQuestion dataTimeQuestion) {
+        super(survey, dataTimeQuestion);
     }
     
 }

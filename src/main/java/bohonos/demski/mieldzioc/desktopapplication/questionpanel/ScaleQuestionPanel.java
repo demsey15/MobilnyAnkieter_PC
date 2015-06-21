@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.questions.ScaleQuestion;
+import bohonos.demski.mieldzioc.survey.Survey;
 
 /**
  *
@@ -14,8 +15,8 @@ import bohonos.demski.mieldzioc.questions.ScaleQuestion;
  */
 public class ScaleQuestionPanel extends QuestionPanel {
 
-    public ScaleQuestionPanel(ScaleQuestion scaleQuestion) {
-        super(scaleQuestion);
+    public ScaleQuestionPanel(Survey survey, ScaleQuestion scaleQuestion) {
+        super(survey, scaleQuestion);
     }
     
 }

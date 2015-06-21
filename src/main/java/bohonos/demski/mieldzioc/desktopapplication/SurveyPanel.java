@@ -7,8 +7,14 @@ package bohonos.demski.mieldzioc.desktopapplication;
 
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.DateTimeQuestionPanel;
 import bohonos.demski.mieldzioc.desktopapplication.questionpanel.QuestionPanel;
+import bohonos.demski.mieldzioc.desktopapplication.questionpanel.ScaleQuestionPanel;
+import bohonos.demski.mieldzioc.desktopapplication.questionpanel.TextQuestionPanel;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.questions.ScaleQuestion;
+import bohonos.demski.mieldzioc.questions.TextQuestion;
+import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +32,8 @@ import javax.swing.JTextPane;
  */
 public class SurveyPanel extends JPanel implements ActionListener {
     
+    private int questionsPosition = 0;
+    
     private ApplicationLogic applicationLogic;
     private String idOfSurvey;
     private JButton saveButton;
@@ -36,11 +44,13 @@ public class SurveyPanel extends JPanel implements ActionListener {
     private JTextPane exempleTextPane; //tests only
     
     private CreatingSurveyFrame creatingSurveyFrame;
+    private Survey survey;
     
     public SurveyPanel(String id) {
         
         applicationLogic = ApplicationLogic.getInstance();
         idOfSurvey = id;
+        survey = applicationLogic.getSurveyHandler().getSurvey(idOfSurvey);
         //creatingSurveyFrame = new CreatingSurveyFrame(applicationLogic, id);
         //saveButton = creatingSurveyFrame.addActionListenerSave(this);
         this.setLayout(null);
@@ -54,10 +64,10 @@ public class SurveyPanel extends JPanel implements ActionListener {
         this.add(descriptionLabel);
         
         questionsPanel = new JPanel();
-        questionsPanel.setLayout(new FlowLayout());
+        questionsPanel.setLayout(null);
         scrollPane = new JScrollPane(questionsPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(20, 120, 660, 350);
         
         this.add(scrollPane);
@@ -65,8 +75,40 @@ public class SurveyPanel extends JPanel implements ActionListener {
         
     }
     
+    /**
+     * adds new DateTimeQuestion to panel
+     * @param dateTimeQuestion new question to add
+     */
     public void addDateTimeQuestion(DateTimeQuestion dateTimeQuestion) {
-        questionsPanel.add(new DateTimeQuestionPanel(dateTimeQuestion));
+        DateTimeQuestionPanel dateTimeQuestionPanel = new DateTimeQuestionPanel(survey, dateTimeQuestion);
+        dateTimeQuestionPanel.setBounds(0, questionsPosition, 640, 50);
+        questionsPosition = questionsPosition + 50;
+        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.add(dateTimeQuestionPanel);
+    }
+    
+    /**
+     * adds new TestQuestion to panel
+     * @param textQuestion new question to add
+     */
+    public void addTextQuestion(TextQuestion textQuestion) {
+        TextQuestionPanel textQuestionPanel = new TextQuestionPanel(survey, textQuestion);
+        textQuestionPanel.setBounds(0, questionsPosition, 640, 50);
+        questionsPosition = questionsPosition + 50;
+        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.add(textQuestionPanel);
+    }
+    
+    /**
+     * adds new ScaleQuestion to panel
+     * @param scaleQuestion new question to add
+     */
+    public void addScaleQuestion(ScaleQuestion scaleQuestion) {
+        ScaleQuestionPanel scaleQuestionPanel = new ScaleQuestionPanel(survey, scaleQuestion);
+        scaleQuestionPanel.setBounds(0, questionsPosition, 640, 50);
+        questionsPosition = questionsPosition + 50;
+        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.add(scaleQuestionPanel);
     }
     
     public void actionPerformed(ActionEvent ae) {
