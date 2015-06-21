@@ -110,16 +110,32 @@ public class QuestionPanel extends JPanel implements ActionListener {
         Object source = ae.getSource();
         
         if (source == questionUp) {
-            
+            int index = this.survey.indexOfQuestion(question);
+            if (index != 0) {
+                this.survey.removeQuestion(question);
+                this.survey.addQuestion(index-1, question);
+                this.surveyPanel.refreshQuestionList();
+            }
         }
         
         if (source == questionDown) {
-            
+            int index = this.survey.indexOfQuestion(question);
+            int size = this.survey.questionListSize();
+            if (index < size-1) {
+                this.survey.removeQuestion(question);
+                if (index == size-2) {
+                    this.survey.addQuestion(question);
+                }
+                else {
+                    this.survey.addQuestion(index+1, question);
+                }
+                this.surveyPanel.refreshQuestionList();
+            }
         }
         
         if (source == questionDelete) {
             this.survey.removeQuestion(question);
-            //this.surveyPanel.refreshQuestionList();
+            this.surveyPanel.refreshQuestionList();
         }
         
         if (source == questionEdit) {

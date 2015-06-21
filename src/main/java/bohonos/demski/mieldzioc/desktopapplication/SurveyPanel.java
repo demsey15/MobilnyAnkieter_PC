@@ -80,7 +80,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         
         this.add(scrollPane);
         
-        //this.refreshQuestionList();
+        this.refreshQuestionList();//
     }
     
     /**
@@ -91,7 +91,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         DateTimeQuestionPanel dateTimeQuestionPanel = new DateTimeQuestionPanel(survey, dateTimeQuestion, this);
         dateTimeQuestionPanel.setBounds(0, questionsPosition, 642, 70);
         questionsPosition = questionsPosition + 70;
-        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.setPreferredSize(new Dimension(642, questionsPosition));
         questionsPanel.add(dateTimeQuestionPanel);
         SwingUtilities.updateComponentTreeUI(this);
     }
@@ -104,7 +104,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         TextQuestionPanel textQuestionPanel = new TextQuestionPanel(survey, textQuestion, this);
         textQuestionPanel.setBounds(0, questionsPosition, 642, 70);
         questionsPosition = questionsPosition + 70;
-        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.setPreferredSize(new Dimension(642, questionsPosition));
         questionsPanel.add(textQuestionPanel);
         SwingUtilities.updateComponentTreeUI(this);
     }
@@ -143,7 +143,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         MultipleChoiceQuestionPanel multipleChoiceQuestionPanel = new MultipleChoiceQuestionPanel(survey, multipleChoiceQuestion, this);
         multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 642, multipleChoiceQuestionPanel.HEIGHT);
         questionsPosition = questionsPosition + multipleChoiceQuestionPanel.HEIGHT;
-        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.setPreferredSize(new Dimension(642, questionsPosition));
         questionsPanel.add(multipleChoiceQuestionPanel);
         SwingUtilities.updateComponentTreeUI(this);
     }
@@ -156,7 +156,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
         GridQuestionPanel gridQuestionPanel = new GridQuestionPanel(survey, gridQuestion, this);
         gridQuestionPanel.setBounds(0, questionsPosition, 642, 100);
         questionsPosition = questionsPosition + 100;
-        questionsPanel.setPreferredSize(new Dimension(640, questionsPosition));
+        questionsPanel.setPreferredSize(new Dimension(642, questionsPosition));
         questionsPanel.add(gridQuestionPanel);
         SwingUtilities.updateComponentTreeUI(this);
     }
@@ -165,18 +165,41 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * refreshes all QuestionPanels in survey panel
      */
     public void refreshQuestionList() {
-        questionsPanel = new JPanel();
+        questionsPanel.removeAll();
+        questionsPosition = 0;
         int size = survey.questionListSize();
         for (int i=0; i<size; i++) {
             Question question = survey.getQuestion(i);
             int type = question.getQuestionType();
             switch (type) {
-                case Question.DATE_QUESTION: addDateTimeQuestion((DateTimeQuestion)question);
-                case Question.TEXT_QUESTION: addTextQuestion((TextQuestion)question);
-                case Question.SCALE_QUESTION: addScaleQuestion((ScaleQuestion)question);
-                case Question.GRID_QUESTION: addGridQuestion((GridQuestion)question);
-                case Question.MULTIPLE_CHOICE_QUESTION: addMultipleChoiceQuestion((MultipleChoiceQuestion)question);
-                case Question.ONE_CHOICE_QUESTION: addOneChoiceQuestion((OneChoiceQuestion)question);
+                case Question.DATE_QUESTION: {
+                    addDateTimeQuestion((DateTimeQuestion)question);
+                    break;
+                }
+                case Question.TIME_QUESTION: {
+                    addDateTimeQuestion((DateTimeQuestion)question);
+                    break;
+                }
+                case Question.TEXT_QUESTION: {
+                    addTextQuestion((TextQuestion)question);
+                    break;
+                }
+                case Question.SCALE_QUESTION: {
+                    addScaleQuestion((ScaleQuestion)question);
+                    break;
+                }
+                case Question.GRID_QUESTION: {
+                    addGridQuestion((GridQuestion)question);
+                    break;
+                }
+                case Question.MULTIPLE_CHOICE_QUESTION: {
+                    addMultipleChoiceQuestion((MultipleChoiceQuestion)question);
+                    break;
+                }
+                case Question.ONE_CHOICE_QUESTION: {
+                    addOneChoiceQuestion((OneChoiceQuestion)question);
+                    break;
+                }
             }
         }
         SwingUtilities.updateComponentTreeUI(this);

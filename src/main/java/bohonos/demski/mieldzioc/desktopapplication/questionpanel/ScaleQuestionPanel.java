@@ -37,9 +37,7 @@ public class ScaleQuestionPanel extends QuestionPanel {
         minValue = this.scaleQuestion.getMinValue();
         maxValue = this.scaleQuestion.getMaxValue();
         minLabel = this.scaleQuestion.getMinLabel();
-        System.out.println("etykieta min: " + minLabel);
         maxLabel = this.scaleQuestion.getMaxLabel();
-        System.out.println("etykieta max: " + maxLabel);
         
         buttonGroup = new ButtonGroup();
         

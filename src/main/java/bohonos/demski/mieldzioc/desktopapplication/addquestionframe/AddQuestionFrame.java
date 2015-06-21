@@ -202,7 +202,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         
         if (source == addButton) {
             if (questionConditions()==true) {
-                survey.addQuestion(createQuestion());
+                createQuestion();
                 dispose();
             }
         }
