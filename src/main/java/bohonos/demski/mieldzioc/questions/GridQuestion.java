@@ -60,8 +60,15 @@ public class GridQuestion extends Question {
 	 */
 	public GridQuestion(String question, boolean obligatory, List<String> columnLabels, List<String> rowLabels) {
 		super(question, obligatory);
-		this.columnLabels = columnLabels;
-		this.rowLabels = rowLabels;
+		if(columnLabels == null){
+			this.columnLabels = new ArrayList<String>();
+		}
+		else
+			this.columnLabels = columnLabels;
+		if(rowLabels == null)
+			this.rowLabels = new ArrayList<String>();
+		else
+			this.rowLabels = rowLabels;
 	}
 
 	/**
@@ -86,8 +93,15 @@ public class GridQuestion extends Question {
 	 */
 	public GridQuestion(String question, boolean obligatory, String errorMessage, String hint, List<String> columnLabels, List<String> rowLabels) {
 		super(question, obligatory, errorMessage, hint);
-		this.columnLabels = columnLabels;
-		this.rowLabels = rowLabels;
+		if(columnLabels == null){
+			this.columnLabels = new ArrayList<String>();
+		}
+		else
+			this.columnLabels = columnLabels;
+		if(rowLabels == null)
+			this.rowLabels = new ArrayList<String>();
+		else
+			this.rowLabels = rowLabels;
 	}
 	/**
 	 * 

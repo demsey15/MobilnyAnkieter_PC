@@ -58,7 +58,6 @@ public class OneChoiceQuestion extends Question {
 	public OneChoiceQuestion(String question, boolean obligatory, List<String> answers){
 		super(question, obligatory);
 		if(answers == null) throw new NullPointerException("Lista odpowiedzi nie moze byæ nullem!");
-		this.answers = answers;
 	}
 	
 	/**

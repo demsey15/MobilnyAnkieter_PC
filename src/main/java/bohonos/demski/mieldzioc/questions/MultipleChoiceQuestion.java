@@ -49,7 +49,9 @@ public class MultipleChoiceQuestion extends Question{
 	 */
 	public MultipleChoiceQuestion(String question, boolean obligatory, List<String> answers){
 		super(question, obligatory);
-		this.answers = answers;
+		if(answers == null) this.answers = new ArrayList<String>();
+		else
+			this.answers = answers;
 	}
 	
 	/**
@@ -71,7 +73,9 @@ public class MultipleChoiceQuestion extends Question{
 	 */
 	public MultipleChoiceQuestion(String question, boolean obligatory, String errorMessage, String hint, List<String> answers) {
 		super(question, obligatory, errorMessage, hint);
-		this.answers = answers;
+		if(answers == null) this.answers = new ArrayList<String>();
+		else
+			this.answers = answers;
 	}
 	
 
