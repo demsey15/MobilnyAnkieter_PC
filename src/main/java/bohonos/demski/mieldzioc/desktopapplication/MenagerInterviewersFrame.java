@@ -48,7 +48,7 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
     private JScrollPane scrollPane;
     private JMenu menuInterviewers;
     
-    private JMenuItem itemAddInterviewer;
+    private JMenuItem itemAddInterviewer, itemlistWorksInterviewers;
     //private JMenuItem itemRelieveInterviewer;
     //private JMenuItem itemEditingInterviewer; 
 
@@ -84,15 +84,16 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
         menuInterviewers = new JMenu("Ankieterzy");
         
         itemAddInterviewer = new JMenuItem("Dodaj ankietera");
+        itemlistWorksInterviewers = new JMenuItem("Pracuj¹cy ankieterzy");
         //itemRelieveInterviewer = new JMenuItem("Zwolnij ankietera");
         //itemEditingInterviewer = new JMenuItem("Edytuj ankietera");
         
         menuInterviewers.add(itemAddInterviewer);
-        //menuInterviewers.add(itemRelieveInterviewer);  
+        menuInterviewers.add(itemlistWorksInterviewers);  
         //menuInterviewers.add(itemEditingInterviewer);
         
         itemAddInterviewer.addActionListener(this);
-        //itemRelieveInterviewer.addActionListener(this);
+        itemlistWorksInterviewers.addActionListener(this);
         //itemEditingInterviewer.addActionListener(this);
         
         
@@ -174,7 +175,9 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
 		//});
             //refreshViewOfInterviewers();
         }
-        
+        if(source == itemlistWorksInterviewers){
+            WorksInterviewers worksInterviewers = new WorksInterviewers();
+        }
      
     }
 }
