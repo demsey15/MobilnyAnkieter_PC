@@ -136,9 +136,35 @@
 				\end{enumerate}
 				\item Klasa InterviewersRepository zajmuje się przechowywaniem ankieterów i dostępem do nich.	
 		\end{enumerate}
-	
-		
 	\end{frame}
+		\begin{frame}{Model logiczny - pakiet statistics}
+			Dostarcza statystyk dotyczących danych zebranych w ankietach oraz statystyk dotyczących funkcjonowania systemu.
+		\begin{enumerate}[1)]
+			\item Klasa QuestionStatisticsProvider dostarcza statystyk dotyczących danych zebranych w ankietach takich jak średnia, mediana, odchylenie standardowe, wartości ekstremalne).
+			\item Klasa InterviewerStatisticsProvider dostarcza statystyk dotyczących pracy ankieterów. Zawiera metody, które pozwalają ustalić, ile dany ankieter wypełnił ankiet w wybranym przedziale czasowym.
+			\item Klasa SurveysStatisticsProvider dostarcza statystyk dotyczących wypełniania konkretnego szablonu ankiety. Pozwala na sprawdzenie liczby wypełnionych ankiet w wybranym przedziale czasowym oraz znalezienie ankietera, który wypełnił najwięcej ankiet danego rodzaju.
+		\end{enumerate}
+	\end{frame}
+	\begin{frame}{Model logiczny - pakiet survey}
+	Odpowiada za logiczną reprezentację ankiet oraz umożliwia dostęp do listy szablonów ankiet i wypełnionych ankiet przechowywanych w repozytorium:
+	\begin{enumerate}[1)]
+			\item Klasa Survey reprezentuje szablon ankiety lub wypełnioną ankietę
+			\begin{enumerate}[a)]
+					\item questions - lista pytań wchodzących w skład ankiety
+					\item startTime - czas rozpoczęcia wypełniania ankiety
+					\item finishTime - czas zakończenia wypełniania ankiety
+					\item interviewer - ankieter wypełniający daną ankietę
+					\item idOfSurveys - identyfikator szablonu ankiety
+					\item title - tytuł ankiety
+					\item description - opis ankiety
+					\item summary - podsumowanie ankietera na temat wypełnionej ankiety
+					\item numberOfSurvey - numer wypełnionej ankiety
+			\end{enumerate}
+			\item Klasa SurveyHandler dostarcza szablonów ankiet do wypełnienia
+			\item Klasa SurveysRepository zajmuje się wypełnionymi ankietami.
+	\end{enumerate}
+\end{frame}
+	
 		\begin{frame}{Model wdrożeniowy}
 			
 		\end{frame}
