@@ -157,7 +157,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     break;
                 }
                 case Question.TEXT_QUESTION: {
-                    //addTextQuestion((TextQuestion)question);
+                    EditTextQuestionFrame editTextQuestionFrame = new EditTextQuestionFrame((TextQuestion)question, surveyPanel);
                     break;
                 }
                 case Question.SCALE_QUESTION: {
