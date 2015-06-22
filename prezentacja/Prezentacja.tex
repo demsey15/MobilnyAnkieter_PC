@@ -180,7 +180,27 @@
 		\end{frame}
 		
 		\begin{frame}{Dominik}
-			
+			\begin{enumerate}
+				\item	implementacja części wspólnych pakietów: questions, constraints, common.
+				\item	aplikacja mobilna
+				\begin{itemize}
+					\item Stworzenie nowej ankiety (różne typy pytań, edytowanie pytań podczas tworzenia ankiety, do pytań tekstowych możliwość dodania różnych ograniczeń np. że odpowiedź powinna spełniać jakieś wyrażenie regularne).
+					\item	Przeprowadzenie ankiety (obsługa różnych typów pytań, ograniczeń, zapisanie wyników ankiety do bazy danych).
+					\item	Wysłanie wyników przeprowadzonych ankiet na serwer.
+					\item	Automatyczne wysyłanie wyników przeprowadzonych ankiet na serwer (od razu po wypełnieniu).
+					\item	Wysłanie stworzonej ankiety na serwer (szablonu ankiet).
+					\item	Pobranie szablonów ankiet z serwera.
+				\end{itemize}
+			\end{enumerate}
 		\end{frame}
-		
+		\begin{frame}{Dominik}
+				\begin{itemize}
+					\item	Uzgadnianie uprawnień ankietera - możliwość logowania bez dostępu do Internetu – wówczas ankieter domyślnie nie ma prawa do tworzenia nowych ankiet, może natomiast wypełniać ankiety, do których przy ostatnim logowaniu z użyciem sieci miał uprawnienia. Bez połączenia z serwerem  W przypadku dostępu do Internetu pobierane są uprawnienia ankietera.
+				\end{itemize}
+		\begin{enumerate}
+			\setcounter{enumi}{2}	
+				\item	serwer
+				\item	fasada serwera (sposób łączenia się z serwerem, cała logika dotycząca przesyłania i odbierania danych z serwera i na serwer)
+		\end{enumerate}
+		\end{frame}
 \end{document}
