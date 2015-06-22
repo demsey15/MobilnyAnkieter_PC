@@ -161,7 +161,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     break;
                 }
                 case Question.SCALE_QUESTION: {
-                    //addScaleQuestion((ScaleQuestion)question);
+                    EditScaleQuestionFrame editScaleQuestionFrame = new EditScaleQuestionFrame((ScaleQuestion)question, surveyPanel);
                     break;
                 }
                 case Question.GRID_QUESTION: {

@@ -57,7 +57,7 @@ public class AddScaleQuestionFrame extends AddQuestionFrame {
         
         CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
         
-        maxLabelLabel = new JLabel("etylieta wartoœci maksymalnej: ");
+        maxLabelLabel = new JLabel("etykieta wartoœci maksymalnej: ");
         maxLabelLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(maxLabelLabel);
 
