@@ -91,6 +91,8 @@ public class ServerConnectionFacade {
 	public final static int GET_EDITABLE_TEMPLATES_ID_FOR_INTERVIEWER = 36; //pobierz ankiety, które ankieter mo¿e edytowaæ
 	public final static int GET_SURVEY_TEMPLATE = 37;
 	
+	public final static int SERVER_UNAVAILABLE = 38;
+	
 //	private SocketChannel socketChannel;
 	private Socket socketChannel;
 	private Scanner in;
@@ -111,12 +113,15 @@ public class ServerConnectionFacade {
 	 * @return zwraca BAD_PASSWORD, jeœli podane has³o jest b³êdne lub nie ma u¿ytkownika o podanym id,
 	 * AUTHORIZATION_FAILED, jeœli u¿ytkownik nie ma odpowienich uprawnieñ, TEMPLATE_ALREADY_EXISTS,
 	 * jeœli szablon o podanym id ju¿ istnieje, OPERATION_OK, jeœli operacja przebieg³a pomyœlnie.
+	 * SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public int sendSurveyTemplate(Survey survey, String usersId, char[] password){
 		if(survey == null ||usersId == null || password == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
 		System.out.println("£¹czê");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
+		
 		System.out.println("£¹czê po");
 		if(!login(usersId, password)){
 			disconnect();
@@ -147,11 +152,14 @@ public class ServerConnectionFacade {
 	 * @return BAD_PASSWORD, jeœli podano b³êdne has³o lub nie ma u¿ytkownika o podanym id,
 	 * AUTHORIZATION_FAILED, jeœli u¿ytkownik nie jest administratorem, BAD_DATA_FORMAT, jeœli nie ma
 	 * ankiety o zadanym id, OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie.
+	 * SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public int changeSurveyStatus(String idOfSurveys, int status, String usersId, char[] password){
 		if(idOfSurveys == null ||usersId == null || password == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return BAD_PASSWORD;
@@ -179,11 +187,14 @@ public class ServerConnectionFacade {
 	 * ankiet), BAD_DATA_FORMAT, jeœli nie ma
 	 * ankiety o zadanym id lub ankieta nie ma statusu IN_PROGRESS,
 	 *  OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie.
+	 *  SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public int updateSurveyTemplate(Survey survey, String usersId, char[] password){
 		if(survey == null ||usersId == null || password == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return BAD_PASSWORD;
@@ -211,11 +222,13 @@ public class ServerConnectionFacade {
 	 * BAD_DATA_FORMAT, jeœli ankieta o zadanym numerze znajduje siê ju¿ w repozytorium,
 	 *  OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie, SURVEY_INACTIVE, jeœli ankieta nie ma
 	 *  statusu "aktywna".
+	 *  SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public int sendFilledSurvey(Survey survey, String usersId, char[] password){
 		if(survey == null ||usersId == null || password == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
 	
 		if(!login(usersId, password)){
 			disconnect();
@@ -236,7 +249,9 @@ public class ServerConnectionFacade {
 	public List<Survey> getActiveSurveyTemplates(String usersId, char[] password){
 		if(usersId == null || password == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return null;
@@ -254,7 +269,9 @@ public class ServerConnectionFacade {
 	public List<Survey> getInactiveSurveyTemplates(String usersId, char[] password){
 		if(usersId == null || password == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return null;
@@ -277,7 +294,9 @@ public class ServerConnectionFacade {
 	public List<Survey> getInProgressSurveyTemplates(String usersId, char[] password){
 		if(usersId == null || password == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return null;
@@ -302,7 +321,9 @@ public class ServerConnectionFacade {
 		if(interviewerToAdd == null || password == null || usersId == null ||
 				passwordToAdd == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return BAD_PASSWORD;
@@ -325,7 +346,9 @@ public class ServerConnectionFacade {
 		if(adminId == null || password == null || usersId == null ||
 				adminPassword == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
+		
 		if(!login(usersId, password)){
 		disconnect();
 		return BAD_PASSWORD;
@@ -351,11 +374,14 @@ public class ServerConnectionFacade {
 	 * @return listê wype³nionych ankiet dla danej grupy ankiet lub null, jeœli: podano b³êdne
 	 * dane logowania, loguj¹cy siê u¿ytkownik nie jest administratorem, nie ma grupy ankiet o
 	 * podanym id lub nie przes³ano jeszcze ¿adnego wyniku, wyst¹pi³ nieznany b³¹d.
+	 * null, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public List<Survey> getFilledSurveys(String idOfSurveys, String usersId, char[] password){
 		if(idOfSurveys == null || password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 		disconnect();
 		return null;
@@ -397,11 +423,14 @@ public class ServerConnectionFacade {
 	 * @param password has³o administratora.
 	 * @return listê ankieterów lub null, jeœli: podano b³êdne
 	 * dane logowania, loguj¹cy siê u¿ytkownik nie jest administratorem, wyst¹pi³ nieznany b³¹d.
+	 * null, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public List<Interviewer> getAllInterviewers(String usersId, char[] password){
 		if(password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 		disconnect();
 		return null;
@@ -438,11 +467,14 @@ public class ServerConnectionFacade {
 	 * @return ankieter lub null, jeœli: podano b³êdne
 	 * dane logowania, loguj¹cy siê u¿ytkownik nie ma odpowiednich uprawnieñ, brak
 	 * ankietera o zadanym id.
+	 * null, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public Interviewer getInterviewer(String interviewerId, String usersId, char[] password){
 		if(password == null || usersId == null || interviewerId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 		disconnect();
 		return null;
@@ -477,7 +509,8 @@ public class ServerConnectionFacade {
 	public boolean authenticate(String usersId, char[] password){
 		if(password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return false;
 		if(!login(usersId, password)){
 		disconnect();
 		return false;
@@ -498,12 +531,15 @@ public class ServerConnectionFacade {
 	 * @return BAD_PASSWORD b³êdne dane logowania, AUTHORIZATION_FAILED zalogowany u¿ytkownik
 	 * nie jest administratorem (tylko administrator mo¿e zwolniæ ankietera), BAD_DATA_FORMAT,
 	 * jeœli nie ma ankietera o podanym id, OPERATION_OK, jeœli zwolniono ankietera.
+	 * SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public int dismissInterviewer(String interviewerId, GregorianCalendar relieveDay,
 			String usersId, char[] password){
 		if(password == null || usersId == null || interviewerId == null || relieveDay == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
+		
 		if(!login(usersId, password)){
 		disconnect();
 		return BAD_PASSWORD;
@@ -539,12 +575,15 @@ public class ServerConnectionFacade {
 	 * @return listê wype³nionych ankiet dla danej grupy ankiet lub null, jeœli: podano b³êdne
 	 * dane logowania, loguj¹cy siê u¿ytkownik nie jest administratorem, nie ma grupy ankiet o
 	 * podanym id lub nie przes³ano jeszcze ¿adnego wyniku, wyst¹pi³ nieznany b³¹d.
+	 * null, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public List<Survey> getSurveysFilledByInterviewer(String interviewerId, 
 			String usersId, char[] password){
 		if(interviewerId == null || password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return null;
@@ -586,6 +625,7 @@ public class ServerConnectionFacade {
 	 * AUTHORIZATION_FAILED, jeœli nadaj¹cy uprawnienia nie jest administratorem,
 	 * BAD_DATA_FORMAT, jeœli nie ma zadanej grupy ankiet albo nie ma ankietera o zadanym id,
 	 * jesli wszystko przebieg³o pomyœlnie - OPERATION_OK.
+	 * SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public int sendInterviewerPrivileges(String interviewerId, 
 			InterviewerSurveyPrivileges privileges, String idOfSurveys,
@@ -593,7 +633,10 @@ public class ServerConnectionFacade {
 		if(interviewerId == null || password == null || usersId == null || privileges == null
 				|| idOfSurveys == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		
+		if(!connect()) 
+			return SERVER_UNAVAILABLE;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return BAD_PASSWORD;
@@ -631,12 +674,15 @@ public class ServerConnectionFacade {
 	 * u¿ytkownik o siebie samego albo administrator),
 	 * albo nie ma ankietera o zadanym id,
 	 * jesli wszystko przebieg³o pomyœlnie - zwraca mapê z danymi.
+	 * null, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public Map<String, InterviewerSurveyPrivileges> getAllInterviewerPrivileges(String interviewerId, 
 			String usersId, char[] password){
 		if(interviewerId == null || password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return null;
@@ -673,12 +719,15 @@ public class ServerConnectionFacade {
 	 * jeœli pytaj¹cy nie ma odpowiednich uprawnieñ (nie jest administratorem),
 	 * BAD_DATA_FORMAT, jeœli nie ma ankietera o zadanym id,
 	 * OPERATION_OK, jeœli wszystko przebieg³o pomyœlnie.
+	 * SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public int setInterviewerCreatingPrivileges(Interviewer interviewer, boolean canCreate,
 			String usersId, char[] password){
 		if(interviewer == null || password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return BAD_PASSWORD;
@@ -714,12 +763,15 @@ public class ServerConnectionFacade {
 	 * u¿ytkownik o siebie samego albo administrator),
 	 * BAD_DATA_FORMAT, jeœli nie ma ankietera o zadanym id,
 	 * 1 jeœli ankieter mo¿e tworzyæ ankiety, w przeciwnym przypadku 0.
+	 * SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public int getInterviewerCreatingPrivileges(String interviewerId, 
 			String usersId, char[] password){
 		if(interviewerId == null || password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return SERVER_UNAVAILABLE;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return BAD_PASSWORD;
@@ -753,11 +805,15 @@ public class ServerConnectionFacade {
 	 * u¿ytkownik o siebie samego albo administrator),
 	 * , jeœli nie ma ankietera o zadanym id,
 	 * w przeciwnym przypadku listê z indeksami.
+	 * null, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public List<String> getActiveIdTemplateForInterviewer(String interviewerId, String usersId, char[] password){
 		if(interviewerId == null || password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		
+		if(!connect())
+			return null; 
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return null;
@@ -796,11 +852,14 @@ public class ServerConnectionFacade {
 	 * u¿ytkownik o siebie samego albo administrator),
 	 * , jeœli nie ma ankietera o zadanym id,
 	 * w przeciwnym przypadku listê z indeksami.
+	 * SERVER_UNAVAILABLE, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public List<String> getEditableIdTemplateForInterviewer(String interviewerId, String usersId, char[] password){
 		if(interviewerId == null || password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect()) 
+			return null;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return null;
@@ -839,11 +898,14 @@ public class ServerConnectionFacade {
 	 * tylko admnistrator, inne ka¿dy),
 	 * , jeœli nie ma szablonu o zadanym id,
 	 * w przeciwnym przypadku ankietê.
+	 * null, jeœli nie mo¿na po³¹czyæ z serwerem.
 	 */
 	public Survey getSurveyTemplate(String idOfSurveys, String usersId, char[] password){
 		if(idOfSurveys == null || password == null || usersId == null)
 			throw new NullPointerException("Przekazane argumenty nie mog¹ byæ nullami.");
-		connect();
+		if(!connect())
+			return null;
+		
 		if(!login(usersId, password)){
 			disconnect();
 			return null;
@@ -867,6 +929,11 @@ public class ServerConnectionFacade {
 		}
 	}
 	
+	public boolean tryConnection(){
+		boolean result = connect();
+		if(result) disconnect();
+		return result;
+	}
 	
 	private boolean login(String usersId, char[] password){
 		System.out.println("Wysy³am id");
@@ -882,7 +949,7 @@ public class ServerConnectionFacade {
 		return (answer != BAD_PASSWORD);
 	}
 	
-	private void connect(){
+	private boolean connect(){
 		try {
 			//socketChannel = SocketChannel.open(new InetSocketAddress(HOST, PORT));
 			socketChannel = new Socket();
@@ -892,9 +959,9 @@ public class ServerConnectionFacade {
 			//in = new Scanner(socketChannel);
 			out = new PrintWriter(socketChannel.getOutputStream(), true);
 			in = new Scanner(socketChannel.getInputStream());
+			return true;
 		} catch (IOException e) {
-			System.out.println("B³¹d");
-			e.printStackTrace();
+			return false;
 		}
 	}
 	
