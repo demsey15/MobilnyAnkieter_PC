@@ -1,5 +1,0 @@
-\beamer@endinputifotherversion {3.36pt}
-\beamer@sectionintoc {1}{Za\IeC {\l }o\IeC {\.z}enia projektu}{3}{0}{1}
-\beamer@sectionintoc {2}{Zakres wst\IeC {\k e}pny i co zosta\IeC {\l }o osi\IeC {\k a}gni\IeC {\k e}te}{4}{0}{2}
-\beamer@sectionintoc {3}{Architektura projektu}{6}{0}{3}
-\beamer@sectionintoc {4}{Podzia\IeC {\l } zada\IeC {\'n}}{8}{0}{4}
