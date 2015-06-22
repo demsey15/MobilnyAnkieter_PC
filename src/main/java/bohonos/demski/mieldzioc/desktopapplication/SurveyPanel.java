@@ -154,8 +154,8 @@ public class SurveyPanel extends JPanel implements ActionListener {
      */
     public void addGridQuestion(GridQuestion gridQuestion) {
         GridQuestionPanel gridQuestionPanel = new GridQuestionPanel(survey, gridQuestion, this);
-        gridQuestionPanel.setBounds(0, questionsPosition, 642, 100);
-        questionsPosition = questionsPosition + 100;
+        gridQuestionPanel.setBounds(0, questionsPosition, 642, gridQuestionPanel.HEIGHT);
+        questionsPosition = questionsPosition + gridQuestionPanel.HEIGHT;
         questionsPanel.setPreferredSize(new Dimension(642, questionsPosition));
         questionsPanel.add(gridQuestionPanel);
         SwingUtilities.updateComponentTreeUI(this);
