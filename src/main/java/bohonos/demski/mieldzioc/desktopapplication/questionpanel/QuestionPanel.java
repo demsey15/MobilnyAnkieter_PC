@@ -5,9 +5,16 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication.questionpanel;
 
+import bohonos.demski.mieldzioc.desktopapplication.editquestionframe.*;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.desktopapplication.SurveyPanel;
+import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.questions.GridQuestion;
+import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.OneChoiceQuestion;
+import bohonos.demski.mieldzioc.questions.ScaleQuestion;
+import bohonos.demski.mieldzioc.questions.TextQuestion;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.Color;
 
@@ -139,7 +146,37 @@ public class QuestionPanel extends JPanel implements ActionListener {
         }
         
         if (source == questionEdit) {
-            
+            int type = question.getQuestionType();
+            switch (type) {
+                case Question.DATE_QUESTION: {
+                    EditDateTimeQuestionFrame editDateTimeQuestionFrame = new EditDateTimeQuestionFrame((DateTimeQuestion)question, surveyPanel);
+                    break;
+                }
+                case Question.TIME_QUESTION: {
+                    EditDateTimeQuestionFrame editDateTimeQuestionFrame = new EditDateTimeQuestionFrame((DateTimeQuestion)question, surveyPanel);
+                    break;
+                }
+                case Question.TEXT_QUESTION: {
+                    //addTextQuestion((TextQuestion)question);
+                    break;
+                }
+                case Question.SCALE_QUESTION: {
+                    //addScaleQuestion((ScaleQuestion)question);
+                    break;
+                }
+                case Question.GRID_QUESTION: {
+                    //addGridQuestion((GridQuestion)question);
+                    break;
+                }
+                case Question.MULTIPLE_CHOICE_QUESTION: {
+                    //addMultipleChoiceQuestion((MultipleChoiceQuestion)question);
+                    break;
+                }
+                case Question.ONE_CHOICE_QUESTION: {
+                    //addOneChoiceQuestion((OneChoiceQuestion)question);
+                    break;
+                }
+            }
         }
         
     }
