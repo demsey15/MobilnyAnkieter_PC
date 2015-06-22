@@ -6,6 +6,7 @@
 package bohonos.demski.mieldzioc.desktopapplication;
 
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
+import bohonos.demski.mieldzioc.interviewer.InterviewerSurveyPrivileges;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -34,8 +36,9 @@ public class EditInterviewer extends JFrame implements ActionListener{
     private JLabel nameLabel, surnameLabel, idLabel, dateLabel;
     private Container addcon;
     private JButton anul, editinterv;
+    private MenagerInterviewersFrame menager;
     
-    public EditInterviewer(Interviewer interviewer){
+    public EditInterviewer(Interviewer interviewer, MenagerInterviewersFrame menager){
         super("Edycja ankietera");
         //applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
@@ -45,6 +48,8 @@ public class EditInterviewer extends JFrame implements ActionListener{
 				//System.exit(0);
 			}
 		});
+        this.interviewer = interviewer;
+        this.menager = menager;
         setSize(800,600);
         setLocation(300,350);
         setResizable(false);
@@ -58,7 +63,7 @@ public class EditInterviewer extends JFrame implements ActionListener{
         jdate = new JFormattedTextField(format);
         dateLabel = new JLabel("Data zatrudnienia: ");
         anul = new JButton("Anuluj");
-        editinterv= new JButton("Edytuj ankietera");
+        editinterv= new JButton("Zapisz");
              
         nameLabel.setBounds(350, 0, 50, 40);
         jname.setBounds(400, 0, 100, 40);
@@ -111,13 +116,18 @@ public class EditInterviewer extends JFrame implements ActionListener{
             cal.setTime(now);
             //System.out.println("data: "+cal.getTime().getTime());
             String myid = jid.getText();
+           // System.out.println(jname.getText());
+           // System.out.println(jsurname.getText());
+            //System.out.println(jid.getText());
+           // System.out.println(jdate.getText());
+         
             interviewer.editeName(jname.getText());
             interviewer.editeSurname(jsurname.getText());
             interviewer.editeId(myid);
             interviewer.editeHireDay(cal);               
             JOptionPane.showMessageDialog(this, "Zedytowano ankietera");
            
-                
+            menager.refreshViewOfInterviewers();
             dispose();
         }
     }

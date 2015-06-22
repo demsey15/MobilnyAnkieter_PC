@@ -15,7 +15,7 @@ public class InterviewerPrivileges implements Serializable{
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 	private boolean creating = false;
     public void changePrivileges(boolean creating){
         this.creating=creating;

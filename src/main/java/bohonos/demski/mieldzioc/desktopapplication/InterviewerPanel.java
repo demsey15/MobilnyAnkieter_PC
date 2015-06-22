@@ -10,6 +10,7 @@ import static bohonos.demski.mieldzioc.desktopapplication.questionpanel.Question
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -33,6 +34,7 @@ public class InterviewerPanel extends JPanel implements ActionListener{
     
     public InterviewerPanel(Interviewer interviewer, MenagerInterviewersFrame meanger){
         this.interviewer=interviewer;
+        this.menager = meanger;
         
         //applicationLogic = ApplicationLogic.getInstance();
         
@@ -57,11 +59,24 @@ public class InterviewerPanel extends JPanel implements ActionListener{
         privileges.setBounds(600, 15, 150, 40);
         this.add(editInterv);
         this.add(privileges);
+        editInterv.addActionListener(this);
+        privileges.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        
-       
+         
+        if(source == editInterv){
+             //EventQueue.invokeLater(new Runnable() {
+		//	@Override
+		//	public void run() {
+            EditInterviewer editInterviewer = new EditInterviewer(interviewer, menager);
+             // }
+		//});
+            //menager.refreshViewOfInterviewers();
+        }
+        if(source == privileges){
+            SetPrivileges setPrivileges = new SetPrivileges(interviewer);
+        }
     }
 }

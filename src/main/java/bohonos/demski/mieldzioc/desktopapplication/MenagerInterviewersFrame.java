@@ -147,8 +147,8 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
     public void refreshViewOfInterviewers(){
         interviewerPanelPosition = 0;
         interviewersPanel.removeAll();
-        List<Interviewer> listInterviewers = applicationLogic.getInterviewers();       
-        for(Interviewer interviewer : listInterviewers){
+        //List<Interviewer> listInterviewers = applicationLogic.getInterviewers();       
+        for(Interviewer interviewer : applicationLogic.getInterviewers()){
             InterviewerPanel iPanel = new InterviewerPanel(interviewer, this);
             iPanel.setBounds(0, interviewerPanelPosition, 780, 70);
             interviewerPanelPosition+=70;
