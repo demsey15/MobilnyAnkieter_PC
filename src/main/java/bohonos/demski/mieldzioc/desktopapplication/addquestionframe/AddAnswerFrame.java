@@ -27,9 +27,9 @@ public class AddAnswerFrame extends JFrame implements ActionListener {
     private final int ADD_BUTTON_Y_POSITION = 110;
     private final int BUTTON_WIDTH = 120;
     private final int BUTTON_HEIGHT = 40;
-    private final int LABEL_X_POSITION = 20;
+    private final int LABEL_X_POSITION = 15;
     private final int LABEL_Y_POSITION = 40;
-    private final int LABEL_WIDTH = 60;
+    private final int LABEL_WIDTH = 70;
     private final int LABEL_HEIGHT = 25;
     private final int FIELD_X_POSITION = 100;
     private final int FIELD_Y_POSITION = 40;

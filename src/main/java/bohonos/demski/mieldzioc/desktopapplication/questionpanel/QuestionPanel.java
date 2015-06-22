@@ -169,7 +169,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     break;
                 }
                 case Question.MULTIPLE_CHOICE_QUESTION: {
-                    //addMultipleChoiceQuestion((MultipleChoiceQuestion)question);
+                    EditMultipleChoiceQuestionFrame editMultipleChoiceQuestionFrame = new EditMultipleChoiceQuestionFrame((MultipleChoiceQuestion)question, surveyPanel);
                     break;
                 }
                 case Question.ONE_CHOICE_QUESTION: {
