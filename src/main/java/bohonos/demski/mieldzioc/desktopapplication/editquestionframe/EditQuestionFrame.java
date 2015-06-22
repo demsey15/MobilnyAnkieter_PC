@@ -216,7 +216,7 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
         }
         
         if (source == addRowButton) {
-            //AddRowFrame addRowFrame = new AddRowFrame(this);
+            AddRowFrame addRowFrame = new AddRowFrame(this);
         }
         
         if (source == deleteRowButton) {
@@ -224,7 +224,7 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
         }
         
         if (source == addColumnButton) {
-            //AddColumnFrame addColumnFrame = new AddColumnFrame(this);
+            AddColumnFrame addColumnFrame = new AddColumnFrame(this);
         }
         
         if (source == deleteColumnButton) {
