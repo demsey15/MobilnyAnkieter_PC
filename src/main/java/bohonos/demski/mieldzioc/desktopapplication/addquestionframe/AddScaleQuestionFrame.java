@@ -37,7 +37,7 @@ public class AddScaleQuestionFrame extends AddQuestionFrame {
         
         this.setSize(600, 500);
         
-        minLabelLabel = new JLabel("etylieta wartoœci minimalnej: ");
+        minLabelLabel = new JLabel("etykieta wartoœci minimalnej: ");
         minLabelLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(minLabelLabel);
 
