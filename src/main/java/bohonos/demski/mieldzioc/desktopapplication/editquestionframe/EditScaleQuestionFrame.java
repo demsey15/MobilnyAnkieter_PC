@@ -99,6 +99,7 @@ public class EditScaleQuestionFrame extends EditQuestionFrame {
         question.setQuestion(questionField.getText());
         question.setHint(hintField.getText());
         question.setErrorMessage(errorMessageField.getText());
+        question.setObligatory(obligatoryBox.isSelected());
         scaleQuestion.setMinLabel(minLabelField.getText());
         scaleQuestion.setMaxLabel(maxLabelField.getText());
         scaleQuestion.setMinValue(Integer.valueOf(minValueField.getText()));

@@ -208,7 +208,7 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
         }
         
         if (source == addAnswerButton) {
-            //AddAnswerFrame addAnswerFrame = new AddAnswerFrame(this);
+            AddAnswerFrame addAnswerFrame = new AddAnswerFrame(this);
         }
         
         if (source == deleteAnswerButton) {
