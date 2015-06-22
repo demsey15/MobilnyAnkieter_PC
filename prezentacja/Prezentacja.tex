@@ -67,9 +67,78 @@
 		\section{Architektura projektu}
 		
 		\begin{frame}{Model logiczny}
-			
+			Diagram klas przedstawiony w dokumentacji zawiera główny rdzeń warstwy logicznej naszej aplikacji. Oczywiście nie umieściliśmy tam wszystkich klas - jest ich znacznie (!) więcej. To tylko poglądowy obraz tego, na czym opiera się nasza aplikacja.
 		\end{frame}
+		\begin{frame}{Model logiczny - pakiet questions}
+			Pakiet questions odpowiada za logiczną reprezentację różnych typów pytań: 
+			\begin{enumerate}
+			\item	klasa MultipleChoiceQuestions to pytanie wielokrotnego wyboru
+			\item	OneChoiceQuestions – pytanie jednokrotnego wyboru i pytanie typu „wybór z listy” (wówczas pole isDropDownList ustawione jest na true)
+			\item	ScaleQuestion – pytanie typu skala
+			\item	TextQuestion – to pytanie, gdzie odpowiedź jest tekstem wprowadzonym przez użytkownika – można ustawić w nim różne typy ograniczeń (pole constraint typu IConstraint) – patrz pakiet constraints
+			\item	GridQuestion – to pytanie typu „siatka” – powinno być obrazowane w postaci tabeli, w której użytkownik może zaznaczyć właściwą odpowiedź (odpowiedzi)
+		\end{enumerate}	
+	\end{frame}
+	\begin{frame}{Model logiczny - pakiet questions}
+		Wszystkie te klasy dziedziczą po klasie abstrakcyjnej Question, która jest ilustracją pytania jako abstrakcji. Dziedziczenie to gwarantuje implementację pól i metod odpowiedzialnych za wszystko to, co z każdym typem pytania jest związane: treść pytania, podpowiedź do pytania, czy pytanie jest obowiązkowe, tekst błędu, adres do obrazka dołączonego do pytania, możliwość pobrania odpowiedzi, której udzielił użytkownik, sprawdzenia, czy pytanie jest obowiązkowe oraz czy na nie odpowiedziano.
+	\end{frame}
+	\begin{frame}{Model logiczny - pakiet constraints}
+		Pakiet ten odpowiada za reprezentację różnych typów ograniczeń do możliwych odpowiedzi użytkownika na zadane pytanie (typu tekstowego).
+		\begin{enumerate}[1)]
+				\item	Klasa NumberConstraint reprezentuje ograniczenia liczbowe (wówczas odpowiedź na zadane pytanie musi być liczbą)
+				\begin{enumerate}[a)]
+					\item	minValue – liczba, której odpowiedź musi być równa lub większa od niej
+					\item	maxValue – liczba, której odpowiedź musi być równa lub mniejsza od niej
+					\item	mustBeInteger – jeśli ustawione na true, liczba musi być liczbą całkowitą
+					\item	notEquals – jeśli ustawione, to jest to liczba, od której odpowiedź musi się różnić
+					\item	notBetweenMaxAndMinValue – jeśli ustawione na true, to odpowiedź nie może należeć do przedziału [minValue, maxValue]
+				\end{enumerate}
+			\end{enumerate}
+		\end{frame}
+		\begin{frame}
+			\begin{enumerate}[1)]
+				\setcounter{enumi}{1}
+				\item	Klasa TextConstraint reprezentuje ograniczenia odnośnie treści odpowiedzi
+				\begin{enumerate}[a)]
+					\item	minLength – minimalna długość odpowiedzi (minimalna liczba znaków odpowiedzi)
+					\item	maxLength – maksymalna długość odpowiedzi
+					\item	regex – wyrażenie regularne, które odpowiedź musi spełnić	
+				\end{enumerate}
+				
+				\item	TextValidator to klasa, której metoda validate odpowiada za sprawdzenie, czy przekazana jako argument treść odpowiedzi spełnia zadane ograniczenia.	
+		\end{enumerate}
+	
+		Klasy NumberConstraint i TextConstraint implementują interfejs IConstraint, dzięki temu posiadają metodę checkCorrectness, która sprawdza, czy zadana odpowiedź spełnia ich ograniczenia.
+	\end{frame}
+	\begin{frame}{Model logiczny - pakiet common}
+		Pakiet common zawiera generyczną klasę Pair odpowiadającą za reprezentację par obiektów różnego typu.
+	\end{frame}
+	\begin{frame}{Model logiczny - pakiet controls}
 		
+		Pakiet ten zawiera klasy będące kontrolerami – klasami pośredniczącymi między warstwą logiczną i GUI.
+	\end{frame}
+	\begin{frame}{Model logiczny - pakiet facades}	
+		Zawiera między innymi klasę odpowiedzialną za komunikację klienta z serwerem – w całości zajmuje się logiką związaną z przesyłaniem i odbieraniem danych (m.in. z ich serializacją za pomocą jsona). Logika ta jest ukryta przed innymi klasami i nie muszą się one przejmować tym, jak wszystko działa, tylko wywołać pojedynczą metodę robiącą w całości to, czego oczekują.
+	\end{frame}
+	\begin{frame}{Model logiczny - pakiet interviewer}
+		Stanowi logiczną reprezentację ankieterów:
+		\begin{enumerate}[1)]
+				\item Klasa Interviewer reprezentuje ankietera
+				\begin{enumerate}[a)]
+						\item name - imię ankietera
+						\item surname - nazwisko ankietera
+						\item hireDay - data zatrudnienia ankietera
+						\item relieveName - data zwolnienia ankietera
+						\item id - identyfikator ankietera (PESEL)
+						\item outOfWorkTime - lista okresów, w których ankieter nie był zatrudniony
+						\item interviewerPrivileges - ogólne uprawnienia ankietera (czy może tworzyć nowe ankiety)
+						\item intervSurveysPriviliges - uprawnienia ankietera dotyczące konkretnej ankiety (czy może ją wypełniać, edytować, edytować bez zatwierdzenia zmian przez administratora)
+				\end{enumerate}
+				\item Klasa InterviewersRepository zajmuje się przechowywaniem ankieterów i dostępem do nich.	
+		\end{enumerate}
+	
+		
+	\end{frame}
 		\begin{frame}{Model wdrożeniowy}
 			
 		\end{frame}
