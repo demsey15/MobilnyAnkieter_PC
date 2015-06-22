@@ -142,6 +142,7 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
         this.add(scrollPane);
 	setVisible(true);
         refreshViewOfInterviewers();
+        
     }
 
     public void refreshViewOfInterviewers(){

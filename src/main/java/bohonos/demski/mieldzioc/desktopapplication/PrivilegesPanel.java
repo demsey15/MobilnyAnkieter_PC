@@ -8,6 +8,7 @@ package bohonos.demski.mieldzioc.desktopapplication;
 import static bohonos.demski.mieldzioc.desktopapplication.InterviewerPanel.HEIGHT;
 import static bohonos.demski.mieldzioc.desktopapplication.InterviewerPanel.WIDTH;
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
+import bohonos.demski.mieldzioc.interviewer.InterviewerPrivileges;
 import bohonos.demski.mieldzioc.interviewer.InterviewerSurveyPrivileges;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -71,6 +72,17 @@ public class PrivilegesPanel extends JPanel implements ActionListener{
         this.add(cb3);
         this.add(cb4);
         this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+        
+    }
+    
+    
+    public InterviewerSurveyPrivileges getInterviewerSurveyPrivileges(){
+        InterviewerSurveyPrivileges interPrivileges = new InterviewerSurveyPrivileges(cb1.isSelected(), cb2.isSelected(), cb3.isSelected(), cb4.isSelected());
+        return interPrivileges;
+    }
+    
+    public String getIdSurvey(){
+        return entr.getKey();
     }
 
     public void actionPerformed(ActionEvent e) {

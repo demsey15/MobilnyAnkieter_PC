@@ -8,6 +8,7 @@ package bohonos.demski.mieldzioc.desktopapplication;
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.interviewer.InterviewerSurveyPrivileges;
 import bohonos.demski.mieldzioc.survey.Survey;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -137,7 +138,17 @@ public class SetPrivileges extends JFrame implements ActionListener{
        Object source = e.getSource();
        if(source == save){
            interviewer.setInterviewerPrivileges(checkBox.isSelected());
-           
+           for(Component c : privilegesPanel.getComponents())
+        {
+            if(c instanceof PrivilegesPanel){
+                //PrivilegesPanel privPanel = (PriviligesPanel) c;
+                String s = ((PrivilegesPanel)c).getIdSurvey();
+                InterviewerSurveyPrivileges interPriv = ((PrivilegesPanel)c).getInterviewerSurveyPrivileges();
+                interviewer.setPrivilegesForInterviewer(s, interPriv);
+                //interviewer.getIntervSurveyPrivileges().get(((PrivilegesPanel)c).getIdSurvey()) ;//= ((PrivilegesPanel)c).getInterviewerSurveyPrivileges();
+            }
+              
+        }
            dispose();
        }
        if(source == anul){
