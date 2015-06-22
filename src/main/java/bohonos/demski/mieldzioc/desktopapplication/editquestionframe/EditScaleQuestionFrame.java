@@ -44,7 +44,7 @@ public class EditScaleQuestionFrame extends EditQuestionFrame {
         hintField.setText(question.getHint());
         errorMessageField.setText(question.getErrorMessage());
         
-        minLabelLabel = new JLabel("etylieta wartoœci minimalnej: ");
+        minLabelLabel = new JLabel("etykieta wartoœci minimalnej: ");
         minLabelLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(minLabelLabel);
 
