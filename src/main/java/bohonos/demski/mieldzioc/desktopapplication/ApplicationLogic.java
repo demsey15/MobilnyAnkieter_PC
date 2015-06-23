@@ -124,6 +124,32 @@ public class ApplicationLogic {
     }
     
     /**
+     * returns list of all surveys
+     * @return 
+     */
+    public String[] getAllSurveysList() {
+        Map<String,Survey> inProgresSurveys = surveyHandler.getStatusSurveysId(0);
+        Map<String,Survey> activeSurveys = surveyHandler.getStatusSurveysId(1);
+        Map<String,Survey> disactiveSurveys = surveyHandler.getStatusSurveysId(2);
+        int size = inProgresSurveys.size() + activeSurveys.size() + disactiveSurveys.size();
+        String[] surveysList = new String[size];
+        int iterator = 0;
+        for (Map.Entry<String,Survey> entry : inProgresSurveys.entrySet()) {
+            surveysList[iterator] = entry.getKey();
+            iterator++;
+        }
+        for (Map.Entry<String,Survey> entry : activeSurveys.entrySet()) {
+            surveysList[iterator] = entry.getKey();
+            iterator++;
+        }
+        for (Map.Entry<String,Survey> entry : disactiveSurveys.entrySet()) {
+            surveysList[iterator] = entry.getKey();
+            iterator++;
+        }
+        return surveysList;
+    }
+    
+    /**
      * adds interviewer to repository
      * @param interv interviewer to add
      * @return true, if interviewer was added, or false, if such interviewer already exists
