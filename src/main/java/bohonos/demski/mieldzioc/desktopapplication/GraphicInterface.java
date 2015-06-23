@@ -5,6 +5,7 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
+import bohonos.demski.mieldzioc.networkConnection.ServerConnectionFacade;
 import bohonos.demski.mieldzioc.statistics.*;
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -29,9 +30,12 @@ public class GraphicInterface extends JFrame implements ActionListener{
    // private GridLayout gridLayout ;
     private Container con;
     private final ApplicationLogic applicationLogic;
+    private ServerConnectionFacade connectionFacade;
     
-    public GraphicInterface(){
+    public GraphicInterface(ServerConnectionFacade connectionFacade){
+        
         super("Bezpieczny ankieter");
+        this.connectionFacade = connectionFacade;
         applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
                         @Override
