@@ -70,6 +70,7 @@ public class SurveysStatisticsProvider {
         float mean;
         GregorianCalendar begin = new GregorianCalendar();
         GregorianCalendar now = new GregorianCalendar();
+        if(surveys!=null){
         for(Survey survey : surveys){
             if(survey.isFinished()){
                 amount+=1;
@@ -80,6 +81,10 @@ public class SurveysStatisticsProvider {
         }
         mean = amount/daysBetween(begin.getTime(), now.getTime()); 
         return mean;
+        }
+        else{
+                return 0;
+        }
     }
     
     /**
@@ -127,12 +132,17 @@ public class SurveysStatisticsProvider {
      */
     public int getNumberOfFilledSurveys(List<Survey> surveys){
         int amount=0;
+        if(surveys!=null){
         for(Survey survey : surveys){
             if(survey.isFinished()){
                 amount+=1;
             }
         }
         return amount;
+        }
+        else{
+            return 0;
+        }
     }
         
     /**

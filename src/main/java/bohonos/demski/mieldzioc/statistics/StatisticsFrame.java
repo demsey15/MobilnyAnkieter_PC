@@ -123,7 +123,8 @@ public class StatisticsFrame extends JFrame implements ActionListener{
        
        if(source == statFillSurvey){
            Object repo = idSurvey.getSelectedItem();
-           
+           Object selected = idInterviewer.getSelectedItem();
+           StatisticsFilledSurveys statisticsFilledSurveys = new StatisticsFilledSurveys(applicationLogic, selected, repo);
        }
        
        if(source == statResultSurvey){

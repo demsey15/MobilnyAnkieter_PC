@@ -59,7 +59,7 @@ public class StatisticsFilledSurveys extends JFrame implements ActionListener{
         ja = new JLabel("Liczba zebranych ankiet: "+amount);
         jm = new JLabel("Œrednia liczba wype³nianych ankiet na dzieñ: "+mean);
         close = new JButton("Zamknij");
-        jm.setBounds(50, 20, 200, 30);
+        jm.setBounds(10, 20, 280, 30);
         ja.setBounds(50, 80, 200, 30);
         close.setBounds(100, 130, 100, 50);
         

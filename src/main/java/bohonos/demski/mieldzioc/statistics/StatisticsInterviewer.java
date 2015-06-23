@@ -57,9 +57,9 @@ public class StatisticsInterviewer extends JFrame implements ActionListener{
         mean = interviewerStatisticsProvider.getMeanFilledSurveysOnADay(applicationLogic.getSurveysRepository().getSurveys(idSurveys),interviewer);
         amount = interviewerStatisticsProvider.getAmountOfFilledSurveys(applicationLogic.getSurveysRepository().getSurveys(idSurveys));
         ja = new JLabel("Liczba zebranych ankiet: "+amount);
-        jm = new JLabel("srednia liczba zebranych ankiet na dzieñ to: "+mean);
+        jm = new JLabel("Œrednia liczba zebranych ankiet na dzieñ to: "+mean);
         close = new JButton("Zamknij");
-        jm.setBounds(50, 20, 200, 30);
+        jm.setBounds(10, 20, 280, 30);
         ja.setBounds(50, 80, 200, 30);
         close.setBounds(100, 130, 100, 50);
         

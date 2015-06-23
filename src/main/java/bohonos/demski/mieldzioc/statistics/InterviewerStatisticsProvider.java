@@ -128,7 +128,7 @@ public class InterviewerStatisticsProvider {
         float mean;
         float days = numberOfDaysInWork(interviewer);
        long numberOfSurveys=0;
-       if(surveys.size()>0){
+       if(surveys != null){
         for(Survey survey : surveys){
             if(survey.getFinishTime()!=null){
                 numberOfSurveys+=1;
@@ -269,6 +269,7 @@ public class InterviewerStatisticsProvider {
      */
     public int getAmountOfFilledSurveys(List<Survey> surveys){
         int amount=0;
+        if(surveys!=null){
         for(Survey survey : surveys){
             if(survey.getFinishTime()!=null){
                 amount+=1;
@@ -276,4 +277,8 @@ public class InterviewerStatisticsProvider {
         }
         return amount;
     }
+    else{
+        return 0;
+    }
+}
 }
