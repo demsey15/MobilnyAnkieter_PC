@@ -115,7 +115,7 @@ public class SetPrivileges extends JFrame implements ActionListener{
         //privilegesPanel.add(inputPanel);
         //List<Interviewer> listInterviewers = applicationLogic.getInterviewers();       
         //Pamiêtaj, ¿e ma byæ tu 2 zamiast 0
-        for(Map.Entry<String, Survey> entrSurv : applicationLogic.getSurveyHandler().getStatusSurveysId(2).entrySet()){
+        for(Map.Entry<String, Survey> entrSurv : applicationLogic.getSurveyHandler().getStatusSurveysId(1).entrySet()){
             //System.out.println("Nazwa ankiety: " + entrSurv.getKey());
             if(!interviewer.getIntervSurveyPrivileges().containsKey(entrSurv.getKey())){
                 interviewer.setPrivilegesForInterviewer(entrSurv.getKey(), new InterviewerSurveyPrivileges(false, false, false, false));

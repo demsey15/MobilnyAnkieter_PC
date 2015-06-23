@@ -35,6 +35,7 @@ public class SurveysStatisticsProvider {
     public float getMeanTimeOfInfillSurvey(List<Survey> surveys){
         float time=0;
         float mean;
+        if(surveys.size()>0){
         for(Survey survey : surveys){
             if(survey.isFinished()){
                 time+=timeInfillSurvey(survey.getFinishTime().getTime(), survey.getStartTime().getTime());
@@ -42,6 +43,10 @@ public class SurveysStatisticsProvider {
         }
         mean = time/getNumberOfFilledSurveys(surveys);
         return mean;
+        }
+        else{
+            return 0;
+        }
     }
     
     /**

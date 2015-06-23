@@ -65,7 +65,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         }
         DefaultComboBoxModel model1 = new DefaultComboBoxModel(comboBoxItems1);
         Vector comboBoxItems2=new Vector();
-        for(Map.Entry<String, Survey> entrSurv : applicationLogic.getSurveyHandler().getStatusSurveysId(2).entrySet()){
+        for(Map.Entry<String, Survey> entrSurv : applicationLogic.getSurveyHandler().getStatusSurveysId(1).entrySet()){
             comboBoxItems2.add(entrSurv.getKey());
         }
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(comboBoxItems2);
@@ -122,6 +122,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
        }
        
        if(source == statFillSurvey){
+           Object repo = idSurvey.getSelectedItem();
            
        }
        
