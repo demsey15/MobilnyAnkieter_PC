@@ -24,12 +24,14 @@ public class ApplicationLogic {
     private static ApplicationLogic instance;
     private ServerConnectionFacade serverConnectionFacade;
     private String host = "localhost";
+    private SurveysRepository surveysRepository;
     
     private ApplicationLogic() {
         surveyHandler = new SurveyHandler(0);
         loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
         intervierwsRepository = new InterviewersRepository();
         serverConnectionFacade = new ServerConnectionFacade(host);
+        surveysRepository = new SurveysRepository();
     }
     
     public static ApplicationLogic getInstance() {
@@ -135,5 +137,13 @@ public class ApplicationLogic {
     
     public List<Interviewer> getInterviewers(){
         return intervierwsRepository.getAllInterviewers();
+    }
+    
+    public Interviewer getInterviewer(String idi){
+        return intervierwsRepository.getInterviewer(idi);
+    }
+    
+    public SurveysRepository getSurveysRepository(){
+        return surveysRepository;
     }
 }

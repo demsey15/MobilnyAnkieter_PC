@@ -337,4 +337,7 @@ public class SurveysRepository {
         this.surveys = surveys;
         this.maxNumbersOfSurveys = numbersOfSurveys;
     }
+    public SurveysRepository(){
+        
+    }
 }
