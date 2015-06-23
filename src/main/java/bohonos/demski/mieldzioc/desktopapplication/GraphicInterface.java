@@ -5,6 +5,7 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
+import bohonos.demski.mieldzioc.statistics.*;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.EventQueue;
@@ -110,6 +111,14 @@ public class GraphicInterface extends JFrame implements ActionListener{
                 @Override
                 public void run() {
                     SurveyMenagerFrame surveyMenagerFrame = new SurveyMenagerFrame();
+                }
+            });
+        }
+        if(source == statisticsButton){
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    StatisticsFrame statiticsFrame = new StatisticsFrame(applicationLogic);
                 }
             });
         }

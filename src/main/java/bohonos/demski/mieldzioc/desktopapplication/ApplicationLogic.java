@@ -8,6 +8,7 @@ package bohonos.demski.mieldzioc.desktopapplication;
 import bohonos.demski.mieldzioc.survey.*;
 import bohonos.demski.mieldzioc.interviewer.*;
 import bohonos.demski.mieldzioc.questions.*;
+import bohonos.demski.mieldzioc.networkConnection.ServerConnectionFacade;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
@@ -21,13 +22,14 @@ public class ApplicationLogic {
     private Interviewer loggedInterviewer;
     private InterviewersRepository intervierwsRepository;
     private static ApplicationLogic instance;
-    
-    
+    private ServerConnectionFacade serverConnectionFacade;
+    private String host = "localhost";
     
     private ApplicationLogic() {
         surveyHandler = new SurveyHandler(0);
         loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
         intervierwsRepository = new InterviewersRepository();
+        serverConnectionFacade = new ServerConnectionFacade(host);
     }
     
     public static ApplicationLogic getInstance() {
