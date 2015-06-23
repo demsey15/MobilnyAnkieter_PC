@@ -5,6 +5,7 @@
  */
 package bohonos.demski.mieldzioc.desktopapplication;
 
+import bohonos.demski.mieldzioc.networkConnection.ServerConnectionFacade;
 import bohonos.demski.mieldzioc.survey.Survey;
 import bohonos.demski.mieldzioc.survey.SurveyHandler;
 import java.awt.Color;
@@ -99,6 +100,8 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
             this.remove(activeButton);
             this.add(disactiveButton);
             statusLabel.setText("aktywna");
+            ServerConnectionFacade connectionFacade = applicationLogic.getServerConnectionFacade();
+            connectionFacade.sendSurveyTemplate(survey, "12345678911", "abc".toCharArray());
             SwingUtilities.updateComponentTreeUI(this);
         }
         

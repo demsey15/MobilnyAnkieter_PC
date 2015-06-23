@@ -37,6 +37,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
         super("Bezpieczny ankieter");
         this.connectionFacade = connectionFacade;
         applicationLogic = ApplicationLogic.getInstance();
+        applicationLogic.setConnectionFacade(this.connectionFacade);
         addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){

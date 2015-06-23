@@ -23,6 +23,10 @@ public class ApplicationLogic {
     private InterviewersRepository intervierwsRepository;
     private static ApplicationLogic instance;
     private ServerConnectionFacade serverConnectionFacade;
+
+    public ServerConnectionFacade getServerConnectionFacade() {
+        return serverConnectionFacade;
+    }
     //private String host = "localhost";
     private SurveysRepository surveysRepository;
     
