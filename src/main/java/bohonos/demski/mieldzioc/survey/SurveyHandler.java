@@ -5,6 +5,7 @@ package bohonos.demski.mieldzioc.survey;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -238,6 +239,14 @@ public class SurveyHandler {
         }
         return statusSurveysId;
     }    
+    
+    /**
+     * returns set of surveys Ids in handler
+     * @return set of Ids
+     */
+    public Set<String> getSetOfIds() {
+        return surveysId.keySet();
+    }
     
     public SurveyHandler(int maxSurveysId)
     {

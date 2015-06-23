@@ -23,7 +23,7 @@ import javax.swing.*;
  */
 public class GraphicInterface extends JFrame implements ActionListener{
 
-    private JButton interv, creator, close;
+    private JButton interv, creator, close, surveyButton, statisticsButton;
     private JPanel panel;
    // private GridLayout gridLayout ;
     private Container con;
@@ -43,30 +43,37 @@ public class GraphicInterface extends JFrame implements ActionListener{
                 //gridLayout = new GridLayout(5,1,20,10);
              
                 //setLayout(gridLayout);
-                setSize(800, 600);
-		setLocation(100,150);
+                setSize(600, 600);
+		setLocation(100,80);
                 setResizable(false);
                 panel = new JPanel();   
                 interv = new JButton("Zarz¹dzanie ankieterami");
                 creator = new JButton("Kreator ankiet");
                 close = new JButton("Zamknij");
+                surveyButton = new JButton("Zarz¹dzanie ankietami");
+                statisticsButton = new JButton("Wyniki ankiet");
 		con = this.getContentPane();
                 //con.setLayout(new BorderLayout());
                 con.add(panel);
-                //add(interv);
-                //add(creator);
-                //add(close);
-               
-                interv.setBounds(getWidth()/2 - 100, getHeight()/2 - 200, 200, 50);
-                creator.setBounds(300, 225, 200, 50);
-                close.setBounds(300, 350, 200, 50);
+
+                creator.setBounds(200, 75, 200, 50);
+                surveyButton.setBounds(200, 175, 200, 50);
+                interv.setBounds(200, 275, 200, 50);
+                statisticsButton.setBounds(200, 375, 200, 50);
+                close.setBounds(200, 475, 200, 50);
+                
                 panel.setLayout(null); 
-                panel.add(interv); 
+                 
                 panel.add(creator);
+                panel.add(surveyButton);
+                panel.add(statisticsButton);
+                panel.add(interv);
                 panel.add(close);
                
-                interv.addActionListener(this);
                 creator.addActionListener(this);
+                surveyButton.addActionListener(this);
+                statisticsButton.addActionListener(this);
+                interv.addActionListener(this);
                 close.addActionListener(this);
                
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,6 +102,14 @@ public class GraphicInterface extends JFrame implements ActionListener{
                 @Override
                 public void run() {
                     CreatorFrame creator = new CreatorFrame();
+                }
+            });
+        }
+        if (source == surveyButton) {
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    SurveyMenagerFrame surveyMenagerFrame = new SurveyMenagerFrame();
                 }
             });
         }
