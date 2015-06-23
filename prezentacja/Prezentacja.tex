@@ -33,15 +33,63 @@
 			\tableofcontents
 		\end{frame}
 		
-		\section{Założenia projektu}
-		\begin{frame}
+		\section{Cel i założenia projektu}
+		\begin{frame}{Założenia projektu}
+			Celem projektu jest stworzenie systemu umożliwiającego tworzenie i przeprowadzania ankiet. W skład systemu wchodzą:
+			\begin{itemize}
+				\item aplikacja mobilna dla systemu Android przeznaczona dla ankieterów,
+				\item aplikacja desktopowa stworzona w języku Java z myślą o administrowaniu całością,
+				\item serwer odgrywający rolę pośrednika.
+			\end{itemize}
+		\end{frame}
 		
+		
+		\begin{frame}{Zastosowania projektu}
+			Przykładowe zastosowania systemu:
+			\begin{itemize}
+				\item przeprowadzanie anonimowych ankiet (np. wśród przechodniów),
+				\item przeprowadzanie spisów ludności,
+				\item przeprowadzania głosowań,
+				\item kontrola intalacji technicznej w zakładach przemysłowych.
+			\end{itemize}
 		\end{frame}
 	
 		\section{Zakres wstępny i co zostało osiągnięte}
 	
-		\begin{frame}{Aplikacja desktopowa}
+		\begin{frame}{Aplikacja desktopowa - udało się zrealizować}
+			\begin{enumerate}
+				\item  Stworzenie nowej ankiety. (UCD 1)
+				\item	Edycja pytań istniejącej ankiety. (UCD 2)
+				\item	Zmiana statusu istniejącej ankiety. (UCD 3)
+				\item	Wykorzystanie istniejącej ankiety do stworzenia nowej. (UCD 4)
+				\item	Zmiana kolejności pytań w ankiecie. (UCD 5)
+				\item	Udostępnianie ankiety innym ankieterom. (UCD 6)	
+			\end{enumerate}
 		\end{frame}
+		
+		\begin{frame}
+			\begin{enumerate}
+				\item  Rejestracja nowego ankietera. (UCD 7)
+				\item	Zmiana statusu ankietera. (UCD 8)
+				\item	Nadawanie ankieterom uprawnień do ankiety. (UCD 9)
+				\item	Przygotowanie list pracujących ankieterów. (UCD 10)
+				\item	Wyświetlanie rankingu ankieterów. (UCD 11)
+				\item	Wyświetlanie statystyk dotyczących ankietera. (UCD 12)
+				\item	Przygotowanie podstawowych statystyk dotyczących wypełniania ankiety. (UCD 13)
+			\end{enumerate}
+		\end{frame}
+		
+		\begin{frame}{Aplikacja desktopowa - nie udało się zrealizować}
+			\begin{enumerate}			
+				\item   Dodanie zdjęcia jako części pytania.
+				\item   Zapisanie wyników ankiety w pliku .csv.
+				\item	Wydrukowanie ankiety.
+				\item	Wydrukowanie wcześniej przygotowanych statystyk.
+				\item	Wydrukowanie listy pracujących ankieterów.
+				\item	Przygotowanie podstawowych statystyk dotyczących wyników ankiety.
+			\end{enumerate}
+		\end{frame}
+		
 	
 		\begin{frame}{Aplikacja mobilna - udało się zrealizować}
 			\begin{enumerate}
@@ -65,6 +113,7 @@
 		\end{frame}
 		
 		\section{Architektura projektu}
+		
 		
 		\begin{frame}{Model logiczny}
 			Diagram klas przedstawiony w dokumentacji zawiera główny rdzeń warstwy logicznej naszej aplikacji. Oczywiście nie umieściliśmy tam wszystkich klas - jest ich znacznie (!) więcej. To tylko poglądowy obraz tego, na czym opiera się nasza aplikacja.
@@ -166,17 +215,58 @@
 \end{frame}
 	
 		\begin{frame}{Model wdrożeniowy}
-			
+				\pgfdeclareimage[width=11cm,height=7cm]{komponenty}{Diagramostateczny.png}
+				\pgfuseimage{komponenty}
+		\end{frame}
+		
+		\begin{frame}
+			\begin{itemize}
+			\item Mobile device – urządzenie mobilne z systemem operacyjnym Android.
+			\item PC – komputer osobisty z systemem operacyjnym Windows.
+			\item Server – serwer gromadzący dane.
+			\item Printer – drukarka podłączona do komputera osobistego.
+			\item Mobile application – aplikacja mobilna działająca na urządzeniu mobilnym z systemem Android.
+			\item Desktop application – aplikacja desktopowa działająca na komputerze osobistym z systemem Windows.
+			\item Server application – aplikacja serwera, która zapisuje zebrane dane w bazie danych.
+			\item Database – baza danych przechowująca zebrane dane.
+			\item Mobile session interface – interfejs służący do komunikacji aplikacji mobilnej z aplikacją serwera.
+			\item PC session interface – interfejs służący do komunikacji aplikacji desktopowej z aplikacją serwera.
+			\item Database interface – interfejs bazy danych.
+			\item Printer interface  - interfejs drukarki podłączonej do komputera osobistego.
+		\end{itemize}
 		\end{frame}
 		
 		\section{Podział zadań}
 		
 		\begin{frame}{Andrzej}
-			
+			\begin{enumerate}
+				\item	implementacja części wspólnych pakietów: surveys, statistics
+				\item	aplikacja deskoptowa
+				\begin{itemize}
+					\item  Stworzenie nowej ankiety.
+					\item	Edycja pytań istniejącej ankiety. 
+					\item	Zmiana statusu istniejącej ankiety. 
+					\item	Wykorzystanie istniejącej ankiety do stworzenia nowej. 
+					\item	Zmiana kolejności pytań w ankiecie. 
+					\item	Udostępnianie ankiety innym ankieterom.	
+				\end{itemize}
+			\end{enumerate}
 		\end{frame}
 		
 		\begin{frame}{Adam}
-			
+			\begin{enumerate}
+				\item	implementacja części wspólnych pakietów: interviewers, statistics
+				\item	aplikacja deskoptowa
+				\begin{itemize}
+					\item   Rejestracja nowego ankietera (dodajemy nowego ankietera do systemu).
+					\item	Zmiana statusu ankietera (jest aktywny czy nieaktywny).
+					\item	Nadawanie ankieterom uprawnień do ankiety (różne typy uprawnień).
+					\item	Przygotowanie list pracujących ankieterów. 
+					\item	Wyświetlanie rankingu ankieterów. 
+					\item	Wyświetlanie statystyk dotyczących ankietera.
+					\item	Przygotowanie podstawowych statystyk dotyczących wypełniania ankiety. 
+				\end{itemize}
+			\end{enumerate}
 		\end{frame}
 		
 		\begin{frame}{Dominik}

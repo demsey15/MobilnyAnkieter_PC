@@ -23,14 +23,14 @@ public class ApplicationLogic {
     private InterviewersRepository intervierwsRepository;
     private static ApplicationLogic instance;
     private ServerConnectionFacade serverConnectionFacade;
-    private String host = "localhost";
+    //private String host = "localhost";
     private SurveysRepository surveysRepository;
     
     private ApplicationLogic() {
         surveyHandler = new SurveyHandler(0);
         loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
         intervierwsRepository = new InterviewersRepository();
-        serverConnectionFacade = new ServerConnectionFacade(host);
+        //serverConnectionFacade = new ServerConnectionFacade(host);
         surveysRepository = new SurveysRepository();
     }
     
@@ -64,6 +64,9 @@ public class ApplicationLogic {
         return surveyHandler.copyOldAndCreateNewSurvey(idOfSurvey, loggedInterviewer.getId());
     }
     
+    public void setConnectionFacade(ServerConnectionFacade serverConnectionFacade){
+        this.serverConnectionFacade = serverConnectionFacade;
+    }
     /**
      * returns title of survey template with given id
      * @param idOfSurvey id of survey template, we are interested in
