@@ -11,4 +11,13 @@ package files;
  */
 public class Printer {
     
+    /**
+     * prints file with given path
+     * @param path path of file
+     * @return true, iff action was successful
+     */
+    public Boolean print(String path) {
+        return false; // to do
+    }
+    
 }

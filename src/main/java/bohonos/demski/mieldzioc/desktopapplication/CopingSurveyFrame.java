@@ -55,7 +55,7 @@ public class CopingSurveyFrame extends JFrame implements ActionListener{
         descriptionField.setBounds(80, 70, 200, 30);
         this.add(descriptionField);
         
-        surveysList = applicationLogic.getSurveysList();
+        surveysList = applicationLogic.getAllSurveysList();
         surveysItems = new DefaultListModel();
         list = new JList(surveysItems);
         for (int iterator = 0; iterator < surveysList.length; iterator++) {
