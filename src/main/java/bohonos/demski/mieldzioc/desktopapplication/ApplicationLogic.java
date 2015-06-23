@@ -32,7 +32,7 @@ public class ApplicationLogic {
     
     private ApplicationLogic() {
         surveyHandler = new SurveyHandler(0);
-        loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
+        loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "12345678911", new GregorianCalendar()); //to do
         intervierwsRepository = new InterviewersRepository();
         //serverConnectionFacade = new ServerConnectionFacade(host);
         surveysRepository = new SurveysRepository();
