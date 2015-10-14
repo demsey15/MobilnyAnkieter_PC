@@ -53,9 +53,9 @@ public class StatisticsInterviewer extends JFrame implements ActionListener{
         
         
         InterviewerStatisticsProvider interviewerStatisticsProvider = new InterviewerStatisticsProvider();
-        Interviewer interviewer = applicationLogic.getInterviewer(idInterviewer);
-        mean = interviewerStatisticsProvider.getMeanFilledSurveysOnADay(applicationLogic.getSurveysRepository().getSurveys(idSurveys),interviewer);
-        amount = interviewerStatisticsProvider.getAmountOfFilledSurveys(applicationLogic.getSurveysRepository().getSurveys(idSurveys));
+        Interviewer interviewer = applicationLogic.getServerConnectionFacade().getInterviewer(idInterviewer, "admin", "admin".toCharArray());
+        mean = interviewerStatisticsProvider.getMeanFilledSurveysOnADay(applicationLogic.getServerConnectionFacade().getFilledSurveys(idSurveys, "admin", "admin".toCharArray()), interviewer);
+        amount = interviewerStatisticsProvider.getAmountOfFilledSurveys(applicationLogic.getServerConnectionFacade().getFilledSurveys(idSurveys, "admin", "admin".toCharArray()));
         ja = new JLabel("Liczba zebranych ankiet: "+amount);
         jm = new JLabel("Œrednia liczba zebranych ankiet na dzieñ to: "+mean);
         close = new JButton("Zamknij");

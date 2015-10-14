@@ -1,0 +1,115 @@
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[OT4,T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{ dsfont }
+\usepackage{ amssymb }
+\usepackage{enumerate}
+\usepackage{tikz}
+\DeclareUnicodeCharacter{00A0}{ }
+\usetheme{Warsaw}
+\usecolortheme{beaver}
+
+\newtheorem{defi}{Definicja}[subsection]
+\newtheorem{uw}{Uwaga}[subsection]
+\newtheorem{cel}{Cel}[subsection]
+\newtheorem{tw}{Twierdzenie}[subsection]
+\newtheorem{lem}{Lemat}[subsection]
+\newtheorem{przyk}{Przykład}[subsection]
+\newtheorem{alg}{Algorytm}[subsection]
+
+\date{15 października 2015}
+\title{Sprytny ankieter}
+\author[A. Bohonos, D. Demski, A. Mieldzioc]{Andrzej Bohonos, Dominik Demski, Adam Mieldzioc}
+
+\begin{document}
+		\begin{frame}
+			\titlepage
+		\end{frame}
+		\begin{frame}{Agenda}
+			\tableofcontents
+		\end{frame}
+		
+		\section{Cel i założenia projektu}
+		\begin{frame}{Założenia projektu}
+			Celem projektu jest stworzenie systemu umożliwiającego tworzenie i przeprowadzania ankiet. W skład systemu wchodzą:
+			\begin{itemize}
+				\item aplikacja mobilna dla systemu Android przeznaczona dla ankieterów,
+				\item aplikacja desktopowa stworzona w języku Java z myślą o administrowaniu całością,
+				\item serwer odgrywający rolę pośrednika.
+			\end{itemize}
+		\end{frame}
+		
+		\begin{frame}{Początkowy model wdrożeniowy}
+				\pgfdeclareimage[width=11cm,height=7cm]{komponenty}{Diagramostateczny.png}
+				\pgfuseimage{komponenty}
+		\end{frame}
+	
+		\section{Co zostało osiągnięte}
+	
+		\begin{frame}{Aplikacja desktopowa - udało się zrealizować}
+			\begin{enumerate}
+				\item  Stworzenie nowej ankiety. 
+				\item	Edycja pytań istniejącej ankiety. 
+				\item	Zmiana statusu istniejącej ankiety. 
+				\item	Wykorzystanie istniejącej ankiety do stworzenia nowej. 
+				\item	Zmiana kolejności pytań w ankiecie.
+				\item	Udostępnianie ankiety innym ankieterom. 
+			\end{enumerate}
+		\end{frame}
+		
+		\begin{frame}
+			\begin{enumerate}
+				\item  Rejestracja nowego ankietera. 
+				\item	Zmiana statusu ankietera. 
+				\item	Nadawanie ankieterom uprawnień do ankiety.
+				\item	Przygotowanie list pracujących ankieterów.
+				\item	Wyświetlanie rankingu ankieterów.
+				\item	Wyświetlanie statystyk dotyczących ankietera.
+				\item	Przygotowanie podstawowych statystyk dotyczących wypełniania ankiety.
+			\end{enumerate}
+		\end{frame}
+			
+	
+		\begin{frame}{Aplikacja mobilna - udało się zrealizować}
+			\begin{enumerate}
+				\item Stworzenie nowej ankiety. 
+				\item	Przeprowadzenie ankiety. 
+				\item	Wysłanie wyników przeprowadzonych ankiet do Głównego Systemu Ankiet. 
+				\item	Ustawienie automatycznego wysyłania wyników ankiety do Głównego Systemu Ankiet.
+				\item	Pobranie ankiet z Głównego Systemu Ankiet. 
+				\item	Ustalenie uprawnień Ankietera.	
+			\end{enumerate}
+		\end{frame}
+		
+		\section{Nowy zakres projektu}
+			\begin{frame}{Nowy zakres}
+				\begin{enumerate}
+					\item Aplikacja desktopowa będzie umożliwiała tworzenie ankiet i przesyłanie ich bezpośrednio na urządzenie mobilne. Aplikacja będzie umożliwiała analizę zebranych wyników.
+					\item Aplikacja mobilna będzie komunikowała się bezpośrednio z aplikacją desktopową.	
+				\end{enumerate}
+			\end{frame}
+			\begin{frame}{Diagram wdrożeniowy}
+				%Diagram wdrozeniowy - Andrzej zrobi i wyśle
+			\end{frame}
+			\begin{frame}{Do zrobienia - aplikacja desktopowa}
+				\begin{enumerate}
+					\item Zapisywanie wyników ankiet do pliku .csv. 
+					\item Przygotowanie podstawowych statystyk.
+					\item Baza danych przechowująca dane z zebranych ankiet.	
+				\end{enumerate}
+			\end{frame}
+			\begin{frame}{Do zrobienia - aplikacja mobilna}
+				\begin{enumerate}
+					\item Wykorzystanie starej ankiety do stworzenia nowej.
+					\item Poprawa tworenia ankiet.
+					\item Komunikacja z komputerem.
+					\item Przystosowanie aplikacji do używania jej na różnych urządzeniach.
+				\end{enumerate}
+			\end{frame}
+
+
+\end{document}

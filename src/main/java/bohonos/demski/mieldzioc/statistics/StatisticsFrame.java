@@ -7,12 +7,14 @@ package bohonos.demski.mieldzioc.statistics;
 
 import bohonos.demski.mieldzioc.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.interviewer.Interviewer;
+import bohonos.demski.mieldzioc.networkConnection.ServerConnectionFacade;
 import bohonos.demski.mieldzioc.survey.Survey;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -59,14 +61,15 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         con.add(panel);
         
         //Dodanie elementów do comboboxów        
+       // ServerConnectionFacade serverConnectionFacade = applicationLogic.getServerConnectionFacade();
         Vector comboBoxItems1=new Vector();
-        for(Interviewer interviewer : applicationLogic.getInterviewers()){
+        for(Interviewer interviewer : applicationLogic.getServerConnectionFacade().getAllInterviewers("admin", "admin".toCharArray())){
             comboBoxItems1.add(interviewer.getId());
         }
         DefaultComboBoxModel model1 = new DefaultComboBoxModel(comboBoxItems1);
         Vector comboBoxItems2=new Vector();
-        for(Map.Entry<String, Survey> entrSurv : applicationLogic.getSurveyHandler().getStatusSurveysId(1).entrySet()){
-            comboBoxItems2.add(entrSurv.getKey());
+        for(Survey entrSurv : applicationLogic.getServerConnectionFacade().getActiveSurveyTemplates("admin", "admin".toCharArray())){
+            comboBoxItems2.add(entrSurv.getIdOfSurveys());
         }
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(comboBoxItems2);
         idInterviewer = new JComboBox(model1);

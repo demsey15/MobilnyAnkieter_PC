@@ -54,8 +54,8 @@ public class StatisticsFilledSurveys extends JFrame implements ActionListener{
         
         SurveysStatisticsProvider surveysStatisticsProvider = new SurveysStatisticsProvider();
       
-        mean = surveysStatisticsProvider.getMeanFilledSurveysOnADay(applicationLogic.getSurveysRepository().getSurveys(idSurveys));
-        amount = surveysStatisticsProvider.getNumberOfFilledSurveys(applicationLogic.getSurveysRepository().getSurveys(idSurveys));
+        mean = surveysStatisticsProvider.getMeanFilledSurveysOnADay(applicationLogic.getServerConnectionFacade().getFilledSurveys(idSurveys, "admin", "admin".toCharArray()));
+        amount = surveysStatisticsProvider.getNumberOfFilledSurveys(applicationLogic.getServerConnectionFacade().getFilledSurveys(idSurveys, "admin", "admin".toCharArray()));
         ja = new JLabel("Liczba zebranych ankiet: "+amount);
         jm = new JLabel("Œrednia liczba wype³nianych ankiet na dzieñ: "+mean);
         close = new JButton("Zamknij");
