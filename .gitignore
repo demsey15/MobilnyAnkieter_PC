@@ -13,12 +13,12 @@ hs_err_pid*
 /target/
 
 
-
-Prezentacja.aux
-Prezentacja.log
-Prezentacja.nav
-Prezentacja.out
-Prezentacja.pdf
-Prezentacja.snm
-Prezentacja.synctex.gz
-Prezentacja.toc
+# pliki pomocnicze LaTeXa
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.synctex.gz
+*.toc
