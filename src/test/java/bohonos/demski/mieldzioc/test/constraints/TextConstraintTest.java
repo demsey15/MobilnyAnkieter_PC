@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import org.junit.Assert;
 import org.junit.Test;
 
-import bohonos.demski.mieldzioc.constraints.TextConstraint;
+import bohonos.demski.mieldzioc.mobilnyankieter.constraints.TextConstraint;
 
 public class TextConstraintTest {
 

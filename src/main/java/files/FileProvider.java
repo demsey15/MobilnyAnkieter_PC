@@ -5,8 +5,9 @@
  */
 package files;
 
-import bohonos.demski.mieldzioc.survey.Survey;
 import java.util.List;
+
+import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 
 /**
  *

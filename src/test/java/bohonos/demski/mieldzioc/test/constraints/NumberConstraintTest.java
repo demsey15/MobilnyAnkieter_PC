@@ -3,7 +3,7 @@ package bohonos.demski.mieldzioc.test.constraints;
 import org.junit.Assert;
 import org.junit.Test;
 
-import bohonos.demski.mieldzioc.constraints.NumberConstraint;
+import bohonos.demski.mieldzioc.mobilnyankieter.constraints.NumberConstraint;
 
 public class NumberConstraintTest {
 

@@ -5,7 +5,7 @@ import  org.junit.Assert;
 
 import org.junit.Test;
 
-import bohonos.demski.mieldzioc.common.Pair;
+import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
 /**
  * 
  * @author Dominik Demski
