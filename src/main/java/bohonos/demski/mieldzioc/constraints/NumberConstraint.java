@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bohonos.demski.mieldzioc.constraints;
 
 import java.io.Serializable;
@@ -11,10 +8,6 @@ import java.util.Objects;
  * 
  */
 public class NumberConstraint implements IConstraint, Serializable{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Double minValue;
 	private Double maxValue;

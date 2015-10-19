@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bohonos.demski.mieldzioc.questions;
 
 import java.io.Serializable;
@@ -14,11 +11,6 @@ import com.rits.cloning.Cloner;
  *
  */
 public abstract class Question implements Serializable, Cloneable{
-	
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public static final int ONE_CHOICE_QUESTION = 0;
 	public static final int MULTIPLE_CHOICE_QUESTION = 1;
@@ -29,33 +21,11 @@ public abstract class Question implements Serializable, Cloneable{
 	public static final int DATE_QUESTION = 6;
 	public static final int TIME_QUESTION = 7;
 	
-	
-	
-	/**
-	 * Zwraca typ pytania (patrz sta³e w klasie Question).
-	 * @return typ pytania albo -1, jeœli pytanie jest nieznanego typu (to nie powinno siê zdarzyæ).
-	 */
-	public int getQuestionType(){
-		if(this instanceof DateTimeQuestion){
-			return (((DateTimeQuestion) this).isOnlyDate()) ? DATE_QUESTION : TIME_QUESTION;
-		}
-		if(this instanceof GridQuestion) return GRID_QUESTION;
-		if(this instanceof MultipleChoiceQuestion) return MULTIPLE_CHOICE_QUESTION;
-		if(this instanceof OneChoiceQuestion){
-			return (((OneChoiceQuestion) this).getIsDropDownList()) ? DROP_DOWN_QUESTION : ONE_CHOICE_QUESTION;
-		}
-		if(this instanceof ScaleQuestion) return SCALE_QUESTION;
-		if(this instanceof TextQuestion) return TEXT_QUESTION;
-		else return -1;
-	}
-	
 	private boolean obligatory;
 	private String errorMessage = "";
 	private String hint = "";
 	private String pictureUrl = "";
 	private String question = "";
-	
-	
 	
 	public Question() {
 		
@@ -75,7 +45,25 @@ public abstract class Question implements Serializable, Cloneable{
 		this.errorMessage = errorMessage;
 		this.hint = hint;
 	}
-
+	
+	/**
+	 * Zwraca typ pytania (patrz sta³e w klasie Question).
+	 * @return typ pytania albo -1, jeœli pytanie jest nieznanego typu (to nie powinno siê zdarzyæ).
+	 */
+	public int getQuestionType(){
+		if(this instanceof DateTimeQuestion){
+			return (((DateTimeQuestion) this).isOnlyDate()) ? DATE_QUESTION : TIME_QUESTION;
+		}
+		if(this instanceof GridQuestion) return GRID_QUESTION;
+		if(this instanceof MultipleChoiceQuestion) return MULTIPLE_CHOICE_QUESTION;
+		if(this instanceof OneChoiceQuestion){
+			return (((OneChoiceQuestion) this).getIsDropDownList()) ? DROP_DOWN_QUESTION : ONE_CHOICE_QUESTION;
+		}
+		if(this instanceof ScaleQuestion) return SCALE_QUESTION;
+		if(this instanceof TextQuestion) return TEXT_QUESTION;
+		else return -1;
+	}
+	
 	/**
 	 *  Method returns text of this question.
 	 */
@@ -83,8 +71,6 @@ public abstract class Question implements Serializable, Cloneable{
 		return question;
 	}
 	
-	public abstract String toJson();
-
 	/**
 	 *  Set text of question.
 	 *  @param question text to set

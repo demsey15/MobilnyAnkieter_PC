@@ -1,13 +1,9 @@
-/**
- * 
- */
 package bohonos.demski.mieldzioc.questions;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.google.gson.Gson;
 import com.rits.cloning.Cloner;
 
 /**
@@ -15,14 +11,12 @@ import com.rits.cloning.Cloner;
  * 
  */
 public class ScaleQuestion extends Question {
-
 	private static final long serialVersionUID = 1L;
 	private int minValue;
 	private int maxValue;
 	private String maxLabel;
 	private String minLabel;
 	private int userAnswer = Integer.MIN_VALUE;  //Integer.MIN_VALUE - there is no user's answer
-	
 	
 	public ScaleQuestion(){
 		
@@ -196,10 +190,4 @@ public class ScaleQuestion extends Question {
 		if(isAnswered()) list.add(String.valueOf(userAnswer));
 		return list;
 	}
-	
-	@Override
-	public String toJson() {
-		return (new Gson()).toJson(this);
-	}
-
 }

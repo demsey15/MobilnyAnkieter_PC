@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 
 import bohonos.demski.mieldzioc.constraints.NumberConstraint;
 import bohonos.demski.mieldzioc.constraints.TextConstraint;
-import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.questions.GridQuestion;
 import bohonos.demski.mieldzioc.questions.MultipleChoiceQuestion;
@@ -31,8 +30,8 @@ public class CreatingSurvey {
 	 * Stwórz klasê odpowiedzialn¹ za tworzenie nowej ankiety.
 	 * @param interviewer ankieter tworz¹cy dan¹ ankietê.
 	 */
-	public CreatingSurvey(Interviewer interviewer) {
-		this.survey = new Survey(interviewer);
+	public CreatingSurvey(String deviceId) {
+		this.survey = new Survey(deviceId);
 	}
 	
 	/**

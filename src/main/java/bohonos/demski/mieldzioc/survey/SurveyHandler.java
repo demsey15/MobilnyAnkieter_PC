@@ -5,6 +5,7 @@ package bohonos.demski.mieldzioc.survey;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 
@@ -83,7 +84,8 @@ public class SurveyHandler {
     public String addNewSurveyTemplate(Survey survey)
     {
         maxSurveysId++;
-        String id = survey.getInterviewer().getId() + localIdToString(maxSurveysId);
+        //TODO ustaliæ sposób nadawania id grupy ankiet String id = survey.getInterviewer().getId() + localIdToString(maxSurveysId);
+        String id = (new Random()).nextInt(100) + localIdToString(maxSurveysId);
         survey.setIdOfSurveys(id);
         surveysId.put(id, survey);
         surveys.put(survey, IN_PROGRESS);     //default value

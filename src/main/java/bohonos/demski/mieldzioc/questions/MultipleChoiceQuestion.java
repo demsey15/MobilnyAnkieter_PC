@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.google.gson.Gson;
 import com.rits.cloning.Cloner;
 
 /**
@@ -13,10 +12,6 @@ import com.rits.cloning.Cloner;
  *
  */
 public class MultipleChoiceQuestion extends Question{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private List<String> answers = new ArrayList<String>();
 	private List<Integer> userAnswers = new ArrayList<Integer>();
@@ -185,10 +180,5 @@ public class MultipleChoiceQuestion extends Question{
 			}
 		}
 		return list;
-	}
-	
-	@Override
-	public String toJson() {
-		return (new Gson()).toJson(this);
 	}
 }

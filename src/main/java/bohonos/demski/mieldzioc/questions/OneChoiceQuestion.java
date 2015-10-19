@@ -1,13 +1,9 @@
-/**
- * 
- */
 package bohonos.demski.mieldzioc.questions;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.google.gson.Gson;
 import com.rits.cloning.Cloner;
 
 /**
@@ -15,10 +11,6 @@ import com.rits.cloning.Cloner;
  *
  */
 public class OneChoiceQuestion extends Question {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private List<String> answers = new ArrayList<String>();
 	private int userAnswer = -1;  //-1 = there is no user's answer
@@ -223,10 +215,4 @@ public class OneChoiceQuestion extends Question {
 		if(isAnswered()) list.add(answers.get(userAnswer));
 		return list;
 	}
-
-	@Override
-	public String toJson() {
-		return (new Gson()).toJson(this);
-	}
-
 }

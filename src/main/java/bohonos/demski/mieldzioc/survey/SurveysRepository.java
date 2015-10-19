@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import bohonos.demski.mieldzioc.interviewer.Interviewer;
-
 /**
  *
  * @author Andrzej
@@ -59,7 +57,7 @@ public class SurveysRepository {
     /**
      * overwrites maximal number of surveys with given id
      * @param idOfSurveys given id of surveys
-     * @return maximal numper of surveys from given group
+     * @return maximal number of surveys from given group
      */
     private int countMaxNumberOfSurveys(String idOfSurveys) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys); 
@@ -163,6 +161,7 @@ public class SurveysRepository {
      * @param interviewer interviewer, whose surveys we want to get
      * @return  map of surveys
      */
+    /*
     public Map<String,List<Survey>> getAllInterviewerSurveys(Interviewer interviewer) {
         int i;
         Map<String,List<Survey>> surveysFrom = new HashMap<String,List<Survey>>();
@@ -177,13 +176,14 @@ public class SurveysRepository {
         }
         return surveysFrom;
     }
-    
+ 
     /**
      * returns list of surveys with given id, of given interviewer
      * @param idOfSurveys id of group of surveys we are looking for
      * @param interviewer interviewer, whose surveys we want to get
      * @return list of surveys
      */
+    /*  
     public List<Survey> getInterviewerSurveys(String idOfSurveys, Interviewer interviewer) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys);
         List<Survey> surveysWithIdInterviewer = new ArrayList<Survey>();
@@ -194,13 +194,15 @@ public class SurveysRepository {
         }
         return surveysWithIdInterviewer;
     }
+    */
     
     /**
      * returns map of surveys of given interviewer, finished after or in given date
-     * @param from does not return surveys finishet before this date
-     * @param interviewer interviewer, whose surveys we want to ge
+     * @param from does not return surveys finished before this date
+     * @param interviewer interviewer, whose surveys we want to get
      * @return map of surveys
      */
+    /*
     public Map<String,List<Survey>> getAllInterviewerSurveys(GregorianCalendar from, Interviewer interviewer) {
         int i;
         Map<String,List<Survey>> surveysFrom = new HashMap<String,List<Survey>>();
@@ -215,7 +217,7 @@ public class SurveysRepository {
         }
         return surveysFrom;
     }    
-    
+    */
     /**
      * returns list of surveys with given id, of given interviewer, finished after or in given date
      * @param idOfSurveys id of group of surveys we are looking for
@@ -223,6 +225,7 @@ public class SurveysRepository {
      * @param interviewer interviewer, whose surveys we want to get
      * @return list of surveys
      */
+    /*
     public List<Survey> getInterviewerSurveys(String idOfSurveys, GregorianCalendar from, Interviewer interviewer) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys);
         List<Survey> surveysWithIdInterviewer = new ArrayList<Survey>();
@@ -233,7 +236,7 @@ public class SurveysRepository {
         }
         return surveysWithIdInterviewer;
     }
-    
+    */
     /**
      * returns map of surveys of given interviewer, finished between two given dates
      * @param from does not return surveys finishet before this date
@@ -241,6 +244,7 @@ public class SurveysRepository {
      * @param interviewer interviewer, whose surveys we want to get
      * @return map of surveys
      */
+    /*
     public Map<String,List<Survey>> getAllInterviewerSurveys(GregorianCalendar from, GregorianCalendar to, Interviewer interviewer) {
         int i;
         Map<String,List<Survey>> surveysFrom = new HashMap<String,List<Survey>>();
@@ -255,7 +259,7 @@ public class SurveysRepository {
         }
         return surveysFrom;
     }  
-    
+    */
     /**
      * returns list of surveys of given interviewer, finished between two given dates
      * @param idOfSurveys id of group of surveys we are looking for
@@ -264,6 +268,7 @@ public class SurveysRepository {
      * @param interviewer interviewer, whose surveys we want to get
      * @return list of surveys
      */
+    /*
     public List<Survey> getInterviewerSurveys(String idOfSurveys, GregorianCalendar from, GregorianCalendar to, Interviewer interviewer) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys);
         List<Survey> surveysWithIdInterviewer = new ArrayList<Survey>();
@@ -274,10 +279,10 @@ public class SurveysRepository {
         }
         return surveysWithIdInterviewer;
     }
-    
+    */
     /**
      * add new group of surveys
-     * @param survey new tamplate, we want to add to repository
+     * @param survey new template, we want to add to repository
      * @return id of given template or "already exists", if such group already exists
      */
     public String addNewSurveyGroup(Survey survey) {

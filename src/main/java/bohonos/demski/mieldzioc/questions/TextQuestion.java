@@ -1,13 +1,9 @@
-/**
- * 
- */
 package bohonos.demski.mieldzioc.questions;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.google.gson.Gson;
 import com.rits.cloning.Cloner;
 
 import bohonos.demski.mieldzioc.constraints.IConstraint;
@@ -18,10 +14,6 @@ import bohonos.demski.mieldzioc.constraints.TextValidator;
  * 
  */
 public class TextQuestion extends Question {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public static final int SHORT_ANSWER_MAX_LENGTH = 50;
 	public static final int LONG_ANSWER_MAX_LENGTH = 250;
@@ -149,10 +141,5 @@ public class TextQuestion extends Question {
 		List<String> list = new ArrayList<String>(1);
 		if(isAnswered()) list.add(userAnswer);
 		return list;
-	}
-	
-	@Override
-	public String toJson() {
-		return "";
 	}
 }

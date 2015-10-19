@@ -88,7 +88,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
                 
     }
 
-    @Override
+  //  @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if(source==close){
@@ -97,7 +97,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
         }
         if(source == interv){
             EventQueue.invokeLater(new Runnable() {
-			@Override
+		//	@Override
 			public void run() {
                             MenagerInterviewersFrame menageinterv= new MenagerInterviewersFrame();
                         }
@@ -105,7 +105,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
         }
         if(source == creator){
             EventQueue.invokeLater(new Runnable() {
-                @Override
+              //  @Override
                 public void run() {
                     CreatorFrame creator = new CreatorFrame();
                 }
@@ -113,7 +113,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
         }
         if (source == surveyButton) {
             EventQueue.invokeLater(new Runnable() {
-                @Override
+            //    @Override
                 public void run() {
                     SurveyMenagerFrame surveyMenagerFrame = new SurveyMenagerFrame();
                 }
@@ -121,7 +121,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
         }
         if(source == statisticsButton){
             EventQueue.invokeLater(new Runnable() {
-                @Override
+              //  @Override
                 public void run() {
                     StatisticsFrame statiticsFrame = new StatisticsFrame(applicationLogic);
                 }

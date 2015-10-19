@@ -63,12 +63,7 @@ public class TextConstraint implements IConstraint, Serializable {
 	public void setRegex(Pattern regex) {
 		this.regex = regex;
 	}
-
-	/**
-	 * 
-	 */
 	
-
 	/* (non-Javadoc)
 	 * @see bochonos.demski.mieldzioc.constraints.IConstraint#checkCorrectness(java.lang.String)
 	 */

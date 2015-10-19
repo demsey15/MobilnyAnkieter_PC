@@ -3,7 +3,6 @@ package bohonos.demski.mieldzioc.controls;
 import java.util.ArrayList;
 import java.util.List;
 
-import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.Survey;
 import bohonos.demski.mieldzioc.survey.SurveyHandler;
@@ -20,7 +19,7 @@ public class AnsweringSurveyControl {
 		this.surveyHandler = surveyHandler;
 	}
 
-	public void startAnswering(String idOfSurveys, Interviewer interviewer){
+	public void startAnswering(String idOfSurveys, String deviceId){
 		try {
 			if((this.survey = surveyHandler.provideSurvey(idOfSurveys)) == null)
 				throw new NullPointerException("Wype³nianie ankiety - nie ma ankiety o zadanym id "
@@ -28,7 +27,7 @@ public class AnsweringSurveyControl {
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
-		survey.setInterviewer(interviewer);
+		survey.setDeviceId(deviceId);
 		survey.startSurvey();
 	}
 	

@@ -2,13 +2,10 @@ package bohonos.demski.mieldzioc.controls;
 
 import java.util.List;
 
-import bohonos.demski.mieldzioc.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.questions.Question;
 import bohonos.demski.mieldzioc.survey.CreatingSurvey;
 import bohonos.demski.mieldzioc.survey.Survey;
 import bohonos.demski.mieldzioc.survey.SurveyHandler;
-
-
 
 /**
  * 
@@ -30,8 +27,8 @@ public class CreatingSurveyControl {
 	/**
 	 * Metoda, która musi byæ wywo³ana przed wywo³aniem którejkolwiek innej metody tej klasy.
 	 */
-	public void createNewSurvey(Interviewer interviewer){
-		creatingSurvey = new CreatingSurvey(interviewer); 
+	public void createNewSurvey(String deviceId){
+		creatingSurvey = new CreatingSurvey(deviceId); 
 	}
 	
 	

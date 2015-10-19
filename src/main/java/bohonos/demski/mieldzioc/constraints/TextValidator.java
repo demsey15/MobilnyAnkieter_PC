@@ -1,6 +1,3 @@
-/**
- * 
- */
 package bohonos.demski.mieldzioc.constraints;
 
 /**
