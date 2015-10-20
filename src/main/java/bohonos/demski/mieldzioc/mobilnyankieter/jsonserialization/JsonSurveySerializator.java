@@ -1,5 +1,7 @@
 package bohonos.demski.mieldzioc.mobilnyankieter.jsonserialization;
 
+import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -26,6 +28,18 @@ public class JsonSurveySerializator {
 		Gson gson = prepareGson();
 
 		return gson.fromJson(surveyInJson, Survey.class);
+	}
+	
+	public String serializeListOfSurveys(List<Survey> surveys){
+		Gson gson = prepareGson();
+		
+		return gson.toJson(surveys);
+	}
+	
+	public List<Survey> deserializeListOfSurveys(String surveysInJson){
+		Gson gson = prepareGson();
+		
+		return gson.fromJson(surveysInJson, List.class);
 	}
 
 	private Gson prepareGson() {
