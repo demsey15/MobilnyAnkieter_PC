@@ -51,8 +51,4 @@ public class JsonSurveySerializator {
 		Gson gson = gsonBuilder.create();
 		return gson;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(Survey.class.getPackage().getName());
-	}
 }
