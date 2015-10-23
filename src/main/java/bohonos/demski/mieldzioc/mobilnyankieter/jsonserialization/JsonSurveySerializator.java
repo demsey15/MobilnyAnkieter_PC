@@ -54,15 +54,13 @@ public class JsonSurveySerializator {
 		try {
 			List<Survey> surveys = (List<Survey>) gson.fromJson(surveysInJson, List.class);
 
-			long invalidSurveyNumber = surveys.stream()
-											  .filter((survey) -> (survey.getTitle() == null))
-											  .count();
-			
-			if(invalidSurveyNumber > 0){
-				return null;
-			} else{
-				return surveys;
+			for (Survey survey : surveys) {
+				if (survey.getTitle() == null) {
+					return null;
+				}
 			}
+
+			return surveys;
 		} catch (JsonSyntaxException e) {
 			return null;
 		}
