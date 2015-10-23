@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.constraints.IConstraint;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
@@ -13,11 +14,11 @@ public class JsonSurveySerializator {
 	private static final String QUESTION_PACKAGE_NAME;
 	private static final String CONSTRAINTS_PACKAGE_NAME;
 
-	static{
+	static {
 		QUESTION_PACKAGE_NAME = Question.class.getPackage().getName() + ".";
 		CONSTRAINTS_PACKAGE_NAME = IConstraint.class.getPackage().getName() + ".";
 	}
-	
+
 	public String serializeSurvey(Survey survey) {
 		Gson gson = prepareGson();
 
@@ -27,19 +28,44 @@ public class JsonSurveySerializator {
 	public Survey deserializeSurvey(String surveyInJson) {
 		Gson gson = prepareGson();
 
-		return gson.fromJson(surveyInJson, Survey.class);
+		try {
+			Survey survey = gson.fromJson(surveyInJson, Survey.class);
+
+			if (survey.getTitle() == null) {
+				return null;
+			}
+
+			return survey;
+		} catch (JsonSyntaxException e) {
+			return null;
+		}
+
 	}
-	
-	public String serializeListOfSurveys(List<Survey> surveys){
+
+	public String serializeListOfSurveys(List<Survey> surveys) {
 		Gson gson = prepareGson();
-		
+
 		return gson.toJson(surveys);
 	}
-	
-	public List<Survey> deserializeListOfSurveys(String surveysInJson){
+
+	public List<Survey> deserializeListOfSurveys(String surveysInJson) {
 		Gson gson = prepareGson();
-		
-		return gson.fromJson(surveysInJson, List.class);
+
+		try {
+			List<Survey> surveys = (List<Survey>) gson.fromJson(surveysInJson, List.class);
+
+			long invalidSurveyNumber = surveys.stream()
+											  .filter((survey) -> (survey.getTitle() == null))
+											  .count();
+			
+			if(invalidSurveyNumber > 0){
+				return null;
+			} else{
+				return surveys;
+			}
+		} catch (JsonSyntaxException e) {
+			return null;
+		}
 	}
 
 	private Gson prepareGson() {
