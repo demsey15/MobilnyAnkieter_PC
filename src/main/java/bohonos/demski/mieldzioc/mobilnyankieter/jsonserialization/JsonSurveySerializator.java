@@ -31,7 +31,7 @@ public class JsonSurveySerializator {
 		try {
 			Survey survey = gson.fromJson(surveyInJson, Survey.class);
 
-			if (survey.getTitle() == null) {
+			if (survey == null || survey.getTitle() == null) {
 				return null;
 			}
 

@@ -23,7 +23,7 @@ public class SurveyHandler {
     public static final int LOCAL_ID_LENGTH = 6;
             
     private int maxSurveysId = 0;
-    private Map<Survey, Integer> surveys = new HashMap<Survey, Integer>();
+    private Map<Survey, Integer> surveys = new HashMap<Survey, Integer>(); //ankieta, status
     private Map<String, Survey> surveysId = new HashMap<String, Survey>();
     
    
@@ -248,6 +248,15 @@ public class SurveyHandler {
      */
     public Set<String> getSetOfIds() {
         return surveysId.keySet();
+    }
+    
+    /**
+     * @author Dominik Demski
+     * @param survey ankieta do usuniecia
+     */
+    public void deleteSurvey(Survey survey){
+    	surveys.remove(survey);
+    	surveysId.remove(survey.getIdOfSurveys());
     }
     
     public SurveyHandler(int maxSurveysId)
