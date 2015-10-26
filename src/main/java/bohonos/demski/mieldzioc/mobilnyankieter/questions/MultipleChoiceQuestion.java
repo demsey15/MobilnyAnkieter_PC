@@ -55,8 +55,8 @@ public class MultipleChoiceQuestion extends Question{
 	 * @param errorMessage message to be provided to the user when the answer is wrong or there is no answer
 	 * @param hint hint for the user connected with this question
 	 */
-	public MultipleChoiceQuestion(String question, boolean obligatory, String errorMessage, String hint) {
-		super(question, obligatory, errorMessage, hint);
+	public MultipleChoiceQuestion(String question, boolean obligatory, String hint) {
+		super(question, obligatory, hint);
 	}
 	
 	/**
@@ -66,8 +66,8 @@ public class MultipleChoiceQuestion extends Question{
 	 * @param hint hint for the user connected with this question
 	 * @param answers lists of question's answers
 	 */
-	public MultipleChoiceQuestion(String question, boolean obligatory, String errorMessage, String hint, List<String> answers) {
-		super(question, obligatory, errorMessage, hint);
+	public MultipleChoiceQuestion(String question, boolean obligatory, String hint, List<String> answers) {
+		super(question, obligatory, hint);
 		if(answers == null) this.answers = new ArrayList<String>();
 		else
 			this.answers = answers;

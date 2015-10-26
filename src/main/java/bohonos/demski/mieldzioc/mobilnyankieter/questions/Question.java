@@ -22,9 +22,7 @@ public abstract class Question implements Serializable, Cloneable{
 	public static final int TIME_QUESTION = 7;
 	
 	private boolean obligatory;
-	private String errorMessage = "";
 	private String hint = "";
-	private String pictureUrl = "";
 	private String question = "";
 	
 	public Question() {
@@ -40,9 +38,8 @@ public abstract class Question implements Serializable, Cloneable{
 		this.obligatory = obligatory;
 	}
 	
-	public Question(String question, boolean obligatory, String errorMessage, String hint){
+	public Question(String question, boolean obligatory, String hint){
 		this(question, obligatory);
-		this.errorMessage = errorMessage;
 		this.hint = hint;
 	}
 	
@@ -92,21 +89,7 @@ public abstract class Question implements Serializable, Cloneable{
 	public void setObligatory(boolean obligatory) {
 		this.obligatory = obligatory;
 	}
-	/**
-	 * 
-	 * @return error message (message to be provided to the user when the answer is wrong or there is no answer) 
-	 */
-	public String getErrorMessage() {
-		return this.errorMessage;
-	}
-
-	/**
-	 * Set an error message.
-	 * @param message message to be provided to the user when the answer is wrong or there is no answer
-	 */
-	public void setErrorMessage(String message) {
-		this.errorMessage = message;
-	}
+	
 	/**
 	 * Set hint for the user.
 	 * @param hint hint for the user connected with this question.
@@ -121,22 +104,6 @@ public abstract class Question implements Serializable, Cloneable{
 	 */
 	public String getHint() {
 		return this.hint;
-	}
-
-	/**
-	 * Set url of picture which should be attach to the question.
-	 * @param url url of picture to be attached.
-	 */
-	public void setPictureURL(String url) {
-		this.pictureUrl = url;
-	}
-
-	/**
-	 * 
-	 * @return url of picture which should be attach to the question
-	 */
-	public String getPictureURL() {
-		return this.pictureUrl;
 	}
 	
 	/**
@@ -174,8 +141,8 @@ public abstract class Question implements Serializable, Cloneable{
 		
 		Question o2 = (Question) o;
 		
-		return this.obligatory == o2.obligatory && Objects.equals(this.errorMessage, o2.errorMessage) && 
-				Objects.equals(this.hint, o2.hint) && Objects.equals(this.pictureUrl, o2.pictureUrl) &&
+		return this.obligatory == o2.obligatory  && 
+				Objects.equals(this.hint, o2.hint) &&
 				Objects.equals(this.question, o2.question);
 	}
 	

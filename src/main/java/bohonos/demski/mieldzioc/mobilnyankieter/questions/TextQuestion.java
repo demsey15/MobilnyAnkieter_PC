@@ -66,7 +66,7 @@ public class TextQuestion extends Question {
 	 */
 	public TextQuestion(String question, boolean obligatory, String errorMessage,
 			String hint, IConstraint constraint) {
-		super(question, obligatory, errorMessage, hint);
+		super(question, obligatory, hint);
 		this.constraint = constraint;
 	}
 	

@@ -154,22 +154,7 @@ public class CreatingSurvey {
 			return question.getHint();
 		}
 	}
-	
-	/**
-	 * Zwraca tekst b³êdu pytania.
-	 * @param questionNumber numer pytania
-	 * @return null, jeœli nie ma pytania o zadanym numerze lub pytanie jest nullem, w przeciwnym przypadku zwraca 
-     * tekst b³êdu pytania.
-	 */
-	public String getQuestionErrorMessage(int questionNumber){
-		Question question;
-		if((question = getQuestion(questionNumber)) == null)
-			return null;
-		else{
-			return question.getErrorMessage();
-		}
-	}
-	
+		
 	/**
 	 * Ustawia wskazówkê do wybranego pytania.
 	 * @param questionNumber numer pytania
@@ -183,23 +168,6 @@ public class CreatingSurvey {
 			return false;
 		else{
 			question.setHint(hint);
-			return true;
-		}
-	}
-	
-	/**
-	 * Ustawia tekst b³êdu wybranego pytania.
-	 * @param questionNumber numer pytania
-	 * @param error tekst b³êdu.
-	 * @return false, jeœli nie ma pytania o zadanym indeksie, w przeciwnym przypadku
-	 * true (ustawiono tekst b³êdu).
-	 */
-	public boolean setQuestionErrorMessage(int questionNumber, String error){
-		Question question;
-		if((question = getQuestion(questionNumber)) == null)
-			return false;
-		else{
-			question.setErrorMessage(error);
 			return true;
 		}
 	}

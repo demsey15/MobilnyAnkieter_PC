@@ -114,9 +114,9 @@ public class ScaleQuestion extends Question {
 	 * @param minLabel description next to the minimum value
 	 * @param maxLabel description next to the maximum value
 	 */
-	public ScaleQuestion(String question, boolean obligatory, String errorMessage, String hint, int minValue, 
+	public ScaleQuestion(String question, boolean obligatory, String hint, int minValue, 
 			int maxValue, String minLabel, String maxLabel) {
-		super(question, obligatory, errorMessage, hint);
+		super(question, obligatory, hint);
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 		this.minLabel = minLabel;

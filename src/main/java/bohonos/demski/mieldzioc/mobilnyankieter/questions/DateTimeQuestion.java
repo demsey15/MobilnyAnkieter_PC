@@ -64,8 +64,8 @@ public class DateTimeQuestion extends Question {
 	 * @param onlyTime true if only time part of date should be take into account
 	 * @param onlyDate true if only date (without time) part of date should be take into account
 	 */
-	public DateTimeQuestion(String question, boolean obligatory, String errorMessage, String hint, boolean onlyTime, boolean onlyDate) {
-		super(question, obligatory, errorMessage, hint);
+	public DateTimeQuestion(String question, boolean obligatory, String hint, boolean onlyTime, boolean onlyDate) {
+		super(question, obligatory, hint);
 		this.onlyDate = onlyDate;
 		this.onlyTime = onlyTime;
 	}

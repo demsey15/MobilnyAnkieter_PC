@@ -75,8 +75,8 @@ public class OneChoiceQuestion extends Question {
 	 * @param hint hint for the user connected with this question
 	 * @param isDropDownList true if question should be presented as drop-down list
 	 */
-	public OneChoiceQuestion(String question, boolean obligatory, String errorMessage, String hint, boolean isDropDownList) {
-		super(question, obligatory, errorMessage, hint);
+	public OneChoiceQuestion(String question, boolean obligatory, String hint, boolean isDropDownList) {
+		super(question, obligatory, hint);
 		this.isDropDownList = isDropDownList;
 	}
 	
@@ -90,8 +90,8 @@ public class OneChoiceQuestion extends Question {
 	 * @param answers lists of question's answers
 	 * @throws NullPointerException jeœli przekazana lista odpowiedzi jest nullem.
 	 */
-	public OneChoiceQuestion(String question, boolean obligatory, String errorMessage, String hint, boolean isDropDownList, List<String> answers) {
-		super(question, obligatory, errorMessage, hint);
+	public OneChoiceQuestion(String question, boolean obligatory, String hint, boolean isDropDownList, List<String> answers) {
+		super(question, obligatory, hint);
 		if(answers == null) throw new NullPointerException("Lista odpowiedzi nie moze byæ nullem!");
 		this.isDropDownList = isDropDownList;
 		this.answers = answers;

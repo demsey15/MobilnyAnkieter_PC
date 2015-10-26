@@ -66,8 +66,8 @@ public class GridQuestion extends Question {
 	 * @param errorMessage message to be provided to the user when the answer is wrong or there is no answer
 	 * @param hint hint for the user connected with this question
 	 */
-	public GridQuestion(String question, boolean obligatory, String errorMessage, String hint) {
-		super(question, obligatory, errorMessage, hint);
+	public GridQuestion(String question, boolean obligatory, String hint) {
+		super(question, obligatory, hint);
 	}
 	
 	/**
@@ -79,8 +79,8 @@ public class GridQuestion extends Question {
 	 * @param columnLabels labels of columns
 	 * @param rowLabels labels of rows
 	 */
-	public GridQuestion(String question, boolean obligatory, String errorMessage, String hint, List<String> columnLabels, List<String> rowLabels) {
-		super(question, obligatory, errorMessage, hint);
+	public GridQuestion(String question, boolean obligatory, String hint, List<String> columnLabels, List<String> rowLabels) {
+		super(question, obligatory, hint);
 		if(columnLabels == null){
 			this.columnLabels = new ArrayList<String>();
 		}

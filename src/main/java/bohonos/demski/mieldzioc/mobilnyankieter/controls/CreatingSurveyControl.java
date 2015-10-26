@@ -130,18 +130,6 @@ public class CreatingSurveyControl {
 	}
 	
 	/**
-	 * Ustawia tekst b³êdu wybranego pytania.
-	 * @param questionNumber numer pytania
-	 * @param error tekst b³êdu.
-	 * @return false, jeœli nie ma pytania o zadanym indeksie albo nie wywo³ano wczesniej metody createNewSurvey(), w przeciwnym przypadku
-	 * true (ustawiono tekst b³êdu).
-	 */
-	public boolean setQuestionErrorMessage(int questionNumber, String error){
-		if(creatingSurvey == null) return false;
-		return creatingSurvey.setQuestionErrorMessage(questionNumber, error);
-	}
-	
-	/**
 	 * Ustawia, czy pytanie jest obowi¹zkowe
 	 * @param questionNumber numer pytania
 	 * @param obligatory true, jeœli pytanie ma byæ oznaczone jako obowi¹zkowe (czyli czy wymagana jest odpowiedŸ na to pytanie),
