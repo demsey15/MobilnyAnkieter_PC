@@ -17,8 +17,8 @@ import java.util.Map;
  */
 public class SurveysRepository {
     
-    public Map<String, List<Survey>> surveys = new HashMap<String, List<Survey>>();
-    public Map<String, Integer> maxNumbersOfSurveys = new HashMap<String, Integer>();
+    public Map<String, List<Survey>> surveys = new HashMap<>();
+    public Map<String, Long> maxNumbersOfSurveys = new HashMap<>();
     
     /**
      * returns list of surveys with given id
@@ -34,7 +34,7 @@ public class SurveysRepository {
      * @param idOfSurveys given id of surveys, we want to count
      * @return number of surveys
      */
-    public int getMaxNumberOfSurveys(String idOfSurveys) {
+    public long getMaxNumberOfSurveys(String idOfSurveys) {
         return maxNumbersOfSurveys.get(idOfSurveys);
     }
     
@@ -50,7 +50,7 @@ public class SurveysRepository {
      * returns map of maximal numbers of all surveys in repository
      * @return map of numbers
      */
-    public Map<String, Integer> getAllMaxNumbersOfSurveys() {
+    public Map<String, Long> getAllMaxNumbersOfSurveys() {
         return maxNumbersOfSurveys;
     }   
     
@@ -59,9 +59,9 @@ public class SurveysRepository {
      * @param idOfSurveys given id of surveys
      * @return maximal number of surveys from given group
      */
-    private int countMaxNumberOfSurveys(String idOfSurveys) {
+    private long countMaxNumberOfSurveys(String idOfSurveys) {
         List<Survey> surveysWithId = surveys.get(idOfSurveys); 
-        int number=0;
+        long number=0;
         for (Survey surveysWithId1 : surveysWithId) {
             if (number < surveysWithId1.getNumberOfSurvey()) {
                 number = surveysWithId1.getNumberOfSurvey();
@@ -292,7 +292,7 @@ public class SurveysRepository {
         }
         else {
             surveys.put(id, new ArrayList<Survey>());
-            maxNumbersOfSurveys.put(id, 0);
+            maxNumbersOfSurveys.put(id, 0L);
             return id;
         }
     }
@@ -308,7 +308,7 @@ public class SurveysRepository {
         }
         else {
             surveys.put(id, new ArrayList<Survey>());
-            maxNumbersOfSurveys.put(id, 0);
+            maxNumbersOfSurveys.put(id, 0L);
             return true;
         }
     }
@@ -319,13 +319,13 @@ public class SurveysRepository {
      * @param survey survey to add
      * @return number of added survey
      */
-    public int addNewSurvey(Survey survey) {
+    public long addNewSurvey(Survey survey) {
         String id = survey.getIdOfSurveys();
         if(surveys.containsKey(id)==false) {
             surveys.put(id, new ArrayList<Survey>());
-            maxNumbersOfSurveys.put(id, 0);
+            maxNumbersOfSurveys.put(id, 0L);
         }
-        int number = maxNumbersOfSurveys.get(id);
+        long number = maxNumbersOfSurveys.get(id);
         number++;
         survey.setNumberOfSurvey(number);
         surveys.get(id).add(survey);
@@ -338,7 +338,7 @@ public class SurveysRepository {
         countAllMaxNumbersOfSurveys();
     }
     
-    public SurveysRepository(Map<String, List<Survey>> surveys, Map<String, Integer> numbersOfSurveys) {
+    public SurveysRepository(Map<String, List<Survey>> surveys, Map<String, Long> numbersOfSurveys) {
         this.surveys = surveys;
         this.maxNumbersOfSurveys = numbersOfSurveys;
     }

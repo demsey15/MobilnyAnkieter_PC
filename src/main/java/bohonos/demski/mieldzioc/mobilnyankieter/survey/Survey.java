@@ -30,7 +30,7 @@ public class Survey implements Serializable, Cloneable {
     private String description;
     private String summary;
     
-    private int numberOfSurvey;
+    private long numberOfSurvey;
     
     /**
  	 * Stwórz now¹ ankietê, podaj¹c jako argument numer urz¹dzenia, na którym ankieta jest tworzona. 
@@ -149,12 +149,12 @@ public class Survey implements Serializable, Cloneable {
         this.idOfSurveys = idOfSurveys;
     }
     
-    public int getNumberOfSurvey()
+    public long getNumberOfSurvey()
     {
         return numberOfSurvey;
     }
     
-    public void setNumberOfSurvey(int numberOfSurvey)
+    public void setNumberOfSurvey(long numberOfSurvey)
     {
         this.numberOfSurvey = numberOfSurvey;
     }
