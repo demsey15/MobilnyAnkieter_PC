@@ -41,15 +41,18 @@ public class SurveysTemplateControl {
 		Collections.sort(list, new Comparator<Survey>() {
 
 			public int compare(Survey o1, Survey o2) {
-				if(o1 == null){
+				String o1Title = o1.getTitle();
+				String o2Title = o2.getTitle();
+				
+				if(o1Title == null){
 					return 1;
 				}
 				
-				if(o2 == null){
+				if(o2Title == null){
 					return -1;
 				}
 				
-				return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+				return o1Title.compareToIgnoreCase(o2Title);
 			}
 		});
 		return list;
