@@ -85,7 +85,8 @@ public class SurveyHandler {
     {
         maxSurveysId++;
         //TODO ustaliæ sposób nadawania id grupy ankiet String id = survey.getInterviewer().getId() + localIdToString(maxSurveysId);
-        String id = (new Random()).nextInt(100) + localIdToString(maxSurveysId);
+        //TODO edit 2 (28.10.15 r. - dominik) zmienilem sposob nadawania idOfSurveys na idUrzadzenia (adres MAC karty sieciowej) + localIdToString(maxSurveysId) 
+        String id = survey.getDeviceId() + localIdToString(maxSurveysId);
         survey.setIdOfSurveys(id);
         surveysId.put(id, survey);
         surveys.put(survey, IN_PROGRESS);     //default value
