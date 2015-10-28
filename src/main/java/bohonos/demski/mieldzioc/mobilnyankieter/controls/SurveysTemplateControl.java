@@ -41,12 +41,17 @@ public class SurveysTemplateControl {
 		Collections.sort(list, new Comparator<Survey>() {
 
 			public int compare(Survey o1, Survey o2) {
+				if(o1 == null){
+					return 1;
+				}
+				
+				if(o2 == null){
+					return -1;
+				}
+				
 				return o1.getTitle().compareToIgnoreCase(o2.getTitle());
 			}
 		});
 		return list;
 	}
-	
-	
-	
 }
