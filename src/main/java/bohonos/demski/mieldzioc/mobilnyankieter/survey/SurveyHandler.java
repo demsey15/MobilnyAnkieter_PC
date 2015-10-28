@@ -5,7 +5,6 @@ package bohonos.demski.mieldzioc.mobilnyankieter.survey;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 
