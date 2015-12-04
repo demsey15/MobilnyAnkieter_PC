@@ -62,7 +62,7 @@ public class EditOneChoiceQuestionFrame extends EditQuestionFrame {
         
         questionField.setText(question.getQuestion());
         hintField.setText(question.getHint());
-        //errorMessageField.setText(question.getErrorMessage());
+        errorMessageField.setText("");
         
         answerLabel = new JLabel("mo¿liwe odpowiedzi: ");
         answerLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);

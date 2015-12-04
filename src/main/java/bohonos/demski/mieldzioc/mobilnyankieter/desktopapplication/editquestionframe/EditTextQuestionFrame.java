@@ -44,7 +44,7 @@ public class EditTextQuestionFrame extends EditQuestionFrame {
         
         questionField.setText(question.getQuestion());
         hintField.setText(question.getHint());
-        //errorMessageField.setText(question.getErrorMessage());
+        errorMessageField.setText("");
 
         this.textQuestion = textQuestion;
         

@@ -90,7 +90,7 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
         errorMessageLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(errorMessageLabel);
 
-        //errorMessageField = new JTextField(question.getErrorMessage());
+        errorMessageField = new JTextField("");
         errorMessageField.setBounds(FIELDS_X_POSITION, CURRENT_Y_POSITION, FIELDS_WIDTH, FIELDS_HEIGHT);
         this.add(errorMessageField);
         
