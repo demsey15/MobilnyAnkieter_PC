@@ -70,7 +70,7 @@ public class EditGridQuestionFrame extends EditQuestionFrame {
         
         questionField.setText(question.getQuestion());
         hintField.setText(question.getHint());
-        errorMessageField.setText("");
+        //errorMessageField.setText("");
         
         rowLabel = new JLabel("wiersze: ");
         rowLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);

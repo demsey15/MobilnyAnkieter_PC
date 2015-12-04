@@ -41,7 +41,7 @@ public class EditDateTimeQuestionFrame extends EditQuestionFrame {
         
         questionField.setText(question.getQuestion());
         hintField.setText(dateTimeQuestion.getHint());
-        errorMessageField.setText("");
+        //errorMessageField.setText("");
         
         onlyDateBox = new JCheckBox("tylko data");
         onlyDateBox.setSelected(dateTimeQuestion.isOnlyDate());
