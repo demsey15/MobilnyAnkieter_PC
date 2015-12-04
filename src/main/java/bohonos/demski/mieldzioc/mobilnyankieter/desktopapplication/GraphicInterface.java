@@ -17,7 +17,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
 
-import bohonos.demski.mieldzioc.mobilnyankieter.networkConnection.ServerConnectionFacade;
 import bohonos.demski.mieldzioc.mobilnyankieter.statistics.*;
 
 /**
@@ -31,14 +30,11 @@ public class GraphicInterface extends JFrame implements ActionListener{
    // private GridLayout gridLayout ;
     private Container con;
     private final ApplicationLogic applicationLogic;
-    private ServerConnectionFacade connectionFacade;
     
-    public GraphicInterface(ServerConnectionFacade connectionFacade){
+    public GraphicInterface(){
         
         super("Bezpieczny ankieter");
-        this.connectionFacade = connectionFacade;
         applicationLogic = ApplicationLogic.getInstance();
-        applicationLogic.setConnectionFacade(this.connectionFacade);
         addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){

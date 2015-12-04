@@ -151,6 +151,7 @@ public class SurveysStatisticsProvider {
      * @param surveys
      * @return 
      */
+    /*
      public Pair<Interviewer,Float> getTheMostActiveInterviewerForSurveyAndHisPercentage(List<Survey> surveys){
          HashMap<Interviewer, Integer> mapa = new HashMap<Interviewer, Integer>();
          for(Survey survey : surveys){
@@ -176,7 +177,7 @@ public class SurveysStatisticsProvider {
          }
          return pair;
      }
-     
+     */
      /**
       * Metoda zwraca parê. Pierwszy argument zawiera ankietera, który zebra³ najwiêcej ankiet, drugi argument pary zawiera jaki procent zebranych ankiet stanowi³y te ankiety, które zebra³ ankieter.
       * @param surveys
@@ -184,6 +185,7 @@ public class SurveysStatisticsProvider {
       * @param to
       * @return 
       */
+    /*
      public Pair<Interviewer,Float> getTheMostActiveInterviewerForSurveyAndHisPercentage(List<Survey> surveys, GregorianCalendar from, GregorianCalendar to){
          List<Survey> goodSurvey = new ArrayList<Survey>();
          for(Survey survey : surveys){
@@ -195,7 +197,7 @@ public class SurveysStatisticsProvider {
          }
          return getTheMostActiveInterviewerForSurveyAndHisPercentage(goodSurvey);
      }
-     
+     */
      /**
       * Metoda zwraca mapê, której kluczami s¹ dni w których ankiety zosta³y zebrane. Wartoœæ mapy mówi nam ile zosta³o zebranych ankiet w konkretnym dniu.
       * @param surveys

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.*;
-import bohonos.demski.mieldzioc.mobilnyankieter.networkConnection.ServerConnectionFacade;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.*;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.*;
 /**
@@ -23,11 +22,7 @@ public class ApplicationLogic {
     private Interviewer loggedInterviewer;
     private InterviewersRepository intervierwsRepository;
     private static ApplicationLogic instance;
-    private ServerConnectionFacade serverConnectionFacade;
 
-    public ServerConnectionFacade getServerConnectionFacade() {
-        return serverConnectionFacade;
-    }
     //private String host = "localhost";
     private SurveysRepository surveysRepository;
     
@@ -55,7 +50,7 @@ public class ApplicationLogic {
      * @return id of new survey template
      */
     public String newSurvey() {
-        String idOfSurvey = surveyHandler.addNewSurveyTemplate(new Survey(loggedInterviewer));
+        String idOfSurvey = surveyHandler.addNewSurveyTemplate(new Survey("desktopapplication"));
         return idOfSurvey;
     }
     
@@ -69,9 +64,6 @@ public class ApplicationLogic {
         return surveyHandler.copyOldAndCreateNewSurvey(idOfSurvey, loggedInterviewer.getId());
     }
     
-    public void setConnectionFacade(ServerConnectionFacade serverConnectionFacade){
-        this.serverConnectionFacade = serverConnectionFacade;
-    }
     /**
      * returns title of survey template with given id
      * @param idOfSurvey id of survey template, we are interested in

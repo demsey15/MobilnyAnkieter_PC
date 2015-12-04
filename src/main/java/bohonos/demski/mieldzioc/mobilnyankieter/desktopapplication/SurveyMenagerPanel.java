@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import bohonos.demski.mieldzioc.mobilnyankieter.networkConnection.ServerConnectionFacade;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
 
@@ -101,8 +100,7 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
             this.remove(activeButton);
             this.add(disactiveButton);
             statusLabel.setText("aktywna");
-            ServerConnectionFacade connectionFacade = applicationLogic.getServerConnectionFacade();
-            connectionFacade.sendSurveyTemplate(survey, "12345678911", "abc".toCharArray());
+            //TODO udostêpnienie ankiety
             SwingUtilities.updateComponentTreeUI(this);
         }
         

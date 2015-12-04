@@ -17,8 +17,8 @@ public class DesktopApplication {
 
 		//	@Override
 			public void run() {
-        //GraphicInterface g= new GraphicInterface();
-        LogInFrame logInFrame = new LogInFrame();
+        GraphicInterface g= new GraphicInterface();
+        //LogInFrame logInFrame = new LogInFrame();
         //g.repaint();
                         }
 		});
