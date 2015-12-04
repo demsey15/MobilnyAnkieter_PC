@@ -64,7 +64,7 @@ public class TextQuestion extends Question {
 	 * @param hint hint for the user connected with this question
 	 * @param constraint constraints of user's answer.
 	 */
-	public TextQuestion(String question, boolean obligatory, String errorMessage,
+	public TextQuestion(String question, boolean obligatory,
 			String hint, IConstraint constraint) {
 		super(question, obligatory, hint);
 		this.constraint = constraint;

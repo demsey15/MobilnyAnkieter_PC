@@ -42,7 +42,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     protected String question = "";
     protected String pictureUrl = "";
     protected String hint = "";
-    protected String errorMessage = "";
+    //protected String errorMessage = "";
     protected Survey survey;
     
     protected ApplicationLogic applicationLogic;
@@ -84,7 +84,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         this.add(hintField);
         
         CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
-        
+        /*
         errorMessageLabel = new JLabel("informacja o b³êdzie: ");
         errorMessageLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(errorMessageLabel);
@@ -94,7 +94,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         this.add(errorMessageField);
         
         CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
-        
+        */
         obligatoryBox = new JCheckBox("pytanie obowi¹zkowe");
         obligatoryBox.setBounds(FIELDS_X_POSITION, CURRENT_Y_POSITION, FIELDS_WIDTH, FIELDS_HEIGHT);
         this.add(obligatoryBox);

@@ -85,7 +85,7 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
                 constraint = new TextConstraint(Integer.valueOf(minLengthField.getText()), Integer.valueOf(maxLengthField.getText()), null);
             }
         }
-        TextQuestion textQuestion = new TextQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), constraint);
+        TextQuestion textQuestion = new TextQuestion(questionField.getText(), obligatoryBox.isSelected(), hintField.getText(), constraint);
         survey.addQuestion(textQuestion);
         creatorFrame.addTextQuestionPanel(textQuestion);
         return null;
