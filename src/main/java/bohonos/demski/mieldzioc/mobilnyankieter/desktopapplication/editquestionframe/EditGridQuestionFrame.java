@@ -70,7 +70,7 @@ public class EditGridQuestionFrame extends EditQuestionFrame {
         
         questionField.setText(question.getQuestion());
         hintField.setText(question.getHint());
-        errorMessageField.setText(question.getErrorMessage());
+        //errorMessageField.setText(question.getErrorMessage());
         
         rowLabel = new JLabel("wiersze: ");
         rowLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
@@ -160,7 +160,7 @@ public class EditGridQuestionFrame extends EditQuestionFrame {
     protected Question saveQuestion() {
         question.setQuestion(questionField.getText());
         question.setHint(hintField.getText());
-        question.setErrorMessage(errorMessageField.getText());
+        //question.setErrorMessage(errorMessageField.getText());
         question.setObligatory(obligatoryBox.isSelected());
         gridQuestion.getColumnLabels().clear();
         gridQuestion.getRowLabels().clear();

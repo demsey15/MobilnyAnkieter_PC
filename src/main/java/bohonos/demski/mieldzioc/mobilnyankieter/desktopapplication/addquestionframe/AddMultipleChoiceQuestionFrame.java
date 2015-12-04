@@ -82,7 +82,7 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), answers);
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(questionField.getText(), obligatoryBox.isSelected(), hintField.getText(), answers);
         survey.addQuestion(multipleChoiceQuestion);
         creatorFrame.addMultipleChoiceQuestionPanel(multipleChoiceQuestion);
         return null;

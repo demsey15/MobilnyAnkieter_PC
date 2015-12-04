@@ -44,7 +44,7 @@ public class EditTextQuestionFrame extends EditQuestionFrame {
         
         questionField.setText(question.getQuestion());
         hintField.setText(question.getHint());
-        errorMessageField.setText(question.getErrorMessage());
+        //errorMessageField.setText(question.getErrorMessage());
 
         this.textQuestion = textQuestion;
         
@@ -113,7 +113,7 @@ public class EditTextQuestionFrame extends EditQuestionFrame {
         }
         question.setQuestion(questionField.getText());
         question.setHint(hintField.getText());
-        question.setErrorMessage(errorMessageField.getText());
+        //question.setErrorMessage(errorMessageField.getText());
         question.setObligatory(obligatoryBox.isSelected());
         textQuestion.setConstraint(constraint);
         surveyPanel.refreshQuestionList();

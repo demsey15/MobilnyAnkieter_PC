@@ -82,7 +82,7 @@ public class AddOneChoiceQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        OneChoiceQuestion oneChoiceQuestion = new OneChoiceQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), false, answers);
+        OneChoiceQuestion oneChoiceQuestion = new OneChoiceQuestion(questionField.getText(), obligatoryBox.isSelected(), hintField.getText(), false, answers);
         survey.addQuestion(oneChoiceQuestion);
         creatorFrame.addOneChoiceQuestionPanel(oneChoiceQuestion);
         return null;
