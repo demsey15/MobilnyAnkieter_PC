@@ -48,14 +48,29 @@ public abstract class Question implements Serializable, Cloneable{
 		if(this instanceof DateTimeQuestion){
 			return (((DateTimeQuestion) this).isOnlyDate()) ? DATE_QUESTION : TIME_QUESTION;
 		}
-		if(this instanceof GridQuestion) return GRID_QUESTION;
-		if(this instanceof MultipleChoiceQuestion) return MULTIPLE_CHOICE_QUESTION;
+		
+		if(this instanceof GridQuestion){
+			return GRID_QUESTION;
+		}
+		
+		if(this instanceof MultipleChoiceQuestion){
+			return MULTIPLE_CHOICE_QUESTION;
+		}
+		
 		if(this instanceof OneChoiceQuestion){
 			return (((OneChoiceQuestion) this).getIsDropDownList()) ? DROP_DOWN_QUESTION : ONE_CHOICE_QUESTION;
 		}
-		if(this instanceof ScaleQuestion) return SCALE_QUESTION;
-		if(this instanceof TextQuestion) return TEXT_QUESTION;
-		else return -1;
+		
+		if(this instanceof ScaleQuestion){
+			return SCALE_QUESTION;
+		}
+		
+		if(this instanceof TextQuestion){
+			return TEXT_QUESTION;
+		}
+		else{
+			return -1;
+		}
 	}
 	
 	/**
@@ -132,9 +147,17 @@ public abstract class Question implements Serializable, Cloneable{
 	
 	@Override
 	public boolean equals(Object o) {
-		if(this == o) return true;
-		if(o == null) return false;
-		if(this.getClass() != o.getClass()) return false;
+		if(this == o){
+			return true;
+		}
+		
+		if(o == null){
+			return false;
+		}
+		
+		if(this.getClass() != o.getClass()){
+			return false;
+		}
 		
 		Question o2 = (Question) o;
 		

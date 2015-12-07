@@ -61,6 +61,17 @@ public class OneChoiceQuestion extends Question {
 		this.isDropDownList = isDropDownList;
 	}
 
+	public OneChoiceQuestion(String question, boolean obligatory, String hint, boolean isDropDownList, List<String> answers) {
+			super(question, obligatory, hint);
+			
+			if(answers == null){
+				throw new NullPointerException("Lista odpowiedzi nie moze byc nullem!");
+			}
+			
+			this.isDropDownList = isDropDownList;
+			this.answers = answers;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

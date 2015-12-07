@@ -45,7 +45,6 @@ public class TextQuestion extends Question {
 	 * Create TextQuestion object.
 	 * @param question text of question
 	 * @param obligatory true if answer this question is obligatory.
-	 * @param errorMessage message to be provided to the user when the answer is wrong or there is no answer
 	 * @param hint hint for the user connected with this question
 	 * @param constraint constraints of user's answer.
 	 */

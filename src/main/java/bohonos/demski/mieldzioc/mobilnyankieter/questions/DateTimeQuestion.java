@@ -29,6 +29,12 @@ public class DateTimeQuestion extends Question {
 		this.onlyDate = onlyDate;
 		this.onlyTime = onlyTime;
 	}
+	
+	public DateTimeQuestion(String question, boolean obligatory, String hint, boolean onlyTime, boolean onlyDate) {
+				super(question, obligatory, hint);
+				this.onlyDate = onlyDate;
+				this.onlyTime = onlyTime;
+			}
 
 	/**
 	 * Notice! List with answers should contains 3 or 6 elements in order: day

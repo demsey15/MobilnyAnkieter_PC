@@ -35,6 +35,16 @@ public class MultipleChoiceQuestion extends Question {
 	public MultipleChoiceQuestion(String question, boolean obligatory) {
 		super(question, obligatory);
 	}
+	
+	public MultipleChoiceQuestion(String question, boolean obligatory, String hint, List<String> answers) {
+				super(question, obligatory, hint);
+				if(answers == null){ 
+					this.answers = new ArrayList<String>();	
+				}
+				else{
+					this.answers = answers;
+				}
+			}
 
 	/*
 	 * (non-Javadoc)

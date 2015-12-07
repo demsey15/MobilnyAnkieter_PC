@@ -18,12 +18,28 @@ public class GridQuestion extends Question {
 	private List<String> rowLabels = new ArrayList<String>();
 	private List<Pair<Integer, Integer>> userAnswers = new ArrayList<Pair<Integer, Integer>>(); // Pair<rowNumber,
 																								// columnNumber>
+
 	public GridQuestion(String question) {
 		super(question);
 	}
 
 	public GridQuestion(String question, boolean obligatory) {
 		super(question, obligatory);
+	}
+
+	public GridQuestion(String question, boolean obligatory, String hint, List<String> columnLabels,
+			List<String> rowLabels) {
+		super(question, obligatory, hint);
+		if (columnLabels == null) {
+			this.columnLabels = new ArrayList<String>();
+		} else
+			this.columnLabels = columnLabels;
+		if (rowLabels == null){
+			this.rowLabels = new ArrayList<String>();
+		}
+		else{
+			this.rowLabels = rowLabels;
+		}
 	}
 
 	/**
@@ -36,13 +52,14 @@ public class GridQuestion extends Question {
 	/**
 	 * Ustawia wartoœci etykiet kolumn, nie mog¹ byæ one nullem.
 	 * 
-	 * @param columnLabels etykiety kolumn.
+	 * @param columnLabels
+	 *            etykiety kolumn.
 	 */
 	public void setColumnLabels(List<String> columnLabels) {
-		if (columnLabels == null){
+		if (columnLabels == null) {
 			throw new NullPointerException("Etykiety nie mog¹ byæ nullem");
 		}
-		
+
 		this.columnLabels = columnLabels;
 	}
 
@@ -56,7 +73,8 @@ public class GridQuestion extends Question {
 	/**
 	 * Ustawia wartoœci etykiet wierszy, nie mog¹ byæ one nullem.
 	 * 
-	 * @param rowLabels etykiety wierszy.
+	 * @param rowLabels
+	 *            etykiety wierszy.
 	 */
 	public void setRowLabels(List<String> rowLabels) {
 		if (rowLabels == null)
@@ -66,28 +84,29 @@ public class GridQuestion extends Question {
 
 	/**
 	 * Each answer should be in format: #rowLabel# ^columnLabel^
+	 * 
 	 * @see bohonos.demski.mieldzioc.mobilnyankieter.questions.Question#setUserAnswers(java.util.List)
 	 */
 	@Override
 	public boolean setUserAnswers(List<String> text) {
 		userAnswers.clear();
-		
-		if (text == null){
+
+		if (text == null) {
 			return false;
 		}
-		
+
 		Pair<Integer, Integer> coordinates;
-		
+
 		for (String answer : text) {
 			coordinates = getCoordinatesOfAnswer(answer);
 			if (coordinates == null) {
 				userAnswers.clear();
 				return false;
 			}
-		
+
 			userAnswers.add(coordinates);
 		}
-		
+
 		return true;
 	}
 
@@ -105,7 +124,7 @@ public class GridQuestion extends Question {
 				result.add("#" + row + "# ^" + column + "^");
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -119,11 +138,10 @@ public class GridQuestion extends Question {
 		List<String> result = new ArrayList<String>();
 
 		for (Pair<Integer, Integer> coordinates : userAnswers) {
-			result.add("#" + rowLabels.get(coordinates.getFirst()) + 
-					"# ^" + columnLabels.get(coordinates.getSecond())
+			result.add("#" + rowLabels.get(coordinates.getFirst()) + "# ^" + columnLabels.get(coordinates.getSecond())
 					+ "^");
 		}
-		
+
 		return result;
 	}
 
@@ -145,23 +163,23 @@ public class GridQuestion extends Question {
 		String colLab;
 
 		int firstHash = answer.indexOf("#");
-		
-		if (firstHash == -1){
+
+		if (firstHash == -1) {
 			return null;
 		}
 
 		int secondHash = answer.indexOf("#", firstHash + 1);
-		if (secondHash == -1){
+		if (secondHash == -1) {
 			return null;
 		}
 
 		int firstBird = answer.indexOf("^", secondHash + 1);
-		if (firstBird == -1){
+		if (firstBird == -1) {
 			return null;
 		}
 
 		int secondBird = answer.indexOf("^", firstBird + 1);
-		if (secondBird == -1){
+		if (secondBird == -1) {
 			return null;
 		}
 
@@ -171,16 +189,17 @@ public class GridQuestion extends Question {
 		int rowIndex = rowLabels.indexOf(rowLab);
 		int colIndex = columnLabels.indexOf(colLab);
 
-		if (rowIndex == -1 || colIndex == -1){
+		if (rowIndex == -1 || colIndex == -1) {
 			return null;
 		}
-		
+
 		return new Pair<Integer, Integer>(rowIndex, colIndex);
 	}
 
 	/**
 	 * 
-	 * @param coordinates coordinates of answer to return (first row's number, then
+	 * @param coordinates
+	 *            coordinates of answer to return (first row's number, then
 	 *            column's number).
 	 * @return null if the coordinates are out of range, otherwise answer in
 	 *         format #rowLabel# ^columnLabel^.
