@@ -21,10 +21,6 @@ public class TextQuestion extends Question {
 	private String userAnswer;
 	private IConstraint constraint;
 	
-	public TextQuestion(){
-		
-	}
-	
 	/**
 	 * Create TextQuestion object with no constraint and obligatory as true.
 	 * @param question text of question
@@ -34,7 +30,7 @@ public class TextQuestion extends Question {
 		super(question);
 		this.constraint = null;
 	}
-
+	
 	/**
 	 * Create TextQuestion object with no constraint.
 	 * @param question text of question
@@ -45,17 +41,6 @@ public class TextQuestion extends Question {
 		this.constraint = null;
 	}
 	
-	/**
-	 * Create TextQuestion object.
-	 * @param question text of question
-	 * @param obligatory true if answer this question is obligatory.
-	 * @param constraint constraints of user's answer.
-	 */
-	public TextQuestion(String question, boolean obligatory, IConstraint constraint) {
-		super(question, obligatory);
-		this.constraint = constraint;
-	}
-
 	/**
 	 * Create TextQuestion object.
 	 * @param question text of question

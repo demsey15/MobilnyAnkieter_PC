@@ -18,9 +18,6 @@ public class ScaleQuestion extends Question {
 	private String minLabel;
 	private int userAnswer = Integer.MIN_VALUE;  //Integer.MIN_VALUE - there is no user's answer
 	
-	public ScaleQuestion(){
-		
-	}
 	public int getMinValue() {
 		return minValue;
 	}
@@ -62,18 +59,6 @@ public class ScaleQuestion extends Question {
 	}
 
 	/**
-	 * Create ScaleQuestion object with obligatory as true and without any labels.
-	 * @param question text of question
-	 * @param minValue the minimum value of this scale question
-	 * @param maxValue the maximum value of this scale question
-	 */
-	public ScaleQuestion(String question, int minValue, int maxValue) {
-		super(question);
-		this.minValue = minValue;
-		this.maxValue = maxValue;
-	}
-
-	/**
 	 * Create ScaleQuestion object without any labels.
 	 * @param question text of question
 	 * @param obligatory true if answer this question is obligatory.
@@ -102,7 +87,6 @@ public class ScaleQuestion extends Question {
 		this.minLabel = minLabel;
 		this.maxLabel = maxLabel;
 	}
-
 	/**
 	 * Create ScaleQuestion object.
 	 * @param question text of question

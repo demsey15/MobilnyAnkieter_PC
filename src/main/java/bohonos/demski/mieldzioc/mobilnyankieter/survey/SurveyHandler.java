@@ -95,7 +95,7 @@ public class SurveyHandler {
     /**
      * load survey to map
      * @param survey survey to load
-     * @param status status of loding survey
+     * @param status status of loading survey
      * @return true, if survey was added or false, if such survey already exists in map
      */
     public boolean loadSurveyTemplate(Survey survey, int status)
@@ -254,7 +254,7 @@ public class SurveyHandler {
      * @author Dominik Demski
      * @param survey ankieta do usuniecia
      */
-    public void deleteSurvey(Survey survey){
+    public void deleteSurveyTemplate(Survey survey){
     	surveys.remove(survey);
     	surveysId.remove(survey.getIdOfSurveys());
     }
@@ -263,8 +263,5 @@ public class SurveyHandler {
     {
         this.maxSurveysId = maxSurveysId;
         
-    }
-    
-
-    
+    }   
 }

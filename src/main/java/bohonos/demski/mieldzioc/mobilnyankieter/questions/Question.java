@@ -12,6 +12,7 @@ import com.rits.cloning.Cloner;
  */
 public abstract class Question implements Serializable, Cloneable{
 	private static final long serialVersionUID = 1L;
+	
 	public static final int ONE_CHOICE_QUESTION = 0;
 	public static final int MULTIPLE_CHOICE_QUESTION = 1;
 	public static final int DROP_DOWN_QUESTION = 2;
@@ -24,11 +25,7 @@ public abstract class Question implements Serializable, Cloneable{
 	private boolean obligatory;
 	private String hint = "";
 	private String question = "";
-	
-	public Question() {
 		
-	}
-
 	public Question(String question){
 		this(question, true);
 	}
