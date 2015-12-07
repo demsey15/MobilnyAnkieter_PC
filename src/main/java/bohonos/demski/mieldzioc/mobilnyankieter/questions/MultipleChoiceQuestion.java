@@ -174,7 +174,7 @@ public class MultipleChoiceQuestion extends Question {
 	 */
 	@Override
 	public List<String> getUserAnswersAsStringList() {
-		List<String> list = new ArrayList<>(userAnswers.size());
+		List<String> list = new ArrayList<String>(userAnswers.size());
 
 		if (isAnswered()) {
 			for (Integer i : userAnswers) {

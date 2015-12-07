@@ -228,7 +228,7 @@ public class OneChoiceQuestion extends Question {
 	 */
 	@Override
 	public List<String> getUserAnswersAsStringList() {
-		List<String> list = new ArrayList<>(1);
+		List<String> list = new ArrayList<String>(1);
 
 		if (isAnswered()) {
 			list.add(answers.get(userAnswer));
