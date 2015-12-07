@@ -32,6 +32,8 @@ import javax.swing.ListModel;
 import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.InterviewerSurveyPrivileges;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -40,13 +42,14 @@ import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.InterviewerSurveyPri
 public class EditInterviewer extends JFrame implements ActionListener{
     private Interviewer interviewer;
     private JTextField jname, jsurname, jid;
-    private JFormattedTextField jdate;
-    private JLabel nameLabel, surnameLabel, idLabel, dateLabel, active, opis;
+    //private JFormattedTextField jdate;
+    private JLabel nameLabel, surnameLabel, idLabel, opis; //dateLabel, active
     private Container addcon;
-    private JButton anul, editinterv, setOutWork, relieve, restore;
+    private JButton anul, editinterv, dodajMac, usunMac;// setOutWork, relieve, restore;
     private MenagerInterviewersFrame menager;
-    private JList workOutTime;
+    private JList devices;//workOutTime;
     private DefaultListModel listModel;
+    private List<String> selectedMacs;
     
     public EditInterviewer(Interviewer interviewer, MenagerInterviewersFrame menager){
         super("Edycja ankietera");
@@ -69,26 +72,30 @@ public class EditInterviewer extends JFrame implements ActionListener{
         surnameLabel = new JLabel("Nazwisko: ");
         jid = new JTextField(interviewer.getId());
         idLabel = new JLabel("ID: ");
-        active = new JLabel();
-        if(interviewer.isActive()){
+        //active = new JLabel();
+        /*if(interviewer.isActive()){
             active = new JLabel("Ankieter jest aktywny");
         }
         else{
             active = new JLabel("Ankieter jest nieaktywny");
-        }
-        opis = new JLabel("Czas niepracowania ankietera");
+        }*/
+        opis = new JLabel("Lista urz¹dzeñ: ");
         DateFormat format = new SimpleDateFormat("dd--MM--yyyy");
-        jdate = new JFormattedTextField(format);
-        dateLabel = new JLabel("Data zatrudnienia: ");
+        //jdate = new JFormattedTextField(format);
+        //dateLabel = new JLabel("Data zatrudnienia: ");
         anul = new JButton("Anuluj");
         editinterv= new JButton("Zapisz");
-        relieve = new JButton("Zwolnij");
-        restore = new JButton("Przywróæ do pracy");
-        setOutWork = new JButton("Przerwy w zatrudnieniu");
+        dodajMac = new JButton("Dodaj urz¹dzenie");
+        usunMac = new JButton("Usuñ urz¹dzenie");
+        //relieve = new JButton("Zwolnij");
+        //restore = new JButton("Przywróæ do pracy");
+        //setOutWork = new JButton("Przerwy w zatrudnieniu");
         
         listModel = new DefaultListModel();
-        getTimeOutWork(interviewer);
-        workOutTime = new JList(listModel);
+        //getTimeOutWork(interviewer);
+        //workOutTime = new JList(listModel);
+        devices = new JList(listModel);
+        
         
         nameLabel.setBounds(450, 0, 50, 40);
         jname.setBounds(500, 0, 100, 40);
@@ -96,22 +103,32 @@ public class EditInterviewer extends JFrame implements ActionListener{
         jsurname.setBounds(500, 50, 100, 40);
         jid.setBounds(500, 100, 100, 40);
         idLabel.setBounds(460, 100, 40, 40);
-        jdate.setBounds(500, 150, 100, 50);
-        dateLabel.setBounds(375, 150, 125, 50);
+        //jdate.setBounds(500, 150, 100, 50);
+        //dateLabel.setBounds(375, 150, 125, 50);
         anul.setBounds(100, 500, 100, 50);
         editinterv.setBounds(600, 500, 150, 50);
-        relieve.setBounds(350, 350, 150, 50);
-        restore.setBounds(550, 350, 150, 50);
-        setOutWork.setBounds(425, 250, 200, 50);
-        workOutTime.setBounds(50, 150, 250, 300);
+        dodajMac.setBounds(350, 200, 150, 50);
+        usunMac.setBounds(350, 350, 150, 50);
+        //relieve.setBounds(350, 350, 150, 50);
+        //restore.setBounds(550, 350, 150, 50);
+        //setOutWork.setBounds(425, 250, 200, 50);
+        devices.setBounds(50, 150, 250, 300);
+        //workOutTime.setBounds(50, 150, 250, 300);
         //GregorianCalendar now = new GregorianCalendar();
-        active.setBounds(50, 25, 150, 50);
+        //active.setBounds(50, 25, 150, 50);
         opis.setBounds(50, 100, 200, 50);
        // int y1 = interviewer.getHiredDay().get(Calendar.YEAR);
         ////int m1 = interviewer.getHiredDay().get(Calendar.MONTH);
         //int d1 = interviewer.getHiredDay().get(Calendar.DAY_OF_MONTH);
         //System.out.println(d1+" "+m1+" "+y1);
-        jdate.setValue(interviewer.getHiredDay().getTime());
+        //jdate.setValue(interviewer.getHiredDay().getTime());
+        
+        ListSelectionListener listListener = new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent e) {
+                selectedMacs = devices.getSelectedValuesList();
+            }
+        };
         
         JPanel inputPanel = new JPanel();
 	inputPanel.setLayout(null);
@@ -121,15 +138,18 @@ public class EditInterviewer extends JFrame implements ActionListener{
 	inputPanel.add(jsurname);
         inputPanel.add(jid);
         inputPanel.add(idLabel);
-        inputPanel.add(jdate);
-        inputPanel.add(dateLabel);
+        //inputPanel.add(jdate);
+        //inputPanel.add(dateLabel);
         inputPanel.add(anul);
         inputPanel.add(editinterv);
-        inputPanel.add(relieve);
-        inputPanel.add(restore);
-        inputPanel.add(setOutWork);
-        inputPanel.add(workOutTime);
-        inputPanel.add(active);
+        inputPanel.add(dodajMac);
+        inputPanel.add(usunMac);
+        inputPanel.add(devices);
+        //inputPanel.add(relieve);
+        //inputPanel.add(restore);
+        //inputPanel.add(setOutWork);
+        //inputPanel.add(workOutTime);
+        //inputPanel.add(active);
         inputPanel.add(opis);
         
         addcon = this.getContentPane();
@@ -137,14 +157,20 @@ public class EditInterviewer extends JFrame implements ActionListener{
         
         editinterv.addActionListener(this);
         anul.addActionListener(this);
-        relieve.addActionListener(this);
-        restore.addActionListener(this);
-        setOutWork.addActionListener(this);
+        dodajMac.addActionListener(this);
+        usunMac.addActionListener(this);
+        devices.addListSelectionListener(listListener);
+        for( String device : interviewer.getMacAdresses()){
+            listModel.addElement(device);
+        }
+        //relieve.addActionListener(this);
+        //restore.addActionListener(this);
+        //setOutWork.addActionListener(this);
         
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setVisible(true);
     }
-    
+    /*
     public void getTimeOutWork(Interviewer interviewer){
         String[] lista = new String[interviewer.getOutOfWorkTime().size()];
         //int i=0;
@@ -163,7 +189,7 @@ public class EditInterviewer extends JFrame implements ActionListener{
         }
         //return lista;
     }
-    
+    */
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if(source==anul){
@@ -172,10 +198,10 @@ public class EditInterviewer extends JFrame implements ActionListener{
         }
         if(source == editinterv){
             //JOptionPane optionPane;
-            Date now;
-            GregorianCalendar cal = new GregorianCalendar();
-            now=(Date) jdate.getValue();
-            cal.setTime(now);
+            //Date now;
+            //GregorianCalendar cal = new GregorianCalendar();
+            //now=(Date) jdate.getValue();
+            //cal.setTime(now);
             //System.out.println("data: "+cal.getTime().getTime());
             String myid = jid.getText();
            // System.out.println(jname.getText());
@@ -186,28 +212,39 @@ public class EditInterviewer extends JFrame implements ActionListener{
             interviewer.editeName(jname.getText());
             interviewer.editeSurname(jsurname.getText());
             interviewer.editeId(myid);
-            interviewer.editeHireDay(cal);               
+            //interviewer.editeHireDay(cal);               
             JOptionPane.showMessageDialog(this, "Zedytowano ankietera");
            
             menager.refreshViewOfInterviewers();
             dispose();
         }
         
-        if(source == relieve){
+        if(source == dodajMac){
+            AddMac addMac = new AddMac(interviewer, listModel);
+        }
+        
+        if(source == usunMac){
+            interviewer.deleteMacAdressess(selectedMacs.get(0));
+            listModel.removeElement(selectedMacs.get(0));
+        
+        }
+        
+        /*if(source == relieve){
             if(interviewer.isActive()){
                 RelieveInterviewer rel = new RelieveInterviewer(interviewer, active);
             }
-        }
+        }*/
         
-        if(source == restore)
+        /*if(source == restore)
         {
             if(!interviewer.isActive()){
                 RestoreInterviewer rel = new RestoreInterviewer(interviewer, active, listModel);
             }
-        }
-        
+        }*/
+        /*
         if(source == setOutWork){
             OutOfWorkInterviewer outOfWorkInterviewer = new OutOfWorkInterviewer(interviewer, listModel);
         }
+                */
     }
 }
