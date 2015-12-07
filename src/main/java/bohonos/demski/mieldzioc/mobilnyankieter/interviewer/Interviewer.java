@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
+import com.rits.cloning.Cloner;
 //import javax.persistence.*;
 //import javafx.util;
 /**
@@ -20,7 +21,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
  * @author Delirus
  */
 //@Entity
-public class Interviewer implements Serializable{
+public class Interviewer implements Serializable, Cloneable {
     /**
 	 * 
 	 */
@@ -171,5 +172,18 @@ public class Interviewer implements Serializable{
     
     public void addMacAdress(String a){
         macAdresses.add(a);
+    }
+    
+    public void setMacAdresses(ArrayList<String> a){
+        macAdresses = a;
+    }
+    /**
+     *
+     * @return
+     * @throws CloneNotSupportedException
+     */
+    @Override
+    public Interviewer clone() throws CloneNotSupportedException {
+	return (new Cloner()).deepClone(this);
     }
 }

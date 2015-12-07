@@ -23,7 +23,7 @@ public class AddMac extends JFrame implements ActionListener{
 
     //private JFormattedTextField jdate;
     private JButton anul, save;
-    private Interviewer interviewer;
+    private ArrayList<String> newMacs;
     private JLabel adress;
     private Container addcon;
     private JTextField newMac;
@@ -31,7 +31,7 @@ public class AddMac extends JFrame implements ActionListener{
     private DefaultListModel listModel;
     
     
-     public AddMac(Interviewer interviewer, DefaultListModel listModel){
+     public AddMac(ArrayList<String> newMacs, DefaultListModel listModel){
         super("Dodaj adres Mac");
         addWindowListener(new WindowAdapter() {
                         @Override
@@ -41,7 +41,7 @@ public class AddMac extends JFrame implements ActionListener{
 			}
 		});
     
-        this.interviewer = interviewer;
+        this.newMacs = newMacs;
         this.listModel = listModel;
         //this.workOutTime = workOutTime;
         setSize(300,200);
@@ -88,7 +88,7 @@ public class AddMac extends JFrame implements ActionListener{
         if(source==save){
             String a = new String();
             a = newMac.getText();
-            interviewer.addMacAdress(a);
+            newMacs.add(a);
             listModel.addElement(a);
             dispose();
         }

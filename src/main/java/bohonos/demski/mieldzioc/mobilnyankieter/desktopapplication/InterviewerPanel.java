@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -69,13 +71,17 @@ public class InterviewerPanel extends JPanel implements ActionListener{
         Object source = e.getSource();
          
         if(source == editInterv){
-             //EventQueue.invokeLater(new Runnable() {
-		//	@Override
-		//	public void run() {
-            EditInterviewer editInterviewer = new EditInterviewer(interviewer, menager);
-             // }
-		//});
-            //menager.refreshViewOfInterviewers();
+            try {
+                //EventQueue.invokeLater(new Runnable() {
+                //	@Override
+                //	public void run() {
+                EditInterviewer editInterviewer = new EditInterviewer(interviewer, menager);
+                // }
+                //});
+                //menager.refreshViewOfInterviewers();
+            } catch (CloneNotSupportedException ex) {
+                //Logger.getLogger(InterviewerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         /*if(source == privileges){
             SetPrivileges setPrivileges = new SetPrivileges(interviewer);

@@ -50,8 +50,9 @@ public class EditInterviewer extends JFrame implements ActionListener{
     private JList devices;//workOutTime;
     private DefaultListModel listModel;
     private List<String> selectedMacs;
+    private ArrayList<String> newListOfMacs;
     
-    public EditInterviewer(Interviewer interviewer, MenagerInterviewersFrame menager){
+    public EditInterviewer(Interviewer interviewer, MenagerInterviewersFrame menager) throws CloneNotSupportedException{
         super("Edycja ankietera");
         //applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
@@ -61,8 +62,10 @@ public class EditInterviewer extends JFrame implements ActionListener{
 				//System.exit(0);
 			}
 		});
+        
         this.interviewer = interviewer;
         this.menager = menager;
+        newListOfMacs = new ArrayList<String>();
         setSize(800,600);
         setLocation(300,350);
         setResizable(false);
@@ -73,12 +76,6 @@ public class EditInterviewer extends JFrame implements ActionListener{
         jid = new JTextField(interviewer.getId());
         idLabel = new JLabel("ID: ");
         //active = new JLabel();
-        /*if(interviewer.isActive()){
-            active = new JLabel("Ankieter jest aktywny");
-        }
-        else{
-            active = new JLabel("Ankieter jest nieaktywny");
-        }*/
         opis = new JLabel("Lista urz¹dzeñ: ");
         DateFormat format = new SimpleDateFormat("dd--MM--yyyy");
         //jdate = new JFormattedTextField(format);
@@ -87,13 +84,8 @@ public class EditInterviewer extends JFrame implements ActionListener{
         editinterv= new JButton("Zapisz");
         dodajMac = new JButton("Dodaj urz¹dzenie");
         usunMac = new JButton("Usuñ urz¹dzenie");
-        //relieve = new JButton("Zwolnij");
-        //restore = new JButton("Przywróæ do pracy");
-        //setOutWork = new JButton("Przerwy w zatrudnieniu");
         
         listModel = new DefaultListModel();
-        //getTimeOutWork(interviewer);
-        //workOutTime = new JList(listModel);
         devices = new JList(listModel);
         
         
@@ -103,25 +95,12 @@ public class EditInterviewer extends JFrame implements ActionListener{
         jsurname.setBounds(500, 50, 100, 40);
         jid.setBounds(500, 100, 100, 40);
         idLabel.setBounds(460, 100, 40, 40);
-        //jdate.setBounds(500, 150, 100, 50);
-        //dateLabel.setBounds(375, 150, 125, 50);
         anul.setBounds(100, 500, 100, 50);
         editinterv.setBounds(600, 500, 150, 50);
         dodajMac.setBounds(350, 200, 150, 50);
-        usunMac.setBounds(350, 350, 150, 50);
-        //relieve.setBounds(350, 350, 150, 50);
-        //restore.setBounds(550, 350, 150, 50);
-        //setOutWork.setBounds(425, 250, 200, 50);
+        usunMac.setBounds(350, 350, 150, 50);;
         devices.setBounds(50, 150, 250, 300);
-        //workOutTime.setBounds(50, 150, 250, 300);
-        //GregorianCalendar now = new GregorianCalendar();
-        //active.setBounds(50, 25, 150, 50);
         opis.setBounds(50, 100, 200, 50);
-       // int y1 = interviewer.getHiredDay().get(Calendar.YEAR);
-        ////int m1 = interviewer.getHiredDay().get(Calendar.MONTH);
-        //int d1 = interviewer.getHiredDay().get(Calendar.DAY_OF_MONTH);
-        //System.out.println(d1+" "+m1+" "+y1);
-        //jdate.setValue(interviewer.getHiredDay().getTime());
         
         ListSelectionListener listListener = new ListSelectionListener() {
 
@@ -138,18 +117,12 @@ public class EditInterviewer extends JFrame implements ActionListener{
 	inputPanel.add(jsurname);
         inputPanel.add(jid);
         inputPanel.add(idLabel);
-        //inputPanel.add(jdate);
-        //inputPanel.add(dateLabel);
+
         inputPanel.add(anul);
         inputPanel.add(editinterv);
         inputPanel.add(dodajMac);
         inputPanel.add(usunMac);
         inputPanel.add(devices);
-        //inputPanel.add(relieve);
-        //inputPanel.add(restore);
-        //inputPanel.add(setOutWork);
-        //inputPanel.add(workOutTime);
-        //inputPanel.add(active);
         inputPanel.add(opis);
         
         addcon = this.getContentPane();
@@ -162,34 +135,11 @@ public class EditInterviewer extends JFrame implements ActionListener{
         devices.addListSelectionListener(listListener);
         for( String device : interviewer.getMacAdresses()){
             listModel.addElement(device);
+            newListOfMacs.add(device);
         }
-        //relieve.addActionListener(this);
-        //restore.addActionListener(this);
-        //setOutWork.addActionListener(this);
-        
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setVisible(true);
     }
-    /*
-    public void getTimeOutWork(Interviewer interviewer){
-        String[] lista = new String[interviewer.getOutOfWorkTime().size()];
-        //int i=0;
-        for(Pair<GregorianCalendar,GregorianCalendar> pair : interviewer.getOutOfWorkTime())
-        {
-            int y1 = pair.getFirst().get(Calendar.YEAR);//.toString();
-            int m1 = pair.getFirst().get(Calendar.MONTH);
-            int d1 = pair.getFirst().get(Calendar.DAY_OF_MONTH);
-            int y2 = pair.getSecond().get(Calendar.YEAR);
-            int m2 = pair.getSecond().get(Calendar.MONTH);
-            int d2 = pair.getSecond().get(Calendar.DAY_OF_MONTH);
-            String s = Integer.toString(d1) +"."+ Integer.toString(m1+1)+"."+Integer.toString(y1)+ " - "+Integer.toString(d2) +"."+ Integer.toString(m2+1)+"."+Integer.toString(y2);
-            listModel.addElement(s);
-            //lista[i]=s;
-            //i++;
-        }
-        //return lista;
-    }
-    */
+
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if(source==anul){
@@ -197,21 +147,15 @@ public class EditInterviewer extends JFrame implements ActionListener{
             //System.exit(0);
         }
         if(source == editinterv){
-            //JOptionPane optionPane;
-            //Date now;
-            //GregorianCalendar cal = new GregorianCalendar();
-            //now=(Date) jdate.getValue();
-            //cal.setTime(now);
-            //System.out.println("data: "+cal.getTime().getTime());
+            
             String myid = jid.getText();
-           // System.out.println(jname.getText());
-           // System.out.println(jsurname.getText());
-            //System.out.println(jid.getText());
-           // System.out.println(jdate.getText());
          
             interviewer.editeName(jname.getText());
             interviewer.editeSurname(jsurname.getText());
             interviewer.editeId(myid);
+            interviewer.getMacAdresses().clear();
+            interviewer.setMacAdresses(newListOfMacs);
+            System.out.print("Imiê zedytowanego ankietera: " + interviewer.getName());
             //interviewer.editeHireDay(cal);               
             JOptionPane.showMessageDialog(this, "Zedytowano ankietera");
            
@@ -220,31 +164,14 @@ public class EditInterviewer extends JFrame implements ActionListener{
         }
         
         if(source == dodajMac){
-            AddMac addMac = new AddMac(interviewer, listModel);
+            AddMac addMac = new AddMac(newListOfMacs, listModel);
         }
         
         if(source == usunMac){
-            interviewer.deleteMacAdressess(selectedMacs.get(0));
+            newListOfMacs.remove(selectedMacs.get(0));
             listModel.removeElement(selectedMacs.get(0));
-        
         }
         
-        /*if(source == relieve){
-            if(interviewer.isActive()){
-                RelieveInterviewer rel = new RelieveInterviewer(interviewer, active);
-            }
-        }*/
-        
-        /*if(source == restore)
-        {
-            if(!interviewer.isActive()){
-                RestoreInterviewer rel = new RestoreInterviewer(interviewer, active, listModel);
-            }
-        }*/
-        /*
-        if(source == setOutWork){
-            OutOfWorkInterviewer outOfWorkInterviewer = new OutOfWorkInterviewer(interviewer, listModel);
-        }
-                */
+
     }
 }
