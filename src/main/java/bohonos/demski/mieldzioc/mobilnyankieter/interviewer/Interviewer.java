@@ -24,8 +24,8 @@ public class Interviewer implements Serializable{
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private String name, surname;
+    private static final long serialVersionUID = 1L;
+    private String name, surname;
     //@Id
     private String id; //PESEL
     private GregorianCalendar hiredDay;
@@ -36,7 +36,7 @@ public class Interviewer implements Serializable{
     //public InterviewerSurveyPrivileges privileges = new InterviewerSurveyPrivileges();
     private Map<String, InterviewerSurveyPrivileges> intervSurveyPrivileges = new TreeMap<String, InterviewerSurveyPrivileges>(); //ewentuanie HashMap
     private InterviewerPrivileges privileges = new InterviewerPrivileges();
-   
+    private List<String> macAdresses = new ArrayList<String>();
    /**
     * Konstruktor klasy Interviewer
     * @param name
@@ -151,5 +151,25 @@ public class Interviewer implements Serializable{
         GregorianCalendar date = relieveDay;
         this.relieveDay=null;
         setOutOfWorkTime(date, date2);
+    }
+    
+    public List<String> getMacAdresses(){
+        return macAdresses;
+    }
+    
+    public void deleteMacAdressess(int i){
+        macAdresses.remove(i);
+    }
+    
+    public void deleteMacAdressess(String a){
+        macAdresses.remove(a);
+    }
+    
+    public void clearAllMacAdressess(){
+        macAdresses.clear();
+    }
+    
+    public void addMacAdress(String a){
+        macAdresses.add(a);
     }
 }

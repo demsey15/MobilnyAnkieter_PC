@@ -82,25 +82,25 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
         setLocation(200,250);
         setResizable(false);
         
-        menuInterviewers = new JMenu("Ankieterzy");
+        //menuInterviewers = new JMenu("Ankieterzy");
         
         itemAddInterviewer = new JMenuItem("Dodaj ankietera");
-        itemlistWorksInterviewers = new JMenuItem("Pracuj¹cy ankieterzy");
+        //itemlistWorksInterviewers = new JMenuItem("Pracuj¹cy ankieterzy");
         //itemRelieveInterviewer = new JMenuItem("Zwolnij ankietera");
         //itemEditingInterviewer = new JMenuItem("Edytuj ankietera");
         
-        menuInterviewers.add(itemAddInterviewer);
-        menuInterviewers.add(itemlistWorksInterviewers);  
+        //menuInterviewers.add(itemAddInterviewer);
+        //menuInterviewers.add(itemlistWorksInterviewers);  
         //menuInterviewers.add(itemEditingInterviewer);
         
         itemAddInterviewer.addActionListener(this);
-        itemlistWorksInterviewers.addActionListener(this);
+        //itemlistWorksInterviewers.addActionListener(this);
         //itemEditingInterviewer.addActionListener(this);
         
         
         JMenuBar menuBar = new JMenuBar();
         
-        menuBar.add(menuInterviewers);
+        menuBar.add(itemAddInterviewer);
         setJMenuBar(menuBar);
         
         //tabbedPane = new CloseButtonTabbedPane();

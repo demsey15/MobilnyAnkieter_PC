@@ -56,13 +56,13 @@ public class InterviewerPanel extends JPanel implements ActionListener{
         this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
         //menager.refreshViewOfInterviewers();
         editInterv = new JButton("Edycja ankietera");
-        privileges = new JButton("Uprawnienia");
-        editInterv.setBounds(400, 15, 150, 40);
-        privileges.setBounds(600, 15, 150, 40);
+        //privileges = new JButton("Uprawnienia");
+        editInterv.setBounds(500, 15, 150, 40);
+        //privileges.setBounds(600, 15, 150, 40);
         this.add(editInterv);
-        this.add(privileges);
+        //this.add(privileges);
         editInterv.addActionListener(this);
-        privileges.addActionListener(this);
+        //privileges.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -77,8 +77,8 @@ public class InterviewerPanel extends JPanel implements ActionListener{
 		//});
             //menager.refreshViewOfInterviewers();
         }
-        if(source == privileges){
+        /*if(source == privileges){
             SetPrivileges setPrivileges = new SetPrivileges(interviewer);
-        }
+        }*/
     }
 }
