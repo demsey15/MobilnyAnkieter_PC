@@ -45,6 +45,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
     
     private JMenu menuSurvey;
     private JMenu menuQuestion;
+    private JMenuItem menuMenager;
     
     private JMenuItem itemNewSurvey;
     private JMenuItem itemCopyOldSurvey;
@@ -111,10 +112,14 @@ public class CreatorFrame extends JFrame implements ActionListener {
         itemScaleQuestion.addActionListener(this);   
         itemTextQuestion.addActionListener(this);        
         
+        menuMenager = new JMenuItem("Zarz¹dzanie ankietami");
+        menuMenager.addActionListener(this);
+        
         JMenuBar menuBar = new JMenuBar();
         
         menuBar.add(menuSurvey);
         menuBar.add(menuQuestion);
+        menuBar.add(menuMenager);
         setJMenuBar(menuBar);
         
         tabbedPane = new CloseButtonTabbedPane();
@@ -256,6 +261,14 @@ public class CreatorFrame extends JFrame implements ActionListener {
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
                 AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(survey, this);
             }
+        }
+        
+        if (source == menuMenager) {
+            EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    SurveyMenagerFrame surveyMenagerFrame = new SurveyMenagerFrame();
+                }
+            });
         }
 
     }

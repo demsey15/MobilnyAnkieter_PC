@@ -25,7 +25,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.statistics.*;
  */
 public class GraphicInterface extends JFrame implements ActionListener{
 
-    private JButton interv, creator, close, surveyButton, statisticsButton;
+    private JButton interv, creator, statisticsButton;
     private JPanel panel;
    // private GridLayout gridLayout ;
     private Container con;
@@ -52,32 +52,24 @@ public class GraphicInterface extends JFrame implements ActionListener{
                 panel = new JPanel();   
                 interv = new JButton("Zarz¹dzanie ankieterami");
                 creator = new JButton("Kreator ankiet");
-                close = new JButton("Zamknij");
-                surveyButton = new JButton("Zarz¹dzanie ankietami");
                 statisticsButton = new JButton("Wyniki ankiet");
 		con = this.getContentPane();
                 //con.setLayout(new BorderLayout());
                 con.add(panel);
 
                 creator.setBounds(200, 75, 200, 50);
-                surveyButton.setBounds(200, 175, 200, 50);
-                interv.setBounds(200, 275, 200, 50);
-                statisticsButton.setBounds(200, 375, 200, 50);
-                close.setBounds(200, 475, 200, 50);
+                interv.setBounds(200, 175, 200, 50);
+                statisticsButton.setBounds(200, 275, 200, 50);
                 
                 panel.setLayout(null); 
                  
                 panel.add(creator);
-                panel.add(surveyButton);
                 panel.add(statisticsButton);
                 panel.add(interv);
-                panel.add(close);
                
-                creator.addActionListener(this);
-                surveyButton.addActionListener(this);
+                creator.addActionListener(this);;
                 statisticsButton.addActionListener(this);
                 interv.addActionListener(this);
-                close.addActionListener(this);
                
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -88,10 +80,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
   //  @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if(source==close){
-            dispose();
-            System.exit(0);
-        }
+
         if(source == interv){
             EventQueue.invokeLater(new Runnable() {
 		//	@Override
@@ -108,14 +97,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
                 }
             });
         }
-        if (source == surveyButton) {
-            EventQueue.invokeLater(new Runnable() {
-            //    @Override
-                public void run() {
-                    SurveyMenagerFrame surveyMenagerFrame = new SurveyMenagerFrame();
-                }
-            });
-        }
+
         if(source == statisticsButton){
             EventQueue.invokeLater(new Runnable() {
               //  @Override
