@@ -135,7 +135,7 @@ public class AddGridQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        GridQuestion gridQuestion = new GridQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), columns, rows);
+        GridQuestion gridQuestion = new GridQuestion(questionField.getText(), obligatoryBox.isSelected(), hintField.getText(), columns, rows);
         survey.addQuestion(gridQuestion);
         creatorFrame.addGridQuestionPanel(gridQuestion);
         return null;

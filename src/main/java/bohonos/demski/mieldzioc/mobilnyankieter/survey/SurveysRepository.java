@@ -17,8 +17,8 @@ import java.util.Map;
  */
 public class SurveysRepository {
     
-    public Map<String, List<Survey>> surveys = new HashMap<>();
-    public Map<String, Long> maxNumbersOfSurveys = new HashMap<>();
+    public Map<String, List<Survey>> surveys = new HashMap<String, List<Survey>>();
+    public Map<String, Long> maxNumbersOfSurveys = new HashMap<String, Long>();
     
     /**
      * returns list of surveys with given id

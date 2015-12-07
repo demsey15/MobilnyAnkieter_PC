@@ -23,7 +23,6 @@ import javax.swing.JTextField;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
-import bohonos.demski.mieldzioc.mobilnyankieter.networkConnection.ServerConnectionFacade;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 
 /**
@@ -64,14 +63,16 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         //Dodanie elementów do comboboxów        
        // ServerConnectionFacade serverConnectionFacade = applicationLogic.getServerConnectionFacade();
         Vector comboBoxItems1=new Vector();
-        for(Interviewer interviewer : applicationLogic.getServerConnectionFacade().getAllInterviewers("admin", "admin".toCharArray())){
+        /*for(Interviewer interviewer : applicationLogic.getServerConnectionFacade().getAllInterviewers("admin", "admin".toCharArray())){
             comboBoxItems1.add(interviewer.getId());
-        }
+        }*/
         DefaultComboBoxModel model1 = new DefaultComboBoxModel(comboBoxItems1);
         Vector comboBoxItems2=new Vector();
+        /*
         for(Survey entrSurv : applicationLogic.getServerConnectionFacade().getActiveSurveyTemplates("admin", "admin".toCharArray())){
             comboBoxItems2.add(entrSurv.getIdOfSurveys());
         }
+                */
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(comboBoxItems2);
         idInterviewer = new JComboBox(model1);
         idSurvey = new JComboBox(model2);

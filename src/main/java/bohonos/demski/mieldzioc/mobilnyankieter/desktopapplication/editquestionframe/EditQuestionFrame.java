@@ -85,17 +85,17 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
         this.add(hintField);
         
         CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
-        
+        /* bez pol z ErrorMessage
         errorMessageLabel = new JLabel("informacja o b³êdzie: ");
         errorMessageLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
         this.add(errorMessageLabel);
 
-        errorMessageField = new JTextField(question.getErrorMessage());
+        errorMessageField = new JTextField("");
         errorMessageField.setBounds(FIELDS_X_POSITION, CURRENT_Y_POSITION, FIELDS_WIDTH, FIELDS_HEIGHT);
         this.add(errorMessageField);
         
         CURRENT_Y_POSITION = CURRENT_Y_POSITION + FIELDS_HEIGHT + SPACE_HEIGHT;
-        
+        */
         obligatoryBox = new JCheckBox("pytanie obowi¹zkowe");
         obligatoryBox.setSelected(question.isObligatory());
         obligatoryBox.setBounds(FIELDS_X_POSITION, CURRENT_Y_POSITION, FIELDS_WIDTH, FIELDS_HEIGHT);

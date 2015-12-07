@@ -26,7 +26,7 @@ public class CreatorLogic {
      * @return id of new survey template
      */
     public String newSurvey() {
-        String idOfSurvey = surveyHandler.addNewSurveyTemplate(new Survey(interviewer));
+        String idOfSurvey = surveyHandler.addNewSurveyTemplate(new Survey("desktopapplication"));
         return idOfSurvey;
     }
     

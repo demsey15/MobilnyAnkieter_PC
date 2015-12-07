@@ -62,7 +62,7 @@ public class EditMultipleChoiceQuestionFrame extends EditQuestionFrame {
         
         questionField.setText(question.getQuestion());
         hintField.setText(question.getHint());
-        errorMessageField.setText(question.getErrorMessage());
+        //errorMessageField.setText("");
         
         answerLabel = new JLabel("mo¿liwe odpowiedzi: ");
         answerLabel.setBounds(LABELS_X_POSITION, CURRENT_Y_POSITION, LABELS_WIDTH, LABELS_HEIGHT);
@@ -100,7 +100,7 @@ public class EditMultipleChoiceQuestionFrame extends EditQuestionFrame {
     protected Question saveQuestion() {
         question.setQuestion(questionField.getText());
         question.setHint(hintField.getText());
-        question.setErrorMessage(errorMessageField.getText());
+        //question.setErrorMessage(errorMessageField.getText());
         question.setObligatory(obligatoryBox.isSelected());
         question.getAnswersAsStringList().clear();
         for (String answer : answers) {

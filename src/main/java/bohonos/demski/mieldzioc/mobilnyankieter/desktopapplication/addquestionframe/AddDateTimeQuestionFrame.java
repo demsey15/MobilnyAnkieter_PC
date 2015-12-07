@@ -56,7 +56,7 @@ public class AddDateTimeQuestionFrame extends AddQuestionFrame {
     
     @Override
     protected Question createQuestion() {
-        DateTimeQuestion dateTimeQuestion = new DateTimeQuestion(questionField.getText(), obligatoryBox.isSelected(), errorMessageField.getText(), hintField.getText(), onlyTimeBox.isSelected(), onlyDateBox.isSelected());
+        DateTimeQuestion dateTimeQuestion = new DateTimeQuestion(questionField.getText(), obligatoryBox.isSelected(), hintField.getText(), onlyTimeBox.isSelected(), onlyDateBox.isSelected());
         survey.addQuestion(dateTimeQuestion);
         creatorFrame.addDateTimeQuestionPanel(dateTimeQuestion);
         return null;
