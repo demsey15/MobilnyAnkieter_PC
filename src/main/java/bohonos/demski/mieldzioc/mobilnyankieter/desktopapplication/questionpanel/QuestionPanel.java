@@ -25,6 +25,8 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -124,7 +126,11 @@ public class QuestionPanel extends JPanel implements ActionListener {
             if (index != 0) {
                 this.survey.removeQuestion(question);
                 this.survey.addQuestion(index-1, question);
-                this.surveyPanel.refreshQuestionList();
+                try {
+                    this.surveyPanel.refreshQuestionList();
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -139,44 +145,80 @@ public class QuestionPanel extends JPanel implements ActionListener {
                 else {
                     this.survey.addQuestion(index+1, question);
                 }
-                this.surveyPanel.refreshQuestionList();
+                try {
+                    this.surveyPanel.refreshQuestionList();
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
         if (source == questionDelete) {
             this.survey.removeQuestion(question);
-            this.surveyPanel.refreshQuestionList();
+            try {
+                this.surveyPanel.refreshQuestionList();
+            } catch (IOException ex) {
+                Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if (source == questionEdit) {
             int type = question.getQuestionType();
             switch (type) {
                 case Question.DATE_QUESTION: {
+                try {
                     EditDateTimeQuestionFrame editDateTimeQuestionFrame = new EditDateTimeQuestionFrame((DateTimeQuestion)question, surveyPanel);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     break;
                 }
                 case Question.TIME_QUESTION: {
+                try {
                     EditDateTimeQuestionFrame editDateTimeQuestionFrame = new EditDateTimeQuestionFrame((DateTimeQuestion)question, surveyPanel);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     break;
                 }
                 case Question.TEXT_QUESTION: {
+                try {
                     EditTextQuestionFrame editTextQuestionFrame = new EditTextQuestionFrame((TextQuestion)question, surveyPanel);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     break;
                 }
                 case Question.SCALE_QUESTION: {
+                try {
                     EditScaleQuestionFrame editScaleQuestionFrame = new EditScaleQuestionFrame((ScaleQuestion)question, surveyPanel);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     break;
                 }
                 case Question.GRID_QUESTION: {
+                try {
                     EditGridQuestionFrame editGridQuestionFrame = new EditGridQuestionFrame((GridQuestion)question, surveyPanel);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     break;
                 }
                 case Question.MULTIPLE_CHOICE_QUESTION: {
+                try {
                     EditMultipleChoiceQuestionFrame editMultipleChoiceQuestionFrame = new EditMultipleChoiceQuestionFrame((MultipleChoiceQuestion)question, surveyPanel);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     break;
                 }
                 case Question.ONE_CHOICE_QUESTION: {
+                try {
                     EditOneChoiceQuestionFrame editOneChoiceQuestionFrame = new EditOneChoiceQuestionFrame((OneChoiceQuestion)question, surveyPanel);
+                } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     break;
                 }
             }

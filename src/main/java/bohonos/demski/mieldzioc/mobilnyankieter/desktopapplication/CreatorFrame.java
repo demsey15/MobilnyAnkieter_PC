@@ -145,7 +145,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new DateTimeQuestionPanel to choosen tab
      * @param dateTimeQuestion new question to add
      */
-    public void addDateTimeQuestionPanel(DateTimeQuestion dateTimeQuestion) {
+    public void addDateTimeQuestionPanel(DateTimeQuestion dateTimeQuestion) throws IOException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addDateTimeQuestion(dateTimeQuestion);
     }
@@ -154,7 +154,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new TextQuestionPanel to choosen tab
      * @param textQuestion new question to add
      */
-    public void addTextQuestionPanel(TextQuestion textQuestion) {
+    public void addTextQuestionPanel(TextQuestion textQuestion) throws IOException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addTextQuestion(textQuestion);
     }
@@ -163,7 +163,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new ScaleQuestionPanel to choosen tab
      * @param scaleQuestion new question to add
      */
-    public void addScaleQuestionPanel(ScaleQuestion scaleQuestion) {
+    public void addScaleQuestionPanel(ScaleQuestion scaleQuestion) throws IOException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addScaleQuestion(scaleQuestion);
     }
@@ -172,7 +172,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new OneChoiceQuestionPanel to choosen tab
      * @param oneChoiceQuestion new question to add
      */
-    public void addOneChoiceQuestionPanel(OneChoiceQuestion oneChoiceQuestion) {
+    public void addOneChoiceQuestionPanel(OneChoiceQuestion oneChoiceQuestion) throws IOException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addOneChoiceQuestion(oneChoiceQuestion);
     }
@@ -181,7 +181,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new MultipleChoiceQuestionPanel to choosen tab
      * @param multipleChoiceQuestion new question to add
      */
-    public void addMultipleChoiceQuestionPanel(MultipleChoiceQuestion multipleChoiceQuestion) {
+    public void addMultipleChoiceQuestionPanel(MultipleChoiceQuestion multipleChoiceQuestion) throws IOException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addMultipleChoiceQuestion(multipleChoiceQuestion);
     }
@@ -190,7 +190,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new GridQuestionPanel to choosen tab
      * @param gridQuestion new question to add
      */
-    public void addGridQuestionPanel(GridQuestion gridQuestion) {
+    public void addGridQuestionPanel(GridQuestion gridQuestion) throws IOException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addGridQuestion(gridQuestion);
     }
@@ -198,7 +198,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
     /**
      * refreshes all QuestionPanels i choosen tab
      */
-    public void refreshAllQuestionPanels() {
+    public void refreshAllQuestionPanels() throws IOException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.refreshQuestionList();
     }
@@ -234,7 +234,11 @@ public class CreatorFrame extends JFrame implements ActionListener {
             if (tabbedPane.getSelectedIndex()!=-1) {
                 String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
-                AddDateTimeQuestionFrame addDateTimeQuestionFrame = new AddDateTimeQuestionFrame(survey, this);
+                try {
+                    AddDateTimeQuestionFrame addDateTimeQuestionFrame = new AddDateTimeQuestionFrame(survey, this);
+                } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -242,7 +246,11 @@ public class CreatorFrame extends JFrame implements ActionListener {
             if (tabbedPane.getSelectedIndex()!=-1) {
                 String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
-                AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(survey, this);
+                try {
+                    AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(survey, this);
+                } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -250,7 +258,11 @@ public class CreatorFrame extends JFrame implements ActionListener {
             if (tabbedPane.getSelectedIndex()!=-1) {
                 String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
-                AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(survey, this);
+                try {
+                    AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(survey, this);
+                } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -258,7 +270,11 @@ public class CreatorFrame extends JFrame implements ActionListener {
             if (tabbedPane.getSelectedIndex()!=-1) {
                 String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
-                AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(survey, this);
+                try {
+                    AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(survey, this);
+                } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -266,7 +282,11 @@ public class CreatorFrame extends JFrame implements ActionListener {
             if (tabbedPane.getSelectedIndex()!=-1) {
                 String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
-                AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(survey, this);
+                try {
+                    AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(survey, this);
+                } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -274,7 +294,11 @@ public class CreatorFrame extends JFrame implements ActionListener {
             if (tabbedPane.getSelectedIndex()!=-1) {
                 String tabTitle = tabbedPane.getTitleAt(tabbedPane.getSelectedIndex());
                 Survey survey = applicationLogic.getSurveyHandler().getSurvey(tabTitle);
-                AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(survey, this);
+                try {
+                    AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(survey, this);
+                } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         

@@ -56,6 +56,7 @@ public class InterviewersRepository {
    * @param from
    * @return lista
    */
+  /*
   public List<Interviewer> getAllInterviewers(GregorianCalendar from){ 
       List<Interviewer> lista = new ArrayList<Interviewer>();
       for(Interviewer person : interviewers){
@@ -64,13 +65,14 @@ public class InterviewersRepository {
       }
       return lista;
   }
-  
+  */
   /**
    * U¿ywaj¹c metody getAllInterviewers() z parametrami from i to, dostajemy listê ankieterów zatrudnionych od dnia from do dnia to w³¹cznie z tym dniem. 
    * @param from
    * @param to
    * @return lista
    */
+  /*
   public List<Interviewer> getAllInterviewers(GregorianCalendar from, GregorianCalendar to){
       List<Interviewer> lista = new ArrayList<Interviewer>();
       for(Interviewer person : interviewers){
@@ -78,7 +80,7 @@ public class InterviewersRepository {
               lista.add(person);
       }
       return lista;
-  }
+  }*/
   /**
    * Metoda checkListInterviewers() sprawdza czy podany ankieter nie znajduje siê ju¿ przypadkiem na liœcie. Jeœli siê znajduje, to dostajemy true. W przeciwnym wypadku false. 
    * @param man
