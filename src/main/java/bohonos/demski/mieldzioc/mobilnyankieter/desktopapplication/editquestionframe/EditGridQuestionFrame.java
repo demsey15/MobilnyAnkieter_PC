@@ -23,6 +23,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.GridQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 /**
  *
@@ -48,7 +49,7 @@ public class EditGridQuestionFrame extends EditQuestionFrame {
     private JList rowList, columnList;
     private DefaultListModel rowListItems, columnListItems;
     
-    public EditGridQuestionFrame(GridQuestion gridQuestion, SurveyPanel surveyPanel) {
+    public EditGridQuestionFrame(GridQuestion gridQuestion, SurveyPanel surveyPanel) throws IOException {
         
         super(gridQuestion, surveyPanel);
         this.gridQuestion = gridQuestion;

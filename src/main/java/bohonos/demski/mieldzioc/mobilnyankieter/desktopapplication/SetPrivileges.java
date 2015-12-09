@@ -27,6 +27,7 @@ import javax.swing.SwingUtilities;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.InterviewerSurveyPrivileges;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 /**
  *
@@ -44,7 +45,7 @@ public class SetPrivileges extends JFrame implements ActionListener{
     private JLabel editinig, filling, editningwithout, fillingStatisitcis;
     private int privilegesPanelPosition=0;
     
-    public SetPrivileges(Interviewer interviewer){
+    public SetPrivileges(Interviewer interviewer) throws IOException{
        super("Uprawnienia");
         applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {

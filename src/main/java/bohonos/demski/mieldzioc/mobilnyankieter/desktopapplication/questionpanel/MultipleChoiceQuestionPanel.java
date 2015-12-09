@@ -13,6 +13,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.questionpanel.QuestionPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.MultipleChoiceQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 /**
  *
@@ -25,7 +26,7 @@ public class MultipleChoiceQuestionPanel extends QuestionPanel {
     private List<String> answers;
     private MultipleChoiceQuestion multipleChoiceQuestion;
     
-    public MultipleChoiceQuestionPanel(Survey survey, MultipleChoiceQuestion multipleChoiceQuestion, SurveyPanel surveyPanel) {
+    public MultipleChoiceQuestionPanel(Survey survey, MultipleChoiceQuestion multipleChoiceQuestion, SurveyPanel surveyPanel) throws IOException {
         
         super(survey, multipleChoiceQuestion, surveyPanel);
         

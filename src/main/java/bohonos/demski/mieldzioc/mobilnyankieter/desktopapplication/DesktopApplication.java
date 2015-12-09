@@ -6,6 +6,9 @@
 package bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication;
 
 import java.awt.EventQueue;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,9 +20,13 @@ public class DesktopApplication {
 
 		//	@Override
 			public void run() {
-        GraphicInterface g= new GraphicInterface();
-        //LogInFrame logInFrame = new LogInFrame();
-        //g.repaint();
+                            try {
+                                GraphicInterface g= new GraphicInterface();
+                                //LogInFrame logInFrame = new LogInFrame();
+                                //g.repaint();
+                            } catch (IOException ex) {
+                                Logger.getLogger(DesktopApplication.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
 		});
     }

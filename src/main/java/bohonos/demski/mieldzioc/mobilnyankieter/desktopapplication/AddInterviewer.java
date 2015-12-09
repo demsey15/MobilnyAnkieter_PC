@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.*;
+import java.io.IOException;
 
 /**
  *
@@ -40,7 +41,7 @@ public class AddInterviewer extends JFrame implements ActionListener{
     private ApplicationLogic applicationLogic;
     private MenagerInterviewersFrame menager;
     //private InterviewersRepository interrep = new InterviewersRepository(); //tymczasowo 
-    AddInterviewer(MenagerInterviewersFrame menager){
+    AddInterviewer(MenagerInterviewersFrame menager) throws IOException{
         super("Dodanie ankietera");
         applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {

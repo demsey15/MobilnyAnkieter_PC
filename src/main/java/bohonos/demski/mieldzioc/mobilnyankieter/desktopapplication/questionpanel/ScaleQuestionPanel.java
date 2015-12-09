@@ -13,6 +13,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.ApplicationLo
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 /**
  *
@@ -30,7 +31,7 @@ public class ScaleQuestionPanel extends QuestionPanel {
     private JLabel minValueLabel, maxValueLabel;
     private ButtonGroup buttonGroup;
     
-    public ScaleQuestionPanel(Survey survey, ScaleQuestion scaleQuestion, SurveyPanel surveyPanel) {
+    public ScaleQuestionPanel(Survey survey, ScaleQuestion scaleQuestion, SurveyPanel surveyPanel) throws IOException {
         
         super(survey, scaleQuestion, surveyPanel);
         

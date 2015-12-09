@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.CreatorFrame;
+import java.io.IOException;
 
 /**
  *
@@ -46,7 +47,7 @@ public class AddColumnFrame extends JFrame implements ActionListener {
     private JLabel columnLabel;
     
     
-    public AddColumnFrame(AddQuestionFrame addQuestFrame) {
+    public AddColumnFrame(AddQuestionFrame addQuestFrame) throws IOException {
         
         super("Dodaj etykietê kolumny");
         

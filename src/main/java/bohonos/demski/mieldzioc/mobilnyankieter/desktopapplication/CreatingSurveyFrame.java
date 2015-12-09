@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -27,7 +28,7 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
-    public CreatingSurveyFrame(CreatorFrame crFrame) {
+    public CreatingSurveyFrame(CreatorFrame crFrame) throws IOException {
         
         super("nowa ankieta");
         
@@ -83,7 +84,11 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
                 String idOfSurvey = applicationLogic.newSurvey();
                 applicationLogic.setSurveyTitle(idOfSurvey, titleField.getText());
                 applicationLogic.setSurveyDescription(idOfSurvey, descriptionField.getText());
-                creatorFrame.addSurveyPanel(idOfSurvey);
+                try {
+                    creatorFrame.addSurveyPanel(idOfSurvey);
+                } catch (IOException ex) {
+                    Logger.getLogger(CreatingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
             }
         }

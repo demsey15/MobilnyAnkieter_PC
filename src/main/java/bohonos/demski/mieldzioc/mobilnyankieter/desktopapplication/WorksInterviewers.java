@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
+import java.io.IOException;
 
 /**
  *
@@ -29,7 +30,7 @@ public class WorksInterviewers extends JFrame implements ActionListener{
     private JPanel panel;
     private JScrollPane scrollPane;
     
-    public WorksInterviewers(){
+    public WorksInterviewers() throws IOException{
         super("Lista aktywnych ankieterów");
         applicationLogic = ApplicationLogic.getInstance(); 
         addWindowListener(new WindowAdapter() {

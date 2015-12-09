@@ -17,6 +17,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.ApplicationLo
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.CreatorFrame;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -53,7 +56,7 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
     protected JLabel questionLabel, hintLabel, errorMessageLabel;
     protected JCheckBox obligatoryBox;
     
-    public AddQuestionFrame(Survey survey, CreatorFrame crFrame) {
+    public AddQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException {
         super("Dodaj pytanie");
         
         applicationLogic = ApplicationLogic.getInstance();
@@ -209,7 +212,11 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         }
         
         if (source == addAnswerButton) {
-            AddAnswerFrame addAnswerFrame = new AddAnswerFrame(this);
+            try {
+                AddAnswerFrame addAnswerFrame = new AddAnswerFrame(this);
+            } catch (IOException ex) {
+                Logger.getLogger(AddQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if (source == deleteAnswerButton) {
@@ -217,7 +224,11 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         }
         
         if (source == addRowButton) {
-            AddRowFrame addRowFrame = new AddRowFrame(this);
+            try {
+                AddRowFrame addRowFrame = new AddRowFrame(this);
+            } catch (IOException ex) {
+                Logger.getLogger(AddQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if (source == deleteRowButton) {
@@ -225,7 +236,11 @@ public class AddQuestionFrame extends JFrame implements ActionListener {
         }
         
         if (source == addColumnButton) {
-            AddColumnFrame addColumnFrame = new AddColumnFrame(this);
+            try {
+                AddColumnFrame addColumnFrame = new AddColumnFrame(this);
+            } catch (IOException ex) {
+                Logger.getLogger(AddQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if (source == deleteColumnButton) {

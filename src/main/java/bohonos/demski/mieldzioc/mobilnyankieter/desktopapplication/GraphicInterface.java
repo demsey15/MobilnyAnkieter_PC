@@ -18,6 +18,9 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.statistics.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +34,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
     private Container con;
     private final ApplicationLogic applicationLogic;
     
-    public GraphicInterface(){
+    public GraphicInterface() throws IOException{
         
         super("Bezpieczny ankieter");
         applicationLogic = ApplicationLogic.getInstance();
@@ -85,7 +88,11 @@ public class GraphicInterface extends JFrame implements ActionListener{
             EventQueue.invokeLater(new Runnable() {
 		//	@Override
 			public void run() {
-                            MenagerInterviewersFrame menageinterv= new MenagerInterviewersFrame();
+                            try {
+                                MenagerInterviewersFrame menageinterv= new MenagerInterviewersFrame();
+                            } catch (IOException ex) {
+                                Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
 		});
         }
@@ -93,7 +100,11 @@ public class GraphicInterface extends JFrame implements ActionListener{
             EventQueue.invokeLater(new Runnable() {
               //  @Override
                 public void run() {
-                    CreatorFrame creator = new CreatorFrame();
+                    try {
+                        CreatorFrame creator = new CreatorFrame();
+                    } catch (IOException ex) {
+                        Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             });
         }

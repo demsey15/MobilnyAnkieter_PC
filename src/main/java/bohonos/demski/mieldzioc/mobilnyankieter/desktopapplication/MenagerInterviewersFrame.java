@@ -30,6 +30,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -66,7 +69,7 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
       return listModel;
   }*/
     
-    public MenagerInterviewersFrame(){
+    public MenagerInterviewersFrame() throws IOException{
         super("Menad¿er ankieterów");
         applicationLogic = ApplicationLogic.getInstance();
         allInterviewers=applicationLogic.getInterviewers();
@@ -168,16 +171,24 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
             //System.exit(0);
         }
         if (source == itemAddInterviewer) {
-            //EventQueue.invokeLater(new Runnable() {
-		//	@Override
-		//	public void run() {
-            AddInterviewer addInterviewer = new AddInterviewer(this);
-                 //  }
-		//});
-            //refreshViewOfInterviewers();
+            try {
+                //EventQueue.invokeLater(new Runnable() {
+                //	@Override
+                //	public void run() {
+                AddInterviewer addInterviewer = new AddInterviewer(this);
+                //  }
+                //});
+                //refreshViewOfInterviewers();
+            } catch (IOException ex) {
+                Logger.getLogger(MenagerInterviewersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(source == itemlistWorksInterviewers){
-            WorksInterviewers worksInterviewers = new WorksInterviewers();
+            try {
+                WorksInterviewers worksInterviewers = new WorksInterviewers();
+            } catch (IOException ex) {
+                Logger.getLogger(MenagerInterviewersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
      
     }

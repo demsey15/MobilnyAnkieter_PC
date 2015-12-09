@@ -19,6 +19,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 /**
  *
@@ -36,7 +37,7 @@ public class EditTextQuestionFrame extends EditQuestionFrame {
     private JLabel minLengthLabel, maxLengthLabel;
     private JTextField minLengthField, maxLengthField;
     
-    public EditTextQuestionFrame(TextQuestion textQuestion, SurveyPanel surveyPanel) {
+    public EditTextQuestionFrame(TextQuestion textQuestion, SurveyPanel surveyPanel) throws IOException {
         
         super(textQuestion, surveyPanel);
         

@@ -17,6 +17,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.CreatorFrame;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 /**
  *
@@ -30,7 +31,7 @@ public class AddDateTimeQuestionFrame extends AddQuestionFrame {
     private JCheckBox onlyDateBox;
     private JCheckBox onlyTimeBox;
     
-    public AddDateTimeQuestionFrame(Survey survey, CreatorFrame crFrame) {
+    public AddDateTimeQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException {
         
         super(survey, crFrame);
         

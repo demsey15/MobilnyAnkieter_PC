@@ -18,6 +18,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 /**
  *
@@ -32,7 +33,7 @@ public class EditDateTimeQuestionFrame extends EditQuestionFrame {
     private JCheckBox onlyDateBox;
     private JCheckBox onlyTimeBox;
     
-    public EditDateTimeQuestionFrame(DateTimeQuestion dateTimeQuestion, SurveyPanel surveyPanel) {
+    public EditDateTimeQuestionFrame(DateTimeQuestion dateTimeQuestion, SurveyPanel surveyPanel) throws IOException {
         
         super(dateTimeQuestion, surveyPanel);
         this.dateTimeQuestion = dateTimeQuestion;

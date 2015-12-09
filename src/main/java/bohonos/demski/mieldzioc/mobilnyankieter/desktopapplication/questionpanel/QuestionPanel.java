@@ -24,6 +24,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -48,7 +49,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
     private JButton questionEdit;
     protected JLabel questionLabel;
     
-    public QuestionPanel(Survey survey, Question question, SurveyPanel surveyPanel) {
+    public QuestionPanel(Survey survey, Question question, SurveyPanel surveyPanel) throws IOException {
         
         applicationLogic = ApplicationLogic.getInstance();
         this.survey = survey;

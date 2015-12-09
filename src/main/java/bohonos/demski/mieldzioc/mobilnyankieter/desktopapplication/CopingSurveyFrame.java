@@ -7,6 +7,7 @@ package bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +35,7 @@ public class CopingSurveyFrame extends JFrame implements ActionListener{
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
-    public CopingSurveyFrame(CreatorFrame creatorFrame){
+    public CopingSurveyFrame(CreatorFrame creatorFrame) throws IOException{
         super("nowa ankieta na podstawie...");
         applicationLogic = ApplicationLogic.getInstance();
         this.creatorFrame = creatorFrame;
@@ -101,13 +102,19 @@ public class CopingSurveyFrame extends JFrame implements ActionListener{
         if (source == copyButton && titleField.getText().equals("")==false) {
             String str = selectedSurveysList.get(0);
             String[] splited = str.split("\\s+");
-            creatorFrame.addSurveyPanel(splited[0]);
+            try {
+                creatorFrame.addSurveyPanel(splited[0]);
+            } catch (IOException ex) {
+                Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             try {
                 String idOfSurvey = applicationLogic.copySurvey(splited[0]);
                 applicationLogic.setSurveyTitle(idOfSurvey, titleField.getText());
                 applicationLogic.setSurveyDescription(idOfSurvey, descriptionField.getText());
                 creatorFrame.addSurveyPanel(idOfSurvey);
             } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
                 Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
 

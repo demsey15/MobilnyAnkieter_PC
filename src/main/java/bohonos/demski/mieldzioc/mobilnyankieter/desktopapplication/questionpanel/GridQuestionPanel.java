@@ -14,6 +14,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.questionpanel.QuestionPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.GridQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.IOException;
 
 /**
  *
@@ -32,7 +33,7 @@ public class GridQuestionPanel extends QuestionPanel {
     private List<String> columns, rows;
     private int columsNumber;
 
-    public GridQuestionPanel(Survey survey, GridQuestion gridQuestion, SurveyPanel surveyPanel) {
+    public GridQuestionPanel(Survey survey, GridQuestion gridQuestion, SurveyPanel surveyPanel) throws IOException {
         
         super(survey, gridQuestion, surveyPanel);
         
