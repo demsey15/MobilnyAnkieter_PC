@@ -11,6 +11,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
+import java.text.ParseException;
 
 /**
  *
@@ -49,7 +50,7 @@ public class CreatorLogic {
         return surveyHandler.getSurvey(idOfSurvey).getDescription();
     }
     
-    public CreatorLogic() {
+    public CreatorLogic() throws ParseException {
         surveyHandler = new SurveyHandler(0);
         interviewer = new Interviewer("Imiê", "Nazwisko", "PESEL000000", new GregorianCalendar()); //to do
     }

@@ -14,6 +14,9 @@ import java.util.TreeMap;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
 import com.rits.cloning.Cloner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 //import javax.persistence.*;
 //import javafx.util;
 /**
@@ -45,12 +48,14 @@ public class Interviewer implements Serializable, Cloneable {
     * @param id
     * @param hireday 
     */ 
-    public Interviewer(String name, String surname, String id, GregorianCalendar hireday)
+    public Interviewer(String name, String surname, String id, GregorianCalendar hireday) throws ParseException
     {
         this.name=name;
         this.surname=surname;
         this.id=id;
         this.hiredDay=hireday;
+        System.out.println("data: " + dateFormat(this.hiredDay));
+        System.out.println("data 2: " + dateFormat(stringToCal(dateFormat(this.hiredDay))));
     }
 
 
@@ -176,6 +181,38 @@ public class Interviewer implements Serializable, Cloneable {
     
     public void setMacAdresses(ArrayList<String> a){
         macAdresses = a;
+    }
+    
+    public static String dateFormat(GregorianCalendar calendar){
+        SimpleDateFormat fmt = new SimpleDateFormat("dd-MMM-yyyy");
+        fmt.setCalendar(calendar);
+        String dateFormatted = fmt.format(calendar.getTime());
+        return dateFormatted;
+    }
+    
+    public static GregorianCalendar stringToCal(String myString) throws ParseException{
+        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+        Date date = format.parse(myString);
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        return calendar;
+    }
+    
+    public String interviewerToString(){
+        String line = this.id + " " + this.name + " " + this.surname + " " + dateFormat(this.hiredDay);
+        for (String mac : this.macAdresses) {
+            line = line + " " + mac;
+        }
+        return line;
+    }
+    
+    public static Interviewer stringToInterviewer(String line) throws ParseException{
+        String[] parts = line.split(" ");
+        Interviewer interviewer = new Interviewer(parts[1], parts[2], parts[0], stringToCal(parts[3]));
+        for (int i=4; i<parts.length; i++) {
+            interviewer.addMacAdress(parts[i]);
+        }
+        return interviewer;
     }
     /**
      *

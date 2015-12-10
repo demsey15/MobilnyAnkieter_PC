@@ -32,6 +32,9 @@ import javax.swing.ListModel;
 import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.InterviewerSurveyPrivileges;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -155,10 +158,15 @@ public class EditInterviewer extends JFrame implements ActionListener{
             interviewer.editeId(myid);
             interviewer.getMacAdresses().clear();
             interviewer.setMacAdresses(newListOfMacs);
-            System.out.print("Imiê zedytowanego ankietera: " + interviewer.getName());
+            System.out.println("Imiê zedytowanego ankietera: " + interviewer.getName());
             //interviewer.editeHireDay(cal);               
-            JOptionPane.showMessageDialog(this, "Zedytowano ankietera");
-           
+            //JOptionPane.showMessageDialog(this, "Zedytowano ankietera");
+            System.out.println(interviewer.interviewerToString());
+            try {
+                System.out.println("po konwersji: " + (Interviewer.stringToInterviewer(interviewer.interviewerToString())).interviewerToString());
+            } catch (ParseException ex) {
+                Logger.getLogger(EditInterviewer.class.getName()).log(Level.SEVERE, null, ex);
+            }
             menager.refreshViewOfInterviewers();
             dispose();
         }

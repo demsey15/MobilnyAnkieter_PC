@@ -13,6 +13,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.*;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.*;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.*;
 import java.io.IOException;
+import java.text.ParseException;
 /**
  *
  * @author Andrzej
@@ -27,7 +28,7 @@ public class ApplicationLogic {
     //private String host = "localhost";
     private SurveysRepository surveysRepository;
     
-    private ApplicationLogic() throws IOException {
+    private ApplicationLogic() throws IOException, ParseException {
         
         FileSystemCreator fileSystemCreator = new FileSystemCreator();
         surveyHandler = new SurveyHandler(0);
@@ -37,7 +38,7 @@ public class ApplicationLogic {
         surveysRepository = new SurveysRepository();
     }
     
-    public static ApplicationLogic getInstance() throws IOException {
+    public static ApplicationLogic getInstance() throws IOException, ParseException {
         if (instance == null) {
             instance = new ApplicationLogic();
         }

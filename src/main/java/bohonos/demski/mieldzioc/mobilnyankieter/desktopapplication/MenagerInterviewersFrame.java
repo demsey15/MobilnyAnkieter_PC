@@ -31,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,7 +70,7 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
       return listModel;
   }*/
     
-    public MenagerInterviewersFrame() throws IOException{
+    public MenagerInterviewersFrame() throws IOException, ParseException{
         super("Menad¿er ankieterów");
         applicationLogic = ApplicationLogic.getInstance();
         allInterviewers=applicationLogic.getInterviewers();
@@ -180,6 +181,8 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
                 //});
                 //refreshViewOfInterviewers();
             } catch (IOException ex) {
+                Logger.getLogger(MenagerInterviewersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
                 Logger.getLogger(MenagerInterviewersFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

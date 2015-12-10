@@ -26,6 +26,9 @@ import javax.swing.JTextField;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.*;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,7 +44,7 @@ public class AddInterviewer extends JFrame implements ActionListener{
     private ApplicationLogic applicationLogic;
     private MenagerInterviewersFrame menager;
     //private InterviewersRepository interrep = new InterviewersRepository(); //tymczasowo 
-    AddInterviewer(MenagerInterviewersFrame menager) throws IOException{
+    AddInterviewer(MenagerInterviewersFrame menager) throws IOException, ParseException{
         super("Dodanie ankietera");
         applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
@@ -118,12 +121,19 @@ public class AddInterviewer extends JFrame implements ActionListener{
             cal.setTime(now);
             //System.out.println("data: "+cal.getTime().getTime());
             String myid = jid.getText();
-            Interviewer newinterv = new Interviewer(jname.getText(),jsurname.getText(),myid, cal);
-             //to bêdzie musia³o byæ gdzie indziej, jeden obiekt tylko tej klasy zostanie stworzony
-            if(applicationLogic.addInterviewer(newinterv))
-                JOptionPane.showMessageDialog(this, "Dodano ankietera");
-            else
-                JOptionPane.showMessageDialog(this, "Nie dodano ankietera");
+            Interviewer newinterv;
+            try {
+                newinterv = new Interviewer(jname.getText(),jsurname.getText(),myid, cal);
+                boolean addInterviewer = applicationLogic.addInterviewer(newinterv);
+            } catch (ParseException ex) {
+                Logger.getLogger(AddInterviewer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //to bêdzie musia³o byæ gdzie indziej, jeden obiekt tylko tej klasy zostanie stworzony
+            //if(applicationLogic.addInterviewer(newinterv))
+            //    JOptionPane.showMessageDialog(this, "Dodano ankietera");
+            //else
+            //    JOptionPane.showMessageDialog(this, "Nie dodano ankietera");
+            
             menager.refreshViewOfInterviewers();
             dispose();
         }
