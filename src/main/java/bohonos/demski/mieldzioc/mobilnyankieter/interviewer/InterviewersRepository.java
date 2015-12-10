@@ -134,7 +134,7 @@ public class InterviewersRepository {
             //StringBuilder sb = new StringBuilder();
             String line = br.readLine();
             while (line != null) {
-                System.out.println("Wczytana linia: " + line + "//n");
+                System.out.println("Wczytana linia: " + line);
                 boolean addInterviewer = this.addInterviewer(Interviewer.stringToInterviewer(line));
                 line = br.readLine();
             }

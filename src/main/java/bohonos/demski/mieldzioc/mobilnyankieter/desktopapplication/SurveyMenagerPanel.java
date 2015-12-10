@@ -5,6 +5,7 @@
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication;
 
+import bohonos.demski.mieldzioc.mobilnyankieter.jsonserialization.JsonSurveySerializator;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -102,6 +103,7 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
             this.remove(activeButton);
             this.add(disactiveButton);
             statusLabel.setText("aktywna");
+            System.out.println("ankieta: " + (new JsonSurveySerializator()).serializeSurvey(survey));
             //TODO udostêpnienie ankiety
             SwingUtilities.updateComponentTreeUI(this);
         }

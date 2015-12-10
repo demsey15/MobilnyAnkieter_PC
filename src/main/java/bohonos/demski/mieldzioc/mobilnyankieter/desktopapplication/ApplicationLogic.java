@@ -65,7 +65,7 @@ public class ApplicationLogic {
      * @throws CloneNotSupportedException 
      */
     public String copySurvey(String idOfSurvey) throws CloneNotSupportedException {
-        return surveyHandler.copyOldAndCreateNewSurvey(idOfSurvey, loggedInterviewer.getId());
+        return surveyHandler.copyOldAndCreateNewSurvey(idOfSurvey, "desctopapplication");
     }
     
     /**

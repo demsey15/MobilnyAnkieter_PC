@@ -3,6 +3,11 @@
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.survey;
 
+import bohonos.demski.mieldzioc.mobilnyankieter.jsonserialization.JsonSurveySerializator;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -264,4 +269,14 @@ public class SurveyHandler {
         this.maxSurveysId = maxSurveysId;
         
     }   
+    
+    public void saveSurveyTemplates() throws FileNotFoundException, UnsupportedEncodingException{
+        for (String id : surveysId.keySet()){
+            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "templates" + File.separator + id + ".json";
+            PrintWriter writer = new PrintWriter(templatePath, "UTF-8");
+            writer.println((new JsonSurveySerializator()).serializeSurvey(getSurvey(id)));
+            writer.close();
+            
+        }
+    }
 }

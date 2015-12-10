@@ -52,6 +52,13 @@ public class GraphicInterface extends JFrame implements ActionListener{
                             } catch (UnsupportedEncodingException ex) {
                                 Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            try {
+                                applicationLogic.getSurveyHandler().saveSurveyTemplates();
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (UnsupportedEncodingException ex) {
+                                Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 				dispose();
 				System.exit(0);
 			}

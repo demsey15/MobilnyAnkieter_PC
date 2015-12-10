@@ -146,7 +146,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new DateTimeQuestionPanel to choosen tab
      * @param dateTimeQuestion new question to add
      */
-    public void addDateTimeQuestionPanel(DateTimeQuestion dateTimeQuestion) throws IOException {
+    public void addDateTimeQuestionPanel(DateTimeQuestion dateTimeQuestion) throws IOException, ParseException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addDateTimeQuestion(dateTimeQuestion);
     }
@@ -155,7 +155,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new TextQuestionPanel to choosen tab
      * @param textQuestion new question to add
      */
-    public void addTextQuestionPanel(TextQuestion textQuestion) throws IOException {
+    public void addTextQuestionPanel(TextQuestion textQuestion) throws IOException, ParseException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addTextQuestion(textQuestion);
     }
@@ -164,7 +164,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new ScaleQuestionPanel to choosen tab
      * @param scaleQuestion new question to add
      */
-    public void addScaleQuestionPanel(ScaleQuestion scaleQuestion) throws IOException {
+    public void addScaleQuestionPanel(ScaleQuestion scaleQuestion) throws IOException, ParseException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addScaleQuestion(scaleQuestion);
     }
@@ -173,7 +173,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new OneChoiceQuestionPanel to choosen tab
      * @param oneChoiceQuestion new question to add
      */
-    public void addOneChoiceQuestionPanel(OneChoiceQuestion oneChoiceQuestion) throws IOException {
+    public void addOneChoiceQuestionPanel(OneChoiceQuestion oneChoiceQuestion) throws IOException, ParseException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addOneChoiceQuestion(oneChoiceQuestion);
     }
@@ -182,7 +182,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new MultipleChoiceQuestionPanel to choosen tab
      * @param multipleChoiceQuestion new question to add
      */
-    public void addMultipleChoiceQuestionPanel(MultipleChoiceQuestion multipleChoiceQuestion) throws IOException {
+    public void addMultipleChoiceQuestionPanel(MultipleChoiceQuestion multipleChoiceQuestion) throws IOException, ParseException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addMultipleChoiceQuestion(multipleChoiceQuestion);
     }
@@ -191,7 +191,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new GridQuestionPanel to choosen tab
      * @param gridQuestion new question to add
      */
-    public void addGridQuestionPanel(GridQuestion gridQuestion) throws IOException {
+    public void addGridQuestionPanel(GridQuestion gridQuestion) throws IOException, ParseException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.addGridQuestion(gridQuestion);
     }
@@ -199,7 +199,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
     /**
      * refreshes all QuestionPanels i choosen tab
      */
-    public void refreshAllQuestionPanels() throws IOException {
+    public void refreshAllQuestionPanels() throws IOException, ParseException {
         SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
         surveyPanel.refreshQuestionList();
     }
