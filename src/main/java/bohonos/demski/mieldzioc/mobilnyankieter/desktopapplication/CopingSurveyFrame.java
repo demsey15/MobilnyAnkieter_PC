@@ -107,6 +107,8 @@ public class CopingSurveyFrame extends JFrame implements ActionListener{
                 creatorFrame.addSurveyPanel(splited[0]);
             } catch (IOException ex) {
                 Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
                 String idOfSurvey = applicationLogic.copySurvey(splited[0]);
@@ -116,6 +118,8 @@ public class CopingSurveyFrame extends JFrame implements ActionListener{
             } catch (CloneNotSupportedException ex) {
                 Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
+                Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
                 Logger.getLogger(CopingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
 

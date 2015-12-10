@@ -9,10 +9,14 @@ package bohonos.demski.mieldzioc.mobilnyankieter.interviewer;
  *
  * @author Delirus
  */
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -23,6 +27,11 @@ import java.util.List;
  */
 public class InterviewersRepository {
     private List<Interviewer> interviewers = new ArrayList<Interviewer>();
+    
+    public InterviewersRepository() throws IOException, FileNotFoundException, ParseException{
+        interviewers = new ArrayList<Interviewer>();
+        this.loadFromFile();
+    }
     
     /**
      * Metoda addInterviewer() dodaje ankietera do listy. Jeœli siê uda³o dodaæ ankietera do listy (nie ma na liœcie ankieteterów kogoœ o tym samym id), to metoda zwraca true, w przeciwnym wypadku false.
@@ -116,6 +125,23 @@ public class InterviewersRepository {
           writer.println(interviewer.interviewerToString());
       }
     writer.close();
+  }
+  
+  public void loadFromFile() throws FileNotFoundException, IOException, ParseException {
+      String interviewersPath = "C:" + File.separator + "ankieter" + File.separator + "interviewers.txt";
+      BufferedReader br = new BufferedReader(new FileReader(interviewersPath));
+        try {
+            //StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            while (line != null) {
+                System.out.println("Wczytana linia: " + line + "//n");
+                boolean addInterviewer = this.addInterviewer(Interviewer.stringToInterviewer(line));
+                line = br.readLine();
+            }
+            //String everything = sb.toString();
+        } finally {
+            br.close();
+        }
   }
   //edytowanie listy , usuwanie ankieterów i te sprawy trzeba dodaæ
 }
