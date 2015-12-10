@@ -88,6 +88,8 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
                     creatorFrame.addSurveyPanel(splited[0]);
                 } catch (IOException ex) {
                     Logger.getLogger(LoadingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(LoadingSurveyFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             dispose();

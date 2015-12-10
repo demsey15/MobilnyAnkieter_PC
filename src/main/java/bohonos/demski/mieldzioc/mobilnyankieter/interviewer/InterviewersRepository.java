@@ -9,6 +9,10 @@ package bohonos.demski.mieldzioc.mobilnyankieter.interviewer;
  *
  * @author Delirus
  */
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -104,6 +108,14 @@ public class InterviewersRepository {
         return man1.getId().equals(man2.getId());
   }
   
-
+  public void saveRepository() throws FileNotFoundException, UnsupportedEncodingException {
+      String interviewersPath = "C:" + File.separator + "ankieter" + File.separator + "interviewers.txt";
+      //File interviewersFile = new File (interviewersPath);
+      PrintWriter writer = new PrintWriter(interviewersPath, "UTF-8");
+      for (Interviewer interviewer : interviewers) {
+          writer.println(interviewer.interviewerToString());
+      }
+    writer.close();
+  }
   //edytowanie listy , usuwanie ankieterów i te sprawy trzeba dodaæ
 }

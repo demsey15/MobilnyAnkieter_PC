@@ -18,7 +18,9 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.statistics.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +44,14 @@ public class GraphicInterface extends JFrame implements ActionListener{
         addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){
+                            System.out.println("Zamykamy aplikacjê.");
+                            try {
+                                applicationLogic.getInterviewersRepository().saveRepository();
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (UnsupportedEncodingException ex) {
+                                Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 				dispose();
 				System.exit(0);
 			}

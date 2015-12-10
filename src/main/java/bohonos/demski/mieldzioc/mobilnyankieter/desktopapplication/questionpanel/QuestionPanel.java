@@ -131,6 +131,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     this.surveyPanel.refreshQuestionList();
                 } catch (IOException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -150,6 +152,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     this.surveyPanel.refreshQuestionList();
                 } catch (IOException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -159,6 +163,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
             try {
                 this.surveyPanel.refreshQuestionList();
             } catch (IOException ex) {
+                Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
                 Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -171,6 +177,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     EditDateTimeQuestionFrame editDateTimeQuestionFrame = new EditDateTimeQuestionFrame((DateTimeQuestion)question, surveyPanel);
                 } catch (IOException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     break;
                 }
@@ -178,6 +186,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                 try {
                     EditDateTimeQuestionFrame editDateTimeQuestionFrame = new EditDateTimeQuestionFrame((DateTimeQuestion)question, surveyPanel);
                 } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     break;
@@ -187,6 +197,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     EditTextQuestionFrame editTextQuestionFrame = new EditTextQuestionFrame((TextQuestion)question, surveyPanel);
                 } catch (IOException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     break;
                 }
@@ -195,6 +207,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     EditScaleQuestionFrame editScaleQuestionFrame = new EditScaleQuestionFrame((ScaleQuestion)question, surveyPanel);
                 } catch (IOException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     break;
                 }
@@ -202,6 +216,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                 try {
                     EditGridQuestionFrame editGridQuestionFrame = new EditGridQuestionFrame((GridQuestion)question, surveyPanel);
                 } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     break;

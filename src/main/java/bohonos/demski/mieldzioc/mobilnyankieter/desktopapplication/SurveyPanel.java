@@ -118,7 +118,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * adds new DateTimeQuestion to panel
      * @param dateTimeQuestion new question to add
      */
-    public void addDateTimeQuestion(DateTimeQuestion dateTimeQuestion) throws IOException {
+    public void addDateTimeQuestion(DateTimeQuestion dateTimeQuestion) throws IOException, ParseException {
         DateTimeQuestionPanel dateTimeQuestionPanel = new DateTimeQuestionPanel(survey, dateTimeQuestion, this);
         dateTimeQuestionPanel.setBounds(0, questionsPosition, 642, 70);
         questionsPosition = questionsPosition + 70;
@@ -131,7 +131,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * adds new TestQuestion to panel
      * @param textQuestion new question to add
      */
-    public void addTextQuestion(TextQuestion textQuestion) throws IOException {
+    public void addTextQuestion(TextQuestion textQuestion) throws IOException, ParseException {
         TextQuestionPanel textQuestionPanel = new TextQuestionPanel(survey, textQuestion, this);
         textQuestionPanel.setBounds(0, questionsPosition, 642, 70);
         questionsPosition = questionsPosition + 70;
@@ -144,7 +144,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * adds new ScaleQuestion to panel
      * @param scaleQuestion new question to add
      */
-    public void addScaleQuestion(ScaleQuestion scaleQuestion) throws IOException {
+    public void addScaleQuestion(ScaleQuestion scaleQuestion) throws IOException, ParseException {
         ScaleQuestionPanel scaleQuestionPanel = new ScaleQuestionPanel(survey, scaleQuestion, this);
         scaleQuestionPanel.setBounds(0, questionsPosition, 642, scaleQuestionPanel.HEIGHT);
         questionsPosition = questionsPosition + scaleQuestionPanel.HEIGHT;
@@ -157,7 +157,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * adds new OneChoiceQuestion to panel
      * @param oneChoiceQuestion OneChoiceQuestion
      */
-    public void addOneChoiceQuestion(OneChoiceQuestion oneChoiceQuestion) throws IOException {
+    public void addOneChoiceQuestion(OneChoiceQuestion oneChoiceQuestion) throws IOException, ParseException {
         OneChoiceQuestionPanel oneChoiceQuestionPanel = new OneChoiceQuestionPanel(survey, oneChoiceQuestion, this);
         oneChoiceQuestionPanel.setBounds(0, questionsPosition, 642, oneChoiceQuestionPanel.HEIGHT);
         questionsPosition = questionsPosition + oneChoiceQuestionPanel.HEIGHT;
@@ -170,7 +170,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * adds new MultipleChoiceQuestion to panel
      * @param multipleChoiceQuestion OneChoiceQuestion
      */
-    public void addMultipleChoiceQuestion(MultipleChoiceQuestion multipleChoiceQuestion) throws IOException {
+    public void addMultipleChoiceQuestion(MultipleChoiceQuestion multipleChoiceQuestion) throws IOException, ParseException {
         MultipleChoiceQuestionPanel multipleChoiceQuestionPanel = new MultipleChoiceQuestionPanel(survey, multipleChoiceQuestion, this);
         multipleChoiceQuestionPanel.setBounds(0, questionsPosition, 642, multipleChoiceQuestionPanel.HEIGHT);
         questionsPosition = questionsPosition + multipleChoiceQuestionPanel.HEIGHT;
@@ -183,7 +183,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
      * adds new GridQuestion to panel
      * @param gridQuestion OneChoiceQuestion
      */
-    public void addGridQuestion(GridQuestion gridQuestion) throws IOException {
+    public void addGridQuestion(GridQuestion gridQuestion) throws IOException, ParseException {
         GridQuestionPanel gridQuestionPanel = new GridQuestionPanel(survey, gridQuestion, this);
         gridQuestionPanel.setBounds(0, questionsPosition, 642, gridQuestionPanel.HEIGHT);
         questionsPosition = questionsPosition + gridQuestionPanel.HEIGHT;
@@ -195,7 +195,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
     /**
      * refreshes all QuestionPanels in survey panel
      */
-    public void refreshQuestionList() throws IOException {
+    public void refreshQuestionList() throws IOException, ParseException {
         questionsPanel.removeAll();
         questionsPosition = 0;
         int size = survey.questionListSize();
