@@ -3,9 +3,13 @@
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.survey;
 
+import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.mobilnyankieter.jsonserialization.JsonSurveySerializator;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -268,7 +272,25 @@ public class SurveyHandler {
     {
         this.maxSurveysId = maxSurveysId;
         
-    }   
+    }
+    
+    public SurveyHandler(int param1, int param2) throws IOException {
+        String maxIdPath = "C:" + File.separator + "ankieter" + File.separator + "maxId.txt";
+        BufferedReader br = new BufferedReader(new FileReader(maxIdPath));
+        try {
+            //StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            if (line!=null) {
+                this.maxSurveysId = Integer.parseInt(line);
+            }
+            else {
+                this.maxSurveysId = 0;
+            }
+        } finally {
+            br.close();
+        }
+        this.loadSurveysTemplates();
+    }
     
     public void saveSurveyTemplates() throws FileNotFoundException, UnsupportedEncodingException{
         for (String id : surveysId.keySet()){
@@ -276,7 +298,27 @@ public class SurveyHandler {
             PrintWriter writer = new PrintWriter(templatePath, "UTF-8");
             writer.println((new JsonSurveySerializator()).serializeSurvey(getSurvey(id)));
             writer.close();
-            
+            String maxIdPath = "C:" + File.separator + "ankieter" + File.separator + "maxId.txt";
+            PrintWriter maxIdWriter = new PrintWriter(maxIdPath, "UTF-8");
+            maxIdWriter.println(this.getMaxSurveysId());
+            maxIdWriter.close();
+        }
+    }
+    
+    public void loadSurveysTemplates() throws FileNotFoundException, IOException {
+        String templatesPath = "C:" + File.separator + "ankieter" + File.separator + "templates";
+        File templatesCatalog = new File(templatesPath);
+        File[] directoryListing = templatesCatalog.listFiles();
+        if (directoryListing != null) {
+            for (File child : directoryListing) {
+                String filePath = child.getPath();// Do something with child
+                BufferedReader br = new BufferedReader(new FileReader(filePath));
+                String line = br.readLine();
+                if (line!=null) {
+                    System.out.println("Wczytana linia szablonu: " + line);
+                    this.loadSurveyTemplate((new JsonSurveySerializator()).deserializeSurvey(line), IN_PROGRESS);
+                }
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ public class ApplicationLogic {
     private ApplicationLogic() throws IOException, ParseException {
         
         FileSystemCreator fileSystemCreator = new FileSystemCreator();
-        surveyHandler = new SurveyHandler(0);
+        surveyHandler = new SurveyHandler(0, 0);
         loggedInterviewer = new Interviewer("Imiê", "Nazwisko", "12345678911", new GregorianCalendar()); //to do
         intervierwsRepository = new InterviewersRepository();
         //serverConnectionFacade = new ServerConnectionFacade(host);
