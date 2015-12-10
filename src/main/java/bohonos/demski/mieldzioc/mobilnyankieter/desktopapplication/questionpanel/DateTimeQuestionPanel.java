@@ -14,6 +14,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.questionpanel
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  *
@@ -25,7 +26,7 @@ public class DateTimeQuestionPanel extends QuestionPanel {
     
     private JTextField answerField;
     
-    public DateTimeQuestionPanel(Survey survey, DateTimeQuestion dataTimeQuestion, SurveyPanel surveyPanel) throws IOException {
+    public DateTimeQuestionPanel(Survey survey, DateTimeQuestion dataTimeQuestion, SurveyPanel surveyPanel) throws IOException, ParseException {
         
         super(survey, dataTimeQuestion, surveyPanel);
         

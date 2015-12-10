@@ -24,6 +24,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.GridQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -49,7 +52,7 @@ public class EditGridQuestionFrame extends EditQuestionFrame {
     private JList rowList, columnList;
     private DefaultListModel rowListItems, columnListItems;
     
-    public EditGridQuestionFrame(GridQuestion gridQuestion, SurveyPanel surveyPanel) throws IOException {
+    public EditGridQuestionFrame(GridQuestion gridQuestion, SurveyPanel surveyPanel) throws IOException, ParseException {
         
         super(gridQuestion, surveyPanel);
         this.gridQuestion = gridQuestion;
@@ -167,7 +170,11 @@ public class EditGridQuestionFrame extends EditQuestionFrame {
         gridQuestion.getRowLabels().clear();
         gridQuestion.setColumnLabels(columns);
         gridQuestion.setRowLabels(rows);
-        surveyPanel.refreshQuestionList();
+        try {
+            surveyPanel.refreshQuestionList();
+        } catch (IOException ex) {
+            Logger.getLogger(EditGridQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
     

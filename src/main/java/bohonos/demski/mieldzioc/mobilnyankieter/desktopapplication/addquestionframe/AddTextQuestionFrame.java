@@ -19,6 +19,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,7 +37,7 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
     private JLabel minLengthLabel, maxLengthLabel;
     private JTextField minLengthField, maxLengthField;
     
-    public AddTextQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException {
+    public AddTextQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException, ParseException {
         
         super(survey, crFrame);
         
@@ -88,7 +91,11 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
         }
         TextQuestion textQuestion = new TextQuestion(questionField.getText(), obligatoryBox.isSelected(), hintField.getText(), constraint);
         survey.addQuestion(textQuestion);
-        creatorFrame.addTextQuestionPanel(textQuestion);
+        try {
+            creatorFrame.addTextQuestionPanel(textQuestion);
+        } catch (IOException ex) {
+            Logger.getLogger(AddTextQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
     

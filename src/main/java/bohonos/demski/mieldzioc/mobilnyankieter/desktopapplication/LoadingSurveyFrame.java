@@ -8,6 +8,7 @@ package bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +32,7 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
     private JList list;
     private List<String> selectedSurveysList;
     
-    public LoadingSurveyFrame(CreatorFrame creatorFrame) throws IOException{
+    public LoadingSurveyFrame(CreatorFrame creatorFrame) throws IOException, ParseException{
         super("edytuj ankietê");
         applicationLogic = ApplicationLogic.getInstance();
         this.creatorFrame = creatorFrame;

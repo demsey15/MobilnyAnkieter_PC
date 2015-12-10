@@ -23,6 +23,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.GridQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,7 +50,7 @@ public class AddGridQuestionFrame extends AddQuestionFrame {
     private JList rowList, columnList;
     private DefaultListModel rowListItems, columnListItems;
     
-    public AddGridQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException {
+    public AddGridQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException, ParseException {
         
         super(survey, crFrame);
         
@@ -138,7 +141,11 @@ public class AddGridQuestionFrame extends AddQuestionFrame {
     protected Question createQuestion() {
         GridQuestion gridQuestion = new GridQuestion(questionField.getText(), obligatoryBox.isSelected(), hintField.getText(), columns, rows);
         survey.addQuestion(gridQuestion);
-        creatorFrame.addGridQuestionPanel(gridQuestion);
+        try {
+            creatorFrame.addGridQuestionPanel(gridQuestion);
+        } catch (IOException ex) {
+            Logger.getLogger(AddGridQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
     

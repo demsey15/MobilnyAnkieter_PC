@@ -8,6 +8,7 @@ package bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +36,7 @@ public class CopingSurveyFrame extends JFrame implements ActionListener{
     private JTextField titleField, descriptionField;
     private JLabel titleLabel, descriptionLabel;
     
-    public CopingSurveyFrame(CreatorFrame creatorFrame) throws IOException{
+    public CopingSurveyFrame(CreatorFrame creatorFrame) throws IOException, ParseException{
         super("nowa ankieta na podstawie...");
         applicationLogic = ApplicationLogic.getInstance();
         this.creatorFrame = creatorFrame;

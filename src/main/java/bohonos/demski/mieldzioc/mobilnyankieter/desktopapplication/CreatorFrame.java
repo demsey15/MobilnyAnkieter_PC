@@ -38,6 +38,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -64,7 +65,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
     
     private ApplicationLogic applicationLogic;
     
-    public CreatorFrame() throws IOException{
+    public CreatorFrame() throws IOException, ParseException{
         super("Kreator ankiet");
         applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
@@ -134,7 +135,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
      * adds new tab containing survey template with given id
      * @param id id of survey template
      */
-    public void addSurveyPanel(String id) throws IOException {
+    public void addSurveyPanel(String id) throws IOException, ParseException {
         SurveyPanel surveyPanel = new SurveyPanel(id);
         if (tabbedPane.indexOfTab(id) == -1) {
             tabbedPane.addTab(id, surveyPanel);
@@ -211,6 +212,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                 CreatingSurveyFrame creatingSurveyFrame = new CreatingSurveyFrame(this);
             } catch (IOException ex) {
                 Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -219,6 +222,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                 CopingSurveyFrame copingSurveyFrame = new CopingSurveyFrame(this);
             } catch (IOException ex) {
                 Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -226,6 +231,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
             try {
                 LoadingSurveyFrame loadingSurveyFrame = new LoadingSurveyFrame(this);
             } catch (IOException ex) {
+                Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
                 Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -237,6 +244,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                 try {
                     AddDateTimeQuestionFrame addDateTimeQuestionFrame = new AddDateTimeQuestionFrame(survey, this);
                 } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
                     Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -250,6 +259,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                     AddGridQuestionFrame addGridQuestionFrame = new AddGridQuestionFrame(survey, this);
                 } catch (IOException ex) {
                     Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -261,6 +272,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                 try {
                     AddMultipleChoiceQuestionFrame addMultipleChoiceQuestionFrame = new AddMultipleChoiceQuestionFrame(survey, this);
                 } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
                     Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -274,6 +287,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                     AddOneChoiceQuestionFrame addOneChoiceQuestionFrame = new AddOneChoiceQuestionFrame(survey, this);
                 } catch (IOException ex) {
                     Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -285,6 +300,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                 try {
                     AddScaleQuestionFrame addScaleQuestionFrame = new AddScaleQuestionFrame(survey, this);
                 } catch (IOException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
                     Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -298,6 +315,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                     AddTextQuestionFrame addTextQuestionFrame = new AddTextQuestionFrame(survey, this);
                 } catch (IOException ex) {
                     Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -308,6 +327,8 @@ public class CreatorFrame extends JFrame implements ActionListener {
                     try {
                         SurveyMenagerFrame surveyMenagerFrame = new SurveyMenagerFrame();
                     } catch (IOException ex) {
+                        Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
                         Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }

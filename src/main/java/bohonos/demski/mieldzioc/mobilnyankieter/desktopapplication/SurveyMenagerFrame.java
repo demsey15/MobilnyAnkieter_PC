@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  *
@@ -29,7 +30,7 @@ public class SurveyMenagerFrame extends JFrame implements ActionListener {
     private JPanel surveysPanel;
     private JScrollPane scrollPane;
     
-    public SurveyMenagerFrame() throws IOException {
+    public SurveyMenagerFrame() throws IOException, ParseException {
         
         super("Zarz¹dzanie ankietami");
         applicationLogic = ApplicationLogic.getInstance();
@@ -50,7 +51,7 @@ public class SurveyMenagerFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
     
-    public void refreshViewOfSurveys() throws IOException{
+    public void refreshViewOfSurveys() throws IOException, ParseException{
         surveyPanelPosition = 0;
         surveysPanel.removeAll();     
         for(String idOfSurvey : applicationLogic.getSurveyHandler().getSetOfIds()){

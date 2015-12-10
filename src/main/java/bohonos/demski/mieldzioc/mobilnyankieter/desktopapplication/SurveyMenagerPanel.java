@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  *
@@ -37,7 +38,7 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
     private JLabel idLabel, titleLabel, descriptionLabel, statusLabel;
     private JButton activeButton, disactiveButton;
     
-    public SurveyMenagerPanel (Survey survey, SurveyMenagerFrame surveyMenagerFrame) throws IOException {
+    public SurveyMenagerPanel (Survey survey, SurveyMenagerFrame surveyMenagerFrame) throws IOException, ParseException {
         
         applicationLogic = ApplicationLogic.getInstance();
         this.survey = survey;

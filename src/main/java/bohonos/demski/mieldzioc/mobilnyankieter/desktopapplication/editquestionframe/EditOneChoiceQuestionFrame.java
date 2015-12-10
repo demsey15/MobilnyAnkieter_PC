@@ -23,6 +23,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,7 +50,7 @@ public class EditOneChoiceQuestionFrame extends EditQuestionFrame {
     private JList answerList;
     private DefaultListModel answerListItems;
     
-    public EditOneChoiceQuestionFrame(OneChoiceQuestion oneChoiceQuestion, SurveyPanel surveyPanel) throws IOException {
+    public EditOneChoiceQuestionFrame(OneChoiceQuestion oneChoiceQuestion, SurveyPanel surveyPanel) throws IOException, ParseException {
         
         super(oneChoiceQuestion, surveyPanel);
         this.oneChoiceQuestion = oneChoiceQuestion;
@@ -107,7 +110,11 @@ public class EditOneChoiceQuestionFrame extends EditQuestionFrame {
         for (String answer : answers) {
             oneChoiceQuestion.addAnswer(answer);
         }
-        surveyPanel.refreshQuestionList();
+        try {
+            surveyPanel.refreshQuestionList();
+        } catch (IOException ex) {
+            Logger.getLogger(EditOneChoiceQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
     

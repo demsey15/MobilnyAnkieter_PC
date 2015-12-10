@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.CreatorFrame;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  *
@@ -47,7 +48,7 @@ public class AddAnswerFrame extends JFrame implements ActionListener {
     private JLabel answerLabel;
     
     
-    public AddAnswerFrame(EditQuestionFrame editQuestFrame) throws IOException {
+    public AddAnswerFrame(EditQuestionFrame editQuestFrame) throws IOException, ParseException {
         
         super("Dodaj odpowiedü");
         

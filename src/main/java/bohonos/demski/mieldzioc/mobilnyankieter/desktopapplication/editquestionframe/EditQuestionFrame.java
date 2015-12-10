@@ -19,6 +19,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,7 +58,7 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
     protected JLabel questionLabel, hintLabel, errorMessageLabel;
     protected JCheckBox obligatoryBox;
     
-    public EditQuestionFrame(Question question, SurveyPanel surveyPanel) throws IOException {
+    public EditQuestionFrame(Question question, SurveyPanel surveyPanel) throws IOException, ParseException {
         super("Edytuj pytanie");
         
         applicationLogic = ApplicationLogic.getInstance();
@@ -216,6 +217,8 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
                 AddAnswerFrame addAnswerFrame = new AddAnswerFrame(this);
             } catch (IOException ex) {
                 Logger.getLogger(EditQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(EditQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -228,6 +231,8 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
                 AddRowFrame addRowFrame = new AddRowFrame(this);
             } catch (IOException ex) {
                 Logger.getLogger(EditQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(EditQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -239,6 +244,8 @@ public abstract class EditQuestionFrame extends JFrame implements ActionListener
             try {
                 AddColumnFrame addColumnFrame = new AddColumnFrame(this);
             } catch (IOException ex) {
+                Logger.getLogger(EditQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
                 Logger.getLogger(EditQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

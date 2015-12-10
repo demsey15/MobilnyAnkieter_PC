@@ -16,6 +16,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.OneChoiceQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  *
@@ -30,7 +31,7 @@ public class OneChoiceQuestionPanel extends QuestionPanel {
     private OneChoiceQuestion oneChoiceQuestion;
     private ButtonGroup buttonGroup;
 
-    public OneChoiceQuestionPanel(Survey survey, OneChoiceQuestion oneChoiceQuestion, SurveyPanel surveyPanel) throws IOException {
+    public OneChoiceQuestionPanel(Survey survey, OneChoiceQuestion oneChoiceQuestion, SurveyPanel surveyPanel) throws IOException, ParseException {
         
         super(survey, oneChoiceQuestion, surveyPanel);
         

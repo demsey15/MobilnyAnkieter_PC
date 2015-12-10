@@ -25,6 +25,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,7 +52,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
     private JButton questionEdit;
     protected JLabel questionLabel;
     
-    public QuestionPanel(Survey survey, Question question, SurveyPanel surveyPanel) throws IOException {
+    public QuestionPanel(Survey survey, Question question, SurveyPanel surveyPanel) throws IOException, ParseException {
         
         applicationLogic = ApplicationLogic.getInstance();
         this.survey = survey;
@@ -210,6 +211,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     EditMultipleChoiceQuestionFrame editMultipleChoiceQuestionFrame = new EditMultipleChoiceQuestionFrame((MultipleChoiceQuestion)question, surveyPanel);
                 } catch (IOException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     break;
                 }
@@ -217,6 +220,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                 try {
                     EditOneChoiceQuestionFrame editOneChoiceQuestionFrame = new EditOneChoiceQuestionFrame((OneChoiceQuestion)question, surveyPanel);
                 } catch (IOException ex) {
+                    Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
                     Logger.getLogger(QuestionPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     break;

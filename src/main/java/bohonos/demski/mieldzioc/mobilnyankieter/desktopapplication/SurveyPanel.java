@@ -36,6 +36,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  *
@@ -58,7 +59,7 @@ public class SurveyPanel extends JPanel implements ActionListener {
     private CreatingSurveyFrame creatingSurveyFrame;
     private Survey survey;
     
-    public SurveyPanel(String id) throws IOException {
+    public SurveyPanel(String id) throws IOException, ParseException {
         
         applicationLogic = ApplicationLogic.getInstance();
         idOfSurvey = id;

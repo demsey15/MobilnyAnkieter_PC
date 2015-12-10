@@ -12,6 +12,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyPanel;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  *
@@ -23,7 +24,7 @@ public class TextQuestionPanel extends QuestionPanel {
     
     private JTextField answerField;
 
-    public TextQuestionPanel(Survey survey, TextQuestion textQuestion, SurveyPanel surveyPanel) throws IOException {
+    public TextQuestionPanel(Survey survey, TextQuestion textQuestion, SurveyPanel surveyPanel) throws IOException, ParseException {
         
         super(survey, textQuestion, surveyPanel);
         

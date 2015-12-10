@@ -20,6 +20,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +40,7 @@ public class EditTextQuestionFrame extends EditQuestionFrame {
     private JLabel minLengthLabel, maxLengthLabel;
     private JTextField minLengthField, maxLengthField;
     
-    public EditTextQuestionFrame(TextQuestion textQuestion, SurveyPanel surveyPanel) throws IOException {
+    public EditTextQuestionFrame(TextQuestion textQuestion, SurveyPanel surveyPanel) throws IOException, ParseException {
         
         super(textQuestion, surveyPanel);
         
@@ -117,7 +120,11 @@ public class EditTextQuestionFrame extends EditQuestionFrame {
         //question.setErrorMessage(errorMessageField.getText());
         question.setObligatory(obligatoryBox.isSelected());
         textQuestion.setConstraint(constraint);
-        surveyPanel.refreshQuestionList();
+        try {
+            surveyPanel.refreshQuestionList();
+        } catch (IOException ex) {
+            Logger.getLogger(EditTextQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
     

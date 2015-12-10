@@ -18,6 +18,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,7 +38,7 @@ public class EditScaleQuestionFrame extends EditQuestionFrame {
     private JLabel minLabelLabel, maxLabelLabel, minValueLabel, maxValueLabel;
     private JTextField minLabelField, maxLabelField, minValueField, maxValueField;
     
-    public EditScaleQuestionFrame(ScaleQuestion scaleQuestion, SurveyPanel surveyPanel) throws IOException {
+    public EditScaleQuestionFrame(ScaleQuestion scaleQuestion, SurveyPanel surveyPanel) throws IOException, ParseException {
         
         super(scaleQuestion, surveyPanel);
         this.scaleQuestion = scaleQuestion;
@@ -106,7 +109,11 @@ public class EditScaleQuestionFrame extends EditQuestionFrame {
         scaleQuestion.setMaxLabel(maxLabelField.getText());
         scaleQuestion.setMinValue(Integer.valueOf(minValueField.getText()));
         scaleQuestion.setMaxValue(Integer.valueOf(maxValueField.getText()));
-        surveyPanel.refreshQuestionList();
+        try {
+            surveyPanel.refreshQuestionList();
+        } catch (IOException ex) {
+            Logger.getLogger(EditScaleQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
     

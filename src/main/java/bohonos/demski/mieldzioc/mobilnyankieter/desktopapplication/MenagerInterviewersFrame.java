@@ -191,6 +191,8 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
                 WorksInterviewers worksInterviewers = new WorksInterviewers();
             } catch (IOException ex) {
                 Logger.getLogger(MenagerInterviewersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(MenagerInterviewersFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
      

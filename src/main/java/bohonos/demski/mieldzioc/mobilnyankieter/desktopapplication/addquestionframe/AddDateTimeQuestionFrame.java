@@ -18,6 +18,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.DateTimeQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +34,7 @@ public class AddDateTimeQuestionFrame extends AddQuestionFrame {
     private JCheckBox onlyDateBox;
     private JCheckBox onlyTimeBox;
     
-    public AddDateTimeQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException {
+    public AddDateTimeQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException, ParseException {
         
         super(survey, crFrame);
         
@@ -59,7 +62,11 @@ public class AddDateTimeQuestionFrame extends AddQuestionFrame {
     protected Question createQuestion() {
         DateTimeQuestion dateTimeQuestion = new DateTimeQuestion(questionField.getText(), obligatoryBox.isSelected(), hintField.getText(), onlyTimeBox.isSelected(), onlyDateBox.isSelected());
         survey.addQuestion(dateTimeQuestion);
-        creatorFrame.addDateTimeQuestionPanel(dateTimeQuestion);
+        try {
+            creatorFrame.addDateTimeQuestionPanel(dateTimeQuestion);
+        } catch (IOException ex) {
+            Logger.getLogger(AddDateTimeQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 
