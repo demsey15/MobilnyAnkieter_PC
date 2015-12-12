@@ -227,6 +227,10 @@ public class GridQuestion extends Question {
 		return super.equals(o2) && Objects.equals(userAnswers, o2.userAnswers)
 				&& Objects.equals(rowLabels, o2.rowLabels) && Objects.equals(columnLabels, o2.columnLabels);
 	}
+	
+	public boolean ifCheckedPair(Pair<Integer, Integer> answerCoordinates){
+		return userAnswers.contains(answerCoordinates);
+	}
 
 	@Override
 	public GridQuestion clone() throws CloneNotSupportedException {

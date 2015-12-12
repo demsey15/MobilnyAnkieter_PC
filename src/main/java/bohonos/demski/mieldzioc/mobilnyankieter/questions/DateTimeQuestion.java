@@ -1,6 +1,7 @@
 package bohonos.demski.mieldzioc.mobilnyankieter.questions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
@@ -69,7 +70,7 @@ public class DateTimeQuestion extends Question {
 			day = Integer.parseInt(text.get(0));
 			month = Integer.parseInt(text.get(1));
 			year = Integer.parseInt(text.get(2));
-
+			
 			if (textSize == 6) {
 				hour = Integer.parseInt(text.get(3));
 				minute = Integer.parseInt(text.get(4));
@@ -81,7 +82,7 @@ public class DateTimeQuestion extends Question {
 		try {
 			GregorianCalendar answer = new GregorianCalendar(year, month - 1, day, hour, minute, second);
 			userAnswer = answer;
-
+			
 			return true;
 		} catch (Exception e) {
 			userAnswer = null;
@@ -101,13 +102,15 @@ public class DateTimeQuestion extends Question {
 		List<String> list = new ArrayList<String>(3);
 		if (userAnswer != null) {
 			if (isOnlyDate()) {
-				list.add((String.valueOf(userAnswer.get(GregorianCalendar.DAY_OF_MONTH))));
-				list.add(String.valueOf(userAnswer.get(GregorianCalendar.MONTH + 1)));
-				list.add(String.valueOf(userAnswer.get(GregorianCalendar.YEAR)));
+				list.add("" + userAnswer.get(GregorianCalendar.DAY_OF_MONTH));
+				list.add("" + (userAnswer.get(GregorianCalendar.MONTH) + 1));
+				list.add("" + userAnswer.get(GregorianCalendar.YEAR));
+				System.out.println(Arrays.toString(list.toArray()));
 			} else if (isOnlyTime()) {
-				list.add((String.valueOf(userAnswer.get(GregorianCalendar.HOUR_OF_DAY))));
-				list.add(String.valueOf(userAnswer.get(GregorianCalendar.MINUTE)));
-				list.add(String.valueOf(userAnswer.get(GregorianCalendar.SECOND)));
+				list.add("" + (userAnswer.get(GregorianCalendar.HOUR_OF_DAY)));
+				list.add("" + userAnswer.get(GregorianCalendar.MINUTE));
+				list.add("" + userAnswer.get(GregorianCalendar.SECOND));
+				System.out.println("Minute: " + Arrays.toString(list.toArray()));
 			}
 		}
 		return list;

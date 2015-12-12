@@ -1,4 +1,4 @@
-package bohonos.demski.mieldzioc.mobilnyankieter.jsonserialization;
+package bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization;
 
 import java.util.List;
 
@@ -8,9 +8,10 @@ import com.google.gson.JsonSyntaxException;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.constraints.IConstraint;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
+import bohonos.demski.mieldzioc.mobilnyankieter.serialization.ISerializator;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 
-public class JsonSurveySerializator {
+public class JsonSurveySerializator implements ISerializator {
 	private static final String QUESTION_PACKAGE_NAME;
 	private static final String CONSTRAINTS_PACKAGE_NAME;
 

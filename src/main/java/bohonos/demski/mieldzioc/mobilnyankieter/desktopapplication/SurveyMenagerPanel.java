@@ -5,7 +5,6 @@
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication;
 
-import bohonos.demski.mieldzioc.mobilnyankieter.jsonserialization.JsonSurveySerializator;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.JsonSurveySerializator;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
 import java.io.IOException;

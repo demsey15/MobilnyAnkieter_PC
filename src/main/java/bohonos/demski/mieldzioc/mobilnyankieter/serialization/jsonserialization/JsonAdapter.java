@@ -1,4 +1,4 @@
-package bohonos.demski.mieldzioc.mobilnyankieter.jsonserialization;
+package bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization;
 
 import java.lang.reflect.Type;
 

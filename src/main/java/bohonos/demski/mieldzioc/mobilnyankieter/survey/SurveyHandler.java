@@ -4,7 +4,8 @@
 package bohonos.demski.mieldzioc.mobilnyankieter.survey;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
-import bohonos.demski.mieldzioc.mobilnyankieter.jsonserialization.JsonSurveySerializator;
+import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.JsonSurveySerializator;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
