@@ -321,5 +321,22 @@ public class SurveyHandler {
                 }
             }
         }
+        String activeTemplatesPath = "C:" + File.separator + "ankieter" + File.separator + "activeTemplates";
+        File activeTemplatesCatalog = new File(activeTemplatesPath);
+        File[] activeTemplatesListing = activeTemplatesCatalog.listFiles();
+        if (activeTemplatesListing != null) {
+            for (File child : activeTemplatesListing) {
+                String filePath = child.getPath();// Do something with child
+                BufferedReader br = new BufferedReader(new FileReader(filePath));
+                String line = br.readLine();
+                if (line!=null) {
+                    System.out.println("Wczytana linia szablonu: " + line);
+                    Survey survey = (new JsonSurveySerializator()).deserializeSurvey(line);
+                    if (this.loadSurveyTemplate(survey, ACTIVE) == false) {
+                        this.setSurveyStatus(survey, ACTIVE);
+                    }
+                }
+            }
+        }
     }
 }

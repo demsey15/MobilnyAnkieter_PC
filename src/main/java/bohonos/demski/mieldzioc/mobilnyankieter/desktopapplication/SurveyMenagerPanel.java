@@ -18,8 +18,14 @@ import javax.swing.SwingUtilities;
 import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.JsonSurveySerializator;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -105,6 +111,17 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
             statusLabel.setText("aktywna");
             System.out.println("ankieta: " + (new JsonSurveySerializator()).serializeSurvey(survey));
             //TODO udostêpnienie ankiety
+            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "activeTemplates" + File.separator + survey.getIdOfSurveys() + ".json";
+            PrintWriter writer;
+            try {
+                writer = new PrintWriter(templatePath, "UTF-8");
+                writer.println((new JsonSurveySerializator()).serializeSurvey(survey));
+                writer.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SurveyMenagerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(SurveyMenagerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             SwingUtilities.updateComponentTreeUI(this);
         }
         
