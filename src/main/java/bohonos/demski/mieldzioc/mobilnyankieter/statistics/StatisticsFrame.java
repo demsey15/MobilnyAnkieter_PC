@@ -24,6 +24,10 @@ import javax.swing.JTextField;
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.ApplicationLogic;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -37,8 +41,12 @@ public class StatisticsFrame extends JFrame implements ActionListener{
     private JLabel jInterviewer, jSurvey;
     private JPanel panel;
     private Container con;
+    private JList listOfInterviewers;
+    private DefaultListModel listModel;
+    private List<Interviewer> selectedInterviewers;
+    private List<Interviewer> interviewers;
     
-    public StatisticsFrame(ApplicationLogic applicationLogic){
+    public StatisticsFrame(final ApplicationLogic applicationLogic){
         super("Wyniki ankiet i statystyki");
          addWindowListener(new WindowAdapter() {
                         @Override
@@ -79,16 +87,37 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         //jInterviewer = new JLabel("ID Ankietera: ");
         jSurvey = new JLabel("ID Ankiety: ");
         
+        listModel = new DefaultListModel();
+        listOfInterviewers = new JList(listModel);
+        
         //idInterviewer.setBounds(250, 30, 200, 30);
         idSurvey.setBounds(250, 30, 200, 30);
         //jInterviewer.setBounds(150, 20, 100, 50);
         jSurvey.setBounds(150,20,100, 50);
-        rankInterviewers.setBounds(150, 195, 200, 50);
-        statisticsInterviewer.setBounds(150, 270, 200, 50);
-        statResultSurvey.setBounds(150, 345, 200, 50);
-        statFillSurvey.setBounds(150, 420, 200, 50);
-        close.setBounds(150, 495, 200, 50);
+        rankInterviewers.setBounds(450, 195, 200, 50);
+        statisticsInterviewer.setBounds(450, 270, 200, 50);
+        statResultSurvey.setBounds(450, 345, 200, 50);
+        statFillSurvey.setBounds(450, 420, 200, 50);
+        close.setBounds(450, 495, 200, 50);
+        listOfInterviewers.setBounds(100, 150, 300, 400);
         
+        ListSelectionListener listListener = new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent e) {
+                selectedInterviewers = listOfInterviewers.getSelectedValuesList();
+            }
+        };
+        idSurvey.addActionListener (new ActionListener () {
+            public void actionPerformed(ActionEvent e){
+                String selectedIdSurvey = (String) idSurvey.getSelectedItem();
+                List<String> macs = applicationLogic.getSurveysRepository().getMacsOfSurvey(selectedIdSurvey);
+                interviewers = applicationLogic.getInterviewersRepository().getSelectedInterviewers(macs);
+                for( Interviewer interviewer : interviewers){               
+                    listModel.addElement(interviewer.getName()+" "+interviewer.getSurname()+" "+interviewer.getId());
+                }
+        
+            }
+        });
         panel.setLayout(null); 
                  
         //panel.add(idInterviewer);
@@ -99,6 +128,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         panel.add(statisticsInterviewer);
         panel.add(statFillSurvey);
         panel.add(statResultSurvey);
+        panel.add(listOfInterviewers);
         panel.add(close);
         
         rankInterviewers.addActionListener(this);
@@ -106,6 +136,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         statFillSurvey.addActionListener(this);
         statResultSurvey.addActionListener(this);
         close.addActionListener(this);
+        
         
         setVisible(true);
     }

@@ -345,4 +345,8 @@ public class SurveysRepository {
     public SurveysRepository(){
         
     }
+
+    public List<String> getMacsOfSurvey(String selectedIdSurvey) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

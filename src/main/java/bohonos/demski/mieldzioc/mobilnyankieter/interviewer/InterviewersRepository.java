@@ -154,4 +154,10 @@ public class InterviewersRepository {
       return macs;
   }
   //edytowanie listy , usuwanie ankieterów i te sprawy trzeba dodaæ
+
+    public List<Interviewer> getSelectedInterviewers(List<String> macs) {
+        List<Interviewer> list = new ArrayList<Interviewer>();
+        
+        return list;
+    }
 }
