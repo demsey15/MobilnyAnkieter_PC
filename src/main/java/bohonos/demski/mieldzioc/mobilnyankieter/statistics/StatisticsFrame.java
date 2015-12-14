@@ -44,11 +44,11 @@ public class StatisticsFrame extends JFrame implements ActionListener{
                         @Override
 			public void windowClosing(WindowEvent we){
 				dispose();
-				System.exit(0);
+				//System.exit(0);
 			}
 		});
          this.applicationLogic = applicationLogic;
-         setSize(500, 600);
+         setSize(800, 600);
 	setLocation(100,80);
         setResizable(false);
         panel = new JPanel();   
@@ -62,27 +62,27 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         
         //Dodanie elementów do comboboxów        
        // ServerConnectionFacade serverConnectionFacade = applicationLogic.getServerConnectionFacade();
-        Vector comboBoxItems1=new Vector();
+        //Vector comboBoxItems1=new Vector();
         /*for(Interviewer interviewer : applicationLogic.getServerConnectionFacade().getAllInterviewers("admin", "admin".toCharArray())){
             comboBoxItems1.add(interviewer.getId());
         }*/
-        DefaultComboBoxModel model1 = new DefaultComboBoxModel(comboBoxItems1);
+        //DefaultComboBoxModel model1 = new DefaultComboBoxModel(comboBoxItems1);
         Vector comboBoxItems2=new Vector();
-        /*
-        for(Survey entrSurv : applicationLogic.getServerConnectionFacade().getActiveSurveyTemplates("admin", "admin".toCharArray())){
-            comboBoxItems2.add(entrSurv.getIdOfSurveys());
+        
+        for(String entrSurv : applicationLogic.getSurveyHandler().getStatusSurveysId(1).keySet()){
+            comboBoxItems2.add(entrSurv);
         }
-                */
+                
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(comboBoxItems2);
-        idInterviewer = new JComboBox(model1);
+        //idInterviewer = new JComboBox(model1);
         idSurvey = new JComboBox(model2);
-        jInterviewer = new JLabel("ID Ankietera: ");
+        //jInterviewer = new JLabel("ID Ankietera: ");
         jSurvey = new JLabel("ID Ankiety: ");
         
-        idInterviewer.setBounds(250, 30, 200, 30);
-        idSurvey.setBounds(250, 130, 200, 30);
-        jInterviewer.setBounds(150, 20, 100, 50);
-        jSurvey.setBounds(150,120,100, 50);
+        //idInterviewer.setBounds(250, 30, 200, 30);
+        idSurvey.setBounds(250, 30, 200, 30);
+        //jInterviewer.setBounds(150, 20, 100, 50);
+        jSurvey.setBounds(150,20,100, 50);
         rankInterviewers.setBounds(150, 195, 200, 50);
         statisticsInterviewer.setBounds(150, 270, 200, 50);
         statResultSurvey.setBounds(150, 345, 200, 50);
@@ -91,9 +91,9 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         
         panel.setLayout(null); 
                  
-        panel.add(idInterviewer);
+        //panel.add(idInterviewer);
         panel.add(idSurvey);
-        panel.add(jInterviewer);
+        //panel.add(jInterviewer);
         panel.add(jSurvey);
         panel.add(rankInterviewers);
         panel.add(statisticsInterviewer);
