@@ -95,6 +95,8 @@ public class AddTextQuestionFrame extends AddQuestionFrame {
             creatorFrame.addTextQuestionPanel(textQuestion);
         } catch (IOException ex) {
             Logger.getLogger(AddTextQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(AddTextQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

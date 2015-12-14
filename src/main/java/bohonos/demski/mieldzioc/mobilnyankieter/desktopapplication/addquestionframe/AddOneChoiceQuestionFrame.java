@@ -92,6 +92,8 @@ public class AddOneChoiceQuestionFrame extends AddQuestionFrame {
             creatorFrame.addOneChoiceQuestionPanel(oneChoiceQuestion);
         } catch (IOException ex) {
             Logger.getLogger(AddOneChoiceQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(AddOneChoiceQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

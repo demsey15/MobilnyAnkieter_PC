@@ -92,6 +92,8 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
             creatorFrame.addMultipleChoiceQuestionPanel(multipleChoiceQuestion);
         } catch (IOException ex) {
             Logger.getLogger(AddMultipleChoiceQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(AddMultipleChoiceQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

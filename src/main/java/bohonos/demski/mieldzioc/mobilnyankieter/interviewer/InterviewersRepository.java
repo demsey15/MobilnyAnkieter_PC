@@ -143,5 +143,15 @@ public class InterviewersRepository {
             br.close();
         }
   }
+  public List<String> getMacAdress(List<Interviewer> inter){
+      List<String> macs = new ArrayList();
+      for(Interviewer i : inter){
+          List<String> w= i.getMacAdresses();
+          for(String m : w){
+              macs.add(m);
+          }
+      }
+      return macs;
+  }
   //edytowanie listy , usuwanie ankieterów i te sprawy trzeba dodaæ
 }

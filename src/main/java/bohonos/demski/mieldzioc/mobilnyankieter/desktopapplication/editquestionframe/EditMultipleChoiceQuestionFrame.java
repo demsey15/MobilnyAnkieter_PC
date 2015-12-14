@@ -114,6 +114,8 @@ public class EditMultipleChoiceQuestionFrame extends EditQuestionFrame {
             surveyPanel.refreshQuestionList();
         } catch (IOException ex) {
             Logger.getLogger(EditMultipleChoiceQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(EditMultipleChoiceQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

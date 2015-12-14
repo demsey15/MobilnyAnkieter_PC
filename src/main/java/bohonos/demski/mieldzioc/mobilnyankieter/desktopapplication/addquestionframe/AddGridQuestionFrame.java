@@ -145,6 +145,8 @@ public class AddGridQuestionFrame extends AddQuestionFrame {
             creatorFrame.addGridQuestionPanel(gridQuestion);
         } catch (IOException ex) {
             Logger.getLogger(AddGridQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(AddGridQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

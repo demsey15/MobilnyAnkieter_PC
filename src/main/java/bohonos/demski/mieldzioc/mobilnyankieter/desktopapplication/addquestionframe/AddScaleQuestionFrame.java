@@ -96,6 +96,8 @@ public class AddScaleQuestionFrame extends AddQuestionFrame {
             creatorFrame.addScaleQuestionPanel(scaleQuestion);
         } catch (IOException ex) {
             Logger.getLogger(AddScaleQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(AddScaleQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null; //to do
     }

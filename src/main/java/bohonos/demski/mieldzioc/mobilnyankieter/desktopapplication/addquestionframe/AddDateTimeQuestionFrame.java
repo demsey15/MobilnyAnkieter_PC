@@ -66,6 +66,8 @@ public class AddDateTimeQuestionFrame extends AddQuestionFrame {
             creatorFrame.addDateTimeQuestionPanel(dateTimeQuestion);
         } catch (IOException ex) {
             Logger.getLogger(AddDateTimeQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(AddDateTimeQuestionFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
