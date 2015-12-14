@@ -346,7 +346,25 @@ public class SurveysRepository {
         
     }
 
+    /**
+     * zwraca liste adresow MAC, ktore wystepuja w ankietach o danym id szablonu
+     * @param selectedIdSurvey id szablonu, dla ktorego chcemy znalezc liste
+     * @return liste adresow MAC
+     */
     public List<String> getMacsOfSurvey(String selectedIdSurvey) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Survey> surveysWithId = surveys.get(selectedIdSurvey);
+        List<String> listOfMacs = new ArrayList<String>();
+        for (Survey survey : surveysWithId) {
+            String deviceId = survey.getDeviceId();
+            if (deviceId.length()>16) {
+                String mac = deviceId.substring(0, 16);
+                if (!listOfMacs.contains(mac)) {
+                    listOfMacs.add(mac);
+                }
+            }
+        }
+        return listOfMacs;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }
