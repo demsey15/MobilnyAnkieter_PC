@@ -366,5 +366,26 @@ public class SurveysRepository {
         return listOfMacs;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    /**
+     * zwraca liste wypelnionych ankiet z danego szablonu i z danymi adresami MAC
+     * @param id id szablonu ankiety
+     * @param macs lista adresow MAC
+     * @return lista ankiet spelniajacych podane kryteria
+     */
+    public List<Survey> getSurveysOfMacs(String id, List<String> macs) {
+        List<Survey> surveysWithId = surveys.get(id);
+        List<Survey> surveysWithMacs = new ArrayList<Survey>();
+        for (Survey survey : surveysWithId) {
+            String deviceId = survey.getDeviceId();
+            if (deviceId.length()>16) {
+                String mac = deviceId.substring(0, 16);
+                if (macs.contains(mac)) {
+                    surveysWithMacs.add(survey);
+                }
+            }
+        }
+        return surveysWithMacs;
+    }
 
 }
