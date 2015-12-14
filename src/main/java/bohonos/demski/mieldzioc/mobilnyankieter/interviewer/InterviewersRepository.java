@@ -145,19 +145,30 @@ public class InterviewersRepository {
   }
   public List<String> getMacAdress(List<Interviewer> inter){
       List<String> macs = new ArrayList();
-      for(Interviewer i : inter){
-          List<String> w= i.getMacAdresses();
-          for(String m : w){
-              macs.add(m);
-          }
+      if(inter.size()>0){
+        for(Interviewer i : inter){
+              List<String> w= i.getMacAdresses();
+            for(String m : w){
+                  macs.add(m);
+            }
+        }
+        return macs;
       }
-      return macs;
+      else
+          return null;
   }
   //edytowanie listy , usuwanie ankieterów i te sprawy trzeba dodaæ
 
     public List<Interviewer> getSelectedInterviewers(List<String> macs) {
         List<Interviewer> list = new ArrayList<Interviewer>();
-        
+        for(String mac : macs){
+            for(Interviewer interviewer : interviewers){
+                List<String> interviewerMacs = interviewer.getMacAdresses();
+                if(interviewerMacs.contains(mac)){
+                    list.add(interviewer);
+                }
+            }
+        }
         return list;
     }
 }

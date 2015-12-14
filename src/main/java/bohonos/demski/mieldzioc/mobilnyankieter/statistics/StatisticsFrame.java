@@ -22,8 +22,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.ApplicationLogic;
+import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.GraphicInterface;
+import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.MenagerInterviewersFrame;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.awt.EventQueue;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
@@ -45,6 +53,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
     private DefaultListModel listModel;
     private List<Interviewer> selectedInterviewers;
     private List<Interviewer> interviewers;
+    private List<Survey> surveys;
     
     public StatisticsFrame(final ApplicationLogic applicationLogic){
         super("Wyniki ankiet i statystyki");
@@ -77,10 +86,11 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         //DefaultComboBoxModel model1 = new DefaultComboBoxModel(comboBoxItems1);
         Vector comboBoxItems2=new Vector();
         
-        for(String entrSurv : applicationLogic.getSurveyHandler().getStatusSurveysId(1).keySet()){
-            comboBoxItems2.add(entrSurv);
-        }
-                
+        for(Entry<String, Long> entrSurv : applicationLogic.getSurveysRepository().getAllMaxNumbersOfSurveys().entrySet()){
+            if(entrSurv.getValue()>0){
+                comboBoxItems2.add(entrSurv);
+            }
+        }      
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(comboBoxItems2);
         //idInterviewer = new JComboBox(model1);
         idSurvey = new JComboBox(model2);
@@ -99,14 +109,17 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         statResultSurvey.setBounds(450, 345, 200, 50);
         statFillSurvey.setBounds(450, 420, 200, 50);
         close.setBounds(450, 495, 200, 50);
-        listOfInterviewers.setBounds(100, 150, 300, 400);
+        listOfInterviewers.setBounds(100, 100, 300, 450);
         
         ListSelectionListener listListener = new ListSelectionListener() {
 
             public void valueChanged(ListSelectionEvent e) {
-                selectedInterviewers = listOfInterviewers.getSelectedValuesList();
+                selectedInterviewers = null;
+                for(int a : listOfInterviewers.getSelectedIndices())
+                    selectedInterviewers.add(interviewers.get(a));
             }
         };
+        
         idSurvey.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e){
                 String selectedIdSurvey = (String) idSurvey.getSelectedItem();
@@ -158,14 +171,20 @@ public class StatisticsFrame extends JFrame implements ActionListener{
        }
        
        if(source == statFillSurvey){
-           Object repo = idSurvey.getSelectedItem();
-           Object selected = idInterviewer.getSelectedItem();
-           StatisticsFilledSurveys statisticsFilledSurveys = new StatisticsFilledSurveys(applicationLogic, selected, repo);
+           surveys = applicationLogic.getSurveysRepository().getSurveysOfMacs((String) idSurvey.getSelectedItem(), applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
+           EventQueue.invokeLater(new Runnable() {
+		//	@Override
+			public void run() {
+                            ShowStatisticsFilledSurveys show = new ShowStatisticsFilledSurveys(surveys);             
+                        }
+		});
        }
        
        if(source == statResultSurvey){
+           surveys = applicationLogic.getSurveysRepository().getSurveysOfMacs((String) idSurvey.getSelectedItem(), applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
            
+       
        }
-    }
     
+    }
 }
