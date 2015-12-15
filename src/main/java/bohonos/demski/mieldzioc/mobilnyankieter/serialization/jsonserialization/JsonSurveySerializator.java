@@ -10,6 +10,9 @@ import bohonos.demski.mieldzioc.mobilnyankieter.constraints.IConstraint;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.serialization.ISerializator;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class JsonSurveySerializator implements ISerializator {
 	private static final String QUESTION_PACKAGE_NAME;
@@ -53,7 +56,9 @@ public class JsonSurveySerializator implements ISerializator {
 		Gson gson = prepareGson();
 
 		try {
-			List<Survey> surveys = (List<Survey>) gson.fromJson(surveysInJson, List.class);
+                        Type listType = new TypeToken<List<Survey>>() {}.getType();
+                        List<Survey> surveys = gson.fromJson(surveysInJson, listType);
+			//List<Survey> surveys = (List<Survey>) gson.fromJson(surveysInJson, List.class);
 
 			for (Survey survey : surveys) {
 				if (survey.getTitle() == null) {

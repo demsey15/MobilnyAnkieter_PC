@@ -17,11 +17,11 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
  *
  */
 public class Survey implements Serializable, Cloneable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 	
-	private List<Question> questions = new ArrayList<Question>();
+    private List<Question> questions = new ArrayList<Question>();
     
-	private GregorianCalendar startTime = null;
+    private GregorianCalendar startTime = null;
     private GregorianCalendar finishTime = null;
     
     private String deviceId;

@@ -5,12 +5,17 @@
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.survey;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.*;
 /**
  *
  * @author Andrzej
@@ -338,12 +343,13 @@ public class SurveysRepository {
         countAllMaxNumbersOfSurveys();
     }
     
-    public SurveysRepository(Map<String, List<Survey>> surveys, Map<String, Long> numbersOfSurveys) {
+    public SurveysRepository(Map<String, List<Survey>> surveys, Map<String, Long> numbersOfSurveys) throws IOException {
         this.surveys = surveys;
         this.maxNumbersOfSurveys = numbersOfSurveys;
+        LoadSurveys();
     }
-    public SurveysRepository(){
-        
+    public SurveysRepository() throws IOException{
+        LoadSurveys();
     }
 
     /**
@@ -387,5 +393,28 @@ public class SurveysRepository {
         }
         return surveysWithMacs;
     }
+    
+    private void LoadSurveys() throws FileNotFoundException, IOException{
+        File folder = new File("C:" + File.separator + "ankieter" + File.separator + "surveys");
+        File[] listOfFiles = folder.listFiles();
+        JsonSurveySerializator jsonSerializator = new JsonSurveySerializator();
+        //List<File> listOfSurveys = new ArrayList<File>();
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                System.out.println("Nazwa wczytanej ankiety: "+file.getName());
+                //listOfSurveys.add(file);
+                String filePath = file.getPath();// Do something with child
+                BufferedReader br = new BufferedReader(new FileReader(filePath));
+                String line = br.readLine();
+                if (line!=null) {
+                    System.out.println("Wczytana linia wypelnionej ankiety: " + line);
+                    List<Survey> listOfSurveys = jsonSerializator.deserializeListOfSurveys(line);
+                    for(Survey survey : listOfSurveys){
+                        addNewSurvey(survey);
+                    }
+            }
+        }
+    }
 
+    }
 }
