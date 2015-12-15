@@ -105,12 +105,10 @@ public class DateTimeQuestion extends Question {
 				list.add("" + userAnswer.get(GregorianCalendar.DAY_OF_MONTH));
 				list.add("" + (userAnswer.get(GregorianCalendar.MONTH) + 1));
 				list.add("" + userAnswer.get(GregorianCalendar.YEAR));
-				System.out.println(Arrays.toString(list.toArray()));
 			} else if (isOnlyTime()) {
 				list.add("" + (userAnswer.get(GregorianCalendar.HOUR_OF_DAY)));
 				list.add("" + userAnswer.get(GregorianCalendar.MINUTE));
 				list.add("" + userAnswer.get(GregorianCalendar.SECOND));
-				System.out.println("Minute: " + Arrays.toString(list.toArray()));
 			}
 		}
 		return list;
