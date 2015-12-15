@@ -293,9 +293,13 @@ public class SurveyHandler {
         this.loadSurveysTemplates();
     }
     
-    public void saveSurveyTemplates() throws FileNotFoundException, UnsupportedEncodingException{
+    public void saveSurveyTemplates() throws FileNotFoundException, UnsupportedEncodingException, IOException{
         for (String id : surveysId.keySet()){
-            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "templates" + File.separator + id + ".json";
+            String shortId = id.replace(":", "");
+            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "templates" + File.separator + shortId + ".json";
+            System.out.println("Id zapisywanego szablonu: " + id);
+            File templateFile = new File(templatePath);
+            templateFile.createNewFile();
             PrintWriter writer = new PrintWriter(templatePath, "UTF-8");
             writer.println((new JsonSurveySerializator()).serializeSurvey(getSurvey(id)));
             writer.close();
