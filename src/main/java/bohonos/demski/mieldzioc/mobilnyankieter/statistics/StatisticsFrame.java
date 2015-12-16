@@ -168,7 +168,15 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         }
        
        if(source == rankInterviewers){
-           
+          if(selectedInterviewers.size()>0){
+           surveys = applicationLogic.getSurveysRepository().getSurveysOfMacs((String) idSurvey.getSelectedItem(), applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
+           EventQueue.invokeLater(new Runnable() {
+		//	@Override
+			public void run() {
+                            RankInterviewer show = new RankInterviewer(surveys, selectedInterviewers);             
+                        }
+		});
+          }
        }
        
        if(source == statisticsInterviewer){
@@ -178,16 +186,18 @@ public class StatisticsFrame extends JFrame implements ActionListener{
        }
        
        if(source == statFillSurvey){
-           surveys = applicationLogic.getSurveysRepository().getSurveysOfMacs((String) idSurvey.getSelectedItem(), applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
-           System.out.println("Liczba ankiet:" + surveys.size());
-           System.out.println("Lista adresow mac:" + applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
-           System.out.println("Nazwa ankiety: " + (String) idSurvey.getSelectedItem());
-           EventQueue.invokeLater(new Runnable() {
+           if(selectedInterviewers.size()>0){
+                surveys = applicationLogic.getSurveysRepository().getSurveysOfMacs((String) idSurvey.getSelectedItem(), applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
+                System.out.println("Liczba ankiet:" + surveys.size());
+                System.out.println("Lista adresow mac:" + applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
+                System.out.println("Nazwa ankiety: " + (String) idSurvey.getSelectedItem());
+                EventQueue.invokeLater(new Runnable() {
 		//	@Override
 			public void run() {
                             ShowStatisticsFilledSurveys show = new ShowStatisticsFilledSurveys(surveys);             
                         }
 		});
+            }
        }
        
        if(source == statResultSurvey){

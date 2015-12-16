@@ -145,7 +145,7 @@ public class InterviewersRepository {
   }
   public List<String> getMacAdress(List<Interviewer> inter){
       List<String> macs = new ArrayList();
-      if(inter.size()>0){
+
         for(Interviewer i : inter){
               //List<String> w= i.getMacAdresses();
             for(String m : i.getMacAdresses()){
@@ -153,9 +153,6 @@ public class InterviewersRepository {
             }
         }
         return macs;
-      }
-      else
-          return macs;
   }
   //edytowanie listy , usuwanie ankieterów i te sprawy trzeba dodaæ
 

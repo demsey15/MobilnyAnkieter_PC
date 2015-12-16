@@ -18,6 +18,10 @@ import static javax.swing.UIManager.get;
  * @author Delirus
  */
 public class InterviewerStatisticsProvider {
+
+    public InterviewerStatisticsProvider() {
+    }
+
     
     /**
      * Metoda s³uzy do obliczania dni pomiêdzy dwoma datami.
@@ -282,5 +286,64 @@ public class InterviewerStatisticsProvider {
     else{
         return 0;
     }
-}
+   }
+    
+    public List<Pair<String, Integer>> getNumbersOfFilledSurveysByMac(List<Survey> surveys){
+        List<Pair<String, Integer>> map = new ArrayList<Pair<String, Integer>>();
+        String mac;       
+        for(Survey survey : surveys){
+                String w = survey.getDeviceId().substring(0, 17);;
+                if(map.size()==0){
+                    Pair<String, Integer> pair = new Pair();
+                    pair.setFirst(w);
+                    //System.out.println("Device id: "+sw);
+                    pair.setSecond(1);
+                    map.add(pair);
+                }          
+                else{
+                    for(Pair<String, Integer> para : map){
+                        if(para.getFirst().equals(w)){
+                            para.setSecond(para.getSecond()+1);
+                        }
+                    }
+                }
+                boolean ster = true;
+                for(Pair<String, Integer> para : map){
+                        if(para.getFirst().equals(w)){
+                            ster=false;
+                        }
+                }
+                if(ster){
+                    Pair<String, Integer> pair = new Pair();
+                    pair.setFirst(w);
+                    pair.setSecond(1);
+                    map.add(pair);
+                }
+            }
+       /*for(Pair<String, Integer> para : map){
+            System.out.println("obiekty: "+ para.getFirst() + " "+para.getSecond());
+        }*/
+        return map;
+    }
+    
+    public List<Pair<Interviewer, Integer>> getNumberOfFilledSurveysPerInterviewer(List<Pair<String, Integer>> lista, List<Interviewer> interviewers){
+        List<Pair<Interviewer, Integer>> ranking = new ArrayList<Pair<Interviewer, Integer>>();
+        for(Interviewer interviewer : interviewers){
+                Pair<Interviewer, Integer> couple = new Pair();
+                couple.setFirst(interviewer);
+                couple.setSecond(0);
+                ranking.add(couple);                    
+        }
+        for(Pair<String, Integer> pair:lista){
+            for(Pair<Interviewer, Integer> couple : ranking){
+                if(couple.getFirst().getMacAdresses().contains(pair.getFirst())){
+                    couple.setSecond(couple.getSecond()+pair.getSecond());
+                }
+            }
+        }
+        /*for(Pair<Interviewer, Integer> couple : ranking){
+            System.out.println("obiekty: "+ couple.getFirst() + " "+couple.getSecond());
+        }*/
+        return ranking;
+    }
 }
