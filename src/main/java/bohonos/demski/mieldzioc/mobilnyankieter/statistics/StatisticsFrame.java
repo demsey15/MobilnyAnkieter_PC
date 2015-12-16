@@ -29,6 +29,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.awt.EventQueue;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -88,7 +89,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         
         for(Entry<String, Long> entrSurv : applicationLogic.getSurveysRepository().getAllMaxNumbersOfSurveys().entrySet()){
             if(entrSurv.getValue()>0){
-                comboBoxItems2.add(entrSurv);
+                comboBoxItems2.add(entrSurv.getKey());
             }
         }      
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(comboBoxItems2);
@@ -101,7 +102,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         listOfInterviewers = new JList(listModel);
         
         //idInterviewer.setBounds(250, 30, 200, 30);
-        idSurvey.setBounds(250, 30, 200, 30);
+        idSurvey.setBounds(250, 30, 350, 30);
         //jInterviewer.setBounds(150, 20, 100, 50);
         jSurvey.setBounds(150,20,100, 50);
         rankInterviewers.setBounds(450, 195, 200, 50);
@@ -114,7 +115,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         ListSelectionListener listListener = new ListSelectionListener() {
 
             public void valueChanged(ListSelectionEvent e) {
-                selectedInterviewers = null;
+                selectedInterviewers = new ArrayList<Interviewer>();
                 for(int a : listOfInterviewers.getSelectedIndices())
                     selectedInterviewers.add(interviewers.get(a));
             }
@@ -124,8 +125,12 @@ public class StatisticsFrame extends JFrame implements ActionListener{
             public void actionPerformed(ActionEvent e){
                 String selectedIdSurvey = (String) idSurvey.getSelectedItem();
                 List<String> macs = applicationLogic.getSurveysRepository().getMacsOfSurvey(selectedIdSurvey);
+                //System.out.println("Liczba maców: "+macs.size());
                 interviewers = applicationLogic.getInterviewersRepository().getSelectedInterviewers(macs);
-                for( Interviewer interviewer : interviewers){               
+                //System.out.println("Liczba ankieterów z zadanych maców: " + interviewers.size());
+                listModel.clear();
+                for(Interviewer interviewer : interviewers){     
+                    System.out.println("Lista: " + interviewer.getName()+" "+interviewer.getSurname()+" "+interviewer.getId());
                     listModel.addElement(interviewer.getName()+" "+interviewer.getSurname()+" "+interviewer.getId());
                 }
         
