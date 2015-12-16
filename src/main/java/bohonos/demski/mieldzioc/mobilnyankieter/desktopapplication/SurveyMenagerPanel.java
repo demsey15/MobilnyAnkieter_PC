@@ -45,7 +45,7 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
     private int status;
     
     private JLabel idLabel, titleLabel, descriptionLabel, statusLabel;
-    private JButton activeButton, disactiveButton;
+    private JButton activeButton, disactiveButton, saveToFileButton;
     
     public SurveyMenagerPanel (Survey survey, SurveyMenagerFrame surveyMenagerFrame) throws IOException, ParseException {
         
@@ -62,11 +62,11 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
         this.add(idLabel);
         
         titleLabel = new JLabel(survey.getTitle());
-        titleLabel.setBounds(140, 15, 160, 20);
+        titleLabel.setBounds(140, 15, 150, 20);
         this.add(titleLabel);
         
         descriptionLabel = new JLabel(survey.getDescription());
-        descriptionLabel.setBounds(305, 15, 250, 20);
+        descriptionLabel.setBounds(295, 15, 200, 20);
         this.add(descriptionLabel);
         
         status = applicationLogic.getSurveyHandler().getSurveyStatus(survey);
@@ -80,21 +80,25 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
         }
         
         statusLabel = new JLabel(statusString);
-        statusLabel.setBounds(560, 15, 120, 20);
+        statusLabel.setBounds(500, 15, 120, 20);
         this.add(statusLabel);
         
         activeButton = new JButton("Aktywuj");
-        activeButton.setBounds(685, 10, 85, 30);
+        activeButton.setBounds(625, 10, 120, 30);
         activeButton.addActionListener(this);
         
         disactiveButton = new JButton("Zawieœ");
-        disactiveButton.setBounds(685, 10, 85, 30);
+        disactiveButton.setBounds(625, 10, 120, 30);
         disactiveButton.addActionListener(this);
+        
+        saveToFileButton = new JButton("Zapisz do pliku");
+        saveToFileButton.setBounds(625, 10, 120, 30);
+        saveToFileButton.addActionListener(this);
         
         switch (status) {
             case SurveyHandler.IN_PROGRESS : this.add(activeButton);
                                              break;
-            case SurveyHandler.ACTIVE : this.add(disactiveButton);
+            case SurveyHandler.ACTIVE : this.add(saveToFileButton);
                                         break;
             case SurveyHandler.INACTIVE : this.add(activeButton);
                                           break;
@@ -109,7 +113,7 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
         if (source == activeButton) {
             applicationLogic.getSurveyHandler().setSurveyStatus(survey, SurveyHandler.ACTIVE);
             this.remove(activeButton);
-            this.add(disactiveButton);
+            this.add(saveToFileButton);
             statusLabel.setText("aktywna");
             System.out.println("ankieta: " + (new JsonSurveySerializator()).serializeSurvey(survey));
             //TODO udostêpnienie ankiety
@@ -137,6 +141,10 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
             this.add(activeButton);
             statusLabel.setText("nieaktywna");
             SwingUtilities.updateComponentTreeUI(this);
+        }
+        
+        if (source == saveToFileButton) {
+            //TODO zapis do pliku
         }
     }
     
