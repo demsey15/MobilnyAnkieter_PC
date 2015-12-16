@@ -39,13 +39,13 @@ public class ShowStatisticsFilledSurveys extends JFrame implements ActionListene
 			}
 		});
         
-         this.surveys = surveys;
-         stats = new SurveysStatisticsProvider();
-         setSize(400, 400);
+        this.surveys = surveys;
+        stats = new SurveysStatisticsProvider();
+        setSize(400, 300);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
-         con = this.getContentPane();
+        con = this.getContentPane();
         con.add(panel);
         
         /*
@@ -56,18 +56,13 @@ public class ShowStatisticsFilledSurveys extends JFrame implements ActionListene
         */
         j1 = new JLabel("Liczba zebranych ankiet: "+ stats.getNumberOfFilledSurveys(surveys));
         j2 = new JLabel("Œrednia liczba zebranych ankiet na dzieñ: "+stats.getMeanFilledSurveysOnADay(surveys));
-        j3 = new JLabel("Œredni czas wype³niania ankiety: "+stats.getMeanTimeOfInfillSurvey(surveys));
-        
-        
-                
-                
-                
-                
+        j3 = new JLabel("Œredni czas wype³niania ankiety: "+stats.getMeanTimeOfInfillSurvey(surveys)+" min");
+    
         close = new JButton("Zamknij");
-        j1.setBounds(50, 20, 200, 30);
-        j2.setBounds(10, 80, 280, 30);
-        j3.setBounds(30, 140, 240, 30);
-        close.setBounds(100, 200, 150, 50);
+        j1.setBounds(100, 20, 200, 30);
+        j2.setBounds(50, 80, 300, 30);
+        j3.setBounds(50, 140, 300, 30);
+        close.setBounds(125, 200, 150, 50);
         
         panel.setLayout(null); 
                  
