@@ -116,8 +116,10 @@ public class StatisticsFrame extends JFrame implements ActionListener{
 
             public void valueChanged(ListSelectionEvent e) {
                 selectedInterviewers = new ArrayList<Interviewer>();
-                for(int a : listOfInterviewers.getSelectedIndices())
-                    selectedInterviewers.add(interviewers.get(a));
+                for(int a=0; a < interviewers.size();a++){
+                    if(listOfInterviewers.isSelectedIndex(a))
+                        selectedInterviewers.add(interviewers.get(a));
+                }
             }
         };
         
@@ -154,7 +156,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         statFillSurvey.addActionListener(this);
         statResultSurvey.addActionListener(this);
         close.addActionListener(this);
-        
+        listOfInterviewers.addListSelectionListener(listListener);
         
         setVisible(true);
     }
@@ -177,6 +179,9 @@ public class StatisticsFrame extends JFrame implements ActionListener{
        
        if(source == statFillSurvey){
            surveys = applicationLogic.getSurveysRepository().getSurveysOfMacs((String) idSurvey.getSelectedItem(), applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
+           System.out.println("Liczba ankiet:" + surveys.size());
+           System.out.println("Lista adresow mac:" + applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
+           System.out.println("Nazwa ankiety: " + (String) idSurvey.getSelectedItem());
            EventQueue.invokeLater(new Runnable() {
 		//	@Override
 			public void run() {

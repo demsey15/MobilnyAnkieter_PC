@@ -58,6 +58,8 @@ public class GraphicInterface extends JFrame implements ActionListener{
                                 Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (UnsupportedEncodingException ex) {
                                 Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (IOException ex) {
+                                Logger.getLogger(GraphicInterface.class.getName()).log(Level.SEVERE, null, ex);
                             }
 				dispose();
 				System.exit(0);
@@ -133,7 +135,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
 
         if(source == statisticsButton){
             EventQueue.invokeLater(new Runnable() {
-              //  @Override
+                //@Override
                 public void run() {
                     StatisticsFrame statiticsFrame = new StatisticsFrame(applicationLogic);
                 }
