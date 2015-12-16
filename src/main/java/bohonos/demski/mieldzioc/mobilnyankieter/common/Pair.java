@@ -1,11 +1,13 @@
 package bohonos.demski.mieldzioc.mobilnyankieter.common;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Dominik Demski
  */
-public class Pair<T, U> {
+public class Pair<T, U> implements Serializable {
+	private static final long serialVersionUID = 631276828568194569L;
 	private T first;
 	private U second;
 
