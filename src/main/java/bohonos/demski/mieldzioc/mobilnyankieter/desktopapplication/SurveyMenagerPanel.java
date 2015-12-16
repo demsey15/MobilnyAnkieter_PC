@@ -114,10 +114,10 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
             System.out.println("ankieta: " + (new JsonSurveySerializator()).serializeSurvey(survey));
             //TODO udostêpnienie ankiety
             GregorianCalendar date = new GregorianCalendar();
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd HH.mm.ss.SSS");
             fmt.setCalendar(date);
             String dateFormatted = fmt.format(date.getTime());
-            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "activeTemplates" + File.separator + dateFormatted + " " + survey.getIdOfSurveys() + " " + survey.getTitle() + ".json";
+            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "activeTemplates" + File.separator + dateFormatted + " " + survey.getTitle() + ".json";
             PrintWriter writer;
             try {
                 writer = new PrintWriter(templatePath, "UTF-8");
