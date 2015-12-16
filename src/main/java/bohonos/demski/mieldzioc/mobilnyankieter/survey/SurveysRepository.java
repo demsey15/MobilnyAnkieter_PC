@@ -385,7 +385,7 @@ public class SurveysRepository {
         for (Survey survey : surveysWithId) {
             String deviceId = survey.getDeviceId();
             if (deviceId.length()>16) {
-                String mac = deviceId.substring(0, 16);
+                String mac = deviceId.substring(0, 17);
                 if (macs.contains(mac)) {
                     surveysWithMacs.add(survey);
                 }
