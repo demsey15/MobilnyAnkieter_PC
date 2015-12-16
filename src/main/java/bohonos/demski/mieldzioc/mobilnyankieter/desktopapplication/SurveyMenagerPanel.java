@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -111,7 +113,11 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
             statusLabel.setText("aktywna");
             System.out.println("ankieta: " + (new JsonSurveySerializator()).serializeSurvey(survey));
             //TODO udostêpnienie ankiety
-            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "activeTemplates" + File.separator + survey.getIdOfSurveys() + ".json";
+            GregorianCalendar date = new GregorianCalendar();
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd");
+            fmt.setCalendar(date);
+            String dateFormatted = fmt.format(date.getTime());
+            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "activeTemplates" + File.separator + dateFormatted + " " + survey.getIdOfSurveys() + " " + survey.getTitle() + ".json";
             PrintWriter writer;
             try {
                 writer = new PrintWriter(templatePath, "UTF-8");
