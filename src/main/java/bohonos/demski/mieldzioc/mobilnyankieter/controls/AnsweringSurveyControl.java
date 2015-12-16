@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
+import bohonos.demski.mieldzioc.mobilnyankieter.survey.ISurveyRepository;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
-import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveysRepository;
 
 public class AnsweringSurveyControl {
 	
@@ -223,7 +223,7 @@ public class AnsweringSurveyControl {
 	 * @return true, jeœli ukoñczono ankietê i uda³o siê j¹ dodaæ do repozytorium,
 	 * w przeciwnym przypadku false (nie ukoñczono jeszcze wype³niania ankiety).
 	 */
-	public boolean finishAnswering(SurveysRepository surveysRepository){
+	public boolean finishAnswering(ISurveyRepository surveysRepository){
 		if(survey == null) throw new NullPointerException("Przed rozpoczeciem wype³niania ankiety"
 				+ " wywo³aj metodê startAnswering");
 		if(survey.finishSurvey()){

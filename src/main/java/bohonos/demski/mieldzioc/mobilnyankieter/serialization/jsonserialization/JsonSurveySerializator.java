@@ -1,18 +1,17 @@
 package bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.constraints.IConstraint;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.serialization.ISerializator;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 public class JsonSurveySerializator implements ISerializator {
 	private static final String QUESTION_PACKAGE_NAME;
