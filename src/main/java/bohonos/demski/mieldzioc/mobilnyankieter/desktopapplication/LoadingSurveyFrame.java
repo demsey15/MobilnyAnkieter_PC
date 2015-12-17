@@ -33,7 +33,7 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
     private List<String> selectedSurveysList;
     
     public LoadingSurveyFrame(CreatorFrame creatorFrame) throws IOException, ParseException{
-        super("edytuj ankietê");
+        super("otwórz ankietê");
         applicationLogic = ApplicationLogic.getInstance();
         this.creatorFrame = creatorFrame;
         
@@ -57,7 +57,7 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
         setResizable(false);
         this.setLayout(null);
         
-        editButton = new JButton("Edytuj");
+        editButton = new JButton("Otwórz");
         editButton.setBounds(160, 200, 100, 40);
         this.add(editButton);
         editButton.addActionListener(this);

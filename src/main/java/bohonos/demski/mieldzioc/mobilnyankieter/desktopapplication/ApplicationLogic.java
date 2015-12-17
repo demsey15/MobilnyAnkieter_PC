@@ -129,9 +129,14 @@ public class ApplicationLogic {
      */
     public String[] getSurveysList() {
         Map<String,Survey> surveys = surveyHandler.getStatusSurveysId(0);
-        String[] surveysList = new String[surveys.size()];
+        Map<String,Survey> activeSurveys = surveyHandler.getStatusSurveysId(1);
+        String[] surveysList = new String[surveys.size()+activeSurveys.size()];
         int iterator = 0;
         for (Map.Entry<String,Survey> entry : surveys.entrySet()) {
+            surveysList[iterator] = entry.getKey();
+            iterator++;
+        }
+        for (Map.Entry<String,Survey> entry : activeSurveys.entrySet()) {
             surveysList[iterator] = entry.getKey();
             iterator++;
         }
