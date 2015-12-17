@@ -43,7 +43,7 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
         for (int iterator = 0; iterator < surveysList.length; iterator++) {
             surveysItems.addElement(surveysList[iterator] + "  " + applicationLogic.getSurveyTitle(surveysList[iterator]));
         }
-        list.setBounds(40, 10, 220, 170);
+        list.setBounds(40, 10, 320, 170);
         ListSelectionListener lsl = new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 selectedSurveysList = list.getSelectedValuesList();
@@ -52,18 +52,18 @@ public class LoadingSurveyFrame extends JFrame implements ActionListener{
         this.add(list);
         list.addListSelectionListener(lsl);
         
-        setSize(300, 300);
+        setSize(400, 300);
         setLocation(400,300);
         setResizable(false);
         this.setLayout(null);
         
         editButton = new JButton("Otwórz");
-        editButton.setBounds(160, 200, 100, 40);
+        editButton.setBounds(210, 200, 100, 40);
         this.add(editButton);
         editButton.addActionListener(this);
         
         cancelButton = new JButton("Anuluj");
-        cancelButton.setBounds(40, 200, 100, 40);
+        cancelButton.setBounds(90, 200, 100, 40);
         this.add(cancelButton);
         cancelButton.addActionListener(this);
         

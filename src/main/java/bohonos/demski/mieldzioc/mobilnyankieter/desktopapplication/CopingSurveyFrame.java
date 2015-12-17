@@ -71,7 +71,7 @@ public class CopingSurveyFrame extends JFrame implements ActionListener{
         for (int iterator = 0; iterator < surveysList.length; iterator++) {
             surveysItems.addElement(surveysList[iterator] + "  " + applicationLogic.getSurveyTitle(surveysList[iterator]));
         }
-        list.setBounds(40, 150, 220, 170);
+        list.setBounds(40, 150, 300, 170);
         ListSelectionListener lsl = new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 selectedSurveysList = list.getSelectedValuesList();
