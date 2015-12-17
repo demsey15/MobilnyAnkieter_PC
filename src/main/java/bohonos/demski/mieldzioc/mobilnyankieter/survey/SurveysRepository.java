@@ -400,6 +400,7 @@ public class SurveysRepository {
     
     private void LoadSurveys() throws FileNotFoundException, IOException{
         Charset ch = Charset.forName("UTF-8");
+        
         File folder = new File("C:" + File.separator + "ankieter" + File.separator + "surveys");
         File[] listOfFiles = folder.listFiles();
         JsonSurveySerializator jsonSerializator = new JsonSurveySerializator();

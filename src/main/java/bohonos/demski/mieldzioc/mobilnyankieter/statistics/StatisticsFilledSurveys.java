@@ -32,6 +32,7 @@ public class StatisticsFilledSurveys extends JFrame implements ActionListener{
     private JPanel panel;
     private JButton close;
     private Container con;
+    private JButton ad;
     
     public StatisticsFilledSurveys( ApplicationLogic applicationLogic, Object s, Object repo){
          super("Statystyki wype³nianej ankiety");
