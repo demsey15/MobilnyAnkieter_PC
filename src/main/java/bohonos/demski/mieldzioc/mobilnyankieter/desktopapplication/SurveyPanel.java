@@ -46,15 +46,15 @@ public class SurveyPanel extends JPanel implements ActionListener {
     
     private int questionsPosition = 0;
     
-    private Boolean titleSaved, descriptionSaved;
+    private Boolean titleSaved, descriptionSaved, summarySaved;
     private ApplicationLogic applicationLogic;
     private String idOfSurvey;
-    private JButton changeTitleButton, changeDescriptionButton;
-    private JLabel titleLabel, descriptionLabel, title, description;
+    private JButton changeTitleButton, changeDescriptionButton, changeSummaryButton;
+    private JLabel titleLabel, descriptionLabel, summaryLabel, title, description, summary;
     private JPanel questionsPanel;
     private JScrollPane scrollPane;
     private Container container;
-    private JTextField titleField, descriptionField;
+    private JTextField titleField, descriptionField, summaryField;
     
     private CreatingSurveyFrame creatingSurveyFrame;
     private Survey survey;
@@ -69,45 +69,62 @@ public class SurveyPanel extends JPanel implements ActionListener {
         this.setLayout(null);
         
         titleLabel = new JLabel("tytu³ : ");
-        titleLabel.setBounds(20, 20, 80, 30);
+        titleLabel.setBounds(20, 20, 110, 30);
         this.add(titleLabel);
         
         title = new JLabel(applicationLogic.getSurveyTitle(idOfSurvey));
-        title.setBounds(110, 20, 200, 30);
+        title.setBounds(160, 20, 250, 30);
         this.add(title);
         titleSaved = true;
         
         titleField = new JTextField();
-        titleField.setBounds(110, 20, 200, 30);
+        titleField.setBounds(160, 20, 250, 30);
         
         descriptionLabel = new JLabel("opis : ");
-        descriptionLabel.setBounds(20, 70, 80, 30);
+        descriptionLabel.setBounds(20, 70, 110, 30);
         this.add(descriptionLabel);
         
         description = new JLabel(applicationLogic.getSurveyDescription(idOfSurvey));
-        description.setBounds(110, 70, 200, 30);
+        description.setBounds(160, 65, 250, 30);
         this.add(description);
         descriptionSaved = true;
         
         descriptionField = new JTextField();
-        descriptionField.setBounds(110, 70, 200, 30);
+        descriptionField.setBounds(160, 65, 250, 30);
+        
+        summaryLabel = new JLabel("podsumowanie : ");
+        summaryLabel.setBounds(20, 110, 110, 30);
+        this.add(summaryLabel);
+        
+        summary = new JLabel(applicationLogic.getSurveySummary(idOfSurvey));
+        summary.setBounds(160, 110, 250, 30);
+        this.add(summary);
+        summarySaved = true;
+        
+        summaryField = new JTextField();
+        summaryField.setBounds(160, 110, 250, 30);
         
         changeTitleButton = new JButton("Zmieñ tytu³");
-        changeTitleButton.setBounds(350, 20, 120, 30);
+        changeTitleButton.setBounds(500, 20, 150, 30);
         changeTitleButton.addActionListener(this);
         this.add(changeTitleButton);
         
         changeDescriptionButton = new JButton("Zmieñ opis");
-        changeDescriptionButton.setBounds(350, 70, 120, 30);
+        changeDescriptionButton.setBounds(500, 65, 150, 30);
         changeDescriptionButton.addActionListener(this);
         this.add(changeDescriptionButton);
+        
+        changeSummaryButton = new JButton("Zmieñ podsumowanie");
+        changeSummaryButton.setBounds(500, 110, 150, 30);
+        changeSummaryButton.addActionListener(this);
+        this.add(changeSummaryButton);
         
         questionsPanel = new JPanel();
         questionsPanel.setLayout(null);
         scrollPane = new JScrollPane(questionsPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(20, 120, 660, 350);
+        scrollPane.setBounds(20, 160, 660, 350);
         
         this.add(scrollPane);
         
@@ -273,6 +290,24 @@ public class SurveyPanel extends JPanel implements ActionListener {
                 this.remove(descriptionField);
                 this.add(description);
                 descriptionSaved = true;
+                SwingUtilities.updateComponentTreeUI(this);
+            }
+        }
+        
+        if (source == changeSummaryButton) {
+            if (summarySaved) {
+                summaryField.setText(survey.getSummary());
+                this.remove(summary);
+                this.add(summaryField);
+                summarySaved = false;
+                SwingUtilities.updateComponentTreeUI(this);
+            }
+            else {
+                survey.setSummary(summaryField.getText());
+                summary.setText(survey.getSummary());
+                this.remove(summaryField);
+                this.add(summary);
+                summarySaved = true;
                 SwingUtilities.updateComponentTreeUI(this);
             }
         }
