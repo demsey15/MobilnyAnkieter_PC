@@ -144,9 +144,10 @@ public class InterviewersRepository {
             //while (line != null) {
             while(scan.hasNextLine()){
                 line = scan.nextLine();
-                System.out.println("Wczytana linia: " + line);
-                boolean addInterviewer = this.addInterviewer(Interviewer.stringToInterviewer(line));
-                //line = br.readLine();
+                if (!line.equals("")){
+                    System.out.println("Wczytana linia: " + line);
+                    boolean addInterviewer = this.addInterviewer(Interviewer.stringToInterviewer(line));
+                }//line = br.readLine();
                 
             }
             //String everything = sb.toString();
