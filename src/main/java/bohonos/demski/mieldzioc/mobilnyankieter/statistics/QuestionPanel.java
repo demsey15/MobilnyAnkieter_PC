@@ -11,6 +11,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -62,6 +63,15 @@ public class QuestionPanel extends JPanel implements ActionListener{
     
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
+        if(source==check){
+            EventQueue.invokeLater(new Runnable() {
+		//	@Override
+			public void run() {           
+                                QuestionStatistics show = new QuestionStatistics(surveys, numberOfQuestion);
+                           
+                        }
+		});
+        }
     }
     private String getAnswersAsString(List<String> list){
         String s="";

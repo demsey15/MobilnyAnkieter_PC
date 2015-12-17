@@ -39,7 +39,7 @@ public class StatisticsFilledSurveys extends JFrame implements ActionListener{
                         @Override
 			public void windowClosing(WindowEvent we){
 				dispose();
-				System.exit(0);
+				//System.exit(0);
 			}
 		});
          this.applicationLogic = applicationLogic;

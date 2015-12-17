@@ -201,8 +201,8 @@ public class StatisticsFrame extends JFrame implements ActionListener{
        }
        
        if(source == statResultSurvey){
-           surveys = applicationLogic.getSurveysRepository().getSurveysOfMacs((String) idSurvey.getSelectedItem(), applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));
            if(selectedInterviewers.size()>0){
+           surveys = applicationLogic.getSurveysRepository().getSurveysOfMacs((String) idSurvey.getSelectedItem(), applicationLogic.getInterviewersRepository().getMacAdress(selectedInterviewers));         
            EventQueue.invokeLater(new Runnable() {
 		//	@Override
 			public void run() {           
