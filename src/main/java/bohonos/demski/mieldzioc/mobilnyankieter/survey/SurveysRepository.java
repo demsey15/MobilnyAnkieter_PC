@@ -16,6 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.*;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.Scanner;
 /**
  *
  * @author Andrzej
@@ -395,6 +399,7 @@ public class SurveysRepository {
     }
     
     private void LoadSurveys() throws FileNotFoundException, IOException{
+        Charset ch = Charset.forName("UTF-8");
         File folder = new File("C:" + File.separator + "ankieter" + File.separator + "surveys");
         File[] listOfFiles = folder.listFiles();
         JsonSurveySerializator jsonSerializator = new JsonSurveySerializator();
@@ -404,8 +409,8 @@ public class SurveysRepository {
                 System.out.println("Nazwa wczytanej ankiety: "+file.getName());
                 //listOfSurveys.add(file);
                 String filePath = file.getPath();// Do something with child
-                BufferedReader br = new BufferedReader(new FileReader(filePath));
-                String line = br.readLine();
+                Scanner br = new Scanner(new InputStreamReader(new FileInputStream(filePath),ch));
+                String line = br.nextLine();
                 if (line!=null) {
                     System.out.println("Wczytana linia wypelnionej ankiety: " + line);
                     List<Survey> listOfSurveys = jsonSerializator.deserializeListOfSurveys(line);
