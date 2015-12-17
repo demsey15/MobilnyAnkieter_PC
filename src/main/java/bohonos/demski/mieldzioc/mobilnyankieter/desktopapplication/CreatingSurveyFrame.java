@@ -26,8 +26,8 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
     private CreatorFrame creatorFrame;
     private String idOfSurvey;
     private JButton saveButton, cancelButton;
-    private JTextField titleField, descriptionField;
-    private JLabel titleLabel, descriptionLabel;
+    private JTextField titleField, descriptionField, summaryField;
+    private JLabel titleLabel, descriptionLabel, summaryLabel;
     
     public CreatingSurveyFrame(CreatorFrame crFrame) throws IOException, ParseException {
         
@@ -37,34 +37,42 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
         creatorFrame = crFrame;
         //idOfSurvey = id;
         
-        setSize(300, 300);
+        setSize(400, 300);
         setLocation(400,300);
         setResizable(false);
         this.setLayout(null);
         
         titleLabel = new JLabel("tytu³: ");
-        titleLabel.setBounds(20, 20, 70, 30);
+        titleLabel.setBounds(20, 20, 100, 30);
         this.add(titleLabel);
         
         descriptionLabel = new JLabel("opis: ");
-        descriptionLabel.setBounds(20, 70, 70, 30);
+        descriptionLabel.setBounds(20, 65, 100, 30);
         this.add(descriptionLabel);
         
+        summaryLabel = new JLabel("podsumowanie: ");
+        summaryLabel.setBounds(20, 110, 100, 30);
+        this.add(summaryLabel);
+        
         titleField = new JTextField();
-        titleField.setBounds(80, 20, 200, 30);
+        titleField.setBounds(120, 20, 250, 30);
         this.add(titleField);
         
         descriptionField = new JTextField();
-        descriptionField.setBounds(80, 70, 200, 30);
+        descriptionField.setBounds(120, 65, 250, 30);
         this.add(descriptionField);
         
+        summaryField = new JTextField();
+        summaryField.setBounds(120, 110, 250, 30);
+        this.add(summaryField);
+        
         saveButton = new JButton("Zapisz");
-        saveButton.setBounds(160, 200, 100, 40);
+        saveButton.setBounds(210, 200, 100, 40);
         this.add(saveButton);
         saveButton.addActionListener(this);
         
         cancelButton = new JButton("Anuluj");
-        cancelButton.setBounds(40, 200, 100, 40);
+        cancelButton.setBounds(90, 200, 100, 40);
         this.add(cancelButton);
         cancelButton.addActionListener(this);
         
@@ -85,6 +93,7 @@ public class CreatingSurveyFrame extends JFrame implements ActionListener {
                 String idOfSurvey = applicationLogic.newSurvey();
                 applicationLogic.setSurveyTitle(idOfSurvey, titleField.getText());
                 applicationLogic.setSurveyDescription(idOfSurvey, descriptionField.getText());
+                applicationLogic.setSurveySummary(idOfSurvey, summaryField.getText());
                 try {
                     creatorFrame.addSurveyPanel(idOfSurvey);
                 } catch (IOException ex) {

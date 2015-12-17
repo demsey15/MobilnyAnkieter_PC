@@ -106,6 +106,15 @@ public class ApplicationLogic {
         survey.setDescription(description);
     }
     
+    public String getSurveySummary(String idOfSurvey) {
+        return surveyHandler.getSurvey(idOfSurvey).getSummary();
+    }
+    
+    public void setSurveySummary(String idOfSurvey, String summary) {
+        Survey survey = surveyHandler.getSurvey(idOfSurvey);
+        survey.setSummary(summary);
+    }
+    
     /**
      * sets currently logged interviewer
      * @param interviewer logged interviewer
@@ -137,6 +146,9 @@ public class ApplicationLogic {
         Map<String,Survey> inProgresSurveys = surveyHandler.getStatusSurveysId(0);
         Map<String,Survey> activeSurveys = surveyHandler.getStatusSurveysId(1);
         Map<String,Survey> disactiveSurveys = surveyHandler.getStatusSurveysId(2);
+        System.out.println("liczba szablonow w wersji roboczej: " + inProgresSurveys.size());
+        System.out.println("liczba szablonow aktywnych: " + activeSurveys.size());
+        System.out.println("liczba szablonow nieaktywnych: " + disactiveSurveys.size());
         int size = inProgresSurveys.size() + activeSurveys.size() + disactiveSurveys.size();
         String[] surveysList = new String[size];
         int iterator = 0;
