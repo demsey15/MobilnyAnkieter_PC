@@ -268,7 +268,7 @@ public class SurveyHandler {
     	surveys.remove(survey);
     	surveysId.remove(survey.getIdOfSurveys());
     }
-    
+
     public SurveyHandler(int maxSurveysId)
     {
         this.maxSurveysId = maxSurveysId;
@@ -291,6 +291,7 @@ public class SurveyHandler {
             br.close();
         }
         this.loadSurveysTemplates();
+        System.out.println("liczba ankiet w handlerze: " + this.surveys.size());
     }
     
     public void saveSurveyTemplates() throws FileNotFoundException, UnsupportedEncodingException, IOException{
@@ -336,9 +337,19 @@ public class SurveyHandler {
                 if (line!=null) {
                     System.out.println("Wczytana linia szablonu: " + line);
                     Survey survey = (new JsonSurveySerializator()).deserializeSurvey(line);
-                    if (this.loadSurveyTemplate(survey, ACTIVE) == false) {
+                    if (this.getSetOfIds().contains(survey.getIdOfSurveys())){
+                        this.setSurveyStatus(survey.getIdOfSurveys(), ACTIVE);
+                    } else {
+                        this.loadSurveyTemplate(survey, ACTIVE);
+                        //System.out.println("Wchodze do elsa, ale nie wiem czemu...");
+                    }
+                    /*if (this.loadSurveyTemplate(survey, ACTIVE) == false) {
+                        System.out.println("Zmieniam status na ACTIVE");
                         this.setSurveyStatus(survey, ACTIVE);
                     }
+                    else {
+                        System.out.println("Wczytalem jako nowa");
+                    }*/
                 }
             }
         }
