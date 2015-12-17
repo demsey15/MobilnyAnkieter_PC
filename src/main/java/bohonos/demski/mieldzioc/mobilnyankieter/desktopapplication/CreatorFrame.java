@@ -83,7 +83,7 @@ public class CreatorFrame extends JFrame implements ActionListener {
         
         itemNewSurvey = new JMenuItem("Stwórz now¹ ankietê");
         itemCopyOldSurvey = new JMenuItem("Swórz now¹ na podstawie...");
-        itemEditSurvey = new JMenuItem("Edytuj ankietê"); 
+        itemEditSurvey = new JMenuItem("Otwórz ankietê"); 
         
         menuSurvey.add(itemNewSurvey);
         menuSurvey.add(itemCopyOldSurvey);

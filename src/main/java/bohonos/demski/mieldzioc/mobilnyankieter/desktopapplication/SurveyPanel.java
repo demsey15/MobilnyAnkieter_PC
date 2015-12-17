@@ -35,6 +35,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -105,17 +106,17 @@ public class SurveyPanel extends JPanel implements ActionListener {
         summaryField.setBounds(160, 110, 250, 30);
         
         changeTitleButton = new JButton("Zmieñ tytu³");
-        changeTitleButton.setBounds(500, 20, 150, 30);
+        changeTitleButton.setBounds(500, 20, 160, 30);
         changeTitleButton.addActionListener(this);
         this.add(changeTitleButton);
         
         changeDescriptionButton = new JButton("Zmieñ opis");
-        changeDescriptionButton.setBounds(500, 65, 150, 30);
+        changeDescriptionButton.setBounds(500, 65, 160, 30);
         changeDescriptionButton.addActionListener(this);
         this.add(changeDescriptionButton);
         
         changeSummaryButton = new JButton("Zmieñ podsumowanie");
-        changeSummaryButton.setBounds(500, 110, 150, 30);
+        changeSummaryButton.setBounds(500, 110, 160, 30);
         changeSummaryButton.addActionListener(this);
         this.add(changeSummaryButton);
         
@@ -129,6 +130,9 @@ public class SurveyPanel extends JPanel implements ActionListener {
         this.add(scrollPane);
         
         this.refreshQuestionList();//
+        if (applicationLogic.getSurveyHandler().getSurveyStatus(idOfSurvey)==SurveyHandler.ACTIVE) {
+            this.disableEdition();
+        }
     }
     
     /**

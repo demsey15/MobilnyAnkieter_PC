@@ -24,6 +24,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -68,6 +69,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
         
         this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
         
+        if (applicationLogic.getSurveyHandler().getSurveyStatus(survey.getIdOfSurveys())==SurveyHandler.IN_PROGRESS){
         questionEdit = new JButton("Edytuj");
         questionEdit.setBounds(450, 5, 80, 25);
         questionEdit.addActionListener(this);
@@ -87,6 +89,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
         questionDown.setBounds(540, 35, 80, 25);
         questionDown.addActionListener(this);
         this.add(questionDown);
+        }
     }
 
     /**
