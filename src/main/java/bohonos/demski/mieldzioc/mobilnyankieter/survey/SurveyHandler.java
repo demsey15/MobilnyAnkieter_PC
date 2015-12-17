@@ -8,13 +8,17 @@ import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 
@@ -318,10 +322,17 @@ public class SurveyHandler {
         if (directoryListing != null) {
             for (File child : directoryListing) {
                 String filePath = child.getPath();// Do something with child
-                BufferedReader br = new BufferedReader(new FileReader(filePath));
-                String line = br.readLine();
-                if (line!=null) {
-                    System.out.println("Wczytana linia szablonu: " + line);
+                //BufferedReader br = new BufferedReader(new FileReader(filePath));
+                //String line = br.readLine();
+                //if (line!=null) {
+                //    System.out.println("Wczytana linia szablonu: " + line);
+                //    this.loadSurveyTemplate((new JsonSurveySerializator()).deserializeSurvey(line), IN_PROGRESS);
+                //}
+                Charset ch = Charset.forName("UTF-8");
+                Scanner scan = new Scanner(new InputStreamReader(new FileInputStream(filePath),ch));
+                String line;
+                if (scan.hasNextLine()) {
+                    line = scan.nextLine();
                     this.loadSurveyTemplate((new JsonSurveySerializator()).deserializeSurvey(line), IN_PROGRESS);
                 }
             }
@@ -332,10 +343,16 @@ public class SurveyHandler {
         if (activeTemplatesListing != null) {
             for (File child : activeTemplatesListing) {
                 String filePath = child.getPath();// Do something with child
-                BufferedReader br = new BufferedReader(new FileReader(filePath));
-                String line = br.readLine();
-                if (line!=null) {
-                    System.out.println("Wczytana linia szablonu: " + line);
+                //BufferedReader br = new BufferedReader(new FileReader(filePath));
+                //String line = br.readLine();
+                //if (line!=null) {
+                //    System.out.println("Wczytana linia szablonu: " + line);
+                //    Survey survey = (new JsonSurveySerializator()).deserializeSurvey(line);
+                Charset ch = Charset.forName("UTF-8");
+                Scanner scan = new Scanner(new InputStreamReader(new FileInputStream(filePath),ch));
+                String line;
+                if (scan.hasNextLine()) {
+                    line = scan.nextLine();
                     Survey survey = (new JsonSurveySerializator()).deserializeSurvey(line);
                     if (this.getSetOfIds().contains(survey.getIdOfSurveys())){
                         this.setSurveyStatus(survey.getIdOfSurveys(), ACTIVE);
@@ -343,6 +360,14 @@ public class SurveyHandler {
                         this.loadSurveyTemplate(survey, ACTIVE);
                         //System.out.println("Wchodze do elsa, ale nie wiem czemu...");
                     }
+                    //this.loadSurveyTemplate((new JsonSurveySerializator()).deserializeSurvey(line), IN_PROGRESS);
+                }
+                /*if (this.getSetOfIds().contains(survey.getIdOfSurveys())){
+                        this.setSurveyStatus(survey.getIdOfSurveys(), ACTIVE);
+                    } else {
+                        this.loadSurveyTemplate(survey, ACTIVE);
+                        //System.out.println("Wchodze do elsa, ale nie wiem czemu...");
+                    }*/
                     /*if (this.loadSurveyTemplate(survey, ACTIVE) == false) {
                         System.out.println("Zmieniam status na ACTIVE");
                         this.setSurveyStatus(survey, ACTIVE);
@@ -350,7 +375,7 @@ public class SurveyHandler {
                     else {
                         System.out.println("Wczytalem jako nowa");
                     }*/
-                }
+                //}
             }
         }
     }

@@ -11,15 +11,19 @@ package bohonos.demski.mieldzioc.mobilnyankieter.interviewer;
  */
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -129,19 +133,26 @@ public class InterviewersRepository {
   
   public void loadFromFile() throws FileNotFoundException, IOException, ParseException {
       String interviewersPath = "C:" + File.separator + "ankieter" + File.separator + "interviewers.txt";
-      BufferedReader br = new BufferedReader(new FileReader(interviewersPath));
-        try {
+      //BufferedReader br = new BufferedReader(new FileReader(interviewersPath));
+      Charset ch = Charset.forName("UTF-8");
+      Scanner scan = new Scanner(new InputStreamReader(new FileInputStream(interviewersPath),ch));
+      //Scanner scan = new Scanner(new File(interviewersPath));
+        //try {
             //StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
+            //String line = br.readLine();
+            String line;
+            //while (line != null) {
+            while(scan.hasNextLine()){
+                line = scan.nextLine();
                 System.out.println("Wczytana linia: " + line);
                 boolean addInterviewer = this.addInterviewer(Interviewer.stringToInterviewer(line));
-                line = br.readLine();
+                //line = br.readLine();
+                
             }
             //String everything = sb.toString();
-        } finally {
-            br.close();
-        }
+        //} finally {
+            //br.close();
+        //}
   }
   public List<String> getMacAdress(List<Interviewer> inter){
       List<String> macs = new ArrayList();
