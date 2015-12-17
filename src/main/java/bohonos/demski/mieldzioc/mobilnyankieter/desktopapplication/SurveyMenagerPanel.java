@@ -46,12 +46,14 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
     
     private JLabel idLabel, titleLabel, descriptionLabel, statusLabel;
     private JButton activeButton, disactiveButton, saveToFileButton;
+    private CreatorFrame creatorFrame;
     
-    public SurveyMenagerPanel (Survey survey, SurveyMenagerFrame surveyMenagerFrame) throws IOException, ParseException {
+    public SurveyMenagerPanel (Survey survey, SurveyMenagerFrame surveyMenagerFrame, CreatorFrame creatorFrame) throws IOException, ParseException {
         
         applicationLogic = ApplicationLogic.getInstance();
         this.survey = survey;
         this.surveyMenagerFrame = surveyMenagerFrame;
+        this.creatorFrame = creatorFrame;
         
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setLayout(null);
@@ -133,6 +135,13 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
                 Logger.getLogger(SurveyMenagerPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
             SwingUtilities.updateComponentTreeUI(this);
+            try {
+                creatorFrame.disableSurveyEdition(survey.getIdOfSurveys());
+            } catch (IOException ex) {
+                Logger.getLogger(SurveyMenagerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(SurveyMenagerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if (source == disactiveButton) {

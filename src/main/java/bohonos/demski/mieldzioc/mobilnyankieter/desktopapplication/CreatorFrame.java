@@ -204,6 +204,13 @@ public class CreatorFrame extends JFrame implements ActionListener {
         surveyPanel.refreshQuestionList();
     }
     
+    public void disableSurveyEdition(String idOfSurvey) throws IOException, ParseException{
+        if (tabbedPane.indexOfTab(idOfSurvey)!=-1){
+            SurveyPanel surveyPanel = (SurveyPanel)tabbedPane.getComponentAt(tabbedPane.indexOfTab(idOfSurvey));
+            surveyPanel.disableEdition();
+        }
+    }
+    
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
         
@@ -321,18 +328,18 @@ public class CreatorFrame extends JFrame implements ActionListener {
             }
         }
         
-        if (source == menuMenager) {
-            EventQueue.invokeLater(new Runnable() {
-                public void run() {
+        if (source == menuMenager) { //zmiany!!
+            //EventQueue.invokeLater(new Runnable() {
+                //public void run() {
                     try {
-                        SurveyMenagerFrame surveyMenagerFrame = new SurveyMenagerFrame();
+                        SurveyMenagerFrame surveyMenagerFrame = new SurveyMenagerFrame(this);
                     } catch (IOException ex) {
                         Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ParseException ex) {
                         Logger.getLogger(CreatorFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-            });
+                //}
+            //});
         }
 
     }

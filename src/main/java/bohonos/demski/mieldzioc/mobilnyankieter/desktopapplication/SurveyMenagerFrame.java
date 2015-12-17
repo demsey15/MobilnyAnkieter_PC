@@ -29,11 +29,13 @@ public class SurveyMenagerFrame extends JFrame implements ActionListener {
     
     private JPanel surveysPanel;
     private JScrollPane scrollPane;
+    private CreatorFrame creatorFrame;
     
-    public SurveyMenagerFrame() throws IOException, ParseException {
+    public SurveyMenagerFrame(CreatorFrame creatorFrame) throws IOException, ParseException {
         
         super("Zarz¹dzanie ankietami");
         applicationLogic = ApplicationLogic.getInstance();
+        this.creatorFrame = creatorFrame;
         setSize(800,600);
         setLocation(120,110);
         setResizable(false);
@@ -55,7 +57,7 @@ public class SurveyMenagerFrame extends JFrame implements ActionListener {
         surveyPanelPosition = 0;
         surveysPanel.removeAll();     
         for(String idOfSurvey : applicationLogic.getSurveyHandler().getSetOfIds()){
-            SurveyMenagerPanel surveyMenagerPanel = new SurveyMenagerPanel(applicationLogic.getSurveyHandler().getSurvey(idOfSurvey), this);
+            SurveyMenagerPanel surveyMenagerPanel = new SurveyMenagerPanel(applicationLogic.getSurveyHandler().getSurvey(idOfSurvey), this, creatorFrame);
             surveyMenagerPanel.setBounds(0, surveyPanelPosition, SurveyMenagerPanel.WIDTH, SurveyMenagerPanel.HEIGHT);
             surveyPanelPosition = surveyPanelPosition + SurveyMenagerPanel.HEIGHT;
             surveysPanel.setPreferredSize(new Dimension(780,surveyPanelPosition));

@@ -209,6 +209,28 @@ public class SurveyPanel extends JPanel implements ActionListener {
         SwingUtilities.updateComponentTreeUI(this);
     }
     
+    public void disableEdition() throws IOException, ParseException{
+        this.remove(changeTitleButton);
+        this.remove(changeDescriptionButton);
+        this.remove(changeSummaryButton);
+        this.remove(titleField);
+        title = new JLabel(applicationLogic.getSurveyTitle(idOfSurvey));
+        title.setBounds(160, 20, 250, 30);
+        this.add(title);
+        titleSaved = true;
+        this.remove(descriptionField);
+        description = new JLabel(applicationLogic.getSurveyDescription(idOfSurvey));
+        description.setBounds(160, 65, 250, 30);
+        this.add(description);
+        descriptionSaved = true;
+        this.remove(summaryField);
+        summary = new JLabel(applicationLogic.getSurveySummary(idOfSurvey));
+        summary.setBounds(160, 110, 250, 30);
+        this.add(summary);
+        summarySaved = true;
+        refreshQuestionList();
+    }
+    
     /**
      * refreshes all QuestionPanels in survey panel
      */
