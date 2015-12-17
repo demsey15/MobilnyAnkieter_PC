@@ -5,8 +5,7 @@
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.statistics;
 
-import static bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.InterviewerPanel.HEIGHT;
-import static bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.InterviewerPanel.WIDTH;
+
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.awt.Color;
@@ -19,7 +18,25 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.Color;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+
+import bohonos.demski.mieldzioc.mobilnyankieter.questions.DateTimeQuestion;
+import bohonos.demski.mieldzioc.mobilnyankieter.questions.GridQuestion;
+import bohonos.demski.mieldzioc.mobilnyankieter.questions.MultipleChoiceQuestion;
+import bohonos.demski.mieldzioc.mobilnyankieter.questions.OneChoiceQuestion;
+import bohonos.demski.mieldzioc.mobilnyankieter.questions.Question;
+import bohonos.demski.mieldzioc.mobilnyankieter.questions.ScaleQuestion;
+import bohonos.demski.mieldzioc.mobilnyankieter.questions.TextQuestion;
+import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
+import java.io.IOException;
+import java.text.ParseException;
 /**
  *
  * @author Delirus
@@ -47,10 +64,10 @@ public class QuestionPanel extends JPanel implements ActionListener{
         //System.out.println(interviewer.getName()+" "+ interviewer.getSurname()+" "+interviewer.getId());
         questionLabel.setBounds(20, 0, 400, 40);
         
-        answersLabel = new JLabel(this.getAnswersAsString(question.getAnswersAsStringList()));
-        answersLabel.setBounds(20, 40, 400, 40);
+        //answersLabel = new JLabel(this.getAnswersAsString(question.getAnswersAsStringList()));
+        //answersLabel.setBounds(20, 40, 400, 40);
         this.add(questionLabel);
-        this.add(answersLabel);
+        //this.add(answersLabel);
         this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
         check = new JButton("Statystyki odpowiedzi");
         //privileges = new JButton("Uprawnienia");
