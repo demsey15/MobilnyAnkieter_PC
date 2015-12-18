@@ -81,11 +81,41 @@ public class QuestionPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if(source==check){
+            final int type = question.getQuestionType();
             EventQueue.invokeLater(new Runnable() {
 		//	@Override
 			public void run() {           
-                                QuestionStatistics show = new QuestionStatistics(surveys, numberOfQuestion);
-                           
+                           //     QuestionStatistics show = new QuestionStatistics(surveys, numberOfQuestion);
+                           switch (type) {
+                               case Question.DATE_QUESTION: {
+                    DTQuestionStatistics dt = new DTQuestionStatistics(surveys, numberOfQuestion);
+                    break;
+                }
+                case Question.TIME_QUESTION: {
+                     DTQuestionStatistics dt = new DTQuestionStatistics(surveys, numberOfQuestion);
+                    break;
+                }
+                case Question.TEXT_QUESTION: {
+                    TQuestionStatistics t = new TQuestionStatistics(surveys, numberOfQuestion);
+                    break;
+                }
+                case Question.SCALE_QUESTION: {
+                    SQuestionStatistics st = new SQuestionStatistics(surveys, numberOfQuestion);
+                    break;
+                }
+                case Question.GRID_QUESTION: {
+                    GQuestionStatistics gt = new GQuestionStatistics(surveys, numberOfQuestion);
+                    break;
+                }
+                case Question.MULTIPLE_CHOICE_QUESTION: {
+                    MQuestionStatistics mt = new MQuestionStatistics(surveys, numberOfQuestion);
+                    break;
+                }
+                case Question.ONE_CHOICE_QUESTION: {
+                    OQuestionStatistics ot = new OQuestionStatistics(surveys, numberOfQuestion);
+                    break;
+                }
+                           }
                         }
 		});
         }
