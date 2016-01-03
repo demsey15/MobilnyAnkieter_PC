@@ -435,13 +435,20 @@ public class CreatingSurvey {
 	 * albo pytanie jest z³ego typu).
 	 */
 	public boolean addAnswerToChooseQuestion(int questionNumber, String answer){
-		if(answer == null) throw new NullPointerException("Odpowiedz nie moze byc nullem!");
+		if(answer == null){
+			throw new NullPointerException("Odpowiedz nie moze byc nullem!");
+		}
+		
 		Question question;
-		if((question = getQuestion(questionNumber)) == null)
+		
+		if((question = getQuestion(questionNumber)) == null){
 			return false;
+		}
+		
 		if(question instanceof MultipleChoiceQuestion){
 			MultipleChoiceQuestion question2 = (MultipleChoiceQuestion) question;
 			question2.addAnswer(answer);
+		
 			return true;
 		}
 		else if(question instanceof OneChoiceQuestion){
@@ -449,7 +456,39 @@ public class CreatingSurvey {
 			question2.addAnswer(answer);
 			return true;
 		}
-		else return false;
+		else{
+			return false;
+		}
+	}
+	
+	public boolean resetAnswersInChooseQuestion(int questionNumber, List<String> answers){
+		if(answers == null){
+			throw new NullPointerException("Odpowiedz nie moze byc nullem!");
+		}
+		
+		Question question;
+		
+		if((question = getQuestion(questionNumber)) == null){
+			return false;
+		}
+		
+		if(question instanceof MultipleChoiceQuestion){
+			MultipleChoiceQuestion question2 = (MultipleChoiceQuestion) question;
+			
+			question2.resetAnswers(answers);
+			
+			return true;
+		}
+		else if(question instanceof OneChoiceQuestion){
+			OneChoiceQuestion question2 = (OneChoiceQuestion) question;
+			
+			question2.resetAnswers(answers);
+			
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	/**

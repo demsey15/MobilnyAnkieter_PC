@@ -308,34 +308,16 @@ public class CreatingSurveyControl {
 		if(creatingSurvey == null) return false;
 		return creatingSurvey.setScaleQuestionMinValue(questionNumber, minValue);
 	}	
-
-
-	/**
-	 * Dodaj odpowiedü moøliwπ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
-	 * i listy rozwijanej).
-	 * @param questionNumber numer pytania
-	 * @param answer odpowiedü do dodania
-	 * @return true, jeúli dodano odpowiedü, false, jeúli nie (nie ma pytania o zadanym numerze
-	 * albo pytanie jest z≥ego typu, albo nie wywo≥ano wczesniej metody createNewSurvey()).
-	 */
-	public boolean addAnswerToChooseQuestion(int questionNumber, String answer){
-		if(creatingSurvey == null) return false;
-		return creatingSurvey.addAnswerToChooseQuestion(questionNumber, answer);
-	}	
-	/**
-	 * Dodaj odpowiedü moøliwπ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
-	 * i listy rozwijanej) w konkretne miejsce.
-	 * @param questionNumber numer pytania
-	 * @param answer odpowiedü do dodania
-	 * @param position indeks, pod ktÛry ma zostaÊ dodana odpowiedü (numeracja od zera).
-	 * @return true, jeúli dodano odpowiedü, false, jeúli nie (nie ma pytania o zadanym numerze
-	 * albo pytanie jest z≥ego typu, albo position < 0 lub position >= liczba dotychczasowych odpowiedzi,
-	 *  albo nie wywo≥ano wczesniej metody createNewSurvey()).
-	 */
-	public boolean addAnswerToChooseQuestion(int questionNumber, String answer, int position){
-		if(creatingSurvey == null) return false;
-		return creatingSurvey.addAnswerToChooseQuestion(questionNumber, answer, position);
+	
+	public boolean resetAnswersInChooseQuestion(int questionNumber, List<String> answers){
+		if(creatingSurvey == null){
+			return false;
+		}
+		
+		return creatingSurvey.resetAnswersInChooseQuestion(questionNumber, answers);
 	}
+	
+
 	/**
 	 *  UsuÒ odpowiedü moøliwπ do zaznaczenia dla pytania wyboru (jednokrotnego, wielokrotnego
 	 * i listy rozwijanej).
@@ -348,6 +330,7 @@ public class CreatingSurveyControl {
 		if(creatingSurvey == null) return false;
 		return creatingSurvey.removeAnswerFromChooseQuestion(questionNumber, position);
 	}
+	
 	/**
 	 * PrzesuÒ odpowiedü do pytania typu wyboru (jednoktornego, wielokrotnego,
 	 * rozwijana lista) o jeden indeks do przodu.

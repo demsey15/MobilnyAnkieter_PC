@@ -44,7 +44,7 @@ public class MultipleChoiceQuestion extends Question {
 				else{
 					this.answers = answers;
 				}
-			}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -133,9 +133,12 @@ public class MultipleChoiceQuestion extends Question {
 	 *         given answerNumber
 	 */
 	public boolean deleteAnswer(int answerNumber) {
-		if (answerNumber >= answers.size() || answerNumber < 0)
+		if (answerNumber >= answers.size() || answerNumber < 0){
 			return false;
+		}
+		
 		answers.remove(answerNumber);
+		
 		return true;
 	}
 
@@ -183,5 +186,15 @@ public class MultipleChoiceQuestion extends Question {
 		}
 
 		return list;
+	}
+	
+	public void resetAnswers(List<String> newAswers){
+		if(newAswers == null){
+			throw new NullPointerException("Lista odpowiedzi nie moze byc nullem");
+		}
+		
+		answers.clear();
+		
+		answers.addAll(newAswers);
 	}
 }

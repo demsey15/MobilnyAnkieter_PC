@@ -236,4 +236,14 @@ public class OneChoiceQuestion extends Question {
 
 		return list;
 	}
+	
+	public void resetAnswers(List<String> newAswers){
+		if(newAswers == null){
+			throw new NullPointerException("Lista odpowiedzi nie moze byc nullem");
+		}
+		
+		answers.clear();
+		
+		answers.addAll(newAswers);
+	}
 }
