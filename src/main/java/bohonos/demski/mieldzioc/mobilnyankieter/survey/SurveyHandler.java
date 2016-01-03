@@ -322,18 +322,14 @@ public class SurveyHandler {
         if (directoryListing != null) {
             for (File child : directoryListing) {
                 String filePath = child.getPath();// Do something with child
-                //BufferedReader br = new BufferedReader(new FileReader(filePath));
-                //String line = br.readLine();
-                //if (line!=null) {
-                //    System.out.println("Wczytana linia szablonu: " + line);
-                //    this.loadSurveyTemplate((new JsonSurveySerializator()).deserializeSurvey(line), IN_PROGRESS);
-                //}
                 Charset ch = Charset.forName("UTF-8");
                 Scanner scan = new Scanner(new InputStreamReader(new FileInputStream(filePath),ch));
                 String line;
                 if (scan.hasNextLine()) {
                     line = scan.nextLine();
-                    this.loadSurveyTemplate((new JsonSurveySerializator()).deserializeSurvey(line), IN_PROGRESS);
+                    if((new JsonSurveySerializator()).deserializeSurvey(line)!=null){
+                        this.loadSurveyTemplate((new JsonSurveySerializator()).deserializeSurvey(line), IN_PROGRESS);
+                    }
                 }
             }
         }
@@ -343,39 +339,20 @@ public class SurveyHandler {
         if (activeTemplatesListing != null) {
             for (File child : activeTemplatesListing) {
                 String filePath = child.getPath();// Do something with child
-                //BufferedReader br = new BufferedReader(new FileReader(filePath));
-                //String line = br.readLine();
-                //if (line!=null) {
-                //    System.out.println("Wczytana linia szablonu: " + line);
-                //    Survey survey = (new JsonSurveySerializator()).deserializeSurvey(line);
                 Charset ch = Charset.forName("UTF-8");
                 Scanner scan = new Scanner(new InputStreamReader(new FileInputStream(filePath),ch));
                 String line;
                 if (scan.hasNextLine()) {
                     line = scan.nextLine();
-                    Survey survey = (new JsonSurveySerializator()).deserializeSurvey(line);
-                    if (this.getSetOfIds().contains(survey.getIdOfSurveys())){
-                        this.setSurveyStatus(survey.getIdOfSurveys(), ACTIVE);
-                    } else {
-                        this.loadSurveyTemplate(survey, ACTIVE);
-                        //System.out.println("Wchodze do elsa, ale nie wiem czemu...");
+                    if ((new JsonSurveySerializator()).deserializeSurvey(line)!=null){
+                        Survey survey = (new JsonSurveySerializator()).deserializeSurvey(line);
+                        if (this.getSetOfIds().contains(survey.getIdOfSurveys())){
+                            this.setSurveyStatus(survey.getIdOfSurveys(), ACTIVE);
+                        } else {
+                            this.loadSurveyTemplate(survey, ACTIVE);
+                        }
                     }
-                    //this.loadSurveyTemplate((new JsonSurveySerializator()).deserializeSurvey(line), IN_PROGRESS);
                 }
-                /*if (this.getSetOfIds().contains(survey.getIdOfSurveys())){
-                        this.setSurveyStatus(survey.getIdOfSurveys(), ACTIVE);
-                    } else {
-                        this.loadSurveyTemplate(survey, ACTIVE);
-                        //System.out.println("Wchodze do elsa, ale nie wiem czemu...");
-                    }*/
-                    /*if (this.loadSurveyTemplate(survey, ACTIVE) == false) {
-                        System.out.println("Zmieniam status na ACTIVE");
-                        this.setSurveyStatus(survey, ACTIVE);
-                    }
-                    else {
-                        System.out.println("Wczytalem jako nowa");
-                    }*/
-                //}
             }
         }
     }

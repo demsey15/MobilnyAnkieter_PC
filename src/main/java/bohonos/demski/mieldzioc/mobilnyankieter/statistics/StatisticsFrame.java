@@ -206,7 +206,13 @@ public class StatisticsFrame extends JFrame implements ActionListener{
            EventQueue.invokeLater(new Runnable() {
 		//	@Override
 			public void run() {           
+                            try {
                                 StatisticsQuestionsFrame show = new StatisticsQuestionsFrame(surveys);
+                            } catch (IOException ex) {
+                                Logger.getLogger(StatisticsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(StatisticsFrame.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                            
                         }
 		});
