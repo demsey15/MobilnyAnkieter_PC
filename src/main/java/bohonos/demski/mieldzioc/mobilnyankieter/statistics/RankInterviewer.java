@@ -64,12 +64,12 @@ public class RankInterviewer extends JFrame implements ActionListener{
         ranking.sort(new Comparator<Pair<Interviewer, Integer>>() {
         public int compare(Pair<Interviewer, Integer> o1, Pair<Interviewer, Integer> o2) {
             if (o1.getSecond() > o2.getSecond()) {
-                return 1;
+                return -1;
             } else if (o1.getSecond().equals(o2.getSecond())) {
                 return 0; // You can change this to make it then look at the
                           //words alphabetical order
             } else {
-                return -1;
+                return 1;
             }
         }
     });

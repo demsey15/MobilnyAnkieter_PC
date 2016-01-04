@@ -20,10 +20,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 /**
  *
  * @author Delirus
@@ -35,8 +37,8 @@ public class SQuestionStatistics extends JFrame implements ActionListener{
     private List<Survey> surveys;
     private int numberOfQuestion;
     private QuestionStatisticsProvider qsp;
-    private JLabel questionName;
-    
+    private JLabel  meanValue, maxValue, minValue, mode, median, sigma, percentage;
+    private JTextArea questionName;
     
     public SQuestionStatistics(List<Survey> surveys,int numberOfQuestion){
          super("Statystyki pytania");
@@ -57,10 +59,37 @@ public class SQuestionStatistics extends JFrame implements ActionListener{
         con = this.getContentPane();
         con.add(panel);
         close = new JButton("Zamknij");
+        
+        String pytanie = surveys.get(0).getQuestion(numberOfQuestion).getQuestion();
+        questionName = new JTextArea("Pytanie: " + pytanie);
+        questionName.setLineWrap(true);
+        meanValue = new JLabel("Œrednia: "+ qsp.getMean(surveys, numberOfQuestion));
+        maxValue = new JLabel("Wartoœæ maksymalna: "+ qsp.getMaxValue(surveys, numberOfQuestion));
+        minValue = new JLabel("Wartoœæ minimalna: "+ qsp.getMinValue(surveys, numberOfQuestion));
+        mode = new JLabel("Moda: "+ qsp.getMode(surveys, numberOfQuestion));
+        median = new JLabel("Mediana: "+ qsp.getMedian(surveys, numberOfQuestion));
+        sigma = new JLabel("Odchylenie standardowe: "+ qsp.getStandardDeviation(surveys, numberOfQuestion));
+        //percentage
+        
+        questionName.setBounds(20, 20, 300, 60);
+        meanValue.setBounds(20, 200, 300, 30);
+        minValue.setBounds(20, 80, 300, 30);
+        maxValue.setBounds(20, 110, 300, 30);
+        mode.setBounds(20, 170, 300, 30);
+        median.setBounds(20, 140, 300, 30);
+        sigma.setBounds(20, 230, 300, 30);
+        
         close.setBounds(150, 300, 100, 50);
         
         panel.setLayout(null); 
         
+        panel.add(questionName);
+        panel.add(meanValue);
+        panel.add(minValue);
+        panel.add(maxValue);
+        panel.add(mode);
+        panel.add(median);
+        panel.add(sigma);
         panel.add(close);
         
         close.addActionListener(this);
@@ -73,6 +102,6 @@ public class SQuestionStatistics extends JFrame implements ActionListener{
             dispose();
         }
     }
-    
+
 }
 

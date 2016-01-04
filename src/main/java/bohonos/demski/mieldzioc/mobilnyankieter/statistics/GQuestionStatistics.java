@@ -5,6 +5,7 @@
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.statistics;
 
+import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,9 @@ public class GQuestionStatistics extends JFrame implements ActionListener{
     private int numberOfQuestion;
     private QuestionStatisticsProvider qsp;
     private JLabel questionName;
+    private JLabel j1, j2,j3,j4,j5, j6, j7;
+    private List<Pair<String, Integer>> ranking;
+    
     
     
     public GQuestionStatistics(List<Survey> surveys,int numberOfQuestion){
@@ -49,19 +53,59 @@ public class GQuestionStatistics extends JFrame implements ActionListener{
         this.surveys = surveys;
         this.numberOfQuestion = numberOfQuestion;
         qsp = new QuestionStatisticsProvider();
+        ranking = qsp.getTheMostFrequentAnswers(surveys, numberOfQuestion);
         setSize(400, 400);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
         con = this.getContentPane();
         con.add(panel);
+        
+        j1 = new JLabel("1. ");
+        j2 = new JLabel("2. ");
+        j3 = new JLabel("3. ");
+        j4 = new JLabel("4. ");
+        j5 = new JLabel("5. ");
+        j6 = new JLabel("Liczba wype³nionych ankiet: " + surveys.size());
+        j7 = new JLabel("Liczba odpowiedzi na to pytanie to: " + qsp.getNumberUsersAnswers(surveys, numberOfQuestion));
+        
+        if(0<ranking.size()){
+                j1.setText("1. " + ranking.get(0).getFirst() +  " - "+ranking.get(0).getSecond());
+            }
+
+            if(1<ranking.size()){
+                j2.setText("1. " + ranking.get(1).getFirst() +  " - "+ranking.get(1).getSecond());
+            }
+            if(2<ranking.size()){
+                j3.setText("1. " + ranking.get(2).getFirst() + " - "+ranking.get(2).getSecond());
+            }
+            if(3<ranking.size()){
+                j4.setText("1. " + ranking.get(3).getFirst() +" - "+ranking.get(3).getSecond());
+            }
+            if(4<ranking.size()){
+                j5.setText("1. " + ranking.get(4).getFirst() +  " - "+ranking.get(4).getSecond());
+            }
+        
         close = new JButton("Zamknij");
         close.setBounds(150, 300, 100, 50);
+        j1.setBounds(100, 90, 300, 30);
+        j2.setBounds(100, 130, 300, 30);
+        j3.setBounds(100, 170, 300, 30);
+        j4.setBounds(100, 210, 300, 30);
+        j5.setBounds(100, 250, 300, 30);
+        j6.setBounds(100, 20, 300, 30);
+        j7.setBounds(100, 50, 300, 30);
         
         panel.setLayout(null); 
         
         panel.add(close);
-        
+        panel.add(j1);
+        panel.add(j2);
+        panel.add(j3);
+        panel.add(j4);
+        panel.add(j5);
+        panel.add(j6);
+        panel.add(j7);
         close.addActionListener(this);
         setVisible(true);
     }
