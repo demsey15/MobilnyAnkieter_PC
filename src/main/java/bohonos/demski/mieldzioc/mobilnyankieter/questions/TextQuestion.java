@@ -77,11 +77,24 @@ public class TextQuestion extends Question {
 	@Override
 	public boolean setUserAnswers(List<String> text) {
 		userAnswer = null;
-		if(text == null) return false;
-		if(text.size() != 1) return false;
+		
+		if(text == null){
+			return false;
+		}
+		
+		if(text.size() != 1){
+			return false;
+		}
+		
 		String answer = text.get(0);
-		if(!TextValidator.validate(answer, constraint)) return false;
-		return true;
+		
+		if(!TextValidator.validate(answer, constraint)){
+			return false;
+		}else{
+			userAnswer = answer;
+			
+			return true;
+		}
 	}
 
 	/* (non-Javadoc)
