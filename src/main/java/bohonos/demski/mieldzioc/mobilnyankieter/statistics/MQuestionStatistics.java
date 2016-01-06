@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import static java.lang.Math.round;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,8 +36,9 @@ public class MQuestionStatistics extends JFrame implements ActionListener{
     private List<Survey> surveys;
     private int numberOfQuestion;
     private QuestionStatisticsProvider qsp;
-    private JLabel questionName;
-    
+    private JLabel questionName, amountOfAnswers, amountOfSurveys;
+    private JLabel biglabel;
+     
     
     public MQuestionStatistics(List<Survey> surveys,int numberOfQuestion){
          super("Statystyki pytania");
@@ -50,6 +52,23 @@ public class MQuestionStatistics extends JFrame implements ActionListener{
         this.surveys = surveys;
         this.numberOfQuestion = numberOfQuestion;
         qsp = new QuestionStatisticsProvider();
+        
+        String text = "";
+        List<Float> procOfAnwers = qsp.getPrecentageOfChoosedOptions(surveys, numberOfQuestion);
+        //System.out.println("Lista procentów: "+procOfAnwers);
+        List<String> listOfAnswers = surveys.get(0).getQuestion(numberOfQuestion).getAnswersAsStringList();
+        //System.out.println("Lista odpowiedzi: "+listOfAnswers);
+        
+        for(int i=0; i <listOfAnswers.size();i++){
+            float procent = round(procOfAnwers.get(i)); 
+            
+            text += listOfAnswers.get(i)+"      " + procOfAnwers.get(i).toString() + "%" +"<br>";
+        }
+        amountOfSurveys = new JLabel("Liczba wype³nionych ankiet: " + surveys.size());
+        amountOfAnswers = new JLabel("Liczba odpowiedzi na to pytanie to: " + qsp.getNumberUsersAnswers(surveys, numberOfQuestion));
+      
+        biglabel = new JLabel("<html>" + text + "<html>");
+        
         setSize(400, 400);
 	setLocation(300,300);
         setResizable(false);
@@ -58,11 +77,15 @@ public class MQuestionStatistics extends JFrame implements ActionListener{
         con.add(panel);
         close = new JButton("Zamknij");
         close.setBounds(150, 300, 100, 50);
-        
+        biglabel.setBounds(20, 100, 320, 200);
+        amountOfAnswers.setBounds(20,70,300,50);
+        amountOfSurveys.setBounds(20,20,300,50);
         panel.setLayout(null); 
         
         panel.add(close);
-        
+        panel.add(biglabel);
+        panel.add(amountOfAnswers);
+        panel.add(amountOfSurveys);
         close.addActionListener(this);
         setVisible(true);
     }

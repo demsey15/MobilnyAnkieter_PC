@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.statistics;
+import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
+import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.*;
@@ -12,6 +14,7 @@ import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,24 +30,28 @@ public class QuestionStatisticsProvider {
      * @param number
      * @return 
      */
-    public float getMean(List<Survey> surveys, int number){    //pamiêtaj o indeksowaniu pytañ w survey
+    public double getMean(List<Survey> surveys, int number){    //pamiêtaj o indeksowaniu pytañ w survey
         float sum=0;
         int answers=0; // liczba odpowiedzi na wybrane pytanie
         for(Survey survey : surveys){
             if(survey.isFinished()){
                 int typeQuestion = survey.getQuestion(number).getQuestionType();
+                //System.out.println("Typ pytania " + typeQuestion);
                 if(typeQuestion==5){
                     ScaleQuestion question = (ScaleQuestion) survey.getQuestion(number); 
+                    //System.out.println("OdpowiedŸ: " + question.getUserAnswer());
                     sum+=question.getUserAnswer();
                     answers+=1;
                 }
             }
         }
         if(answers!=0){
-            return (float) sum/answers;
+            //System.out.println("Suma i liczba odpowiedzi " + sum +" "+answers);
+            return (double) sum/answers;
         }
-        else
+        else{
             return 0;
+        }
     }
     
     /**
@@ -53,7 +60,7 @@ public class QuestionStatisticsProvider {
      * @param question
      * @return 
      */
-      public float getMean(List<Survey> surveys, Question question){    //pamiêtaj o indeksowaniu pytañ w survey
+      public double getMean(List<Survey> surveys, Question question){    //pamiêtaj o indeksowaniu pytañ w survey
         float sum=0;
         int answers=0; // liczba odpowiedzi na wybrane pytanie
         for(Survey survey : surveys){
@@ -68,10 +75,12 @@ public class QuestionStatisticsProvider {
             }
         }
         if(answers!=0){
-            return (float) sum/answers;
+            return (double) sum/answers;
         }
-        else
+        else{
             return -1;
+        }
+        
     }
     
       /**
@@ -80,10 +89,10 @@ public class QuestionStatisticsProvider {
        * @param questionNumber
        * @return 
        */
-    public float getStandardDeviation(List<Survey> surveys, int questionNumber){
+    public double getStandardDeviation(List<Survey> surveys, int questionNumber){
         int answers = 0;
         float variance= 0;
-        float mean = getMean(surveys, questionNumber);
+        double mean = getMean(surveys, questionNumber);
         for(Survey survey : surveys){
             if(survey.isFinished()){               
                 int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
@@ -94,9 +103,9 @@ public class QuestionStatisticsProvider {
                 }
             }
         }     
-        float standardDeviation;
-        if(answers == 0){
-            standardDeviation = (float) Math.sqrt(variance/answers);
+        double standardDeviation;
+        if(answers != 0){
+            standardDeviation =  Math.sqrt(variance/answers);
         }
         else{
             standardDeviation = -1;
@@ -232,7 +241,7 @@ public class QuestionStatisticsProvider {
         for(Survey survey : surveys){
             int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
             if(typeQuestion==0 || typeQuestion==1 ){
-                if(survey.isFinished()){
+                if(survey.isFinished() && survey.getQuestion(questionNumber).isAnswered()){
                     List<String> userAnswers = new ArrayList<String>();
                     userAnswers = survey.getQuestion(questionNumber).getUserAnswersAsStringList();
                     for(String userAnswer : userAnswers){           
@@ -242,12 +251,126 @@ public class QuestionStatisticsProvider {
             }
         }
         for(HashMap.Entry<String,Integer> entr: mapa.entrySet()){           
-            float percent = 100*entr.getValue()/surveys.size();
+            float percent = (float) 100*entr.getValue()/surveys.size();
             lista.add(percent);                         
         }
         
         return lista;
     }
     
+   public int getNumberUsersAnswers(List<Survey> surveys, int numberOfQuestion){
+       int number=0;
+       for(Survey survey : surveys){
+           if(survey.getQuestion(numberOfQuestion).isAnswered()){
+               number++;
+           }
+       }
+       return number;
+   }
    
+   public List<Pair<String, Integer>> getTheMostFrequentAnswers(List<Survey> surveys, int numberOfQuestion){
+        List<Pair<String, Integer>> lista = new ArrayList<Pair<String, Integer>>();
+        
+        for(Survey survey : surveys){
+            int typeQuestion = survey.getQuestion(numberOfQuestion).getQuestionType();
+            if(typeQuestion==6 || typeQuestion==7 || typeQuestion==4){
+               if(survey.getQuestion(numberOfQuestion).isAnswered()){
+                   String ans = "";
+                   //= survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList();
+                   if(typeQuestion==6){
+                       ans = getDateQuestionAsString(survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
+                   }
+                   if(typeQuestion==4){
+                       ans = getTextQuestionAsString(survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
+                   }
+                   if(typeQuestion==7){
+                       ans = getDateQuestionAsString(survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
+                        //System.out.println("OdpowiedŸ time: " + survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
+                   }
+                   
+                   if(lista.isEmpty()){
+                       Pair<String,Integer> couple = new Pair<String, Integer>();
+                       couple.setFirst(ans);
+                       couple.setSecond(1);
+                       lista.add(couple);
+                   }
+                   else{
+                       boolean ster = true;
+                       for(Pair<String, Integer> pair : lista){ 
+                           if(pair.getFirst().equals(ans)){
+                               pair.setSecond(pair.getSecond()+1);
+                               ster=false;
+                               break;
+                           }
+                       }
+                       if(ster){
+                           Pair<String,Integer> coup = new Pair<String, Integer>();
+                           coup.setFirst(ans);
+                           coup.setSecond(1);
+                           lista.add(coup);
+                       }
+                   }
+               }
+            }
+            if(typeQuestion==3){
+                if(survey.getQuestion(numberOfQuestion).isAnswered()){
+                    //String ans = "";
+                    List<String> answers = survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList();
+                    //System.out.println("Odpowiedx grid: "+ survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
+                    for(String ans : answers){
+                        if(lista.isEmpty()){
+                            Pair<String,Integer> couple = new Pair<String, Integer>();
+                            couple.setFirst(ans);
+                            couple.setSecond(1);
+                            lista.add(couple);
+                        }
+                        else{
+                            boolean ster = true;
+                            for(Pair<String, Integer> pair : lista){ 
+                                if(pair.getFirst().equals(ans)){
+                                     pair.setSecond(pair.getSecond()+1);
+                                     ster=false;
+                                    break;
+                                }
+                            }
+                            if(ster){
+                                Pair<String,Integer> coup = new Pair<String, Integer>();
+                                coup.setFirst(ans);
+                                coup.setSecond(1);
+                                lista.add(coup);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        lista.sort(new Comparator<Pair<String, Integer>>() {
+        public int compare(Pair<String, Integer> o1, Pair<String, Integer> o2) {
+            if (o1.getSecond() > o2.getSecond()) {
+                return -1;
+            } else if (o1.getSecond().equals(o2.getSecond())) {
+                return 0; // You can change this to make it then look at the
+                          //words alphabetical order
+            } else {
+                return 1;
+            }
+        }
+    });
+        
+        return lista;
+    }
+   
+   private String getDateQuestionAsString(List<String> list){
+       String a = list.get(0)+"."+list.get(1)+"."+list.get(2);
+       return a;
+   }
+
+    private String getTextQuestionAsString(List<String> answer) {
+        String a = "";
+        for(String ans : answer){
+            a+=ans+" ";
+        }
+       return a;
+    }
 }
