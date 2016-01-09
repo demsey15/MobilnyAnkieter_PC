@@ -212,6 +212,18 @@ public class GridQuestion extends Question {
 			return null;
 		return "#" + rowLabels.get(rowNumber) + "#" + " ^" + columnLabels.get(colNumber) + "^";
 	}
+	
+	public List<Pair<String, String>> getUserAnswersAsRowColumnPairList(){
+		List<Pair<String, String>> answers = new ArrayList<>();
+		
+		for(Pair<Integer, Integer> pair : userAnswers){
+			Pair<String, String> newPair = new Pair<>(rowLabels.get(pair.getFirst()), columnLabels.get(pair.getSecond()));
+			
+			answers.add(newPair);
+		}
+		
+		return answers;
+	}
 
 	@Override
 	public boolean equals(Object o) {
