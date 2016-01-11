@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.*;
+import com.google.gson.Gson;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
@@ -29,6 +30,8 @@ public class SurveysRepository {
     public Map<String, List<Survey>> surveys = new HashMap<String, List<Survey>>();
     public Map<String, Long> maxNumbersOfSurveys = new HashMap<String, Long>();
     
+    private static final Gson gson = new Gson();
+
     /**
      * returns list of surveys with given id
      * @param idOfSurveys given id of surveys, we are looking for
@@ -412,15 +415,29 @@ public class SurveysRepository {
                 String filePath = file.getPath();// Do something with child
                 Scanner br = new Scanner(new InputStreamReader(new FileInputStream(filePath),ch));
                 String line = br.nextLine();
-                if (line!=null) {
+                if (line!=null && isJSONValid(line)) 
+                {
                     System.out.println("Wczytana linia wypelnionej ankiety: " + line);
                     List<Survey> listOfSurveys = jsonSerializator.deserializeListOfSurveys(line);
                     for(Survey survey : listOfSurveys){
                         addNewSurvey(survey);
                     }
+                }
             }
         }
-    }
 
     }
+    
+   
+
+  public static boolean isJSONValid(String JSON_STRING) {
+      try {
+          gson.fromJson(JSON_STRING, Object.class);
+          return true;
+      } catch(com.google.gson.JsonSyntaxException ex) { 
+          return false;
+      }
+  }
+
+
 }

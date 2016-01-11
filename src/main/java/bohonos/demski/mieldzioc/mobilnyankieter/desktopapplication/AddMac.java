@@ -22,13 +22,13 @@ import java.awt.event.WindowEvent;
 public class AddMac extends JFrame implements ActionListener{
 
     //private JFormattedTextField jdate;
-    private JButton anul, save;
-    private ArrayList<String> newMacs;
-    private JLabel adress;
-    private Container addcon;
-    private JTextField newMac;
+    private final JButton anul, save;
+    private final ArrayList<String> newMacs;
+    private final JLabel adress;
+    private final Container addcon;
+    private final JTextField newMac;
     //private JList workOutTime;
-    private DefaultListModel listModel;
+    private final DefaultListModel listModel;
     
     
      public AddMac(ArrayList<String> newMacs, DefaultListModel listModel){
