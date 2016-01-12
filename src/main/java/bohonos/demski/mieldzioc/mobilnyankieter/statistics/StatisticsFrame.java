@@ -35,6 +35,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JMenuItem;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -55,6 +56,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
     private List<Interviewer> selectedInterviewers;
     private List<Interviewer> interviewers;
     private List<Survey> surveys;
+   
     
     public StatisticsFrame(final ApplicationLogic applicationLogic){
         super("Wyniki ankiet i statystyki");
@@ -89,6 +91,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         
         for(Entry<String, Long> entrSurv : applicationLogic.getSurveysRepository().getAllMaxNumbersOfSurveys().entrySet()){
             if(entrSurv.getValue()>0){
+                //comboBoxItems2.add(applicationLogic.getSurveysRepository().getSurveys(entrSurv.getKey()).get(0).getTitle());
                 comboBoxItems2.add(entrSurv.getKey());
             }
         }      

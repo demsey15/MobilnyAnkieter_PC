@@ -410,14 +410,14 @@ public class SurveysRepository {
         //List<File> listOfSurveys = new ArrayList<File>();
         for (File file : listOfFiles) {
             if (file.isFile()) {
-                System.out.println("Nazwa wczytanej ankiety: "+file.getName());
+                //System.out.println("Nazwa wczytanej ankiety: "+file.getName());
                 //listOfSurveys.add(file);
                 String filePath = file.getPath();// Do something with child
                 Scanner br = new Scanner(new InputStreamReader(new FileInputStream(filePath),ch));
                 String line = br.nextLine();
                 if (line!=null && isJSONValid(line)) 
                 {
-                    System.out.println("Wczytana linia wypelnionej ankiety: " + line);
+                    //System.out.println("Wczytana linia wypelnionej ankiety: " + line);
                     List<Survey> listOfSurveys = jsonSerializator.deserializeListOfSurveys(line);
                     for(Survey survey : listOfSurveys){
                         addNewSurvey(survey);

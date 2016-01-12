@@ -214,10 +214,10 @@ public class GridQuestion extends Question {
 	}
 	
 	public List<Pair<String, String>> getUserAnswersAsRowColumnPairList(){
-		List<Pair<String, String>> answers = new ArrayList<>();
+		List<Pair<String, String>> answers = new ArrayList<Pair<String,String>>();
 		
 		for(Pair<Integer, Integer> pair : userAnswers){
-			Pair<String, String> newPair = new Pair<>(rowLabels.get(pair.getFirst()), columnLabels.get(pair.getSecond()));
+			Pair<String, String> newPair = new Pair(rowLabels.get(pair.getFirst()), columnLabels.get(pair.getSecond()));
 			
 			answers.add(newPair);
 		}

@@ -37,9 +37,14 @@ import javax.swing.event.ListSelectionListener;
 
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.*;
+import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.JsonSurveySerializator;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -58,6 +63,7 @@ public class StatisticsQuestionsFrame extends JFrame implements ActionListener{
     //private List<String> selectedInterviewer;
     private JPanel questionPanel;
     private JScrollPane scrollPane;
+     private JMenuItem saveOutcomes;
     
      public StatisticsQuestionsFrame(List<Survey> surveys) throws IOException, ParseException{
         super("Statystyki ankiety");
@@ -81,6 +87,12 @@ public class StatisticsQuestionsFrame extends JFrame implements ActionListener{
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(50, 50, 800, 500);
+        saveOutcomes = new JMenuItem("Zapisz wyniki");
+        saveOutcomes.addActionListener(this);
+        JMenuBar menuBar = new JMenuBar();    
+        menuBar.add(saveOutcomes);
+        setJMenuBar(menuBar);
+        
         
         this.add(scrollPane);
 	setVisible(true);
@@ -134,6 +146,13 @@ public class StatisticsQuestionsFrame extends JFrame implements ActionListener{
         if(source==close){
             dispose();
             //System.exit(0);
+        }
+        if(source==saveOutcomes){
+            try {
+                saveOutcomes(surveys);
+            } catch (IOException ex) {
+                Logger.getLogger(StatisticsQuestionsFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -211,4 +230,61 @@ public class StatisticsQuestionsFrame extends JFrame implements ActionListener{
         SwingUtilities.updateComponentTreeUI(this);
     }
     
+    public void saveOutcomes(List<Survey> surveys) throws IOException{
+        try{
+            GregorianCalendar date = new GregorianCalendar();
+            //SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yyyy");
+            //String dateFormatted = fmt.format(date);
+            String shortId = surveys.get(0).getIdOfSurveys().replace(":", "");
+            String templatePath = "C:" + File.separator + "ankieter" + File.separator + "outcomes" + File.separator + shortId + ".csv";
+            //System.out.println("Id zapisywanego szablonu: " + id);     
+            File templateFile = new File(templatePath);
+            templateFile.createNewFile();
+            PrintWriter writer = new PrintWriter(templatePath, "UTF-8");
+            for(int i =0; i<surveys.get(0).questionListSize();i++){
+                writer.println(surveys.get(0).getQuestion(i).getQuestion()+";");
+                for(Survey survey:surveys){
+                    if(survey.getQuestion(i).getQuestionType()==6){
+                        writer.print(getDateQuestionAsString(survey.getQuestion(i).getUserAnswersAsStringList())+";");
+                    }
+                    if(survey.getQuestion(i).getQuestionType()==7){
+                        writer.print(getTimeQuestionAsString(survey.getQuestion(i).getUserAnswersAsStringList())+";");
+                    }
+                    if(survey.getQuestion(i).getQuestionType()==4){
+                        writer.print(getTextQuestionAsString(survey.getQuestion(i).getUserAnswersAsStringList())+";");
+                    }
+                    else{
+                        for(String s: survey.getQuestion(i).getUserAnswersAsStringList()){
+                            writer.print(s+";");                      
+                        }
+                    }
+                }
+                writer.println();
+            }
+            writer.close();
+            
+        }
+        catch(IOException e){
+            //System.out.println("Coœ nie pyk³o");
+        }
+    }
+    
+    
+     private String getDateQuestionAsString(List<String> list){
+       String a = list.get(0)+"."+list.get(1)+"."+list.get(2);
+       return a;
+   }
+   private String getTimeQuestionAsString(List<String> list){
+       String a = list.get(0)+":"+list.get(1)+":"+list.get(2);
+       return a;
+   }
+   
+
+    private String getTextQuestionAsString(List<String> answer) {
+        String a = "";
+        for(String ans : answer){
+            a+=ans+" ";
+        }
+       return a;
+    }
 }
