@@ -39,7 +39,16 @@ public class GQuestionStatistics extends JFrame implements ActionListener{
     private JLabel j1, j2,j3,j4,j5, j6, j7;
     private List<Pair<String, Integer>> ranking;
     
-    
+    private String getStringWithoutSpecialCharacters(String s){
+        String w ="";
+        
+        for(int i=0; i<s.length();i++){
+            if(s.charAt(i)!='#'&&s.charAt(i)!='^'){
+                w+=s.charAt(i);
+            }
+        }
+        return w;
+    }
     
     public GQuestionStatistics(List<Survey> surveys,int numberOfQuestion){
          super("Statystyki pytania");
@@ -69,21 +78,21 @@ public class GQuestionStatistics extends JFrame implements ActionListener{
         j6 = new JLabel("Liczba wype³nionych ankiet: " + surveys.size());
         j7 = new JLabel("Liczba odpowiedzi na to pytanie to: " + qsp.getNumberUsersAnswers(surveys, numberOfQuestion));
         
-        if(0<ranking.size()){
-                j1.setText("1. " + ranking.get(0).getFirst() +  " - "+ranking.get(0).getSecond());
+            if(0<ranking.size()){
+                j1.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(0).getFirst()) +  " - "+ranking.get(0).getSecond());
             }
 
             if(1<ranking.size()){
-                j2.setText("1. " + ranking.get(1).getFirst() +  " - "+ranking.get(1).getSecond());
+                j2.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(1).getFirst()) +  " - "+ranking.get(1).getSecond());
             }
             if(2<ranking.size()){
-                j3.setText("1. " + ranking.get(2).getFirst() + " - "+ranking.get(2).getSecond());
+                j3.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(2).getFirst()) + " - "+ranking.get(2).getSecond());
             }
             if(3<ranking.size()){
-                j4.setText("1. " + ranking.get(3).getFirst() +" - "+ranking.get(3).getSecond());
+                j4.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(3).getFirst()) +" - "+ranking.get(3).getSecond());
             }
             if(4<ranking.size()){
-                j5.setText("1. " + ranking.get(4).getFirst() +  " - "+ranking.get(4).getSecond());
+                j5.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(4).getFirst()) +  " - "+ranking.get(4).getSecond());
             }
         
         close = new JButton("Zamknij");

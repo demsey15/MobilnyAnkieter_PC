@@ -33,8 +33,8 @@ public class AddScaleQuestionFrame extends AddQuestionFrame {
     private int minValue, maxValue;
     private String minLabel, maxLabel;
     
-    private JLabel minLabelLabel, maxLabelLabel, minValueLabel, maxValueLabel;
-    private JTextField minLabelField, maxLabelField, minValueField, maxValueField;
+    private final JLabel minLabelLabel, maxLabelLabel, minValueLabel, maxValueLabel;
+    private final JTextField minLabelField, maxLabelField, minValueField, maxValueField;
     
     public AddScaleQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException, ParseException {
         

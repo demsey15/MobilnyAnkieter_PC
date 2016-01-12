@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package bohonos.demski.mieldzioc.mobilnyankieter.statistics;
+
 import bohonos.demski.mieldzioc.mobilnyankieter.common.Pair;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.Interviewer;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
@@ -34,7 +35,7 @@ public class QuestionStatisticsProvider {
         float sum=0;
         int answers=0; // liczba odpowiedzi na wybrane pytanie
         for(Survey survey : surveys){
-            if(survey.isFinished()){
+            if(survey.isFinished()&&survey.getQuestion(number).isAnswered()){
                 int typeQuestion = survey.getQuestion(number).getQuestionType();
                 //System.out.println("Typ pytania " + typeQuestion);
                 if(typeQuestion==5){
@@ -64,7 +65,7 @@ public class QuestionStatisticsProvider {
         float sum=0;
         int answers=0; // liczba odpowiedzi na wybrane pytanie
         for(Survey survey : surveys){
-            if(survey.isFinished()){
+            if(survey.isFinished()&&survey.getQuestion(survey.indexOfQuestion(question)).isAnswered()){
                 int numberOfQuestion = survey.indexOfQuestion(question);
                 int typeQuestion = survey.getQuestion(numberOfQuestion).getQuestionType();
                 if(typeQuestion==5){
@@ -94,7 +95,7 @@ public class QuestionStatisticsProvider {
         float variance= 0;
         double mean = getMean(surveys, questionNumber);
         for(Survey survey : surveys){
-            if(survey.isFinished()){               
+            if(survey.isFinished()&&survey.getQuestion(questionNumber).isAnswered()){               
                 int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
                 if(typeQuestion==5){
                     ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber); 
@@ -123,7 +124,7 @@ public class QuestionStatisticsProvider {
         float median ;
         List<Integer> lista = new ArrayList<Integer>();
         for(Survey survey : surveys){
-            if(survey.isFinished()){               
+            if(survey.isFinished()&&survey.getQuestion(questionNumber).isAnswered()){               
                 int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
                 if(typeQuestion==5){
                     ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber); 
@@ -154,7 +155,7 @@ public class QuestionStatisticsProvider {
         int answer = 0;
         HashMap<Integer, Integer> mapa =new HashMap<Integer, Integer>();
         for(Survey survey : surveys){
-            if(survey.isFinished()){
+            if(survey.isFinished()&&survey.getQuestion(questionNumber).isAnswered()){
                 int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
                 if(typeQuestion==5){
                     ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber);
@@ -189,8 +190,10 @@ public class QuestionStatisticsProvider {
             if(survey.isFinished()){
                 int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
                 if(typeQuestion==5){
-                    ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber);
-                    lista.add(quest.getUserAnswer());
+                     if(survey.getQuestion(questionNumber).isAnswered()){
+                        ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber);
+                        lista.add(quest.getUserAnswer());
+                    }
                 }
             }
         }
@@ -212,8 +215,10 @@ public class QuestionStatisticsProvider {
             if(survey.isFinished()){
                 int typeQuestion = survey.getQuestion(questionNumber).getQuestionType();
                 if(typeQuestion==5){
-                    ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber);
-                    lista.add(quest.getUserAnswer());
+                    if(survey.getQuestion(questionNumber).isAnswered()){
+                        ScaleQuestion quest = (ScaleQuestion) survey.getQuestion(questionNumber);
+                        lista.add(quest.getUserAnswer());
+                    }
                 }
             }
         }
@@ -284,7 +289,7 @@ public class QuestionStatisticsProvider {
                        ans = getTextQuestionAsString(survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
                    }
                    if(typeQuestion==7){
-                       ans = getDateQuestionAsString(survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
+                       ans = getTimeQuestionAsString(survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
                         //System.out.println("Odpowiedü time: " + survey.getQuestion(numberOfQuestion).getUserAnswersAsStringList());
                    }
                    
@@ -365,6 +370,11 @@ public class QuestionStatisticsProvider {
        String a = list.get(0)+"."+list.get(1)+"."+list.get(2);
        return a;
    }
+   private String getTimeQuestionAsString(List<String> list){
+       String a = list.get(0)+":"+list.get(1)+":"+list.get(2);
+       return a;
+   }
+   
 
     private String getTextQuestionAsString(List<String> answer) {
         String a = "";

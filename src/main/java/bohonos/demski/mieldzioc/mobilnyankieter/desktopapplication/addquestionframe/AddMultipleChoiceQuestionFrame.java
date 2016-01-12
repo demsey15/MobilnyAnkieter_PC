@@ -40,12 +40,12 @@ public class AddMultipleChoiceQuestionFrame extends AddQuestionFrame {
     private final int LIST_HEIGHT = 200;
     private final int BUTTONS_Y_POSITION = 400;
     
-    private List<String> answers;
+    private final List<String> answers;
     private List<String> selectedAnswers;
     
-    private JLabel answerLabel;
+    private final JLabel answerLabel;
     private JList answerList;
-    private DefaultListModel answerListItems;
+    private final DefaultListModel answerListItems;
     
     public AddMultipleChoiceQuestionFrame(Survey survey, CreatorFrame crFrame) throws IOException, ParseException {
         

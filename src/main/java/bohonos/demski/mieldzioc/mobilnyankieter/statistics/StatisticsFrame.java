@@ -73,7 +73,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         statResultSurvey = new JButton("Statystyki wyników ankiety");
         statFillSurvey = new JButton("Statystyki wype³niania ankiety");
         close = new JButton("Zamknij");
-        statisticsInterviewer = new JButton("Statystyki ankietera");
+        //statisticsInterviewer = new JButton("Statystyki ankietera");
         rankInterviewers = new JButton("Ranking ankieterów");
         con = this.getContentPane();
         con.add(panel);
@@ -105,11 +105,11 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         idSurvey.setBounds(250, 30, 350, 30);
         //jInterviewer.setBounds(150, 20, 100, 50);
         jSurvey.setBounds(150,20,100, 50);
-        rankInterviewers.setBounds(450, 195, 200, 50);
-        statisticsInterviewer.setBounds(450, 270, 200, 50);
-        statResultSurvey.setBounds(450, 345, 200, 50);
-        statFillSurvey.setBounds(450, 420, 200, 50);
-        close.setBounds(450, 495, 200, 50);
+        rankInterviewers.setBounds(450, 270, 250, 50);
+        //statisticsInterviewer.setBounds(450, 270, 200, 50);
+        statResultSurvey.setBounds(450, 345, 250, 50);
+        statFillSurvey.setBounds(450, 420, 250, 50);
+        close.setBounds(450, 495, 250, 50);
         listOfInterviewers.setBounds(100, 100, 300, 450);
         
         ListSelectionListener listListener = new ListSelectionListener() {
@@ -145,14 +145,14 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         //panel.add(jInterviewer);
         panel.add(jSurvey);
         panel.add(rankInterviewers);
-        panel.add(statisticsInterviewer);
+        //panel.add(statisticsInterviewer);
         panel.add(statFillSurvey);
         panel.add(statResultSurvey);
         panel.add(listOfInterviewers);
         panel.add(close);
         
         rankInterviewers.addActionListener(this);
-        statisticsInterviewer.addActionListener(this);
+        //statisticsInterviewer.addActionListener(this);
         statFillSurvey.addActionListener(this);
         statResultSurvey.addActionListener(this);
         close.addActionListener(this);
