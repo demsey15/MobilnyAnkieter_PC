@@ -1,4 +1,6 @@
 \documentclass[a4paper,10pt]{beamer}
+
+
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 \usepackage[OT4,T1]{fontenc}
@@ -21,11 +23,12 @@
 \newtheorem{przyk}{Przykład}[subsection]
 \newtheorem{alg}{Algorytm}[subsection]
 
-\date{23 czerwca 2015}
-\title{Bezpieczny ankieter}
+\date{14 stycznia 2016}
+\title{Mobilny ankieter}
 \author[A. Bohonos, D. Demski, A. Mieldzioc]{Andrzej Bohonos, Dominik Demski, Adam Mieldzioc}
-
+	\DeclareUnicodeCharacter{00A0}{ }
 \begin{document}
+
 		\begin{frame}
 			\titlepage
 		\end{frame}
@@ -33,18 +36,31 @@
 			\tableofcontents
 		\end{frame}
 		
-		\section{Cel i założenia projektu}
+		\section{Założenia projektu}
 		\begin{frame}{Założenia projektu}
-			Celem projektu jest stworzenie systemu umożliwiającego tworzenie i przeprowadzania ankiet. W skład systemu wchodzą:
+	
 			\begin{itemize}
-				\item aplikacja mobilna dla systemu Android przeznaczona dla ankieterów,
-				\item aplikacja desktopowa stworzona w języku Java z myślą o administrowaniu całością,
-				\item serwer odgrywający rolę pośrednika.
+				\item tworzenie, wypełnianie i podstawowa analiza statystyczna ankiet
+				\item dostępne są następujące typy pytań: pytanie jednokrotnego wyboru, wielokrotnego wyboru, wybór z listy, skala, w formie tabelki, otwarte
+				\item Ankieta może być rozumiana w tradycyjny sposób jako zbiór pytań zadawanych osobom ankietowanym, ale także jako formularz do zbierania danych na przykład podczas pracy w terenie. 
+				\item W skład systemu wchodzą: aplikacja mobilna na platformę Android, aplikacja desktopowa stworzona w języku Java
 			\end{itemize}
+		\end{frame}
+		\begin{frame}{Dla kogo jest Mobilny ankieter?}
+			
+			\begin{itemize}
+				\item dla studentów zbierających dane do prac dyplomowych 
+				\item dla pracowników naukowych
+				\item  dla jednostek naukowych
+				\item organizacji pozarządowych
+				\item  urzędów (np. do spisu ludności)
+				 \item dla firm, które do funkcjonowania na rynku potrzebują danych na określony temat
+			\end{itemize}
+			 System jest przygotowany do użytkowania go zarówno przez jednego użytkownika, jak i grupę użytkowników.
 		\end{frame}
 		
 		
-		\begin{frame}{Zastosowania projektu}
+		\begin{frame}{Przykładowe zastosowania systemu}
 			Przykładowe zastosowania systemu:
 			\begin{itemize}
 				\item przeprowadzanie anonimowych ankiet (np. wśród przechodniów),
@@ -55,63 +71,29 @@
 		\end{frame}
 	
 		\section{Zakres wstępny i co zostało osiągnięte}
-	
-		\begin{frame}{Aplikacja desktopowa - udało się zrealizować}
-			\begin{enumerate}
-				\item  Stworzenie nowej ankiety. (UCD 1)
-				\item	Edycja pytań istniejącej ankiety. (UCD 2)
-				\item	Zmiana statusu istniejącej ankiety. (UCD 3)
-				\item	Wykorzystanie istniejącej ankiety do stworzenia nowej. (UCD 4)
-				\item	Zmiana kolejności pytań w ankiecie. (UCD 5)
-				\item	Udostępnianie ankiety innym ankieterom. (UCD 6)	
-			\end{enumerate}
-		\end{frame}
-		
-		\begin{frame}
-			\begin{enumerate}
-				\item  Rejestracja nowego ankietera. (UCD 7)
-				\item	Zmiana statusu ankietera. (UCD 8)
-				\item	Nadawanie ankieterom uprawnień do ankiety. (UCD 9)
-				\item	Przygotowanie list pracujących ankieterów. (UCD 10)
-				\item	Wyświetlanie rankingu ankieterów. (UCD 11)
-				\item	Wyświetlanie statystyk dotyczących ankietera. (UCD 12)
-				\item	Przygotowanie podstawowych statystyk dotyczących wypełniania ankiety. (UCD 13)
-			\end{enumerate}
-		\end{frame}
-		
-		\begin{frame}{Aplikacja desktopowa - nie udało się zrealizować}
-			\begin{enumerate}			
-				\item   Dodanie zdjęcia jako części pytania.
-				\item   Zapisanie wyników ankiety w pliku .csv.
-				\item	Wydrukowanie ankiety.
-				\item	Wydrukowanie wcześniej przygotowanych statystyk.
-				\item	Wydrukowanie listy pracujących ankieterów.
-				\item	Przygotowanie podstawowych statystyk dotyczących wyników ankiety.
-			\end{enumerate}
-		\end{frame}
 		
 	
-		\begin{frame}{Aplikacja mobilna - udało się zrealizować}
+		\begin{frame}{Aplikacja desktopowa}
+			
 			\begin{enumerate}
-				\item Stworzenie nowej ankiety. (UCM 1)
-				\item	Przeprowadzenie ankiety. (UCM 2)
-				\item	Wysłanie wyników przeprowadzonych ankiet do Głównego Systemu Ankiet. (UCM 3)
-				\item	Ustawienie automatycznego wysyłania wyników ankiety do Głównego Systemu Ankiet. (UCM 4)
-				\item	Pobranie ankiet z Głównego Systemu Ankiet. (UCM 5)
-				\item	Ustalenie uprawnień Ankietera. (UCM 6)	
+				\item do zrobienia – przegląd wymagań przyjętych do realizacji i zaimplementowanych w semestrze zimowym, różnice z semestrem letnim
 			\end{enumerate}
 		\end{frame}
-		
-		\begin{frame}{Aplikacja mobilna - nie udało się zrealizować}
+	
+		\begin{frame}{Aplikacja mobilna}
 			\begin{enumerate}
-				\item	Wykorzystanie istniejącej ankiety do stworzenia nowej.
-				\item	Zmiana kolejności pytań w ankiecie.
-				\item	Dodanie zdjęcia do ankiety jako części pytania.
-				\item	Wyświetlenie statystyk dotyczących ankietera.
-			    \item	Edytowanie pytań istniejącej już ankiety.
+				\item	stworzenie szablonu ankiet z różnymi typami pytań 
+				\item	wypełnianie ankiety (zapisanie wyników w urządzeniu)
+				\item	możliwość korzystania z tego samego szablonu ankiety na różnych urządzeniach (wczytywanie i generowanie plików .json)
+				\item	sprawdzanie poprawności wprowadzonych danych podczas wypełniania ankiety (np. odpowiedź typu tekstowego powinna być liczbą całkowitą mniejszą od 7) 
+				\item	usuwanie stworzonych szablonów
+				\item	eksportowanie zebranych wyników ankiet do pliku .json
+				\item	eksportowanie zebranych wyników ankiet do pliku .csv
+				\item	usuwanie zebranych wyników ankiet		
 			\end{enumerate}
 		\end{frame}
-		
+	
+	
 		\section{Architektura projektu}
 		
 		
@@ -119,46 +101,14 @@
 			Diagram klas przedstawiony w dokumentacji zawiera główny rdzeń warstwy logicznej naszej aplikacji. Oczywiście nie umieściliśmy tam wszystkich klas - jest ich znacznie (!) więcej. To tylko poglądowy obraz tego, na czym opiera się nasza aplikacja.
 		\end{frame}
 		\begin{frame}{Model logiczny - pakiet questions}
-			Pakiet questions odpowiada za logiczną reprezentację różnych typów pytań: 
-			\begin{enumerate}
-			\item	klasa MultipleChoiceQuestions to pytanie wielokrotnego wyboru
-			\item	OneChoiceQuestions – pytanie jednokrotnego wyboru i pytanie typu „wybór z listy” (wówczas pole isDropDownList ustawione jest na true)
-			\item	ScaleQuestion – pytanie typu skala
-			\item	TextQuestion – to pytanie, gdzie odpowiedź jest tekstem wprowadzonym przez użytkownika – można ustawić w nim różne typy ograniczeń (pole constraint typu IConstraint) – patrz pakiet constraints
-			\item	GridQuestion – to pytanie typu „siatka” – powinno być obrazowane w postaci tabeli, w której użytkownik może zaznaczyć właściwą odpowiedź (odpowiedzi)
-		\end{enumerate}	
-	\end{frame}
-	\begin{frame}{Model logiczny - pakiet questions}
-		Wszystkie te klasy dziedziczą po klasie abstrakcyjnej Question, która jest ilustracją pytania jako abstrakcji. Dziedziczenie to gwarantuje implementację pól i metod odpowiedzialnych za wszystko to, co z każdym typem pytania jest związane: treść pytania, podpowiedź do pytania, czy pytanie jest obowiązkowe, tekst błędu, adres do obrazka dołączonego do pytania, możliwość pobrania odpowiedzi, której udzielił użytkownik, sprawdzenia, czy pytanie jest obowiązkowe oraz czy na nie odpowiedziano.
+			Pakiet questions odpowiada za logiczną reprezentację różnych typów pytań. 	Wszystkie te klasy dziedziczą po klasie abstrakcyjnej Question, która jest ilustracją pytania jako abstrakcji.
 	\end{frame}
 	\begin{frame}{Model logiczny - pakiet constraints}
 		Pakiet ten odpowiada za reprezentację różnych typów ograniczeń do możliwych odpowiedzi użytkownika na zadane pytanie (typu tekstowego).
-		\begin{enumerate}[1)]
-				\item	Klasa NumberConstraint reprezentuje ograniczenia liczbowe (wówczas odpowiedź na zadane pytanie musi być liczbą)
-				\begin{enumerate}[a)]
-					\item	minValue – liczba, której odpowiedź musi być równa lub większa od niej
-					\item	maxValue – liczba, której odpowiedź musi być równa lub mniejsza od niej
-					\item	mustBeInteger – jeśli ustawione na true, liczba musi być liczbą całkowitą
-					\item	notEquals – jeśli ustawione, to jest to liczba, od której odpowiedź musi się różnić
-					\item	notBetweenMaxAndMinValue – jeśli ustawione na true, to odpowiedź nie może należeć do przedziału [minValue, maxValue]
-				\end{enumerate}
-			\end{enumerate}
-		\end{frame}
-		\begin{frame}
-			\begin{enumerate}[1)]
-				\setcounter{enumi}{1}
-				\item	Klasa TextConstraint reprezentuje ograniczenia odnośnie treści odpowiedzi
-				\begin{enumerate}[a)]
-					\item	minLength – minimalna długość odpowiedzi (minimalna liczba znaków odpowiedzi)
-					\item	maxLength – maksymalna długość odpowiedzi
-					\item	regex – wyrażenie regularne, które odpowiedź musi spełnić	
-				\end{enumerate}
-				
-				\item	TextValidator to klasa, której metoda validate odpowiada za sprawdzenie, czy przekazana jako argument treść odpowiedzi spełnia zadane ograniczenia.	
-		\end{enumerate}
 	
-		Klasy NumberConstraint i TextConstraint implementują interfejs IConstraint, dzięki temu posiadają metodę checkCorrectness, która sprawdza, czy zadana odpowiedź spełnia ich ograniczenia.
-	\end{frame}
+		\end{frame}
+		
+	
 	\begin{frame}{Model logiczny - pakiet common}
 		Pakiet common zawiera generyczną klasę Pair odpowiadającą za reprezentację par obiektów różnego typu.
 	\end{frame}
@@ -166,52 +116,15 @@
 		
 		Pakiet ten zawiera klasy będące kontrolerami – klasami pośredniczącymi między warstwą logiczną i GUI.
 	\end{frame}
-	\begin{frame}{Model logiczny - pakiet facades}	
-		Zawiera między innymi klasę odpowiedzialną za komunikację klienta z serwerem – w całości zajmuje się logiką związaną z przesyłaniem i odbieraniem danych (m.in. z ich serializacją za pomocą jsona). Logika ta jest ukryta przed innymi klasami i nie muszą się one przejmować tym, jak wszystko działa, tylko wywołać pojedynczą metodę robiącą w całości to, czego oczekują.
-	\end{frame}
+	
 	\begin{frame}{Model logiczny - pakiet interviewer}
-		Stanowi logiczną reprezentację ankieterów:
-		\begin{enumerate}[1)]
-				\item Klasa Interviewer reprezentuje ankietera
-				\begin{enumerate}[a)]
-						\item name - imię ankietera
-						\item surname - nazwisko ankietera
-						\item hireDay - data zatrudnienia ankietera
-						\item relieveName - data zwolnienia ankietera
-						\item id - identyfikator ankietera (PESEL)
-						\item outOfWorkTime - lista okresów, w których ankieter nie był zatrudniony
-						\item interviewerPrivileges - ogólne uprawnienia ankietera (czy może tworzyć nowe ankiety)
-						\item intervSurveysPriviliges - uprawnienia ankietera dotyczące konkretnej ankiety (czy może ją wypełniać, edytować, edytować bez zatwierdzenia zmian przez administratora)
-				\end{enumerate}
-				\item Klasa InterviewersRepository zajmuje się przechowywaniem ankieterów i dostępem do nich.	
-		\end{enumerate}
+		Stanowi logiczną reprezentację ankieterów.
 	\end{frame}
 		\begin{frame}{Model logiczny - pakiet statistics}
 			Dostarcza statystyk dotyczących danych zebranych w ankietach oraz statystyk dotyczących funkcjonowania systemu.
-		\begin{enumerate}[1)]
-			\item Klasa QuestionStatisticsProvider dostarcza statystyk dotyczących danych zebranych w ankietach takich jak średnia, mediana, odchylenie standardowe, wartości ekstremalne).
-			\item Klasa InterviewerStatisticsProvider dostarcza statystyk dotyczących pracy ankieterów. Zawiera metody, które pozwalają ustalić, ile dany ankieter wypełnił ankiet w wybranym przedziale czasowym.
-			\item Klasa SurveysStatisticsProvider dostarcza statystyk dotyczących wypełniania konkretnego szablonu ankiety. Pozwala na sprawdzenie liczby wypełnionych ankiet w wybranym przedziale czasowym oraz znalezienie ankietera, który wypełnił najwięcej ankiet danego rodzaju.
-		\end{enumerate}
 	\end{frame}
 	\begin{frame}{Model logiczny - pakiet survey}
-	Odpowiada za logiczną reprezentację ankiet oraz umożliwia dostęp do listy szablonów ankiet i wypełnionych ankiet przechowywanych w repozytorium:
-	\begin{enumerate}[1)]
-			\item Klasa Survey reprezentuje szablon ankiety lub wypełnioną ankietę
-			\begin{enumerate}[a)]
-					\item questions - lista pytań wchodzących w skład ankiety
-					\item startTime - czas rozpoczęcia wypełniania ankiety
-					\item finishTime - czas zakończenia wypełniania ankiety
-					\item interviewer - ankieter wypełniający daną ankietę
-					\item idOfSurveys - identyfikator szablonu ankiety
-					\item title - tytuł ankiety
-					\item description - opis ankiety
-					\item summary - podsumowanie ankietera na temat wypełnionej ankiety
-					\item numberOfSurvey - numer wypełnionej ankiety
-			\end{enumerate}
-			\item Klasa SurveyHandler dostarcza szablonów ankiet do wypełnienia
-			\item Klasa SurveysRepository zajmuje się wypełnionymi ankietami.
-	\end{enumerate}
+	Odpowiada za logiczną reprezentację ankiet oraz umożliwia dostęp do listy szablonów ankiet i wypełnionych ankiet przechowywanych w repozytorium.
 \end{frame}
 	
 		\begin{frame}{Model wdrożeniowy}
@@ -240,57 +153,51 @@
 		
 		\begin{frame}{Andrzej}
 			\begin{enumerate}
-				\item	implementacja części wspólnych pakietów: surveys, statistics
-				\item	aplikacja deskoptowa
+				\item	implementacja części wspólnych pakietów: pakiet survey.
+				\item	aplikacja desktopowa
 				\begin{itemize}
-					\item  Stworzenie nowej ankiety.
-					\item	Edycja pytań istniejącej ankiety. 
-					\item	Zmiana statusu istniejącej ankiety. 
-					\item	Wykorzystanie istniejącej ankiety do stworzenia nowej. 
-					\item	Zmiana kolejności pytań w ankiecie. 
-					\item	Udostępnianie ankiety innym ankieterom.	
+					\item  	Stworzenie nowego szablonu ankiety. 
+						\item	Edycja istniejącego szablonu ankiety.
+						\item	Edycja poszczególnych pytań istniejącego szablonu ankiety.
+						\item	Zmiana statusu ankiety.
+						\item	Wykorzystanie istniejącej ankiety do stworzenia nowej.
+						\item	Zmiana kolejności pytań w ankiecie.
+						\item	Zapisanie szablonu ankiety do pliku .html.
 				\end{itemize}
 			\end{enumerate}
 		\end{frame}
 		
 		\begin{frame}{Adam}
 			\begin{enumerate}
-				\item	implementacja części wspólnych pakietów: interviewers, statistics
-				\item	aplikacja deskoptowa
+				\item	implementacja części wspólnych pakietów: interviewer, statistics
+				\item	aplikacja desktopowa	
 				\begin{itemize}
-					\item   Rejestracja nowego ankietera (dodajemy nowego ankietera do systemu).
-					\item	Zmiana statusu ankietera (jest aktywny czy nieaktywny).
-					\item	Nadawanie ankieterom uprawnień do ankiety (różne typy uprawnień).
-					\item	Przygotowanie list pracujących ankieterów. 
-					\item	Wyświetlanie rankingu ankieterów. 
-					\item	Wyświetlanie statystyk dotyczących ankietera.
-					\item	Przygotowanie podstawowych statystyk dotyczących wypełniania ankiety. 
+					\item Rejestracja nowego ankietera.
+					\item	Edycja danych ankietera.
+					\item	Wyświetlanie rankingu ankieterów.
+					\item	Przygotowanie podstawowych statystyk dotyczących wyników ankiety.
+					\item	Przygotowanie podstawowych statystyk dotyczących wypełniania ankiety.
+					\item	Zapisanie wybranych wyników ankiety do pliku .csv.
 				\end{itemize}
 			\end{enumerate}
 		\end{frame}
 		
 		\begin{frame}{Dominik}
 			\begin{enumerate}
-				\item	implementacja części wspólnych pakietów: questions, constraints, common.
-				\item	aplikacja mobilna
+			\item	implementacja części wspólnych pakietów: questions, constraints, common.
+			\item	serializacja szablonów ankiet i wyników ankiet do formatu json oraz deserializacja z format json.
+			\item	aplikacja mobilna na platformę Android	
 				\begin{itemize}
-					\item Stworzenie nowej ankiety (różne typy pytań, edytowanie pytań podczas tworzenia ankiety, do pytań tekstowych możliwość dodania różnych ograniczeń np. że odpowiedź powinna spełniać jakieś wyrażenie regularne).
-					\item	Przeprowadzenie ankiety (obsługa różnych typów pytań, ograniczeń, zapisanie wyników ankiety do bazy danych).
-					\item	Wysłanie wyników przeprowadzonych ankiet na serwer.
-					\item	Automatyczne wysyłanie wyników przeprowadzonych ankiet na serwer (od razu po wypełnieniu).
-					\item	Wysłanie stworzonej ankiety na serwer (szablonu ankiet).
-					\item	Pobranie szablonów ankiet z serwera.
+						\item	Stworzenie nowej ankiety.
+							\item	Przeprowadzenie ankiety.
+							\item	Generowanie wyników przeprowadzonych ankiet oraz szablonów ankiet do pliku .json.
+							\item	Eksportowanie wyników przeprowadzonych ankiet do pliku csv.
+							\item	Wczytanie szablonów ankiet z plików .json.
+							\item	Usuwanie szablonów ankiet.
+							\item	Usuwanie zebranych wyników ankiet.
+							\item	Możliwość sprawdzenia liczby wypełnionych ankiet na urządzeniu.
+							\item	Podstawowe zabezpieczenia przed dostępem do aplikacji niepowołanych osób – zabezpieczenie dostępu hasłem, możliwość ustawienia nowego hasła po odpowiedzi na pytanie pomocnicze, możliwość nie wylogowywania oraz zapamiętania hasła przez aplikację.
 				\end{itemize}
 			\end{enumerate}
-		\end{frame}
-		\begin{frame}{Dominik}
-				\begin{itemize}
-					\item	Uzgadnianie uprawnień ankietera - możliwość logowania bez dostępu do Internetu – wówczas ankieter domyślnie nie ma prawa do tworzenia nowych ankiet, może natomiast wypełniać ankiety, do których przy ostatnim logowaniu z użyciem sieci miał uprawnienia. Bez połączenia z serwerem może zalogować się tylko użytkownik, który logował się już wcześniej na danym urządzeniu.  W przypadku dostępu do Internetu pobierane są uprawnienia ankietera.
-				\end{itemize}
-		\begin{enumerate}
-			\setcounter{enumi}{2}	
-				\item	serwer
-				\item	fasada serwera (sposób łączenia się z serwerem, cała logika dotycząca przesyłania i odbierania danych z serwera i na serwer)
-		\end{enumerate}
 		\end{frame}
 \end{document}
