@@ -41,7 +41,7 @@ public class TQuestionStatistics extends JFrame implements ActionListener{
     private int numberOfQuestion;
     private QuestionStatisticsProvider qsp;
     private JLabel questionName;
-    private JLabel j1, j2,j3,j4,j5, j6, j7;
+    private JLabel j1, j2,j3,j4,j5, j6, j7, description;
     private List<Pair<String, Integer>> ranking;
     
     public TQuestionStatistics(List<Survey> surveys,int numberOfQuestion){
@@ -73,7 +73,7 @@ public class TQuestionStatistics extends JFrame implements ActionListener{
         j5 = new JLabel("5. ");
         j6 = new JLabel("Liczba wype³nionych ankiet: " + surveys.size());
         j7 = new JLabel("Liczba odpowiedzi na to pytanie to: " + qsp.getNumberUsersAnswers(surveys, numberOfQuestion));
-        
+        description = new JLabel("Najpopularniejsze odpowiedzi i ich liczba");
         if(0<ranking.size()){
                 j1.setText("1. " + ranking.get(0).getFirst() +  " - "+ranking.get(0).getSecond());
             }
@@ -93,13 +93,14 @@ public class TQuestionStatistics extends JFrame implements ActionListener{
         
         panel.setLayout(null); 
         
-        j1.setBounds(100, 90, 300, 30);
-        j2.setBounds(100, 130, 300, 30);
-        j3.setBounds(100, 170, 300, 30);
-        j4.setBounds(100, 210, 300, 30);
-        j5.setBounds(100, 250, 300, 30);
+        j1.setBounds(100, 130, 300, 30);
+        j2.setBounds(100, 170, 300, 30);
+        j3.setBounds(100, 210, 300, 30);
+        j4.setBounds(100, 250, 300, 30);
+        j5.setBounds(100, 290, 300, 30);
         j6.setBounds(100, 20, 300, 30);
         j7.setBounds(100, 50, 300, 30);
+        description.setBounds(100,90,300,30);
         //panel.add(close);
         panel.add(j1);
         panel.add(j2);
@@ -108,6 +109,7 @@ public class TQuestionStatistics extends JFrame implements ActionListener{
         panel.add(j5);
         panel.add(j6);
         panel.add(j7);
+        panel.add(description);
         //close.addActionListener(this);
         setVisible(true);
     }

@@ -52,7 +52,7 @@ public class SQuestionStatistics extends JFrame implements ActionListener{
         this.surveys = surveys;
         this.numberOfQuestion = numberOfQuestion;
         qsp = new QuestionStatisticsProvider();
-        setSize(400, 400);
+        setSize(400, 350);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
