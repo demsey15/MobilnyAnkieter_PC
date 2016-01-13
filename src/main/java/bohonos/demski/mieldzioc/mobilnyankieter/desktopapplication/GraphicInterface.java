@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  */
 public class GraphicInterface extends JFrame implements ActionListener{
 
-    private JButton interv, creator, statisticsButton;
+    private JButton interv, creator, statisticsButton, dataSynchronize;
     private JPanel panel;
    // private GridLayout gridLayout ;
     private Container con;
@@ -69,30 +69,34 @@ public class GraphicInterface extends JFrame implements ActionListener{
                 //gridLayout = new GridLayout(5,1,20,10);
              
                 //setLayout(gridLayout);
-                setSize(600, 600);
+                setSize(500, 400);
 		setLocation(100,80);
                 setResizable(false);
                 panel = new JPanel();   
                 interv = new JButton("Zarz¹dzanie ankieterami");
                 creator = new JButton("Kreator ankiet");
                 statisticsButton = new JButton("Wyniki ankiet");
+                dataSynchronize = new JButton("Synchronizuj dane");
 		con = this.getContentPane();
                 //con.setLayout(new BorderLayout());
                 con.add(panel);
 
-                creator.setBounds(200, 75, 200, 50);
-                interv.setBounds(200, 175, 200, 50);
-                statisticsButton.setBounds(200, 275, 200, 50);
+                creator.setBounds(30, 50, 200, 100);
+                interv.setBounds(30, 200, 200, 100);
+                statisticsButton.setBounds(270, 50, 200, 100);
+                dataSynchronize.setBounds(270, 200, 200, 100);
                 
                 panel.setLayout(null); 
                  
                 panel.add(creator);
                 panel.add(statisticsButton);
                 panel.add(interv);
+                panel.add(dataSynchronize);
                
                 creator.addActionListener(this);;
                 statisticsButton.addActionListener(this);
                 interv.addActionListener(this);
+                dataSynchronize.addActionListener(this);
                
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -140,6 +144,26 @@ public class GraphicInterface extends JFrame implements ActionListener{
                     StatisticsFrame statiticsFrame = new StatisticsFrame(applicationLogic);
                 }
             });
+        }
+        if(source == dataSynchronize){
+        	try {
+				applicationLogic.RefreshSurveysRepository();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        	try {
+				applicationLogic.RefreshSurveyHandler();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         }
     }
 

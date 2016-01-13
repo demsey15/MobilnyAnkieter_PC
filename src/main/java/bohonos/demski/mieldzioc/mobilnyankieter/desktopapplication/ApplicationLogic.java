@@ -12,7 +12,10 @@ import java.util.Map;
 import bohonos.demski.mieldzioc.mobilnyankieter.interviewer.*;
 import bohonos.demski.mieldzioc.mobilnyankieter.questions.*;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.*;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 /**
  *
@@ -196,5 +199,14 @@ public class ApplicationLogic {
     
     public InterviewersRepository getInterviewersRepository(){
         return intervierwsRepository;
+    }
+    
+    public void RefreshSurveysRepository() throws IOException{
+    	this.surveysRepository = new SurveysRepository();
+    }
+    
+    public void RefreshSurveyHandler() throws FileNotFoundException, UnsupportedEncodingException, IOException{
+    	this.surveyHandler.saveSurveyTemplates();
+    	this.surveyHandler = new SurveyHandler(0, 0);
     }
 }
