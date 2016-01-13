@@ -47,7 +47,7 @@ public class StatisticsFilledSurveys extends JFrame implements ActionListener{
          idInterviewer = (String) s;
          idSurveys = (String) repo;
          setSize(300, 200);
-	setLocation(300,300);
+         setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
          con = this.getContentPane();

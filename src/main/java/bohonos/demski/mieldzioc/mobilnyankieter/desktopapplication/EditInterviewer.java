@@ -69,8 +69,8 @@ public class EditInterviewer extends JFrame implements ActionListener{
         this.interviewer = interviewer;
         this.menager = menager;
         newListOfMacs = new ArrayList<String>();
-        setSize(800,600);
-        setLocation(300,350);
+        setSize(500,500);
+        setLocation(300,150);
         setResizable(false);
         jname = new JTextField(interviewer.getName());
         jsurname = new JTextField(interviewer.getSurname());
@@ -92,18 +92,18 @@ public class EditInterviewer extends JFrame implements ActionListener{
         devices = new JList(listModel);
         
         
-        nameLabel.setBounds(450, 0, 50, 40);
-        jname.setBounds(500, 0, 100, 40);
-        surnameLabel.setBounds(420, 50, 75, 40);
-        jsurname.setBounds(500, 50, 100, 40);
-        jid.setBounds(500, 100, 100, 40);
-        idLabel.setBounds(460, 100, 40, 40);
-        anul.setBounds(100, 500, 100, 50);
-        editinterv.setBounds(600, 500, 150, 50);
-        dodajMac.setBounds(350, 200, 150, 50);
-        usunMac.setBounds(350, 350, 150, 50);;
-        devices.setBounds(50, 150, 250, 300);
-        opis.setBounds(50, 100, 200, 50);
+        nameLabel.setBounds(250, 20, 50, 40);
+        jname.setBounds(300, 20, 150, 40);
+        surnameLabel.setBounds(220, 70, 75, 40);
+        jsurname.setBounds(300, 70, 150, 40);
+        jid.setBounds(300, 120, 150, 40);
+        idLabel.setBounds(260, 120, 40, 40);
+        anul.setBounds(50, 400, 150, 50);
+        editinterv.setBounds(300, 400, 150, 50);
+        dodajMac.setBounds(300, 200, 150, 50);
+        usunMac.setBounds(300, 270, 150, 50);;
+        devices.setBounds(50, 200, 200, 150);
+        opis.setBounds(50, 150, 200, 50);
         
         ListSelectionListener listListener = new ListSelectionListener() {
 

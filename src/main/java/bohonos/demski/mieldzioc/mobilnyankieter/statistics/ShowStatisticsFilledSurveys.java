@@ -25,13 +25,13 @@ import javax.swing.JPanel;
 public class ShowStatisticsFilledSurveys extends JFrame implements ActionListener{
     private JLabel j1, j2,j3,j4,j5;
     private JPanel panel;
-    private JButton close;
+    //private JButton close;
     private Container con;
     private List<Survey> surveys;
     private SurveysStatisticsProvider stats;
  
     public ShowStatisticsFilledSurveys(List<Survey> surveys){
-    super("Statystyki ankietera");
+    super("Statystyki wypelniania ankiety");
          addWindowListener(new WindowAdapter() {
                         @Override
 			public void windowClosing(WindowEvent we){
@@ -41,7 +41,7 @@ public class ShowStatisticsFilledSurveys extends JFrame implements ActionListene
         
         this.surveys = surveys;
         stats = new SurveysStatisticsProvider();
-        setSize(400, 300);
+        setSize(350, 250);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
@@ -58,27 +58,27 @@ public class ShowStatisticsFilledSurveys extends JFrame implements ActionListene
         j2 = new JLabel("Œrednia liczba zebranych ankiet na dzieñ: "+stats.getMeanFilledSurveysOnADay(surveys));
         j3 = new JLabel("Œredni czas wype³niania ankiety: "+stats.getMeanTimeOfInfillSurvey(surveys)+" min");
     
-        close = new JButton("Zamknij");
+        //close = new JButton("Zamknij");
         j1.setBounds(100, 20, 200, 30);
         j2.setBounds(50, 80, 300, 30);
         j3.setBounds(50, 140, 300, 30);
-        close.setBounds(125, 200, 150, 50);
+        //close.setBounds(125, 200, 150, 50);
         
         panel.setLayout(null); 
                  
         panel.add(j1);
         panel.add(j2);
         panel.add(j3);
-        panel.add(close);
+        //panel.add(close);
         
-        close.addActionListener(this);
+        //close.addActionListener(this);
         setVisible(true);
 }
 
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if(source==close){
+        /*if(source==close){
             dispose();
-        }
+        }*/
     }
 }

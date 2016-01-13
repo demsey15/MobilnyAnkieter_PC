@@ -82,8 +82,8 @@ public class MenagerInterviewersFrame extends JFrame implements ActionListener{
 			}
 		});
         
-        setSize(800,600);
-        setLocation(200,250);
+        setSize(650,500);
+        setLocation(200,150);
         setResizable(false);
         
         //menuInterviewers = new JMenu("Ankieterzy");

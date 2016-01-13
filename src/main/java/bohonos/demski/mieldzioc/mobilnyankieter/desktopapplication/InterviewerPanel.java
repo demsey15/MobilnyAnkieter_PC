@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 public class InterviewerPanel extends JPanel implements ActionListener{
     private Interviewer interviewer;
     public static int HEIGHT = 70;
-    public static final int WIDTH = 780;
+    public static final int WIDTH = 630;
     private JButton editInterv, privileges;
     //private ApplicationLogic applicationLogic;
     
@@ -59,7 +59,7 @@ public class InterviewerPanel extends JPanel implements ActionListener{
         //menager.refreshViewOfInterviewers();
         editInterv = new JButton("Edycja ankietera");
         //privileges = new JButton("Uprawnienia");
-        editInterv.setBounds(500, 15, 150, 40);
+        editInterv.setBounds(450, 15, 150, 40);
         //privileges.setBounds(600, 15, 150, 40);
         this.add(editInterv);
         //this.add(privileges);

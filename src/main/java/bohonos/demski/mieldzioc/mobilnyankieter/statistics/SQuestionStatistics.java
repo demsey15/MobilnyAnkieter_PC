@@ -32,7 +32,7 @@ import javax.swing.JTextArea;
  */
 public class SQuestionStatistics extends JFrame implements ActionListener{
     private JPanel panel;
-    private JButton close;
+    //private JButton close;
     private Container con;
     private List<Survey> surveys;
     private int numberOfQuestion;
@@ -58,7 +58,7 @@ public class SQuestionStatistics extends JFrame implements ActionListener{
         panel = new JPanel();
         con = this.getContentPane();
         con.add(panel);
-        close = new JButton("Zamknij");
+       // close = new JButton("Zamknij");
         
         String pytanie = surveys.get(0).getQuestion(numberOfQuestion).getQuestion();
         //questionName = new JTextArea("Pytanie: " + pytanie);
@@ -83,7 +83,7 @@ public class SQuestionStatistics extends JFrame implements ActionListener{
         j6.setBounds(100, 20, 300, 30);
         j7.setBounds(100, 50, 300, 30);
         
-        close.setBounds(150, 300, 100, 50);
+        //close.setBounds(150, 300, 100, 50);
         
         panel.setLayout(null); 
         
@@ -94,19 +94,19 @@ public class SQuestionStatistics extends JFrame implements ActionListener{
         panel.add(mode);
         panel.add(median);
         panel.add(sigma);
-        panel.add(close);
+        //panel.add(close);
         panel.add(j6);
         panel.add(j7);
         
-        close.addActionListener(this);
+        //close.addActionListener(this);
         setVisible(true);
     }
     
     public void actionPerformed(ActionEvent e) {
        Object source = e.getSource();
-       if(source==close){
+       /*if(source==close){
             dispose();
-        }
+        }*/
     }
 
 }

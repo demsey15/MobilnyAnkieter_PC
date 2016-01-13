@@ -35,7 +35,7 @@ import javax.swing.JPanel;
  */
 public class TQuestionStatistics extends JFrame implements ActionListener{
     private JPanel panel;
-    private JButton close;
+    //private JButton close;
     private Container con;
     private List<Survey> surveys;
     private int numberOfQuestion;
@@ -57,14 +57,14 @@ public class TQuestionStatistics extends JFrame implements ActionListener{
         this.numberOfQuestion = numberOfQuestion;
         qsp = new QuestionStatisticsProvider();
         ranking = qsp.getTheMostFrequentAnswers(surveys, numberOfQuestion);
-        setSize(400, 400);
+        setSize(400, 350);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
         con = this.getContentPane();
         con.add(panel);
-        close = new JButton("Zamknij");
-        close.setBounds(150, 300, 100, 50);
+        //close = new JButton("Zamknij");
+        //close.setBounds(150, 300, 100, 50);
         
         j1 = new JLabel("1. ");
         j2 = new JLabel("2. ");
@@ -100,7 +100,7 @@ public class TQuestionStatistics extends JFrame implements ActionListener{
         j5.setBounds(100, 250, 300, 30);
         j6.setBounds(100, 20, 300, 30);
         j7.setBounds(100, 50, 300, 30);
-        panel.add(close);
+        //panel.add(close);
         panel.add(j1);
         panel.add(j2);
         panel.add(j3);
@@ -108,15 +108,15 @@ public class TQuestionStatistics extends JFrame implements ActionListener{
         panel.add(j5);
         panel.add(j6);
         panel.add(j7);
-        close.addActionListener(this);
+        //close.addActionListener(this);
         setVisible(true);
     }
     
     public void actionPerformed(ActionEvent e) {
        Object source = e.getSource();
-       if(source==close){
+       /*if(source==close){
             dispose();
-        }
+        }*/
     }
     
 }

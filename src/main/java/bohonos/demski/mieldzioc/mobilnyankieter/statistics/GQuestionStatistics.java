@@ -30,7 +30,7 @@ import javax.swing.JPanel;
  */
 public class GQuestionStatistics extends JFrame implements ActionListener{
     private JPanel panel;
-    private JButton close;
+    //private JButton close;
     private Container con;
     private List<Survey> surveys;
     private int numberOfQuestion;
@@ -63,7 +63,7 @@ public class GQuestionStatistics extends JFrame implements ActionListener{
         this.numberOfQuestion = numberOfQuestion;
         qsp = new QuestionStatisticsProvider();
         ranking = qsp.getTheMostFrequentAnswers(surveys, numberOfQuestion);
-        setSize(400, 400);
+        setSize(400, 350);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
@@ -83,20 +83,20 @@ public class GQuestionStatistics extends JFrame implements ActionListener{
             }
 
             if(1<ranking.size()){
-                j2.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(1).getFirst()) +  " - "+ranking.get(1).getSecond());
+                j2.setText("2. " + getStringWithoutSpecialCharacters(ranking.get(1).getFirst()) +  " - "+ranking.get(1).getSecond());
             }
             if(2<ranking.size()){
-                j3.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(2).getFirst()) + " - "+ranking.get(2).getSecond());
+                j3.setText("3. " + getStringWithoutSpecialCharacters(ranking.get(2).getFirst()) + " - "+ranking.get(2).getSecond());
             }
             if(3<ranking.size()){
-                j4.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(3).getFirst()) +" - "+ranking.get(3).getSecond());
+                j4.setText("4. " + getStringWithoutSpecialCharacters(ranking.get(3).getFirst()) +" - "+ranking.get(3).getSecond());
             }
             if(4<ranking.size()){
-                j5.setText("1. " + getStringWithoutSpecialCharacters(ranking.get(4).getFirst()) +  " - "+ranking.get(4).getSecond());
+                j5.setText("5. " + getStringWithoutSpecialCharacters(ranking.get(4).getFirst()) +  " - "+ranking.get(4).getSecond());
             }
         
-        close = new JButton("Zamknij");
-        close.setBounds(150, 300, 100, 50);
+        //close = new JButton("Zamknij");
+        //close.setBounds(150, 300, 100, 50);
         j1.setBounds(100, 90, 300, 30);
         j2.setBounds(100, 130, 300, 30);
         j3.setBounds(100, 170, 300, 30);
@@ -107,7 +107,7 @@ public class GQuestionStatistics extends JFrame implements ActionListener{
         
         panel.setLayout(null); 
         
-        panel.add(close);
+        //panel.add(close);
         panel.add(j1);
         panel.add(j2);
         panel.add(j3);
@@ -115,15 +115,15 @@ public class GQuestionStatistics extends JFrame implements ActionListener{
         panel.add(j5);
         panel.add(j6);
         panel.add(j7);
-        close.addActionListener(this);
+        //close.addActionListener(this);
         setVisible(true);
     }
     
     public void actionPerformed(ActionEvent e) {
        Object source = e.getSource();
-       if(source==close){
+       /*if(source==close){
             dispose();
-        }
+        }*/
     }
     
 }

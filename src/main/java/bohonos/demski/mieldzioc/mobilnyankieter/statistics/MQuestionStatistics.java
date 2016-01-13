@@ -31,7 +31,7 @@ import javax.swing.JPanel;
  */
 public class MQuestionStatistics extends JFrame implements ActionListener{
     private JPanel panel;
-    private JButton close;
+    //private JButton close;
     private Container con;
     private List<Survey> surveys;
     private int numberOfQuestion;
@@ -69,32 +69,32 @@ public class MQuestionStatistics extends JFrame implements ActionListener{
       
         biglabel = new JLabel("<html>" + text + "<html>");
         
-        setSize(400, 400);
+        setSize(400, 350);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
         con = this.getContentPane();
         con.add(panel);
-        close = new JButton("Zamknij");
-        close.setBounds(150, 300, 100, 50);
+        //close = new JButton("Zamknij");
+        //close.setBounds(150, 300, 100, 50);
         biglabel.setBounds(20, 100, 320, 200);
         amountOfAnswers.setBounds(20,70,300,50);
         amountOfSurveys.setBounds(20,20,300,50);
         panel.setLayout(null); 
         
-        panel.add(close);
+        //panel.add(close);
         panel.add(biglabel);
         panel.add(amountOfAnswers);
         panel.add(amountOfSurveys);
-        close.addActionListener(this);
+        //close.addActionListener(this);
         setVisible(true);
     }
     
     public void actionPerformed(ActionEvent e) {
        Object source = e.getSource();
-       if(source==close){
+       /*if(source==close){
             dispose();
-        }
+        }*/
     }
     
 }

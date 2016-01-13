@@ -56,10 +56,10 @@ public class AddMac extends JFrame implements ActionListener{
         newMac = new JTextField();
         //rel.setBounds(20, 10, 150, 40);
         //jdate.setBounds(180, 10, 100, 40);
-        adress.setBounds(20, 20, 100, 50);
+        adress.setBounds(20, 20, 100, 40);
         anul.setBounds(20, 100, 100, 50);
         save.setBounds(180, 100, 100, 50);
-        newMac.setBounds(160, 20, 140, 50);
+        newMac.setBounds(140, 20, 140, 40);
         //jdate.setValue(new Date());
         
         JPanel inputPanel = new JPanel();

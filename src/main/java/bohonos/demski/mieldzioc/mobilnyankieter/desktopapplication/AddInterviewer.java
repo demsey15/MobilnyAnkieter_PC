@@ -55,8 +55,8 @@ public class AddInterviewer extends JFrame implements ActionListener{
 			}
 		});
         this.menager = menager;
-        setSize(800,600);
-        setLocation(300,350);
+        setSize(400,360);
+        setLocation(300,150);
         setResizable(false);
         jname = new JTextField();
         jsurname = new JTextField();
@@ -70,16 +70,16 @@ public class AddInterviewer extends JFrame implements ActionListener{
         anul = new JButton("Anuluj");
         createinterv= new JButton("Dodaj ankietera");
              
-        nameLabel.setBounds(350, 0, 50, 40);
-        jname.setBounds(400, 0, 100, 40);
-        surnameLabel.setBounds(320, 50, 75, 40);
-        jsurname.setBounds(400, 50, 100, 40);
-        jid.setBounds(400, 100, 100, 40);
-        idLabel.setBounds(360, 100, 40, 40);
-        jdate.setBounds(400, 150, 100, 50);
-        dateLabel.setBounds(275, 150, 125, 50);
-        anul.setBounds(100, 400, 100, 50);
-        createinterv.setBounds(600, 400, 150, 50);
+        nameLabel.setBounds(100, 30, 50, 30);
+        jname.setBounds(150, 30, 150, 30);
+        surnameLabel.setBounds(70, 80, 75, 30);
+        jsurname.setBounds(150, 80, 150, 30);
+        jid.setBounds(150, 130, 150, 30);
+        idLabel.setBounds(110, 130, 40, 30);
+        jdate.setBounds(150, 180, 150, 30);
+        dateLabel.setBounds(50, 180, 125, 30);
+        anul.setBounds(30, 260, 150, 50);
+        createinterv.setBounds(220, 260, 150, 50);
         
         //GregorianCalendar now = new GregorianCalendar();
         jdate.setValue(new Date());

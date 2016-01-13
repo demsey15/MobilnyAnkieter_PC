@@ -48,7 +48,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
     private ApplicationLogic applicationLogic;
     private JButton statResultSurvey, statFillSurvey, close, statisticsInterviewer, rankInterviewers;
     private JComboBox idInterviewer, idSurvey;
-    private JLabel jInterviewer, jSurvey;
+    private JLabel jInterviewer, jSurvey, interviewerListLabel;
     private JPanel panel;
     private Container con;
     private JList listOfInterviewers;
@@ -68,10 +68,11 @@ public class StatisticsFrame extends JFrame implements ActionListener{
 			}
 		});
          this.applicationLogic = applicationLogic;
-         setSize(800, 600);
+         setSize(700, 480);
 	setLocation(100,80);
         setResizable(false);
         panel = new JPanel();   
+        selectedInterviewers = new ArrayList<Interviewer>();
         statResultSurvey = new JButton("Statystyki wyników ankiety");
         statFillSurvey = new JButton("Statystyki wype³niania ankiety");
         close = new JButton("Zamknij");
@@ -100,20 +101,22 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         idSurvey = new JComboBox(model2);
         //jInterviewer = new JLabel("ID Ankietera: ");
         jSurvey = new JLabel("ID Ankiety: ");
+        interviewerListLabel = new JLabel("Lista ankieterów:");
         
         listModel = new DefaultListModel();
         listOfInterviewers = new JList(listModel);
         
         //idInterviewer.setBounds(250, 30, 200, 30);
-        idSurvey.setBounds(250, 30, 350, 30);
+        idSurvey.setBounds(200, 30, 350, 30);
         //jInterviewer.setBounds(150, 20, 100, 50);
-        jSurvey.setBounds(150,20,100, 50);
-        rankInterviewers.setBounds(450, 270, 250, 50);
+        jSurvey.setBounds(100,20,100, 50);
+        interviewerListLabel.setBounds(75, 110, 150, 30);
+        rankInterviewers.setBounds(400, 150, 250, 50);
         //statisticsInterviewer.setBounds(450, 270, 200, 50);
-        statResultSurvey.setBounds(450, 345, 250, 50);
-        statFillSurvey.setBounds(450, 420, 250, 50);
-        close.setBounds(450, 495, 250, 50);
-        listOfInterviewers.setBounds(100, 100, 300, 450);
+        statResultSurvey.setBounds(400, 225, 250, 50);
+        statFillSurvey.setBounds(400, 300, 250, 50);
+        close.setBounds(400, 375, 250, 50);
+        listOfInterviewers.setBounds(50, 150, 300, 275);
         
         ListSelectionListener listListener = new ListSelectionListener() {
 
@@ -147,6 +150,7 @@ public class StatisticsFrame extends JFrame implements ActionListener{
         panel.add(idSurvey);
         //panel.add(jInterviewer);
         panel.add(jSurvey);
+        panel.add(interviewerListLabel);
         panel.add(rankInterviewers);
         //panel.add(statisticsInterviewer);
         panel.add(statFillSurvey);

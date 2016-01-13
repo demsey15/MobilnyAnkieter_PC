@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 class DTQuestionStatistics extends JFrame implements ActionListener{
     private JLabel j1, j2,j3,j4,j5, j6, j7;
     private JPanel panel;
-    private JButton close;
+    //private JButton close;
     private Container con;
     private List<Survey> surveys;
     private int numberOfQuestion;
@@ -47,7 +47,7 @@ class DTQuestionStatistics extends JFrame implements ActionListener{
         this.numberOfQuestion = numberOfQuestion;
         qsp = new QuestionStatisticsProvider();
         ranking = qsp.getTheMostFrequentAnswers(surveys, numberOfQuestion);
-        setSize(400, 400);
+        setSize(400, 350);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
@@ -79,8 +79,8 @@ class DTQuestionStatistics extends JFrame implements ActionListener{
                 j5.setText("1. " + ranking.get(4).getFirst() +  " - "+ranking.get(4).getSecond());
             }
         
-        close = new JButton("Zamknij");
-        close.setBounds(150, 300, 100, 50);
+        //close = new JButton("Zamknij");
+        //close.setBounds(150, 300, 100, 50);
         j1.setBounds(100, 90, 300, 30);
         j2.setBounds(100, 130, 300, 30);
         j3.setBounds(100, 170, 300, 30);
@@ -98,16 +98,16 @@ class DTQuestionStatistics extends JFrame implements ActionListener{
         panel.add(j5);
         panel.add(j6);
         panel.add(j7);
-        panel.add(close);
+        //panel.add(close);
         
-        close.addActionListener(this);
+        //close.addActionListener(this);
         setVisible(true);
     }
     
      public void actionPerformed(ActionEvent e) {
        Object source = e.getSource();
-       if(source==close){
+       /*if(source==close){
             dispose();
-        }
+        }*/
     }
 }

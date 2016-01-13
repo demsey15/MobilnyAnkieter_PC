@@ -32,7 +32,7 @@ public class RankInterviewer extends JFrame implements ActionListener{
 
     private JLabel j1, j2,j3,j4,j5;
     private JPanel panel;
-    private JButton close;
+    //private JButton close;
     private Container con;
     private List<Survey> surveys;
     private InterviewerStatisticsProvider stats;
@@ -52,7 +52,7 @@ public class RankInterviewer extends JFrame implements ActionListener{
         this.interviewers=interviewers;
         this.surveys = surveys;
         stats = new InterviewerStatisticsProvider();
-        setSize(400, 350);
+        setSize(350, 300);
 	setLocation(300,300);
         setResizable(false);
         panel = new JPanel();
@@ -104,14 +104,14 @@ public class RankInterviewer extends JFrame implements ActionListener{
                 j5.setText("1. " + ranking.get(4).getFirst().getName() + " "+ranking.get(4).getFirst().getSurname()+" "+ranking.get(4).getFirst().getId()+ " - "+ranking.get(4).getSecond());
             }
     
-        close = new JButton("Zamknij");
+        //close = new JButton("Zamknij");
         j1.setBounds(100, 20, 300, 30);
         j2.setBounds(100, 70, 300, 30);
         j3.setBounds(100, 120, 300, 30);
         j4.setBounds(100, 170, 300, 30);
         j5.setBounds(100, 220, 300, 30);
         
-        close.setBounds(125, 270, 150, 50);
+        //close.setBounds(125, 270, 150, 50);
         
         panel.setLayout(null); 
                  
@@ -120,17 +120,17 @@ public class RankInterviewer extends JFrame implements ActionListener{
         panel.add(j3);
         panel.add(j4);
         panel.add(j5);
-        panel.add(close);
+        //panel.add(close);
         
-        close.addActionListener(this);
+        //close.addActionListener(this);
         setVisible(true);
 }
     
     public void actionPerformed(ActionEvent e) {
        Object source = e.getSource();
-        if(source==close){
+       /* if(source==close){
             dispose();
-        }
+        }*/
     }
     
 }

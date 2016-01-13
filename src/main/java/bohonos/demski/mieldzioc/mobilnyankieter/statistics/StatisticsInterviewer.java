@@ -77,9 +77,9 @@ public class StatisticsInterviewer extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-       if(source==close){
+       /*if(source==close){
             dispose();
-        }
+        }*/
     }
     
 }
