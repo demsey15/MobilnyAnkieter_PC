@@ -66,7 +66,7 @@ public class AddInterviewer extends JFrame implements ActionListener{
         idLabel = new JLabel("ID: ");
         DateFormat format = new SimpleDateFormat("dd--MM--yyyy");
         jdate = new JFormattedTextField(format);
-        dateLabel = new JLabel("Data zatrudnienia: ");
+        dateLabel = new JLabel("Data dodania: ");
         anul = new JButton("Anuluj");
         createinterv= new JButton("Dodaj ankietera");
              

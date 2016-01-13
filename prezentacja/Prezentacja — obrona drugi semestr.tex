@@ -76,7 +76,17 @@
 	\begin{frame}{Aplikacja desktopowa}
 		
 		\begin{enumerate}
-			\item do zrobienia – przegląd wymagań przyjętych do realizacji i zaimplementowanych w semestrze zimowym, różnice z semestrem letnim
+			\item tworzenie szablonów ankiet
+			\item edycja szablonów ankiet
+			\item podstawowa analiza statystyczna wyników ankiet
+			\item udostępnianie szablonu ankiety innym ankieterom
+			\item podstawowe statystyki dotyczące wypełniania poszczególnych ankiet
+			\item zarządzanie ankieterami
+			\item zapisywanie szablonu ankiet do pliku .html
+			\item zapis poszczególnych wyników ankiety do pliku .csv
+			\item wczytanie szablonów ankiet (w postaci pliku .json) stworzonych na urządzeniach mobilnych
+			\item wczytanie wyników ankiet (w postaci pliku .json) zebranych na urządzeniach mobilnych
+			
 		\end{enumerate}
 	\end{frame}
 	
@@ -124,26 +134,13 @@
 		Odpowiada za logiczną reprezentację ankiet oraz umożliwia dostęp do listy szablonów ankiet i wypełnionych ankiet przechowywanych w repozytorium.
 	\end{frame}
 	
-	\begin{frame}{Model wdrożeniowy}
+	\begin{frame}{Model wdrożeniowy - Semestr letni}
 		\pgfdeclareimage[width=11cm,height=7cm]{komponenty}{Diagramostateczny.png}
 		\pgfuseimage{komponenty}
 	\end{frame}
-	
-	\begin{frame}
-		\begin{itemize}
-			\item Mobile device – urządzenie mobilne z systemem operacyjnym Android.
-			\item PC – komputer osobisty z systemem operacyjnym Windows.
-			\item Server – serwer gromadzący dane.
-			\item Printer – drukarka podłączona do komputera osobistego.
-			\item Mobile application – aplikacja mobilna działająca na urządzeniu mobilnym z systemem Android.
-			\item Desktop application – aplikacja desktopowa działająca na komputerze osobistym z systemem Windows.
-			\item Server application – aplikacja serwera, która zapisuje zebrane dane w bazie danych.
-			\item Database – baza danych przechowująca zebrane dane.
-			\item Mobile session interface – interfejs służący do komunikacji aplikacji mobilnej z aplikacją serwera.
-			\item PC session interface – interfejs służący do komunikacji aplikacji desktopowej z aplikacją serwera.
-			\item Database interface – interfejs bazy danych.
-			\item Printer interface  - interfejs drukarki podłączonej do komputera osobistego.
-		\end{itemize}
+	\begin{frame}{Model wdrożeniowy - Semestr zimowy}
+		\pgfdeclareimage[width=11cm,height=7cm]{komponenty2}{NowyDiagramOstateczny.png}
+		\pgfuseimage{komponenty2}
 	\end{frame}
 	
 	\section{Podział zadań}
