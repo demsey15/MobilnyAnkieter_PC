@@ -245,15 +245,19 @@ public class StatisticsQuestionsFrame extends JFrame implements ActionListener{
                 writer.println(surveys.get(0).getQuestion(i).getQuestion()+";");
                 for(Survey survey:surveys){
                     if(survey.getQuestion(i).getQuestionType()==6){
-                        writer.print(getDateQuestionAsString(survey.getQuestion(i).getUserAnswersAsStringList())+";");
+                        //System.out.println(survey.getQuestion(i).getUserAnswersAsStringList());
+                        String s = getDateQuestionAsString(survey.getQuestion(i).getUserAnswersAsStringList());
+                        //System.out.println(s);
+                        writer.print(s);
                     }
                     if(survey.getQuestion(i).getQuestionType()==7){
-                        writer.print(getTimeQuestionAsString(survey.getQuestion(i).getUserAnswersAsStringList())+";");
+                        //System.out.println(survey.getQuestion(i).getUserAnswersAsStringList());
+                        writer.print(getTimeQuestionAsString(survey.getQuestion(i).getUserAnswersAsStringList()));
                     }
                     if(survey.getQuestion(i).getQuestionType()==4){
                         writer.print(getTextQuestionAsString(survey.getQuestion(i).getUserAnswersAsStringList())+";");
                     }
-                    else{
+                    if(survey.getQuestion(i).getQuestionType()!=4&&survey.getQuestion(i).getQuestionType()!=6&&survey.getQuestion(i).getQuestionType()!=7){
                         for(String s: survey.getQuestion(i).getUserAnswersAsStringList()){
                             writer.print(s+";");                      
                         }
@@ -271,11 +275,11 @@ public class StatisticsQuestionsFrame extends JFrame implements ActionListener{
     
     
      private String getDateQuestionAsString(List<String> list){
-       String a = list.get(0)+"."+list.get(1)+"."+list.get(2);
+       String a = list.get(0)+"."+list.get(1)+"."+list.get(2)+";";
        return a;
    }
    private String getTimeQuestionAsString(List<String> list){
-       String a = list.get(0)+":"+list.get(1)+":"+list.get(2);
+       String a = list.get(0)+":"+list.get(1)+":"+list.get(2)+";";
        return a;
    }
    
