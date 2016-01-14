@@ -39,7 +39,7 @@ public class GraphicInterface extends JFrame implements ActionListener{
     
     public GraphicInterface() throws IOException, ParseException{
         
-        super("Bezpieczny ankieter");
+        super("Mobilny ankieter");
         applicationLogic = ApplicationLogic.getInstance();
         addWindowListener(new WindowAdapter() {
                         @Override
