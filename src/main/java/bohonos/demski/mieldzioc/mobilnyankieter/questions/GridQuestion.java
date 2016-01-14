@@ -248,4 +248,10 @@ public class GridQuestion extends Question {
 	public GridQuestion clone() throws CloneNotSupportedException {
 		return (new Cloner()).deepClone(this);
 	}
+	
+	@Override
+	public List<String> getCode(int index){
+		List list = new ArrayList<String>();
+		return list;
+	}
 }

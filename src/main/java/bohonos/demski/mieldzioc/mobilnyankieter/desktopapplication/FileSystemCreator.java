@@ -24,6 +24,7 @@ public class FileSystemCreator {
         String interviewersPath = "C:" + File.separator + "ankieter" + File.separator + "interviewers.txt";
         String maxIdPath = "C:" + File.separator + "ankieter" + File.separator + "maxId.txt";
         String outcomes = "C:" + File.separator + "ankieter" + File.separator + "outcomes";
+        String htmlTemplates = "C:" + File.separator + "ankieter" + File.separator + "htmlTemplates";
         
         File templatesCatalog = new File(templatesPath);
         File activeTemplatesCatalog = new File(activeTemplatesPath);
@@ -31,6 +32,7 @@ public class FileSystemCreator {
         File interviewersFile = new File (interviewersPath);
         File maxIdFile = new File(maxIdPath);
         File outcomesCatalog = new File(outcomes);
+        File htmlCatalog = new File(htmlTemplates);
         
         templatesCatalog.mkdirs(); 
         activeTemplatesCatalog.mkdir();
@@ -38,6 +40,7 @@ public class FileSystemCreator {
         interviewersFile.createNewFile();
         maxIdFile.createNewFile();
         outcomesCatalog.mkdirs();
+        htmlCatalog.mkdirs();
 
     }
 }

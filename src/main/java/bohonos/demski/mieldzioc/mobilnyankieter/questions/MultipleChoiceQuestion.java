@@ -197,4 +197,14 @@ public class MultipleChoiceQuestion extends Question {
 		
 		answers.addAll(newAswers);
 	}
+	
+	public List<String> getCode(int index){
+		List<String> list = new ArrayList<String>();
+		list.add(this.getQuestion()+"<br>");
+		for (String answer : this.answers){
+			list.add("<input name=\"" + index + "\" type=\"checkbox\"/> " + answer + " <br>");
+		}
+		list.add("<br>");
+		return list;
+	}
 }

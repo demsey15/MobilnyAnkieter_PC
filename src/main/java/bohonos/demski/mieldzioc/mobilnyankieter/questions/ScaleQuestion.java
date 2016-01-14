@@ -174,4 +174,10 @@ public class ScaleQuestion extends Question {
 		if(isAnswered()) list.add(String.valueOf(userAnswer));
 		return list;
 	}
+	
+	@Override
+	public List<String> getCode(int index){
+		List list = new ArrayList<String>();
+		return list;
+	}
 }

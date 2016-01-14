@@ -165,4 +165,13 @@ public class DateTimeQuestion extends Question {
 	public DateTimeQuestion clone() throws CloneNotSupportedException {
 		return (new Cloner()).deepClone(this);
 	}
+	
+	@Override
+	public List<String> getCode(int index){
+		List<String> list = new ArrayList<String>();
+		list.add(this.getQuestion()+"<br>");
+		list.add("<input type=\"text\" name=\"" + index +"\"><br>");
+		list.add("<br>");
+		return list;
+	}
 }

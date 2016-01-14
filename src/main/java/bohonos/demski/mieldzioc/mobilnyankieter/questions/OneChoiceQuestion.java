@@ -246,4 +246,15 @@ public class OneChoiceQuestion extends Question {
 		
 		answers.addAll(newAswers);
 	}
+	
+	@Override
+	public List<String> getCode(int index){
+		List<String> list = new ArrayList<String>();
+		list.add(this.getQuestion()+"<br>");
+		for (String answer : this.answers){
+			list.add("<input name=\"" + index + "\" type=\"radio\" value=\"" + answer + "\"/> " + answer + " <br>");
+		}
+		list.add("<br>");
+		return list;
+	}
 }

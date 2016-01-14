@@ -137,4 +137,13 @@ public class TextQuestion extends Question {
 		if(isAnswered()) list.add(userAnswer);
 		return list;
 	}
+	
+	@Override
+	public List<String> getCode(int index){
+		List<String> list = new ArrayList<String>();
+		list.add(this.getQuestion()+"<br>");
+		list.add("<input type=\"text\" name=\"" + index +"\"><br>");
+		list.add("<br>");
+		return list;
+	}
 }

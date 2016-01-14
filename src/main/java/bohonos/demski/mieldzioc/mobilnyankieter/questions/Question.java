@@ -145,6 +145,13 @@ public abstract class Question implements Serializable, Cloneable{
 	 */
 	public abstract boolean isAnswered();
 	
+	/**
+	 * 
+	 * @param index index pytania
+	 * @return zwraca kod html pytania
+	 */
+	public abstract List<String> getCode(int index);
+	
 	@Override
 	public boolean equals(Object o) {
 		if(this == o){

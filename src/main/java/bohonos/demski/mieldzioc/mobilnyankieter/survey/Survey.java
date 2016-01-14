@@ -303,6 +303,32 @@ public class Survey implements Serializable, Cloneable {
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
 	}
+	
+	/**
+	 * generates html code of template
+	 * @return list of html code rows
+	 */
+	public List<String> getHtmlCode(){
+		List<String> list = new ArrayList<String>();
+		list.add("<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">");
+		list.add("<form>");
+		list.add("<br>");
+		list.add("<b>" + this.getTitle() + "</b><br>");
+		list.add("<br>");
+		list.add(this.getDescription() + "<br>");
+		list.add("<br>");
+		int index=0;
+		for(Question question : this.questions){
+			index++;
+			List<String> questionCode = question.getCode(index);
+			for(String row : questionCode){
+				list.add(row);
+			}
+		}
+		list.add(this.getSummary() + "<br>");
+		list.add("</form>");
+		return list;
+	}
 
 	/**
      * 

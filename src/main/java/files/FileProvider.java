@@ -5,8 +5,18 @@
  */
 package files;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import bohonos.demski.mieldzioc.mobilnyankieter.desktopapplication.SurveyMenagerPanel;
+import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.JsonSurveySerializator;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 
 /**
@@ -48,5 +58,26 @@ public class FileProvider {
      */
     public String prepareListOfWorkers() {
         return null; // to do
+    }
+    
+    public void makeHtml(Survey survey){
+    	GregorianCalendar date = new GregorianCalendar();
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
+        fmt.setCalendar(date);
+        String dateFormatted = fmt.format(date.getTime());
+        String templatePath = "C:" + File.separator + "ankieter" + File.separator + "htmlTemplates" + File.separator + dateFormatted + " " + survey.getTitle() + ".html";
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(templatePath, "UTF-8");
+            List<String> codeList = survey.getHtmlCode();
+            for(String row : codeList) {
+            	writer.println(row);
+            }
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SurveyMenagerPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(SurveyMenagerPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

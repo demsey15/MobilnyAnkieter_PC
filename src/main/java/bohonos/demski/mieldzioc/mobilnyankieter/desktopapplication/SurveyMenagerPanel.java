@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 import bohonos.demski.mieldzioc.mobilnyankieter.serialization.jsonserialization.JsonSurveySerializator;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.Survey;
 import bohonos.demski.mieldzioc.mobilnyankieter.survey.SurveyHandler;
+import files.FileProvider;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -120,7 +121,7 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
             System.out.println("ankieta: " + (new JsonSurveySerializator()).serializeSurvey(survey));
             //TODO udostêpnienie ankiety
             GregorianCalendar date = new GregorianCalendar();
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-mm-dd HH.mm.ss.SSS");
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
             fmt.setCalendar(date);
             String dateFormatted = fmt.format(date.getTime());
             String templatePath = "C:" + File.separator + "ankieter" + File.separator + "activeTemplates" + File.separator + dateFormatted + " " + survey.getTitle() + ".json";
@@ -153,7 +154,8 @@ public class SurveyMenagerPanel extends JPanel implements ActionListener {
         }
         
         if (source == saveToFileButton) {
-            //TODO zapis do pliku
+            FileProvider fileProvider = new FileProvider();
+            fileProvider.makeHtml(survey);
         }
     }
     
