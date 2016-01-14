@@ -251,7 +251,29 @@ public class GridQuestion extends Question {
 	
 	@Override
 	public List<String> getCode(int index){
-		List list = new ArrayList<String>();
+		List<String> list = new ArrayList<String>();
+		list.add(this.getQuestion()+"<br>");
+		list.add("<table>");
+		list.add("<tr>");
+		String labelRow = "<td align=\"center\"> </td>";
+		for(String col : this.columnLabels){
+			labelRow = labelRow + "<td align=\"center\">" + col + "</td>";
+		}
+		list.add(labelRow);
+		list.add("</tr>");
+		int rowNumber = 0;
+		for(String row : this.rowLabels){
+			rowNumber++;
+			list.add("<tr>");
+			String rowCode = "<td align=\"center\">" + row + "</td>";
+			for(int colNumber = 1; colNumber <= this.columnLabels.size(); colNumber++){
+				rowCode = rowCode + "<td align=\"center\"><input name=\"" + index + "x" + rowNumber + "\" type=\"radio\" value=\"" + colNumber + "\"/></td>";
+			}
+			list.add(rowCode);
+			list.add("</tr>");
+		}
+		list.add("</table>");
+		list.add("<br>");
 		return list;
 	}
 }

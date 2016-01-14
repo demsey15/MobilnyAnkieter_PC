@@ -325,6 +325,7 @@ public class Survey implements Serializable, Cloneable {
 				list.add(row);
 			}
 		}
+		list.add("<br>");
 		list.add(this.getSummary() + "<br>");
 		list.add("</form>");
 		return list;

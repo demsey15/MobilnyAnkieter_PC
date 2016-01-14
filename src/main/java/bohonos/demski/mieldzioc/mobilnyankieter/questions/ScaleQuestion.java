@@ -177,7 +177,27 @@ public class ScaleQuestion extends Question {
 	
 	@Override
 	public List<String> getCode(int index){
-		List list = new ArrayList<String>();
+		List<String> list = new ArrayList<String>();
+		list.add(this.getQuestion()+"<br>");
+		list.add("<table>");
+		list.add("<tr>");
+		String labelRow = "<td align=\"center\">" + this.minLabel + "</td>";
+		for(int i=this.minValue; i<=this.maxValue; i++){
+			labelRow = labelRow + "<td align=\"center\">" + i + "</td>";
+		}
+		labelRow = labelRow + "<td align=\"center\">" + this.maxLabel + "</td>";
+		list.add(labelRow);
+		list.add("</tr>");
+		list.add("<tr>");
+		String radioRow = "<td align=\"center\"> </td>";
+		for(int i=this.minValue; i<=this.maxValue; i++){
+			radioRow = radioRow + "<td align=\"center\"><input name=\"" + index + "\" type=\"radio\" value=\"" + i + "\"/></td>";
+		}
+		radioRow = radioRow + "<td align=\"center\"> </td>";
+		list.add(radioRow);
+		list.add("</tr>");
+		list.add("</table>");
+		list.add("<br>");
 		return list;
 	}
 }
